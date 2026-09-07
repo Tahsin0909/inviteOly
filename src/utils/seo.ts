@@ -1,6 +1,6 @@
 import { Metadata } from "next";
 
-const APP_NAME = process.env.NEXT_PUBLIC_APP_NAME || "Frontend Template";
+const APP_NAME = process.env.NEXT_PUBLIC_APP_NAME || "InviteOly";
 const APP_URL = process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000";
 const APP_DESCRIPTION =
   "Insight you can trust, trusted by professionals worldwide.";

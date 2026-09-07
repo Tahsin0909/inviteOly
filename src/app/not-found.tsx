@@ -1,7 +1,7 @@
 import { AlertTriangle } from "lucide-react";
 
 export default function NotFound() {
-  const APP_NAME = process.env.NEXT_PUBLIC_APP_NAME || "Frontend Template";
+  const APP_NAME = process.env.NEXT_PUBLIC_APP_NAME || "InviteOly";
   return (
     <div className="min-h-screen bg-gradient-to-br from-red-50 to-orange-50 flex items-center justify-center p-4">
       <div className="text-center">
