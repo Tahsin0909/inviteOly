@@ -14,19 +14,19 @@ export const DesktopMenu = () => {
   const { desktopMenu } = useNavbarMenu();
 
   return (
-    <div className="xl:flex hidden items-center gap-8">
+    <nav aria-label="Main Navigation" className="xl:flex hidden items-center gap-7 lg:gap-8">
       {desktopMenu.map((item) =>
         item.children ? (
           <DropdownMenu key={item.label}>
-            <DropdownMenuTrigger className="flex items-center text-base text-surface-dark hover:text-primary font-work-sans font-medium transition-colors duration-300 gap-2 outline-none">
+            <DropdownMenuTrigger className="flex items-center text-sm md:text-base text-neutral-300 hover:text-white font-work-sans font-medium transition-colors duration-200 gap-1.5 outline-none cursor-pointer">
               <span>{item.label}</span>
-              <ChevronDown className="w-[15px] object-contain" />
+              <ChevronDown className="w-3.5 h-3.5 object-contain opacity-70" />
             </DropdownMenuTrigger>
-            <DropdownMenuContent>
+            <DropdownMenuContent className="bg-neutral-900 border-neutral-800 text-white">
               {item.children.map((child) => (
                 <DropdownMenuItem
                   key={child.label}
-                  className="font-medium"
+                  className="font-medium hover:bg-neutral-800 focus:bg-neutral-800 cursor-pointer"
                   asChild
                 >
                   <Link href={`${child.href}`}>{child.label}</Link>
@@ -38,12 +38,12 @@ export const DesktopMenu = () => {
           <Link
             key={item.label}
             href={item.href!}
-            className="text-base text-surface-dark hover:text-primary font-work-sans font-medium transition-colors duration-300"
+            className="text-sm md:text-base text-neutral-300 hover:text-white font-work-sans font-medium transition-colors duration-200"
           >
             {item.label}
           </Link>
         )
       )}
-    </div>
+    </nav>
   );
 };

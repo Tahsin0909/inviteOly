@@ -2,40 +2,38 @@
 import { IRole } from "@/features/user/user.interface";
 import { IMenu } from "./navbar.interface";
 
-// All available menu items (similar to sidebar structure)
+// All available menu items matching the InviteOly navigation
 export const ALL_NAVBAR_MENU_ITEMS: Record<string, IMenu> = {
-  articles: {
-    label: "Articles",
-    href: "/article",
+  howItWorks: {
+    label: "How it Works",
+    href: "/#how-it-works",
   },
-  newsletters: {
-    label: "Newsletters",
-    href: "/newsletter",
+  features: {
+    label: "Features",
+    href: "/#features",
   },
-  polls: {
-    label: "Polls",
-    href: "/poll",
+  pricing: {
+    label: "Pricing",
+    href: "/#pricing",
   },
-  resources: {
-    label: "Resources",
-    children: [
-      { label: "Drug Database", href: "/resources/drug-database" },
-      { label: "Catalyst Calendar", href: "/resources/catalyst-calendar" },
-    ],
+  hosts: {
+    label: "Hosts",
+    href: "/hosts",
+  },
+  partners: {
+    label: "Partners",
+    href: "/partners",
   },
 };
 
 export const UNAUTHENTICATED_ITEMS: Record<string, IMenu> = {
-  subscribe: {
-    label: "Subscribe",
-    children: [
-      { label: "Free Plan", href: "/subscribe/free" },
-      { label: "Premium Plan", href: "/subscribe/premium" },
-    ],
-  },
   login: {
-    label: "Login",
+    label: "Sign in",
     href: "/login",
+  },
+  getStarted: {
+    label: "Get Started",
+    href: "/register",
   },
 };
 
@@ -62,14 +60,15 @@ export const COMMON_NAVBAR_ROUTES = [
 
 // Public menu items (accessible without authentication)
 export const PUBLIC_NAVBAR_ITEMS: string[] = [
-  "articles",
-  "newsletters",
-  "polls",
-  "resources",
+  "howItWorks",
+  "features",
+  "pricing",
+  "hosts",
+  "partners",
 ];
 
 // Role-based menu configuration
 export const ROLE_NAVBAR_MENU_CONFIG: Record<IRole, string[]> = {
-  [IRole.ADMIN]: ["articles", "newsletters", "polls", "resources"],
-  [IRole.USER]: ["articles", "newsletters", "polls", "resources"],
+  [IRole.ADMIN]: ["howItWorks", "features", "pricing", "hosts", "partners"],
+  [IRole.USER]: ["howItWorks", "features", "pricing", "hosts", "partners"],
 };

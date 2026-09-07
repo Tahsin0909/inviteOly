@@ -1,41 +1,63 @@
 import { IFooter, ISocial } from "./footer.interface";
 
-export const Join: IFooter = {
-  title: "Join",
+export const supportSection: IFooter = {
+  title: "Support",
   links: [
-    { label: "Upgrade", href: "/upgrade" },
-    { label: "Subscribe", href: "/subscribe" },
-    { label: "Sponsor Us", href: "/sponsor" },
-    { label: "Contact us", href: "/contact" },
+    { label: "Help Center", href: "/help" },
+    { label: "Contact Us", href: "/contact" },
+    { label: "Terms of Service", href: "/terms" },
+    { label: "Privacy Policy", href: "/privacy" },
   ],
 };
 
-export const Home: IFooter = {
-  title: "Home",
+export const productSection: IFooter = {
+  title: "Product",
   links: [
-    { label: "About", href: "/about" },
-    { label: "Privacy", href: "/privacy" },
-    { label: "Terms & use", href: "/terms" },
+    { label: "Features", href: "/#features" },
+    { label: "How It Works", href: "/#how-it-works" },
+    { label: "Pricing", href: "/#pricing" },
+    { label: "FAQ", href: "/faq" },
   ],
 };
 
-export const Explore: IFooter = {
-  title: "Explore",
+export const partnersSection: IFooter = {
+  title: "For Partners",
   links: [
-    { label: "Newsletters", href: "/newsletters" },
-    { label: "Premium", href: "/premium" },
+    { label: "Become a Partner", href: "/partners" },
+    { label: "Partner Benefits", href: "/partners/benefits" },
+    { label: "Partner Login", href: "/login" },
   ],
 };
 
+export const hostsSection: IFooter = {
+  title: "For Hosts",
+  links: [
+    { label: "Create an Event", href: "/create-event" },
+    { label: "Guest Management", href: "/guest-management" },
+    { label: "Ticketing", href: "/ticketing" },
+  ],
+};
+
+export const footerSections: IFooter[] = [
+  supportSection,
+  productSection,
+  partnersSection,
+  hostsSection,
+];
+
+export const bottomLinks = [
+  { label: "Privacy", href: "/privacy" },
+  { label: "Terms", href: "/terms" },
+];
+
+// Preserved for backward compatibility
 export const policy: IFooter = {
   title: "Policy",
   links: [
-    { label: "Privacy Policy", href: "/privacy-policy" },
-    { label: "Terms & Conditions ", href: "/terms-conditions " },
+    { label: "Privacy Policy", href: "/privacy" },
+    { label: "Terms of Service", href: "/terms" },
   ],
 };
-
-export const footerSections = [Join, Home, Explore];
 
 export const social: ISocial[] = [
   {
@@ -49,16 +71,6 @@ export const social: ISocial[] = [
     link: "/",
   },
   {
-    name: "Tik Tok",
-    image: "/tiktok.svg",
-    link: "/",
-  },
-  {
-    name: "Youtube",
-    image: "/youtube.svg",
-    link: "/",
-  },
-  {
     name: "Twitter",
     image: "/twitter.svg",
     link: "/",
@@ -66,11 +78,6 @@ export const social: ISocial[] = [
   {
     name: "LinkedIn",
     image: "/linkedin.svg",
-    link: "/",
-  },
-  {
-    name: "Threads",
-    image: "/threads.svg",
     link: "/",
   },
 ];

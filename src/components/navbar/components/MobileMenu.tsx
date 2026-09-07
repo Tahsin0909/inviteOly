@@ -25,6 +25,8 @@ import {
 import { useAuth } from "@/features/auth/hooks/useAuth";
 import Image from "next/image";
 import { useNavbarMenu } from "../hooks/use-navbar-menu";
+import { Logo } from "./Logo";
+import { NavbarAuthButtons } from "./SignUpButton";
 
 export const MobileMenu = () => {
   const { profile, isLoading, isAuthenticated, token, handleLogout } =
@@ -55,39 +57,26 @@ export const MobileMenu = () => {
         <Button
           variant="ghost"
           size="icon"
-          className="xl:hidden p-0 h-auto w-auto"
+          className="xl:hidden p-0 h-9 w-9 text-white hover:text-white hover:bg-neutral-800"
         >
           <Menu className="!h-6 !w-6" />
           <span className="sr-only">Toggle menu</span>
         </Button>
       </SheetTrigger>
-      <SheetContent side="left" className="w-80">
+      <SheetContent side="left" className="w-80 bg-neutral-900 border-neutral-800 text-white">
         <SheetHeader>
           <SheetTitle>
             <div>
-              <Link href="/">
-                <Image
-                  src="/logo.svg"
-                  width={180}
-                  height={40}
-                  className="xl:w-[180px] xs:w-[140px] w-[120px] h-auto lg:h-[40px] object-contain dark:hidden"
-                  alt={`${process.env.NEXT_PUBLIC_APP_NAME}`}
-                />
-                <Image
-                  src="/dark-logo.svg"
-                  width={180}
-                  height={40}
-                  className="xl:w-[180px] xs:w-[140px] w-[120px] h-auto lg:h-[40px] object-contain not-dark:hidden"
-                  alt={`${process.env.NEXT_PUBLIC_APP_NAME}`}
-                />
+              <Link href="/" onClick={handleLinkClick}>
+                <Logo />
               </Link>
             </div>
           </SheetTitle>
         </SheetHeader>
-        <nav className="flex flex-col mt-12 h-[400px] overflow-y-auto">
+        <nav className="flex flex-col mt-8 h-[380px] overflow-y-auto">
           {mobileMenu.map((item) => (
-            <div key={item.label}>
-              {item.children ? (
+            <div key={item?.label}>
+              {item?.children ? (
                 <Collapsible
                   open={openItems.includes(item.label)}
                   onOpenChange={() => toggleItem(item.label)}
@@ -95,13 +84,12 @@ export const MobileMenu = () => {
                   <CollapsibleTrigger asChild>
                     <Button
                       variant="ghost"
-                      className="w-full text-base justify-between h-auto !px-4 py-3 font-medium text-left"
+                      className="w-full text-base justify-between h-auto !px-4 py-3 font-medium text-left text-neutral-200 hover:text-white hover:bg-neutral-800"
                     >
                       {item.label}
                       <ChevronDown
-                        className={`h-4 w-4 transition-transform duration-200 ${
-                          openItems.includes(item.label) ? "rotate-180" : ""
-                        }`}
+                        className={`h-4 w-4 transition-transform duration-200 ${openItems.includes(item.label) ? "rotate-180" : ""
+                          }`}
                       />
                     </Button>
                   </CollapsibleTrigger>
@@ -111,7 +99,7 @@ export const MobileMenu = () => {
                         <button
                           key={child.label}
                           onClick={onLogout}
-                          className="block w-full text-left py-2 px-7 text-sm text-muted-foreground hover:text-foreground hover:bg-accent rounded-md transition-colors"
+                          className="block w-full text-left py-2 px-7 text-sm text-neutral-400 hover:text-white hover:bg-neutral-800 rounded-md transition-colors"
                         >
                           {child.label}
                         </button>
@@ -120,7 +108,7 @@ export const MobileMenu = () => {
                           key={child.label}
                           href={child.href || "/"}
                           onClick={handleLinkClick}
-                          className="block py-2 px-7 text-sm text-muted-foreground hover:text-foreground hover:bg-accent rounded-md transition-colors"
+                          className="block py-2 px-7 text-sm text-neutral-400 hover:text-white hover:bg-neutral-800 rounded-md transition-colors"
                         >
                           {child.label}
                         </Link>
@@ -130,20 +118,20 @@ export const MobileMenu = () => {
                 </Collapsible>
               ) : (
                 <Link
-                  href={item.href || "/"}
+                  href={item?.href || "/"}
                   onClick={handleLinkClick}
-                  className="block py-3 px-4 font-medium hover:bg-accent rounded-md transition-colors"
+                  className="block py-3 px-4 font-medium text-neutral-200 hover:text-white hover:bg-neutral-800 rounded-md transition-colors"
                 >
-                  {item.label}
+                  {item?.label}
                 </Link>
               )}
             </div>
           ))}
         </nav>
         <SheetDescription className="sr-only">
-          {process.env.NEXT_PUBLIC_APP_NAME} Off Canvas Menu
+          {process.env.NEXT_PUBLIC_APP_NAME} Mobile Menu
         </SheetDescription>
-        <SheetFooter>
+        <SheetFooter className="mt-4 pt-4 border-t border-neutral-800">
           {!isLoading && isAuthenticated && token ? (
             <div className="flex items-center gap-2 font-medium">
               <Avatar className="text-secondary w-[40px] h-[40px]">
@@ -158,7 +146,7 @@ export const MobileMenu = () => {
                 {profile?.hasActiveSubscription ? (
                   <Badge
                     variant="outline"
-                    className="border-almond-yellow text-[10px] text-almond-yellow bg-light-yellow py-1 px-1 sm:px-2.5 leading-[1em]"
+                    className="border-primary text-[10px] text-primary bg-primary/10 py-1 px-1 sm:px-2.5 leading-[1em]"
                   >
                     <Image
                       src={CrownIcon}
@@ -172,14 +160,18 @@ export const MobileMenu = () => {
                 ) : (
                   <Badge
                     variant="outline"
-                    className="border-almond-yellow text-almond-yellow bg-light-yellow py-1 px-2.5 leading-[1em]"
+                    className="border-primary text-primary bg-primary/10 py-1 px-2.5 leading-[1em]"
                   >
                     Free
                   </Badge>
                 )}
               </div>
             </div>
-          ) : null}
+          ) : (
+            <div className="w-full flex flex-col gap-2">
+              <NavbarAuthButtons onItemClick={handleLinkClick} className="w-full justify-center" />
+            </div>
+          )}
         </SheetFooter>
       </SheetContent>
     </Sheet>
