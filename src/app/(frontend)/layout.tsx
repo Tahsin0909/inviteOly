@@ -14,7 +14,6 @@ export default function Layout({
     return (
         <div>
             <Navbar />
-            <div className="min-h-screen"></div>
             {children}
             <Footer />
         </div>
