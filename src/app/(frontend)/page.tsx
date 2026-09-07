@@ -1,11 +1,13 @@
 import Banner from '@/components/banner/Banner';
+import HowItWorks from '@/components/howItWorks/HowItWorks';
 import React from 'react';
 
 const page = () => {
     return (
-        <div>
+        <main>
             <Banner />
-        </div>
+            <HowItWorks />
+        </main>
     );
 };
 
