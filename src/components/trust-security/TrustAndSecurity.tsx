@@ -73,8 +73,10 @@ const TrustAndSecurity: React.FC<TrustAndSecurityProps> = ({
     return (
         <section
             id="trust-security"
-            aria-label="Trust and security"
-            className={cn("py-16 sm:py-20 md:py-24 bg-background", className)}
+            className={cn(
+                "pt-10 sm:pt-14 md:pt-16 pb-16 sm:pb-20 md:pb-24 bg-background",
+                className
+            )}
         >
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
                 {/* Section Header */}

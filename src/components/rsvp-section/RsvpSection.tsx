@@ -97,8 +97,10 @@ const RsvpSection: React.FC<RsvpSectionProps> = ({
     return (
         <section
             id="rsvp-workflow"
-            aria-label="RSVP workflow and ticketing preview"
-            className={cn("py-16 sm:py-20 md:py-24 bg-background", className)}
+            className={cn(
+                "pt-10 sm:pt-14 md:pt-16 pb-16 sm:pb-20 md:pb-24 bg-background",
+                className
+            )}
         >
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
                 {/* Section Header */}

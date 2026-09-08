@@ -10,7 +10,7 @@ import React from 'react';
 
 const page = () => {
     return (
-        <main>
+        <main className="w-full overflow-x-hidden">
             <Banner />
             <HowItWorks />
             <RsvpSection />

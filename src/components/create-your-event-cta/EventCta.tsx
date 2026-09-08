@@ -71,7 +71,7 @@ const EventCta: React.FC<EventCtaProps> = ({
         <section
             aria-label="Get Started with your event"
             className={cn(
-                "relative w-full bg-[#141414] text-white py-20 sm:py-24 md:py-28 lg:py-32 overflow-hidden",
+                "relative w-full bg-[#141414] text-white py-16 sm:py-20 md:py-24 lg:py-28 overflow-hidden",
                 className
             )}
         >

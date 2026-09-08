@@ -20,7 +20,7 @@ export const PricingCard: React.FC<PricingCardProps> = ({
   return (
     <div
       className={cn(
-        "relative w-full rounded-3xl bg-card border border-border/80 shadow-xs hover:shadow-md transition-all duration-300 p-6 sm:p-8 flex flex-col justify-between overflow-hidden",
+        "relative w-full h-full rounded-3xl bg-card border border-border/80 shadow-xs hover:shadow-md transition-all duration-300 p-6 sm:p-8 flex flex-col justify-between overflow-hidden",
         plan.isPopular && "border-[#C39B4C]/40 ring-1 ring-[#C39B4C]/20"
       )}
     >

@@ -137,7 +137,7 @@ const Banner: React.FC<BannerProps> = ({
         <section
             aria-label="Event management banner"
             className={cn(
-                "relative w-full min-h-[600px] sm:min-h-[620px] md:min-h-[700px] lg:min-h-[780px] xl:min-h-[840px] flex items-center justify-center overflow-hidden",
+                "relative w-full min-h-[calc(100vh-72px)] flex items-center justify-center overflow-hidden",
                 className
             )}
         >
@@ -162,7 +162,7 @@ const Banner: React.FC<BannerProps> = ({
             />
 
             {/* Hero Content */}
-            <div className="relative z-10 container mx-auto py-16 sm:py-24 md:py-30 flex flex-col items-center text-center">
+            <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 md:py-20 lg:py-24 flex flex-col items-center text-center">
                 {/* Main Headline */}
                 <h1 className="font-space-grotesk font-bold text-white tracking-tight text-3xl sm:text-5xl md:text-6xl lg:text-[64px] xl:text-[68px] max-w-4xl leading-[1.12] drop-shadow-sm">
                     {title ? (

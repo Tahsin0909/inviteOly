@@ -79,9 +79,12 @@ const HowItWorks: React.FC<HowItWorksProps> = ({
         <section
             id="how-it-works"
             aria-label="How it works"
-            className={cn("py-16 sm:py-20 md:py-24 bg-background", className)}
+            className={cn(
+                "pt-16 sm:pt-20 md:pt-24 pb-10 sm:pb-14 md:pb-16 bg-background",
+                className
+            )}
         >
-            <div className="container mx-auto">
+            <div className="container mx-auto px-4 sm:px-6 lg:px-8">
                 {/* Section Header */}
                 <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16 md:mb-20">
                     <p className="text-xs sm:text-sm font-medium tracking-[0.2em] text-muted-foreground uppercase mb-3">

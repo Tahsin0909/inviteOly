@@ -23,7 +23,7 @@ export default function Pricing() {
         <section
             id="pricing"
             aria-label="Event Pricing Plans"
-            className="py-16 sm:py-20 md:py-24 bg-background"
+            className="pt-16 sm:pt-20 md:pt-24 pb-10 sm:pb-14 md:pb-16 bg-background"
         >
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
                 {/* Eyebrow */}
