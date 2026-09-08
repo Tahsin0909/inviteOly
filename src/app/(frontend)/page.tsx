@@ -3,6 +3,7 @@ import CreateEventCta from '@/components/create-your-event-cta/CreateEventCta';
 import EventCta from '@/components/create-your-event-cta/EventCta';
 import EventTypes from '@/components/event-types/EventTypes';
 import HowItWorks from '@/components/howItWorks/HowItWorks';
+import RsvpSection from '@/components/rsvp-section/RsvpSection';
 import TrustAndSecurity from '@/components/trust-security/TrustAndSecurity';
 import React from 'react';
 
@@ -11,6 +12,7 @@ const page = () => {
         <main>
             <Banner />
             <HowItWorks />
+            <RsvpSection />
             <EventTypes />
             <CreateEventCta />
             <TrustAndSecurity />
