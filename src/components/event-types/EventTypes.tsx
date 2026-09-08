@@ -40,48 +40,48 @@ const DEFAULT_EVENT_TYPES: readonly EventTypeItem[] = [
         id: "weddings",
         title: "Weddings",
         image:
-            "https://images.unsplash.com/photo-1519741497674-611481863552?w=800&auto=format&fit=crop&q=80",
-        alt: "Luxury wedding ceremony venue with floral decor",
+            "https://images.unsplash.com/photo-1519741497674-611481863552?w=1200&auto=format&fit=crop&q=90",
+        alt: "Elegant luxury wedding ceremony with sophisticated floral decor",
         href: "/events/weddings",
     },
     {
         id: "birthdays",
         title: "Birthdays",
         image:
-            "https://images.unsplash.com/photo-1530103862676-de8c9debad1d?w=800&auto=format&fit=crop&q=80",
-        alt: "Joyful birthday celebration with confetti and smiles",
+            "https://images.unsplash.com/photo-1464349153735-7db50ed83c84?w=1200&auto=format&fit=crop&q=90",
+        alt: "Elegant birthday celebration with luxury table decorations",
         href: "/events/birthdays",
     },
     {
         id: "corporate-events",
         title: "Corporate Events",
         image:
-            "https://images.unsplash.com/photo-1511578314322-379afb476865?w=800&auto=format&fit=crop&q=80",
-        alt: "Corporate conference hall with auditorium attendees",
+            "https://images.unsplash.com/photo-1505373877841-8d25f7d46678?w=1200&auto=format&fit=crop&q=90",
+        alt: "Premium corporate conference with professional stage and audience",
         href: "/events/corporate",
     },
     {
         id: "private-parties",
         title: "Private Parties",
         image:
-            "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?w=800&auto=format&fit=crop&q=80",
-        alt: "VIP private evening party with ambient lighting and floral table settings",
+            "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?w=1200&auto=format&fit=crop&q=90",
+        alt: "Luxury private party with elegant ambient lighting",
         href: "/events/private-parties",
     },
     {
         id: "cultural-events",
         title: "Cultural Events",
         image:
-            "https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?w=800&auto=format&fit=crop&q=80",
-        alt: "Traditional cultural celebration stage with ornate backdrop",
+            "https://images.unsplash.com/photo-1506157786151-b8491531f063?w=1200&auto=format&fit=crop&q=90",
+        alt: "Large-scale cultural event with dramatic stage lighting",
         href: "/events/cultural",
     },
     {
         id: "social-events",
         title: "Social Events",
         image:
-            "https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?w=800&auto=format&fit=crop&q=80",
-        alt: "Grand ballroom gala with crystal chandeliers and banquet tables",
+            "https://images.unsplash.com/photo-1519167758481-83f550bb49b3?w=1200&auto=format&fit=crop&q=90",
+        alt: "Luxury gala event in an elegant ballroom",
         href: "/events/social",
     },
 ];
