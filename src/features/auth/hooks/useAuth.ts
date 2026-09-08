@@ -149,7 +149,9 @@ export const useAuth = (): UseAuthReturn => {
           response?.message || "Account created! Please verify your email.",
           { id: toastId }
         );
-        router.push(`/verify-otp?email=${encodeURIComponent(targetEmail)}&flow=register`);
+        router.push(
+          `/verify-otp?email=${encodeURIComponent(targetEmail)}&flow=register`
+        );
       } catch (error) {
         const message = extractErrorMessage(error, "Registration failed");
         toast.error(message, { id: toastId });
@@ -206,7 +208,9 @@ export const useAuth = (): UseAuthReturn => {
         );
         toast.success("Verification code sent to your email!", { id: toastId });
         router.push(
-          `/verify-otp?email=${encodeURIComponent(credentials.email)}&flow=forgot-password`
+          `/verify-otp?email=${encodeURIComponent(
+            credentials.email
+          )}&flow=forgot-password`
         );
       } catch (error) {
         const message = extractErrorMessage(
@@ -228,21 +232,25 @@ export const useAuth = (): UseAuthReturn => {
         const response = await verifyOtp({
           email: targetEmail,
           otp,
-          type: type || (pendingFlow as "register" | "forgot-password" | "login") || "register",
+          type:
+            type ||
+            (pendingFlow as "register" | "forgot-password" | "login") ||
+            "register",
         }).unwrap();
 
-        const currentFlow =
-          type || pendingFlow || "register";
+        const currentFlow = type || pendingFlow || "register";
 
         if (currentFlow === "forgot-password") {
           if (response?.data?.resetToken) {
             dispatch(setResetToken(response.data.resetToken));
           }
-          toast.success("Code verified! Set your new password.", { id: toastId });
+          toast.success("Code verified! Set your new password.", {
+            id: toastId,
+          });
           router.push(
-            `/reset-password?email=${encodeURIComponent(targetEmail)}&otp=${encodeURIComponent(
-              String(otp)
-            )}`
+            `/reset-password?email=${encodeURIComponent(
+              targetEmail
+            )}&otp=${encodeURIComponent(String(otp))}`
           );
         } else {
           // Registration or standard login verification
@@ -275,7 +283,9 @@ export const useAuth = (): UseAuthReturn => {
       try {
         await resetPassword(credentials).unwrap();
         dispatch(clearPendingAuth());
-        toast.success("Password set successfully! Please log in.", { id: toastId });
+        toast.success("Password set successfully! Please log in.", {
+          id: toastId,
+        });
         router.push("/login");
       } catch (error) {
         const message = extractErrorMessage(error, "Failed to set password");
@@ -362,4 +372,3 @@ export const useAuth = (): UseAuthReturn => {
     isUser,
   };
 };
-
