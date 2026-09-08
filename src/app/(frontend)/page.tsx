@@ -5,6 +5,7 @@ import EventTypes from '@/components/event-types/EventTypes';
 import HowItWorks from '@/components/howItWorks/HowItWorks';
 import RsvpSection from '@/components/rsvp-section/RsvpSection';
 import TrustAndSecurity from '@/components/trust-security/TrustAndSecurity';
+import Pricing from '@/features/payment/components/pricingCard/Pricing';
 import React from 'react';
 
 const page = () => {
@@ -15,6 +16,7 @@ const page = () => {
             <RsvpSection />
             <EventTypes />
             <CreateEventCta />
+            <Pricing />
             <TrustAndSecurity />
             <EventCta />
         </main>
