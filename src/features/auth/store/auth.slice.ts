@@ -6,6 +6,9 @@ import storage from "redux-persist/lib/storage";
 
 const initialState: AuthState = {
   email: "",
+  pendingEmail: "",
+  pendingFlow: null,
+  resetToken: null,
   currentStep: 0,
   totalSteps: 2,
   token: "",
@@ -18,6 +21,24 @@ const authSlice = createSlice({
   reducers: {
     setEmail: (state, action: PayloadAction<string>) => {
       state.email = action.payload;
+    },
+    setPendingAuth: (
+      state,
+      action: PayloadAction<{
+        email: string;
+        flow?: "register" | "forgot-password" | "login" | null;
+      }>
+    ) => {
+      state.pendingEmail = action.payload.email;
+      state.pendingFlow = action.payload.flow ?? null;
+    },
+    clearPendingAuth: (state) => {
+      state.pendingEmail = "";
+      state.pendingFlow = null;
+      state.resetToken = null;
+    },
+    setResetToken: (state, action: PayloadAction<string | null>) => {
+      state.resetToken = action.payload;
     },
     setToken: (state, action: PayloadAction<string>) => {
       state.token = action.payload;
@@ -55,6 +76,9 @@ const authSlice = createSlice({
 
 export const {
   setEmail,
+  setPendingAuth,
+  clearPendingAuth,
+  setResetToken,
   setToken,
   setUser,
   updateUser,
