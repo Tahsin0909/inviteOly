@@ -82,4 +82,20 @@ export const ROLE_MENU_CONFIG: Record<IRole, string[]> = {
     "payments",
     "users",
   ],
+  [IRole.HOST]: [
+    "dashboard",
+    "articles",
+    "polls",
+    "subscriptions",
+    "payments",
+    "users",
+  ],
+  [IRole.PARTNER]: [
+    "dashboard",
+    "articles",
+    "polls",
+    "subscriptions",
+    "payments",
+    "users",
+  ],
 };

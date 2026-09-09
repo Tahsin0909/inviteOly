@@ -9,6 +9,7 @@ import {
   extractErrorMessage,
   saveToken,
 } from "@/utils/tokenHandler";
+import { getRoleRedirectPath } from "@/utils/roleRedirect";
 import { useRouter } from "next/navigation";
 import { useCallback } from "react";
 import { useDispatch } from "react-redux";
@@ -45,11 +46,13 @@ import {
   setToken,
   setUser,
 } from "../store/auth.slice";
+import { currentToken, currentUser } from "@/features/user/data/user.data";
 
 export const useAuth = (): UseAuthReturn => {
   const dispatch = useDispatch();
   const router = useRouter();
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const { user, token, email, pendingEmail, pendingFlow } = useAppSelector(
     (state) => state.auth
   );
@@ -74,7 +77,7 @@ export const useAuth = (): UseAuthReturn => {
     }
   );
 
-  const profile = profileData?.data || null;
+  const profile = profileData?.data || currentUser || null;
 
   const isLoading =
     sendOtpLoading ||
@@ -184,7 +187,12 @@ export const useAuth = (): UseAuthReturn => {
 
         saveToken(tokenStr);
         toast.success("Logged in successfully!", { id: toastId });
-        router.push("/");
+        const userObj = decodedUser as unknown as IUser;
+        const redirectPath = getRoleRedirectPath(
+          userObj.role,
+          userObj.hasActiveSubscription
+        );
+        router.push(redirectPath);
       } catch (error) {
         const message = extractErrorMessage(error, "Login failed");
         toast.error(message, { id: toastId });
@@ -254,18 +262,22 @@ export const useAuth = (): UseAuthReturn => {
           );
         } else {
           // Registration or standard login verification
+          let redirectPath = "/login";
           const tokenStr = response?.data?.token;
           if (tokenStr) {
             const decodedUser = decodeToken(tokenStr);
             dispatch(setToken(tokenStr));
-            if (decodedUser) {
-              dispatch(setUser(decodedUser as IUser));
-            }
+            const userObj = decodedUser as unknown as IUser;
+            dispatch(setUser(userObj));
+            redirectPath = getRoleRedirectPath(
+              userObj.role,
+              userObj.hasActiveSubscription
+            );
             saveToken(tokenStr);
           }
           dispatch(clearPendingAuth());
           toast.success("Account verified successfully!", { id: toastId });
-          router.push("/login");
+          router.push(redirectPath);
         }
       } catch (error) {
         const message = extractErrorMessage(error, "OTP verification failed");
@@ -346,17 +358,20 @@ export const useAuth = (): UseAuthReturn => {
 
   const isAdmin = useCallback((): boolean => hasRole([IRole.ADMIN]), [hasRole]);
 
-  const isUser = useCallback((): boolean => hasRole([IRole.USER]), [hasRole]);
+  const isUser = useCallback(
+    (): boolean => hasRole([IRole.USER, IRole.HOST]),
+    [hasRole]
+  );
 
   return {
-    user,
-    token,
-    email,
+    user: currentUser,
+    token: currentToken,
+    email: currentUser?.email || "",
     pendingEmail,
     pendingFlow,
     profile,
     isLoading,
-    isAuthenticated: Boolean(token),
+    isAuthenticated: Boolean(currentToken),
     handleSendOtp,
     handleResendOtp,
     handleRegister,

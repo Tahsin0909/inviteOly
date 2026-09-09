@@ -1,12 +1,16 @@
 "use client";
 
 import React, { useState } from "react";
+import { useRouter } from "next/navigation";
+import { useAuth } from "@/features/auth/hooks/useAuth";
 import { PRICING_TIERS } from "../../data/pricingData";
 import { TPricingTierKey } from "../../payment.interface";
 import PricingCard from "./PricingCard";
 import { cn } from "@/lib/utils";
 
 export default function Pricing() {
+    const { isAuthenticated, token } = useAuth();
+    const router = useRouter();
     const [activeTierKey, setActiveTierKey] = useState<TPricingTierKey>("medium");
 
     const currentTier =
@@ -15,7 +19,12 @@ export default function Pricing() {
     const isSingleCard = currentTier.plans.length === 1;
 
     const handleSelectPlan = (planId: string) => {
-        // Demo handler for plan selection (e.g. opens checkout or navigates to onboarding/contact)
+        if (!isAuthenticated || !token) {
+            router.push("/login");
+            return;
+        }
+
+        // Authenticated user selected a plan
         console.log("Selected plan:", planId);
     };
 
