@@ -431,6 +431,136 @@ Retrieves all pricing tiers (Small, Medium, Large) with their corresponding pack
 
 ---
 
+### 2.7 Partner Dashboard Metrics
+Retrieves aggregated event, guest, venue, and reward metrics for the authenticated partner dashboard.
+
+- **Method**: `GET`
+- **Endpoint**: `/metrics/partner`
+- **Headers**:
+  - `Authorization: Bearer <token>`
+- **Response `200 OK`**:
+```json
+{
+  "success": true,
+  "message": "Partner metrics retrieved successfully",
+  "data": {
+    "welcomeName": "Alexander",
+    "welcomeSubtitle": "Deliver a seamless arrival experience for every host and every guest.",
+    "totalEvents": 50,
+    "totalGuests": 1560,
+    "todayEvents": 3,
+    "totalVenues": 10,
+    "pendingRewards": 2400,
+    "cards": [
+      {
+        "id": "total-event",
+        "title": "Total Event",
+        "value": 50,
+        "iconType": "events",
+        "colorVariant": "gold"
+      },
+      {
+        "id": "total-guests",
+        "title": "Total Guests",
+        "value": 1560,
+        "iconType": "guests",
+        "colorVariant": "gold"
+      },
+      {
+        "id": "today-events",
+        "title": "Today's Events",
+        "value": 3,
+        "iconType": "todayEvents",
+        "colorVariant": "gold"
+      },
+      {
+        "id": "total-venue",
+        "title": "Total Venue",
+        "value": 10,
+        "iconType": "venue",
+        "colorVariant": "gold"
+      },
+      {
+        "id": "pending-rewards",
+        "title": "Pending Rewards",
+        "value": "$2400",
+        "iconType": "rewards",
+        "colorVariant": "coral"
+      }
+    ]
+  }
+}
+```
+
+---
+
+### 2.8 Host Dashboard Metrics
+Retrieves aggregated event, guest, RSVP, ticket distribution, and check-in metrics for the authenticated host dashboard.
+
+- **Method**: `GET`
+- **Endpoint**: `/metrics/host`
+- **Headers**:
+  - `Authorization: Bearer <token>`
+- **Response `200 OK`**:
+```json
+{
+  "success": true,
+  "message": "Host metrics retrieved successfully",
+  "data": {
+    "welcomeName": "Alexander",
+    "welcomeSubtitle": "Here is a live overview of your hosted events and guest activity across your luxury portfolio.",
+    "activeEvent": 1,
+    "activeEventName": "Marcus Thorne",
+    "totalGuests": 560,
+    "rsvpConfirmed": 360,
+    "ticketsDistributed": 480,
+    "checkInCount": 270,
+    "cards": [
+      {
+        "id": "active-event",
+        "title": "Active Event",
+        "value": "1",
+        "subText": "Marcus Thorne",
+        "iconType": "activeEvent",
+        "colorVariant": "gold"
+      },
+      {
+        "id": "total-guest",
+        "title": "Total Guest",
+        "value": "560",
+        "iconType": "totalGuest",
+        "colorVariant": "gold"
+      },
+      {
+        "id": "rsvp-confirmed",
+        "title": "RSVP Confirmed",
+        "value": "360",
+        "iconType": "rsvpConfirmed",
+        "colorVariant": "gold"
+      },
+      {
+        "id": "ticket-distribute",
+        "title": "Ticket Distribute",
+        "value": "480",
+        "totalValue": "560",
+        "iconType": "ticketDistribute",
+        "colorVariant": "gold"
+      },
+      {
+        "id": "check-in",
+        "title": "Check in",
+        "value": "270",
+        "totalValue": "560",
+        "iconType": "checkIn",
+        "colorVariant": "gold"
+      }
+    ]
+  }
+}
+```
+
+---
+
 ## 3. Standard Error Response Structure
 
 In case of validation or server errors, all endpoints return:

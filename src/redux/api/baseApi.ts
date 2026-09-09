@@ -17,6 +17,7 @@ export const baseApi = createApi({
     },
   }),
   tagTypes: [
+    "metrics",
     "payment",
     "catalyst-calendar",
     "drug-database",
