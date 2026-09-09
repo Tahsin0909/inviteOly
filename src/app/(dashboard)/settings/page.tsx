@@ -1,10 +1,14 @@
-﻿import { Metadata } from "next";
-import { UnderConstruction } from "@/components/dashboard/UnderConstruction";
+import { Metadata } from "next";
+import PartnerSettings from "@/features/user/components/partner/PartnerSettings";
 
 export const metadata: Metadata = {
-  title: "Settings - InviteOnly",
+  title: "Partner Settings - InviteOnly",
 };
 
 export default function Page() {
-  return <UnderConstruction title="Settings" role="Account" />;
+  return (
+    <div className="w-full">
+      <PartnerSettings />
+    </div>
+  );
 }

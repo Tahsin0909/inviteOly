@@ -887,6 +887,173 @@ Retrieves granular event logistics, host contact information, attendee check-in/
 
 ---
 
+### 2.14 Partner Settings & User Profile Management
+
+Endpoints for managing the authenticated partner's profile information, avatar image, account security (password updates), and account termination.
+
+#### 2.14.1 Get Partner Profile
+Retrieves the full profile of the currently authenticated partner.
+
+- **Method**: `GET`
+- **Endpoint**: `/user/partner/profile`
+- **Headers**:
+  - `Authorization: Bearer <token>`
+- **Response `200 OK`**:
+```json
+{
+  "success": true,
+  "message": "Partner profile retrieved successfully",
+  "data": {
+    "id": "507f191e810c19729de860ec",
+    "firstName": "Shaima",
+    "lastName": "Hussain",
+    "email": "alex.johnson@email.com",
+    "role": "PARTNER",
+    "partnerType": "Venue",
+    "businessName": "Elite Events Co.",
+    "businessEmail": "john.doe@example.com",
+    "phone": "+(000)000-XXXX",
+    "website": "www.invitoly.com",
+    "businessAddress": "123 East St. San Francisco Ca 94112",
+    "profileImage": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=300",
+    "isEmailVerified": true,
+    "isActive": true,
+    "hasActiveSubscription": true
+  }
+}
+```
+
+---
+
+#### 2.14.2 Update Partner Profile
+Updates editable personal & business contact information for the partner.
+
+- **Method**: `PUT`
+- **Endpoint**: `/user/partner/profile`
+- **Headers**:
+  - `Authorization: Bearer <token>`
+- **Request Body**:
+```json
+{
+  "firstName": "Shaima",
+  "lastName": "Hussain",
+  "partnerType": "Venue",
+  "businessName": "Elite Events Co.",
+  "businessEmail": "john.doe@example.com",
+  "phone": "+(000)000-XXXX",
+  "website": "www.invitoly.com",
+  "businessAddress": "123 East St. San Francisco Ca 94112"
+}
+```
+- **Response `200 OK`**:
+```json
+{
+  "success": true,
+  "message": "Partner profile updated successfully",
+  "data": {
+    "id": "507f191e810c19729de860ec",
+    "firstName": "Shaima",
+    "lastName": "Hussain",
+    "email": "alex.johnson@email.com",
+    "role": "PARTNER",
+    "partnerType": "Venue",
+    "businessName": "Elite Events Co.",
+    "businessEmail": "john.doe@example.com",
+    "phone": "+(000)000-XXXX",
+    "website": "www.invitoly.com",
+    "businessAddress": "123 East St. San Francisco Ca 94112",
+    "profileImage": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=300"
+  }
+}
+```
+
+---
+
+#### 2.14.3 Upload Partner Avatar
+Uploads and updates the partner's profile photograph.
+
+- **Method**: `POST`
+- **Endpoint**: `/user/partner/avatar`
+- **Headers**:
+  - `Authorization: Bearer <token>`
+  - `Content-Type: multipart/form-data`
+- **Request Body**:
+  - `file`: `<Binary Image File (JPEG, PNG, WebP)>`
+- **Response `200 OK`**:
+```json
+{
+  "success": true,
+  "message": "Profile avatar uploaded successfully",
+  "data": {
+    "profileImage": "https://cdn.inviteonly.com/avatars/partner_507f191e810c19729de860ec.jpg"
+  }
+}
+```
+
+---
+
+#### 2.14.4 Remove Partner Avatar
+Removes the current partner photo and restores default avatar placeholder.
+
+- **Method**: `DELETE`
+- **Endpoint**: `/user/partner/avatar`
+- **Headers**:
+  - `Authorization: Bearer <token>`
+- **Response `200 OK`**:
+```json
+{
+  "success": true,
+  "message": "Profile photo removed successfully",
+  "data": null
+}
+```
+
+---
+
+#### 2.14.5 Change Partner Password
+Changes the authenticated partner's account password with verification of the current password.
+
+- **Method**: `PUT`
+- **Endpoint**: `/user/partner/change-password`
+- **Headers**:
+  - `Authorization: Bearer <token>`
+- **Request Body**:
+```json
+{
+  "currentPassword": "OldPassword123!",
+  "newPassword": "NewSecurePassword456!",
+  "confirmPassword": "NewSecurePassword456!"
+}
+```
+- **Response `200 OK`**:
+```json
+{
+  "success": true,
+  "message": "Password updated successfully",
+  "data": null
+}
+```
+
+---
+
+#### 2.14.6 Delete Partner Account
+Permanently deletes the partner account and associated records (Danger Zone action).
+
+- **Method**: `DELETE`
+- **Endpoint**: `/user/partner/account`
+- **Headers**:
+  - `Authorization: Bearer <token>`
+- **Response `200 OK`**:
+```json
+{
+  "success": true,
+  "message": "Account permanently deleted",
+  "data": null
+}
+```
+
+---
+
 ## 3. Standard Error Response Structure
 
 In case of validation or server errors, all endpoints return:

@@ -65,4 +65,26 @@ export type TCreateUser = {
   postalCode?: string;
 };
 
+export interface IUpdatePartnerProfileDto {
+  firstName?: string;
+  lastName?: string;
+  partnerType?: string;
+  businessName?: string;
+  businessEmail?: string;
+  phone?: string;
+  website?: string;
+  businessAddress?: string;
+  profileImage?: string;
+}
+
+export interface IChangePartnerPasswordDto {
+  currentPassword: string;
+  newPassword: string;
+  confirmPassword: string;
+}
+
+export interface IPartnerProfileResponse {
+  user: IUser;
+}
+
 

@@ -65,7 +65,7 @@ export const staticPartnerEvents: IPartnerEvent[] = [
       total: 610,
       percentage: "65%",
     },
-    status: "Scheduled",
+    status: "Pending",
   },
   {
     id: "evt-5",
