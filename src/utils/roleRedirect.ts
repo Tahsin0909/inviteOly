@@ -16,17 +16,17 @@ export const getRoleRedirectPath = (
   switch (role) {
     case IRole.ADMIN:
     case "ADMIN":
-      return "/dashboard/admin";
+      return "/admin";
     case IRole.HOST:
     case "HOST":
-      return "/dashboard/host";
+      return "/host";
     case IRole.PARTNER:
     case "PARTNER":
-      return "/dashboard/partner";
+      return "/partner";
     case IRole.USER:
     case "USER":
       // For role 'USER', force for payment!
-      return hasActiveSubscription ? "/dashboard/user" : "/dashboard/user";
+      return hasActiveSubscription ? "/user" : "/user";
     default:
       return "/dashboard";
   }

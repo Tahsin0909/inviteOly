@@ -1,61 +1,182 @@
 import { IRole } from "@/features/user/user.interface";
 import { SidebarMenuItem } from "@/types/sidebar";
 import {
-  CalendarClock,
-  CircleDollarSign,
-  LayoutDashboard,
-  LayoutList,
-  ListTodo,
+  Award,
+  Building2,
+  CalendarDays,
+  Clock,
+  CreditCard,
+  Download,
+  GraduationCap,
+  Handshake,
+  HelpCircle,
+  LayoutGrid,
+  LogOut,
+  Megaphone,
+  Package,
+  Receipt,
+  Settings,
+  TicketPercent,
+  UserPlus,
   Users,
 } from "lucide-react";
 
-export const ALL_MENU_ITEMS: Record<string, SidebarMenuItem> = {
-  dashboard: {
-    title: "Dashboard",
-    icon: LayoutDashboard,
-    url: "/",
+// Admin Sidebar Items ("Overview is the admin side")
+export const ADMIN_MENU_ITEMS: SidebarMenuItem[] = [
+  {
+    title: "Overview",
+    icon: LayoutGrid,
+    url: "/admin",
   },
-  articles: {
-    title: "Articles",
-    icon: LayoutList,
-    url: "#",
-    items: [
-      { title: "All Articles", url: "/articles" },
-      { title: "All Categories", url: "/articles/categories" },
-      { title: "Add New", url: "/articles/create" },
-    ],
+  {
+    title: "Events Management",
+    icon: CalendarDays,
+    url: "/admin/events",
   },
-  polls: {
-    title: "Polls",
-    icon: ListTodo,
-    url: "#",
-    items: [
-      { title: "All Polls", url: "/polls" },
-      { title: "All Categories", url: "/polls/categories" },
-      { title: "Add New", url: "/polls/create" },
-    ],
-  },
-  subscriptions: {
-    title: "Subscriptions",
-    icon: CalendarClock,
-    url: "#",
-    items: [
-      { title: "All Subscriptions", url: "/subscriptions" },
-      { title: "Add New", url: "/subscriptions/create" },
-    ],
-  },
-  payments: {
-    title: "Payments",
-    icon: CircleDollarSign,
-    url: "#",
-    items: [{ title: "All Payments", url: "/payments" }],
-  },
-  users: {
-    title: "Users",
+  {
+    title: "User Management",
     icon: Users,
-    url: "#",
-    items: [{ title: "All Users", url: "/users" }],
+    url: "/admin/users",
   },
+  {
+    title: "Packages & Pricing",
+    icon: Package,
+    url: "/admin/packages",
+  },
+  {
+    title: "Event Orders",
+    icon: Receipt,
+    url: "/admin/event-orders",
+  },
+  {
+    title: "Partner Management",
+    icon: Handshake,
+    url: "/admin/partners",
+  },
+  {
+    title: "Marketing",
+    icon: Megaphone,
+    url: "/admin/marketing",
+  },
+  {
+    title: "Promotional Codes",
+    icon: TicketPercent,
+    url: "/admin/promos",
+  },
+  {
+    title: "Payment",
+    icon: CreditCard,
+    url: "/admin/payments",
+  },
+  {
+    title: "Partner Reward",
+    icon: Award,
+    url: "/admin/partner-rewards",
+  },
+];
+
+// Host Sidebar Items ("Host Dashboard")
+export const HOST_MENU_ITEMS: SidebarMenuItem[] = [
+  {
+    title: "Dashboard",
+    icon: LayoutGrid,
+    url: "/host",
+  },
+  {
+    title: "Events Management",
+    icon: CalendarDays,
+    url: "/host/events",
+  },
+  {
+    title: "Payment Pending",
+    icon: Clock,
+    url: "/host/payment-pending",
+  },
+];
+
+// Partner Sidebar Items ("Partner Dashboard")
+export const PARTNER_MENU_ITEMS: SidebarMenuItem[] = [
+  {
+    title: "Dashboard",
+    icon: LayoutGrid,
+    url: "/partner",
+  },
+  {
+    title: "Invite a Host",
+    icon: UserPlus,
+    url: "/partner/invite-host",
+  },
+  {
+    title: "Events Management",
+    icon: CalendarDays,
+    url: "/partner/events",
+  },
+  {
+    title: "Venue Management",
+    icon: Building2,
+    url: "/partner/venues",
+  },
+  {
+    title: "Marketing",
+    icon: Megaphone,
+    url: "/partner/marketing",
+  },
+  {
+    title: "Reward",
+    icon: Award,
+    url: "/partner/rewards",
+  },
+  {
+    title: "Training",
+    icon: GraduationCap,
+    url: "/partner/training",
+  },
+];
+
+// User Sidebar Items (forces payment)
+export const USER_MENU_ITEMS: SidebarMenuItem[] = [
+  {
+    title: "Dashboard",
+    icon: LayoutGrid,
+    url: "/user",
+  },
+  {
+    title: "Choose Pricing Plan",
+    icon: CreditCard,
+    url: "/#pricing",
+  },
+];
+
+// Universal Account Items (shown in all sidebars)
+export const ACCOUNT_MENU_ITEMS: SidebarMenuItem[] = [
+  {
+    title: "Download App APK",
+    icon: Download,
+    url: "/download-app",
+  },
+  {
+    title: "Settings",
+    icon: Settings,
+    url: "/settings",
+  },
+  {
+    title: "Help & Support",
+    icon: HelpCircle,
+    url: "/support",
+  },
+  {
+    title: "Logout",
+    icon: LogOut,
+    url: "#logout",
+    isAction: true,
+  },
+];
+
+export const ROLE_SIDEBAR_MENU: Record<IRole, SidebarMenuItem[]> = {
+  [IRole.ADMIN]: ADMIN_MENU_ITEMS,
+  [IRole.HOST]: HOST_MENU_ITEMS,
+  [IRole.PARTNER]: PARTNER_MENU_ITEMS,
+  [IRole.USER]: USER_MENU_ITEMS,
 };
 
 export const COMMON_ROUTES = [
@@ -63,39 +184,8 @@ export const COMMON_ROUTES = [
   "/settings",
   "/change-password",
   "/notifications",
+  "/support",
+  "/download-app",
 ];
 
-export const ROLE_MENU_CONFIG: Record<IRole, string[]> = {
-  [IRole.ADMIN]: [
-    "dashboard",
-    "articles",
-    "polls",
-    "subscriptions",
-    "payments",
-    "users",
-  ],
-  [IRole.USER]: [
-    "dashboard",
-    "articles",
-    "polls",
-    "subscriptions",
-    "payments",
-    "users",
-  ],
-  [IRole.HOST]: [
-    "dashboard",
-    "articles",
-    "polls",
-    "subscriptions",
-    "payments",
-    "users",
-  ],
-  [IRole.PARTNER]: [
-    "dashboard",
-    "articles",
-    "polls",
-    "subscriptions",
-    "payments",
-    "users",
-  ],
-};
+

@@ -5,6 +5,8 @@ export interface SidebarMenuItem {
   icon: LucideIcon;
   url: string;
   items?: SidebarSubItem[];
+  badge?: string;
+  isAction?: boolean;
 }
 
 export interface SidebarSubItem {

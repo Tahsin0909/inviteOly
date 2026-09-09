@@ -1,7 +1,6 @@
 import {
-  ALL_MENU_ITEMS,
   COMMON_ROUTES,
-  ROLE_MENU_CONFIG,
+  ROLE_SIDEBAR_MENU,
 } from "@/constants/sidebarMenu";
 import { IRole } from "@/features/user/user.interface";
 import { SidebarMenuItem } from "@/types/sidebar";
@@ -11,11 +10,7 @@ import { SidebarMenuItem } from "@/types/sidebar";
  */
 export const getSidebarMenu = (role: IRole | null): SidebarMenuItem[] => {
   if (!role) return [];
-
-  const menuKeys = ROLE_MENU_CONFIG[role] || [];
-  return menuKeys
-    .map((key) => ALL_MENU_ITEMS[key])
-    .filter((item): item is SidebarMenuItem => Boolean(item));
+  return ROLE_SIDEBAR_MENU[role] || [];
 };
 
 /**

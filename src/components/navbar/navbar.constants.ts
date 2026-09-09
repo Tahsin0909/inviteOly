@@ -42,6 +42,7 @@ export const AUTHENTICATED_MOBILE_ITEMS: Record<string, IMenu> = {
   myAccount: {
     label: "My Account",
     children: [
+      { label: "Dashboard", href: "/dashboard" },
       { label: "Profile", href: "/profile" },
       { label: "Billing", href: "/payment/manage" },
       { label: "Settings", href: "/settings" },
