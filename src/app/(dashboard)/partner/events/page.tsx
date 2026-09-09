@@ -1,10 +1,14 @@
-﻿import { Metadata } from "next";
-import { UnderConstruction } from "@/components/dashboard/UnderConstruction";
+import { EventManagement } from "@/features/event/components/partner/EventManagement";
+import { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Events Management - InviteOnly",
 };
 
-export default function Page() {
-  return <UnderConstruction title="Events Management" role="Partner" />;
+export default function PartnerEventsPage() {
+  return (
+    <div className="space-y-6">
+      <EventManagement />
+    </div>
+  );
 }

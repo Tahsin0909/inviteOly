@@ -561,6 +561,332 @@ Retrieves aggregated event, guest, RSVP, ticket distribution, and check-in metri
 
 ---
 
+### 2.9 Partner Events List
+Retrieves active and scheduled hosted events for the authenticated partner.
+
+- **Method**: `GET`
+- **Endpoint**: `/event/partner`
+- **Headers**:
+  - `Authorization: Bearer <token>`
+- **Response `200 OK`**:
+```json
+{
+  "success": true,
+  "message": "Partner events retrieved successfully",
+  "data": [
+    {
+      "id": "evt-1",
+      "eventType": "Marcus Thorne",
+      "hostName": "Marcus Thorne",
+      "date": "Oct 12 5:00 PM",
+      "venueRoom": "Grand Ballroom",
+      "guests": 560,
+      "rsvpRate": "92%",
+      "checkIn": {
+        "checkedIn": 286,
+        "total": 560,
+        "percentage": "51%"
+      },
+      "status": "Live Now"
+    },
+    {
+      "id": "evt-2",
+      "eventType": "Sophia Nguyen",
+      "hostName": "Sophia Nguyen",
+      "date": "Oct 28 6:45 PM",
+      "venueRoom": "Rose Suite",
+      "guests": 480,
+      "rsvpRate": "69%",
+      "checkIn": {
+        "checkedIn": 331,
+        "total": 480,
+        "percentage": "69%"
+      },
+      "status": "Live Now"
+    },
+    {
+      "id": "evt-3",
+      "eventType": "Liam O'Connor",
+      "hostName": "Liam O'Connor",
+      "date": "Nov 15 4:00 PM",
+      "venueRoom": "Sunset Pavilion",
+      "guests": 530,
+      "rsvpRate": "74%",
+      "checkIn": {
+        "checkedIn": 392,
+        "total": 530,
+        "percentage": "74%"
+      },
+      "status": "Scheduled"
+    }
+  ]
+}
+```
+
+---
+
+### 2.10 Partner Events Management Overview
+Retrieves summary metrics (Today's Events, Upcoming Events, Completed Events, Total Guests) and event card listings for the Partner Events Management view.
+
+- **Method**: `GET`
+- **Endpoint**: `/event/partner/management`
+- **Headers**:
+  - `Authorization: Bearer <token>`
+- **Response `200 OK`**:
+```json
+{
+  "success": true,
+  "message": "Events management data retrieved successfully",
+  "data": {
+    "dateFormatted": "06 Aug, 2026",
+    "currentMetrics": {
+      "todaysEvents": 3,
+      "upcomingEvents": 2,
+      "totalGuests": 560
+    },
+    "pastMetrics": {
+      "completedEvents": 10,
+      "totalGuests": 560
+    },
+    "currentEvents": [
+      {
+        "id": "cur-1",
+        "title": "Summer Gala 2026",
+        "status": "Active",
+        "date": "Aug 3, 2026",
+        "time": "7:00 PM - 11:00 PM",
+        "hostName": "Liam Martinez",
+        "guestLabel": "Guests",
+        "guests": 230,
+        "checkedIn": 135,
+        "remaining": 135,
+        "progressPercentage": 47,
+        "progressVariant": "green"
+      },
+      {
+        "id": "cur-2",
+        "title": "Summer Gala 2026",
+        "status": "Active",
+        "date": "Aug 3, 2026",
+        "time": "7:00 PM - 11:00 PM",
+        "hostName": "Liam Martinez",
+        "guestLabel": "Guests",
+        "guests": 230,
+        "checkedIn": 135,
+        "remaining": 135,
+        "progressPercentage": 47,
+        "progressVariant": "orange"
+      },
+      {
+        "id": "cur-3",
+        "title": "Tech Summit 2026",
+        "status": "Scheduled",
+        "date": "Aug 3, 2026",
+        "time": "7:00 PM - 11:00 PM",
+        "hostName": "Liam Martinez",
+        "guestLabel": "Guests",
+        "guests": 230,
+        "checkedIn": 0,
+        "remaining": 230,
+        "progressPercentage": 0,
+        "progressVariant": "gray"
+      }
+    ],
+    "pastEvents": [
+      {
+        "id": "past-1",
+        "title": "Summer Gala 2026",
+        "status": "Active",
+        "date": "Aug 3, 2026",
+        "time": "7:00 PM - 11:00 PM",
+        "hostName": "Liam Martinez",
+        "guestLabel": "Guests",
+        "guests": 230,
+        "checkedIn": 135,
+        "remaining": 135,
+        "progressPercentage": 47,
+        "progressVariant": "green"
+      },
+      {
+        "id": "past-2",
+        "title": "Summer Gala 2026",
+        "status": "Active",
+        "date": "Aug 3, 2026",
+        "time": "7:00 PM - 11:00 PM",
+        "hostName": "Liam Martinez",
+        "guestLabel": "Total Guest",
+        "guests": 230,
+        "checkedIn": 30,
+        "remaining": 135,
+        "progressPercentage": 47,
+        "progressVariant": "orange"
+      },
+      {
+        "id": "past-3",
+        "title": "Tech Summit 2026",
+        "status": "Scheduled",
+        "date": "Aug 3, 2026",
+        "time": "7:00 PM - 11:00 PM",
+        "hostName": "Liam Martinez",
+        "guestLabel": "Total Guest",
+        "guests": 230,
+        "checkedIn": 0,
+        "remaining": 230,
+        "progressPercentage": 0,
+        "progressVariant": "gray"
+      }
+    ]
+  }
+}
+```
+
+---
+
+### 2.11 Partner Current Events Cards
+Retrieves active and upcoming event cards for the partner events management page.
+
+- **Method**: `GET`
+- **Endpoint**: `/event/partner/current`
+- **Headers**:
+  - `Authorization: Bearer <token>`
+- **Response `200 OK`**:
+```json
+{
+  "success": true,
+  "message": "Current events retrieved successfully",
+  "data": [
+    {
+      "id": "cur-1",
+      "title": "Summer Gala 2026",
+      "status": "Active",
+      "date": "Aug 3, 2026",
+      "time": "7:00 PM - 11:00 PM",
+      "hostName": "Liam Martinez",
+      "guests": 230,
+      "checkedIn": 135,
+      "remaining": 135,
+      "progressPercentage": 47,
+      "progressVariant": "green"
+    }
+  ]
+}
+```
+
+---
+
+### 2.12 Partner Past Events Cards
+Retrieves completed events for the partner past events view.
+
+- **Method**: `GET`
+- **Endpoint**: `/event/partner/past`
+- **Headers**:
+  - `Authorization: Bearer <token>`
+- **Response `200 OK`**:
+```json
+{
+  "success": true,
+  "message": "Past events retrieved successfully",
+  "data": [
+    {
+      "id": "past-1",
+      "title": "Summer Gala 2026",
+      "status": "Active",
+      "date": "Aug 3, 2026",
+      "time": "7:00 PM - 11:00 PM",
+      "hostName": "Liam Martinez",
+      "guests": 230,
+      "checkedIn": 135,
+      "remaining": 135,
+      "progressPercentage": 47,
+      "progressVariant": "green"
+    }
+  ]
+}
+```
+
+---
+
+### 2.13 Partner Event Details
+Retrieves granular event logistics, host contact information, attendee check-in/RSVP metrics, and attendance/RSVP donut chart breakdown for a specific event ID.
+
+- **Method**: `GET`
+- **Endpoint**: `/event/partner/details/:id`
+- **Headers**:
+  - `Authorization: Bearer <token>`
+- **Response `200 OK` (Active Event)**:
+```json
+{
+  "success": true,
+  "message": "Event details retrieved successfully",
+  "data": {
+    "id": "cur-1",
+    "title": "Summer Gala 2026",
+    "status": "Active",
+    "hostName": "Liam Martinez",
+    "hostEmail": "example@email.com",
+    "hostPhone": "+1256556326",
+    "eventTypePrivacy": "Private Event",
+    "roomName": "Liam Martinez",
+    "scannerAppCode": "IO-8842-X",
+    "date": "Aug 3, 2026",
+    "time": "7:00 PM - 11:00 PM",
+    "metrics": {
+      "guestsTotal": 560,
+      "rsvpConfirmed": 360,
+      "ticketsDistributed": 480,
+      "ticketsTotal": 560,
+      "checkedIn": 270
+    },
+    "chart": {
+      "title": "Guest Attendance",
+      "percentage": "74.1%",
+      "segments": [
+        { "label": "Guest Responses", "count": 360, "color": "#D1D5DB" },
+        { "label": "Checked In", "count": 180, "color": "#16A34A" }
+      ]
+    }
+  }
+}
+```
+
+- **Response `200 OK` (Scheduled Event)**:
+```json
+{
+  "success": true,
+  "message": "Event details retrieved successfully",
+  "data": {
+    "id": "cur-3",
+    "title": "Summer Gala 2026",
+    "status": "Scheduled",
+    "hostName": "Liam Martinez",
+    "hostEmail": "example@email.com",
+    "hostPhone": "+1256556326",
+    "eventTypePrivacy": "Private Event",
+    "roomName": "Liam Martinez",
+    "date": "Aug 3, 2026",
+    "time": "7:00 PM - 11:00 PM",
+    "metrics": {
+      "guestsTotal": 560,
+      "rsvpConfirmed": 360,
+      "ticketsDistributed": 480,
+      "ticketsTotal": 560,
+      "availableTickets": 80
+    },
+    "chart": {
+      "title": "RSVP Metrics",
+      "percentage": "74.1%",
+      "segments": [
+        { "label": "Confirmed", "count": 360, "color": "#16A34A" },
+        { "label": "Pending", "count": 180, "color": "#F59E0B" },
+        { "label": "Declined", "count": 20, "color": "#DC2626" }
+      ]
+    }
+  }
+}
+```
+
+---
+
 ## 3. Standard Error Response Structure
 
 In case of validation or server errors, all endpoints return:
