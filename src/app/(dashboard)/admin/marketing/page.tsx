@@ -1,10 +1,14 @@
 ﻿import { Metadata } from "next";
-import { UnderConstruction } from "@/components/dashboard/UnderConstruction";
+import { AllMarketing } from "@/features/marketing";
 
 export const metadata: Metadata = {
   title: "Marketing - InviteOnly",
 };
 
 export default function Page() {
-  return <UnderConstruction title="Marketing" role="Admin" />;
+  return (
+    <div className="w-full">
+      <AllMarketing />
+    </div>
+  );
 }

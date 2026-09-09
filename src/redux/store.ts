@@ -1,6 +1,7 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import { userReducer } from "@/features/user/store/user.slice";
 import { baseApi } from "@/redux/api/baseApi";
+import { marketingReducer } from "@/features/marketing/store/marketing.slice";
 import { eventReducer } from "@/features/event/store/event.slice";
 import { metricsReducer } from "@/features/metrics/store/metrics.slice";
 import { paymentReducer } from "@/features/payment/store/payment.slice";
@@ -26,6 +27,7 @@ const persistConfig = {
 };
 
 const rootReducer = combineReducers({
+  marketing: marketingReducer,
   event: eventReducer,
   metrics: metricsReducer,
   payment: paymentReducer,
