@@ -1054,6 +1054,244 @@ Permanently deletes the partner account and associated records (Danger Zone acti
 
 ---
 
+### 2.15 Venue Management Endpoints
+
+#### 2.15.1 Get All Venues
+Retrieves the list of venues created or managed by the authenticated partner.
+
+- **Method**: `GET`
+- **Endpoint**: `/venue`
+- **Headers**:
+  - `Authorization: Bearer <token>`
+- **Response `200 OK`**:
+```json
+{
+  "success": true,
+  "message": "Venues retrieved successfully",
+  "data": [
+    {
+      "id": "venue-1",
+      "name": "The Grand Ballroom",
+      "streetAddress": "123 Main Street",
+      "city": "New York",
+      "state": "NY",
+      "zipCode": "10001",
+      "capacity": "500",
+      "hasParking": true,
+      "parkingInfo": "Parking is available at the East Entrance. Valet parking is available Friday–Sunday evenings.",
+      "spaces": [
+        {
+          "id": "space-1",
+          "name": "Ballroom A",
+          "capacity": "250"
+        },
+        {
+          "id": "space-2",
+          "name": "Ballroom B",
+          "capacity": "150"
+        },
+        {
+          "id": "space-3",
+          "name": "Garden Hall",
+          "capacity": "100"
+        }
+      ],
+      "createdAt": "2026-03-01T10:00:00Z",
+      "updatedAt": "2026-03-01T10:00:00Z"
+    }
+  ]
+}
+```
+
+---
+
+#### 2.15.2 Get Venue By ID
+Fetches details of a specific venue including all spaces and parking instructions.
+
+- **Method**: `GET`
+- **Endpoint**: `/venue/:id`
+- **Headers**:
+  - `Authorization: Bearer <token>`
+- **Response `200 OK`**:
+```json
+{
+  "success": true,
+  "message": "Venue details retrieved successfully",
+  "data": {
+    "id": "venue-1",
+    "name": "The Grand Ballroom",
+    "streetAddress": "123 Main Street",
+    "city": "New York",
+    "state": "NY",
+    "zipCode": "10001",
+    "capacity": "500",
+    "hasParking": true,
+    "parkingInfo": "Parking is available at the East Entrance. Valet parking is available Friday–Sunday evenings.",
+    "spaces": [
+      {
+        "id": "space-1",
+        "name": "Ballroom A",
+        "capacity": "250"
+      },
+      {
+        "id": "space-2",
+        "name": "Ballroom B",
+        "capacity": "150"
+      },
+      {
+        "id": "space-3",
+        "name": "Garden Hall",
+        "capacity": "100"
+      }
+    ],
+    "createdAt": "2026-03-01T10:00:00Z",
+    "updatedAt": "2026-03-01T10:00:00Z"
+  }
+}
+```
+
+---
+
+#### 2.15.3 Create New Venue
+Creates a new venue with multiple event spaces, room capacity, address, and parking instructions.
+
+- **Method**: `POST`
+- **Endpoint**: `/venue`
+- **Headers**:
+  - `Authorization: Bearer <token>`
+  - `Content-Type: application/json`
+- **Request Body**:
+```json
+{
+  "name": "The Grand Ballroom",
+  "streetAddress": "123 Main Street",
+  "city": "New York",
+  "state": "NY",
+  "zipCode": "10001",
+  "capacity": "500",
+  "parkingInfo": "Parking is available at the East Entrance. Valet parking is available Friday–Sunday evenings.",
+  "spaces": [
+    {
+      "name": "Ballroom A",
+      "capacity": "250"
+    },
+    {
+      "name": "Ballroom B",
+      "capacity": "150"
+    },
+    {
+      "name": "Garden Hall",
+      "capacity": "100"
+    }
+  ]
+}
+```
+- **Response `201 Created`**:
+```json
+{
+  "success": true,
+  "message": "Venue created successfully",
+  "data": {
+    "id": "venue_987654",
+    "name": "The Grand Ballroom",
+    "streetAddress": "123 Main Street",
+    "city": "New York",
+    "state": "NY",
+    "zipCode": "10001",
+    "capacity": "500",
+    "hasParking": true,
+    "parkingInfo": "Parking is available at the East Entrance. Valet parking is available Friday–Sunday evenings.",
+    "spaces": [
+      {
+        "id": "space-1",
+        "name": "Ballroom A",
+        "capacity": "250"
+      }
+    ],
+    "createdAt": "2026-03-09T09:30:00Z",
+    "updatedAt": "2026-03-09T09:30:00Z"
+  }
+}
+```
+
+---
+
+#### 2.15.4 Update Venue
+Updates existing venue information, capacity, spaces, or parking notes.
+
+- **Method**: `PUT`
+- **Endpoint**: `/venue/:id`
+- **Headers**:
+  - `Authorization: Bearer <token>`
+  - `Content-Type: application/json`
+- **Request Body**:
+```json
+{
+  "name": "The Grand Ballroom (Renovated)",
+  "streetAddress": "123 Main Street",
+  "city": "New York",
+  "state": "NY",
+  "zipCode": "10001",
+  "capacity": "550",
+  "parkingInfo": "Parking is available at the East Entrance. Valet parking is available every day.",
+  "spaces": [
+    {
+      "id": "space-1",
+      "name": "Ballroom A",
+      "capacity": "300"
+    }
+  ]
+}
+```
+- **Response `200 OK`**:
+```json
+{
+  "success": true,
+  "message": "Venue updated successfully",
+  "data": {
+    "id": "venue_987654",
+    "name": "The Grand Ballroom (Renovated)",
+    "streetAddress": "123 Main Street",
+    "city": "New York",
+    "state": "NY",
+    "zipCode": "10001",
+    "capacity": "550",
+    "hasParking": true,
+    "parkingInfo": "Parking is available at the East Entrance. Valet parking is available every day.",
+    "spaces": [
+      {
+        "id": "space-1",
+        "name": "Ballroom A",
+        "capacity": "300"
+      }
+    ],
+    "updatedAt": "2026-03-09T09:35:00Z"
+  }
+}
+```
+
+---
+
+#### 2.15.5 Delete Venue
+Deletes a venue and disassociates its assigned spaces.
+
+- **Method**: `DELETE`
+- **Endpoint**: `/venue/:id`
+- **Headers**:
+  - `Authorization: Bearer <token>`
+- **Response `200 OK`**:
+```json
+{
+  "success": true,
+  "message": "Venue deleted successfully",
+  "data": {
+    "id": "venue_987654"
+  }
+}
+```
+
+---
+
 ## 3. Standard Error Response Structure
 
 In case of validation or server errors, all endpoints return:

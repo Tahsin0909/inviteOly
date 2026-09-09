@@ -1,10 +1,11 @@
-﻿import { Metadata } from "next";
-import { UnderConstruction } from "@/components/dashboard/UnderConstruction";
+import { Metadata } from "next";
+import { PartnerVenueManagement } from "@/features/venue";
 
 export const metadata: Metadata = {
   title: "Venue Management - InviteOnly",
+  description: "Manage venues, locations, spaces, and parking for Partner events.",
 };
 
 export default function Page() {
-  return <UnderConstruction title="Venue Management" role="Partner" />;
+  return <PartnerVenueManagement />;
 }
