@@ -17,6 +17,7 @@ export const baseApi = createApi({
     },
   }),
   tagTypes: [
+    "hostandpartner",
     "venue",
     "marketing",
     "event",

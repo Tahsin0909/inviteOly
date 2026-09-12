@@ -1292,6 +1292,176 @@ Deletes a venue and disassociates its assigned spaces.
 
 ---
 
+### 2.16 Partner Host Invitation & Plan Subscription Endpoints
+
+#### 2.16.1 Get All Sent Host Invitations
+Retrieves the list of host invitations sent by the authenticated partner, including event info, venue, selected package, and status.
+
+- **Method**: `GET`
+- **Endpoint**: `/partner/invite-host`
+- **Headers**:
+  - `Authorization: Bearer <token>`
+- **Response `200 OK`**:
+```json
+{
+  "success": true,
+  "message": "Host invitations retrieved successfully",
+  "data": [
+    {
+      "id": "invite-1",
+      "eventName": "Summer Gala 2026",
+      "hostName": "Liam Martinez",
+      "hostEmail": "liam.martinez@example.com",
+      "hostPhone": "+1 (555) 234-5678",
+      "venueId": "venue-1",
+      "venueName": "The Grand Ballroom",
+      "room": "Ballroom A",
+      "eventDate": "Aug 3, 2026",
+      "endDate": "Aug 3, 2026",
+      "eventTime": "7:00 PM - 11:00 PM",
+      "totalGuest": 230,
+      "status": "Pending Confirmation",
+      "packageId": "intimate-standard",
+      "packageName": "Standard",
+      "tierId": "intimate",
+      "tierLabel": "Intimate (Up To 200)",
+      "packagePrice": "$149",
+      "createdAt": "2026-03-01T10:00:00Z"
+    }
+  ]
+}
+```
+
+---
+
+#### 2.16.2 Get Host Invitation By ID
+Retrieves details of a specific host invitation.
+
+- **Method**: `GET`
+- **Endpoint**: `/partner/invite-host/:id`
+- **Headers**:
+  - `Authorization: Bearer <token>`
+- **Response `200 OK`**:
+```json
+{
+  "success": true,
+  "message": "Host invitation details retrieved successfully",
+  "data": {
+    "id": "invite-1",
+    "eventName": "Summer Gala 2026",
+    "hostName": "Liam Martinez",
+    "hostEmail": "liam.martinez@example.com",
+    "hostPhone": "+1 (555) 234-5678",
+    "venueId": "venue-1",
+    "venueName": "The Grand Ballroom",
+    "room": "Ballroom A",
+    "eventDate": "Aug 3, 2026",
+    "endDate": "Aug 3, 2026",
+    "eventTime": "7:00 PM - 11:00 PM",
+    "totalGuest": 230,
+    "status": "Pending Confirmation",
+    "packageId": "intimate-standard",
+    "packageName": "Standard",
+    "tierId": "intimate",
+    "tierLabel": "Intimate (Up To 200)",
+    "packagePrice": "$149",
+    "createdAt": "2026-03-01T10:00:00Z"
+  }
+}
+```
+
+---
+
+#### 2.16.3 Send Host Invitation with Selected Plan
+Creates and emails a new host invitation configured with the chosen subscription package (e.g. Standard or Premium) and event booking details.
+
+- **Method**: `POST`
+- **Endpoint**: `/partner/invite-host`
+- **Headers**:
+  - `Authorization: Bearer <token>`
+  - `Content-Type: application/json`
+- **Request Body**:
+```json
+{
+  "hostName": "John Doe",
+  "hostEmail": "john.doe@example.com",
+  "hostPhone": "+1 (555) 345-6789",
+  "venueId": "venue-1",
+  "venueName": "The Grand Ballroom",
+  "room": "Ballroom A",
+  "eventDate": "2026-09-15",
+  "endDate": "2026-09-15",
+  "eventName": "Annual Tech Gala 2026",
+  "packageId": "intimate-premium",
+  "packageName": "Premium",
+  "tierId": "intimate",
+  "tierLabel": "Intimate (Up To 200)",
+  "packagePrice": "$399",
+  "totalGuest": 200
+}
+```
+- **Response `201 Created`**:
+```json
+{
+  "success": true,
+  "message": "Host invitation created and sent successfully",
+  "data": {
+    "id": "invite_456789",
+    "eventName": "Annual Tech Gala 2026",
+    "hostName": "John Doe",
+    "hostEmail": "john.doe@example.com",
+    "status": "Pending Confirmation",
+    "packageId": "intimate-premium",
+    "packageName": "Premium",
+    "packagePrice": "$399",
+    "createdAt": "2026-09-12T12:00:00Z"
+  }
+}
+```
+
+---
+
+#### 2.16.4 Resend Host Invitation
+Resends the event setup invitation email and link to the host.
+
+- **Method**: `POST`
+- **Endpoint**: `/partner/invite-host/:id/resend`
+- **Headers**:
+  - `Authorization: Bearer <token>`
+- **Response `200 OK`**:
+```json
+{
+  "success": true,
+  "message": "Invitation email resent successfully to host",
+  "data": {
+    "id": "invite_456789",
+    "resent": true
+  }
+}
+```
+
+---
+
+#### 2.16.5 Cancel Host Invitation
+Cancels an unconfirmed host invitation.
+
+- **Method**: `DELETE`
+- **Endpoint**: `/partner/invite-host/:id`
+- **Headers**:
+  - `Authorization: Bearer <token>`
+- **Response `200 OK`**:
+```json
+{
+  "success": true,
+  "message": "Host invitation cancelled successfully",
+  "data": {
+    "id": "invite_456789"
+  }
+}
+```
+
+---
+
 ## 3. Standard Error Response Structure
 
 In case of validation or server errors, all endpoints return:

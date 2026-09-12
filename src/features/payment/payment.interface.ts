@@ -1,4 +1,11 @@
-export type TPricingTierKey = "small" | "medium" | "large";
+export type TPricingTierKey =
+  | "small"
+  | "medium"
+  | "large"
+  | "intimate"
+  | "signature"
+  | "grand"
+  | "custom";
 
 export type TPricingIconType = "standard" | "premium" | "costume";
 
