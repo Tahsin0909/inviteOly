@@ -1,5 +1,6 @@
 "use client";
 
+import React, { useState } from "react";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -8,17 +9,35 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { useAuth } from "@/features/auth/hooks/useAuth";
+import { IRole } from "@/features/user/user.interface";
 import { getRoleRedirectPath } from "@/utils/roleRedirect";
-import { ChevronDown, CreditCard, LayoutDashboard, LogOut, User } from "lucide-react";
+import {
+  ChevronDown,
+  CreditCard,
+  LayoutDashboard,
+  LogOut,
+  Sparkles,
+  User,
+} from "lucide-react";
 import Link from "next/link";
+import { DemoUserSwitcher } from "./DemoUserSwitcher";
 
 export const Account = () => {
   const { user, profile, handleLogout } = useAuth();
+  const [isOpen, setIsOpen] = useState(false);
 
   const currentUser = profile || user;
   const firstName = currentUser?.firstName || "My";
   const lastName = currentUser?.lastName || "Account";
-  const roleName = currentUser?.role || "USER";
+
+  const isReferredHost = Boolean(
+    currentUser?.role === IRole.HOST &&
+    (currentUser?.referredBy || currentUser?.referredByHostId)
+  );
+
+  const roleName = isReferredHost
+    ? "Referred Host"
+    : currentUser?.role || "USER";
 
   const initials = `${firstName[0] || "U"}${lastName !== "Account" ? lastName[0] || "" : ""
     }`.toUpperCase();
@@ -30,11 +49,12 @@ export const Account = () => {
 
   const onLogout = () => {
     handleLogout();
+    setIsOpen(false);
   };
 
   return (
     <div className="flex items-center justify-center">
-      <DropdownMenu>
+      <DropdownMenu open={isOpen} onOpenChange={setIsOpen}>
         <DropdownMenuTrigger className="flex items-center gap-2 sm:gap-2.5 bg-neutral-900/90 hover:bg-neutral-800 text-white border border-neutral-700/80 hover:border-primary/60 rounded-full pl-2 pr-3.5 py-1.5 transition-all duration-200 outline-none cursor-pointer group shadow-xs">
           {/* User Initial Circle */}
           <div className="size-7 rounded-full bg-primary/20 border border-primary/40 flex items-center justify-center text-xs font-bold text-primary shrink-0">
@@ -47,16 +67,23 @@ export const Account = () => {
           </span>
 
           {/* Role Badge */}
-          <span className="text-[10px] font-semibold uppercase tracking-wider text-primary bg-primary/10 border border-primary/30 px-1.5 py-0.5 rounded-full leading-none">
-            {roleName}
-          </span>
+          {isReferredHost ? (
+            <span className="text-[10px] font-semibold tracking-wider text-emerald-400 bg-emerald-500/15 border border-emerald-500/30 px-1.5 py-0.5 rounded-full leading-none flex items-center gap-1">
+              <Sparkles className="size-2.5" />
+              Referred
+            </span>
+          ) : (
+            <span className="text-[10px] font-semibold uppercase tracking-wider text-primary bg-primary/10 border border-primary/30 px-1.5 py-0.5 rounded-full leading-none">
+              {roleName}
+            </span>
+          )}
 
           {/* Chevron */}
           <ChevronDown className="size-3.5 text-neutral-400 group-hover:text-white transition-transform duration-200 shrink-0" />
         </DropdownMenuTrigger>
 
         <DropdownMenuContent
-          className="w-56 bg-neutral-900/95 border border-neutral-800 text-white p-2 rounded-2xl shadow-xl z-50 backdrop-blur-md font-work-sans"
+          className="w-72 bg-neutral-900/95 border border-neutral-800 text-white p-2.5 rounded-2xl shadow-xl z-50 backdrop-blur-md font-work-sans max-h-[85vh] overflow-y-auto"
           align="end"
         >
           {/* User Info Header */}
@@ -68,10 +95,17 @@ export const Account = () => {
             <p className="text-xs text-neutral-400 truncate mt-0.5">
               {currentUser?.email || ""}
             </p>
-            <div className="mt-2 flex items-center gap-1.5">
-              <span className="text-[10px] font-semibold uppercase tracking-wider text-primary bg-primary/15 border border-primary/30 px-2 py-0.5 rounded-full">
-                {roleName}
-              </span>
+            <div className="mt-2 flex items-center gap-1.5 flex-wrap">
+              {isReferredHost ? (
+                <span className="text-[10px] font-semibold tracking-wider text-emerald-400 bg-emerald-500/15 border border-emerald-500/30 px-2 py-0.5 rounded-full flex items-center gap-1">
+                  <Sparkles className="size-2.5" />
+                  Referred Host
+                </span>
+              ) : (
+                <span className="text-[10px] font-semibold uppercase tracking-wider text-primary bg-primary/15 border border-primary/30 px-2 py-0.5 rounded-full">
+                  {roleName}
+                </span>
+              )}
               {currentUser?.hasActiveSubscription && (
                 <span className="text-[10px] font-medium text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 px-2 py-0.5 rounded-full">
                   Active
@@ -86,6 +120,7 @@ export const Account = () => {
           <DropdownMenuItem asChild>
             <Link
               href={dashboardUrl}
+              onClick={() => setIsOpen(false)}
               className="flex items-center gap-2.5 px-3 py-2 cursor-pointer rounded-lg text-sm text-neutral-200 hover:text-white hover:bg-neutral-800 transition-colors"
             >
               <LayoutDashboard className="size-4 text-primary" />
@@ -97,6 +132,7 @@ export const Account = () => {
           <DropdownMenuItem asChild>
             <Link
               href="/profile"
+              onClick={() => setIsOpen(false)}
               className="flex items-center gap-2.5 px-3 py-2 cursor-pointer rounded-lg text-sm text-neutral-200 hover:text-white hover:bg-neutral-800 transition-colors"
             >
               <User className="size-4 text-neutral-400" />
@@ -108,12 +144,20 @@ export const Account = () => {
           <DropdownMenuItem asChild>
             <Link
               href="/#pricing"
+              onClick={() => setIsOpen(false)}
               className="flex items-center gap-2.5 px-3 py-2 cursor-pointer rounded-lg text-sm text-neutral-200 hover:text-white hover:bg-neutral-800 transition-colors"
             >
               <CreditCard className="size-4 text-neutral-400" />
               <span>Pricing & Plans</span>
             </Link>
           </DropdownMenuItem>
+
+          <DropdownMenuSeparator className="bg-neutral-800 my-2" />
+
+          {/* Demonstration User Switcher Component */}
+          <div className="bg-neutral-950/60 rounded-xl border border-neutral-800/80 p-1 mb-1">
+            <DemoUserSwitcher onSelectUser={() => setIsOpen(false)} />
+          </div>
 
           <DropdownMenuSeparator className="bg-neutral-800 my-1" />
 
@@ -130,3 +174,5 @@ export const Account = () => {
     </div>
   );
 };
+
+export default Account;

@@ -52,7 +52,6 @@ export const useAuth = (): UseAuthReturn => {
   const dispatch = useDispatch();
   const router = useRouter();
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const { user, token, email, pendingEmail, pendingFlow } = useAppSelector(
     (state) => state.auth
   );
@@ -77,7 +76,9 @@ export const useAuth = (): UseAuthReturn => {
     }
   );
 
-  const profile = profileData?.data || currentUser || null;
+  const activeUser = user || profileData?.data || currentUser;
+  const activeToken = token || currentToken;
+  const profile = profileData?.data || activeUser || null;
 
   const isLoading =
     sendOtpLoading ||
@@ -344,9 +345,10 @@ export const useAuth = (): UseAuthReturn => {
 
   // ---- ROLE HELPERS ----
   const getUserRole = useCallback((): IRole | null => {
+    if (activeUser?.role) return activeUser.role;
     const decoded = decodeStoredToken();
     return decoded?.role || null;
-  }, []);
+  }, [activeUser]);
 
   const hasRole = useCallback(
     (requiredRoles: IRole[]): boolean => {
@@ -364,14 +366,14 @@ export const useAuth = (): UseAuthReturn => {
   );
 
   return {
-    user: currentUser,
-    token: currentToken,
-    email: currentUser?.email || "",
+    user: activeUser,
+    token: activeToken,
+    email: activeUser?.email || email || "",
     pendingEmail,
     pendingFlow,
     profile,
     isLoading,
-    isAuthenticated: Boolean(currentToken),
+    isAuthenticated: Boolean(activeToken),
     handleSendOtp,
     handleResendOtp,
     handleRegister,
