@@ -1,64 +1,128 @@
-﻿"use client";
+"use client";
 
 import React, { useState, useRef } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { useRouter } from "next/navigation";
+import { RootState } from "@/redux/store";
 import { IHostPendingPaymentEvent } from "../../../payment.interface";
-import { uploadPaymentProof, setViewMode } from "../../../store/payment.slice";
+import { uploadPaymentProof } from "../../../store/payment.slice";
+import { updateHostEventStatus } from "@/features/event/store/event.slice";
+import { getHostPendingPaymentById, initialHostPendingPayments } from "../../../data/hostPayment.data";
 import {
-  ArrowLeft,
-  Building2,
   Calendar,
   Clock,
-  FileCheck,
+  User,
   Mail,
   Phone,
-  Upload,
-  User,
+  FileCheck,
   X,
+  ArrowLeft,
+  CheckCircle2,
 } from "lucide-react";
 import { toast } from "sonner";
 
+// Ticket icon matching Privet Event in reference screenshot
+const TicketIcon = () => (
+  <svg
+    className="h-4 w-4 text-neutral-400 shrink-0"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+  >
+    <path d="M2 9a3 3 0 0 1 0 6v2a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-2a3 3 0 0 1 0-6V7a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2z" />
+    <path d="M13 5v2" />
+    <path d="M13 17v2" />
+    <path d="M13 11v2" />
+  </svg>
+);
+
+// Upload icon matching the circular arrow in reference screenshot
+const UploadArrowIcon = () => (
+  <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[#FDF3E7] text-[#C39B4C] mb-3 shadow-2xs">
+    <svg
+      className="h-5 w-5"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <path d="M12 16V4" />
+      <path d="m6 10 6-6 6 6" />
+      <path d="M4 20h16" />
+    </svg>
+  </div>
+);
+
 interface HostUploadReceiptViewProps {
-  event: IHostPendingPaymentEvent;
-  onBack: () => void;
+  eventId?: string;
+  event?: IHostPendingPaymentEvent;
+  onBack?: () => void;
 }
 
 export const HostUploadReceiptView: React.FC<HostUploadReceiptViewProps> = ({
-  event,
+  eventId,
+  event: propEvent,
   onBack,
 }) => {
   const dispatch = useDispatch();
+  const router = useRouter();
   const fileInputRef = useRef<HTMLInputElement>(null);
 
+  // Retrieve event from Redux or fallback to mock
+  const pendingPayments = useSelector(
+    (state: RootState) => state.payment?.pendingPayments || []
+  );
+
+  const currentEvent: IHostPendingPaymentEvent =
+    propEvent ||
+    pendingPayments.find((e) => e.id === eventId) ||
+    (eventId ? getHostPendingPaymentById(eventId) : null) ||
+    pendingPayments[0] ||
+    initialHostPendingPayments[0];
+
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
+  const [filePreview, setFilePreview] = useState<string | null>(null);
   const [isDragging, setIsDragging] = useState<boolean>(false);
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
+
+  const handleBack = () => {
+    if (onBack) {
+      onBack();
+    } else {
+      router.push("/host/payment-pending");
+    }
+  };
 
   const handleFileDrop = (e: React.DragEvent) => {
     e.preventDefault();
     setIsDragging(false);
 
     if (e.dataTransfer.files && e.dataTransfer.files[0]) {
-      const file = e.dataTransfer.files[0];
-      validateAndSetFile(file);
+      validateAndSetFile(e.dataTransfer.files[0]);
     }
   };
 
   const handleFileSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
-      const file = e.target.files[0];
-      validateAndSetFile(file);
+      validateAndSetFile(e.target.files[0]);
     }
   };
 
   const validateAndSetFile = (file: File) => {
-    const isPdfOrImage =
+    const isAllowed =
       file.type === "application/pdf" ||
       file.type.startsWith("image/") ||
-      file.name.endsWith(".pdf");
+      file.name.endsWith(".pdf") ||
+      file.name.endsWith(".csv") ||
+      file.type === "text/csv";
 
-    if (!isPdfOrImage) {
-      toast.error("Please upload a PDF document or image file");
+    if (!isAllowed) {
+      toast.error("Please upload a PDF, image, or CSV document");
       return;
     }
 
@@ -68,10 +132,21 @@ export const HostUploadReceiptView: React.FC<HostUploadReceiptViewProps> = ({
     }
 
     setSelectedFile(file);
+
+    if (file.type.startsWith("image/")) {
+      const reader = new FileReader();
+      reader.onload = (event) => {
+        setFilePreview(event.target?.result as string);
+      };
+      reader.readAsDataURL(file);
+    } else {
+      setFilePreview(null);
+    }
+
     toast.success(`Selected file: ${file.name}`);
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmitProof = (e: React.FormEvent) => {
     e.preventDefault();
 
     if (!selectedFile) {
@@ -82,11 +157,20 @@ export const HostUploadReceiptView: React.FC<HostUploadReceiptViewProps> = ({
     setIsSubmitting(true);
 
     setTimeout(() => {
+      // 1. Update payment status in Redux
       dispatch(
         uploadPaymentProof({
-          eventId: event.id,
+          eventId: currentEvent.id,
           receiptName: selectedFile.name,
           file: selectedFile.name,
+        })
+      );
+
+      // 2. Also update event status in event slice if matching
+      dispatch(
+        updateHostEventStatus({
+          title: currentEvent.eventName,
+          status: "Draft",
         })
       );
 
@@ -94,164 +178,198 @@ export const HostUploadReceiptView: React.FC<HostUploadReceiptViewProps> = ({
         "Payment proof submitted successfully! Your receipt is now under review."
       );
       setIsSubmitting(false);
-      dispatch(setViewMode("list"));
+      setSelectedFile(null);
+      setFilePreview(null);
     }, 600);
   };
 
   return (
-    <div className="w-full space-y-6 font-work-sans">
-      {/* Back Button */}
+    <div className="w-full space-y-6 font-work-sans pb-16">
+      {/* Top Back Navigation Link */}
       <button
         type="button"
-        onClick={onBack}
-        className="inline-flex items-center gap-2 text-xs font-medium text-neutral-500 hover:text-neutral-900 transition-colors cursor-pointer"
+        onClick={handleBack}
+        className="inline-flex items-center gap-2 text-xs font-medium text-neutral-500 hover:text-neutral-900 transition-colors cursor-pointer group"
       >
-        <ArrowLeft className="size-4" />
+        <ArrowLeft className="h-3.5 w-3.5 group-hover:-translate-x-0.5 transition-transform" />
         <span>Back to Payment Pending</span>
       </button>
 
-      {/* 1. Top Event Details Card */}
-      <div className="bg-white rounded-2xl border border-neutral-100 p-6 sm:p-7 shadow-[0_1px_4px_rgba(0,0,0,0.02)] space-y-4">
+      {/* Page Header: Title and Subtitle matching media_1789205148981.png */}
+      <div>
+        <h1 className="text-2xl sm:text-3xl font-bold font-space-grotesk text-neutral-900 tracking-tight">
+          Payment Pending
+        </h1>
+        <p className="text-xs sm:text-sm text-neutral-500 font-work-sans mt-1">
+          Your payment is currently being processed. We&apos;ll update your payment status once it&apos;s confirmed.
+        </p>
+      </div>
+
+      {/* Event Details Card matching media_1789205148981.png */}
+      <div className="bg-white rounded-2xl sm:rounded-3xl border border-neutral-100 p-6 sm:p-7 shadow-[0_1px_4px_rgba(0,0,0,0.02)] space-y-4">
         {/* Pending Badge */}
         <div>
-          <span className="inline-block px-3 py-1 rounded-full text-xs font-semibold bg-[#FEF3C7] text-[#D97706]">
-            {event.status}
+          <span
+            className={`inline-block px-3 py-0.5 rounded-md text-xs font-medium ${currentEvent.status === "Pending"
+              ? "bg-[#FFF4E5] text-[#D97706]"
+              : currentEvent.status === "Under Review"
+                ? "bg-blue-50 text-blue-700 border border-blue-200"
+                : "bg-emerald-50 text-emerald-700 border border-emerald-200"
+              }`}
+          >
+            {currentEvent.status}
           </span>
         </div>
 
         {/* Event Title */}
         <h2 className="text-xl sm:text-2xl font-bold font-space-grotesk text-neutral-900 tracking-tight">
-          {event.eventName}
+          {currentEvent.eventName}
         </h2>
 
-        {/* Meta Info Row 1 (Calendar, Clock, Event Type) */}
+        {/* Meta Row 1: Calendar, Clock, Event Type */}
         <div className="flex flex-wrap items-center gap-6 text-xs sm:text-sm text-neutral-600">
           <div className="flex items-center gap-2">
-            <Calendar className="size-4 text-neutral-400" />
-            <span>{event.eventDate}</span>
+            <Calendar className="h-4 w-4 text-neutral-400 shrink-0" />
+            <span>{currentEvent.eventDate}</span>
           </div>
 
           <div className="flex items-center gap-2">
-            <Clock className="size-4 text-neutral-400" />
-            <span>{event.eventTime}</span>
+            <Clock className="h-4 w-4 text-neutral-400 shrink-0" />
+            <span>{currentEvent.eventTime}</span>
           </div>
 
           <div className="flex items-center gap-2">
-            <Building2 className="size-4 text-neutral-400" />
-            <span>{event.eventType || "Privet Event"}</span>
+            <TicketIcon />
+            <span>{currentEvent.eventType || "Privet Event"}</span>
           </div>
         </div>
 
-        {/* Meta Info Row 2 (Host, Email, Phone, Venue Contact) */}
-        <div className="flex flex-wrap items-center gap-6 text-xs sm:text-sm text-neutral-600 pt-1">
+        {/* Meta Row 2: Host, Email, Phone, Venue Contact */}
+        <div className="flex flex-wrap items-center gap-6 text-xs sm:text-sm text-neutral-600 pt-0.5">
           <div className="flex items-center gap-2">
-            <User className="size-4 text-neutral-400" />
-            <span>{event.hostName}</span>
+            <User className="h-4 w-4 text-neutral-400 shrink-0" />
+            <span>{currentEvent.hostName}</span>
           </div>
 
           <div className="flex items-center gap-2">
-            <Mail className="size-4 text-neutral-400" />
-            <span>{event.hostEmail || "example@email.com"}</span>
+            <Mail className="h-4 w-4 text-neutral-400 shrink-0" />
+            <span>{currentEvent.hostEmail || "example@gmail.com"}</span>
           </div>
 
           <div className="flex items-center gap-2">
-            <Phone className="size-4 text-neutral-400" />
-            <span>{event.hostPhone || "+1256598326"}</span>
+            <Phone className="h-4 w-4 text-neutral-400 shrink-0" />
+            <span>{currentEvent.hostPhone || "+1234567890"}</span>
           </div>
 
           <div className="text-neutral-500">
             Venue Contact:{" "}
             <span className="text-neutral-700 font-medium">
-              {event.venueContact || "+1256598326"}
+              {currentEvent.venueContact || "+1234567890"}
             </span>
           </div>
         </div>
       </div>
 
-      {/* 2. Upload Section */}
-      <form onSubmit={handleSubmit} className="space-y-4">
-        <div>
-          <label className="block text-sm font-semibold text-neutral-800 mb-2">
-            Upload Payment Receipt
-          </label>
-
-          {/* Drag & Drop Area */}
-          <div
-            onDragOver={(e) => {
-              e.preventDefault();
-              setIsDragging(true);
-            }}
-            onDragLeave={() => setIsDragging(false)}
-            onDrop={handleFileDrop}
-            onClick={() => fileInputRef.current?.click()}
-            className={`w-full min-h-[200px] border-2 border-dashed rounded-2xl flex flex-col items-center justify-center p-8 text-center cursor-pointer transition-all bg-white ${
-              isDragging
-                ? "border-[#C39B4C] bg-[#FAF5EB]/50 scale-[0.99]"
-                : selectedFile
-                ? "border-emerald-400 bg-emerald-50/20"
-                : "border-neutral-200 hover:border-[#C39B4C]/60 hover:bg-neutral-50/50"
-            }`}
-          >
-            <input
-              ref={fileInputRef}
-              type="file"
-              accept=".pdf,application/pdf,image/*"
-              className="hidden"
-              onChange={handleFileSelect}
-            />
-
-            {selectedFile ? (
-              <div className="flex flex-col items-center gap-2 animate-in fade-in">
-                <div className="size-12 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center">
-                  <FileCheck className="size-6" />
-                </div>
-                <div className="text-center">
-                  <p className="text-sm font-semibold text-neutral-900">
-                    {selectedFile.name}
-                  </p>
-                  <p className="text-xs text-neutral-400">
-                    {(selectedFile.size / 1024 / 1024).toFixed(2)} MB
-                  </p>
-                </div>
-                <button
-                  type="button"
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    setSelectedFile(null);
-                  }}
-                  className="mt-2 inline-flex items-center gap-1 text-xs text-red-500 hover:text-red-700 font-medium"
-                >
-                  <X className="size-3.5" />
-                  <span>Remove file</span>
-                </button>
-              </div>
-            ) : (
-              <div className="flex flex-col items-center gap-3">
-                <div className="size-11 rounded-full bg-amber-50 text-[#C39B4C] flex items-center justify-center shadow-2xs border border-amber-200/60">
-                  <Upload className="size-5" />
-                </div>
-                <div>
-                  <p className="text-sm font-bold text-neutral-800">
-                    Drag &amp; drop Payment Receipt
-                  </p>
-                  <p className="text-xs text-neutral-400 mt-0.5">
-                    or click to browse
-                  </p>
-                  <p className="text-xs text-neutral-400 mt-1">
-                    Accepted Formats: PDF (Max 5MB)
-                  </p>
-                </div>
-              </div>
-            )}
+      {/* Under Review Notice if submitted */}
+      {currentEvent.status === "Under Review" && (
+        <div className="flex items-center justify-between rounded-xl bg-blue-50/80 border border-blue-200/80 p-4 text-xs sm:text-sm text-blue-900 animate-in fade-in">
+          <div className="flex items-center gap-2.5">
+            <CheckCircle2 className="h-5 w-5 text-blue-600 shrink-0" />
+            <span>
+              <strong>Payment receipt submitted.</strong> Our administrative team is currently verifying the wire transfer.
+            </span>
           </div>
+          <span className="text-xs font-semibold text-blue-700">Under Review</span>
+        </div>
+      )}
+
+      {/* Upload Payment Receipt Section matching media_1789205148981.png */}
+      <form onSubmit={handleSubmitProof} className="space-y-4 pt-1">
+        <h3 className="text-sm sm:text-base font-bold text-neutral-900 font-work-sans">
+          Upload Payment Receipt
+        </h3>
+
+        {/* Drag & Drop Area matching media_1789205148981.png */}
+        <div
+          onDragOver={(e) => {
+            e.preventDefault();
+            setIsDragging(true);
+          }}
+          onDragLeave={() => setIsDragging(false)}
+          onDrop={handleFileDrop}
+          onClick={() => fileInputRef.current?.click()}
+          className={`w-full min-h-[220px] rounded-2xl border-2 border-dashed flex flex-col items-center justify-center p-8 text-center cursor-pointer transition-all bg-[#FCFBF8] ${isDragging
+            ? "border-[#C39B4C] bg-[#FAF5EB]/70 scale-[0.99]"
+            : selectedFile
+              ? "border-emerald-400 bg-emerald-50/30"
+              : "border-neutral-200 hover:border-[#C39B4C]/60 hover:bg-neutral-50/60"
+            }`}
+        >
+          <input
+            ref={fileInputRef}
+            type="file"
+            accept=".pdf,application/pdf,image/*,.csv"
+            className="hidden"
+            onChange={handleFileSelect}
+          />
+
+          {selectedFile ? (
+            <div className="flex flex-col items-center gap-2.5 animate-in fade-in">
+              {filePreview ? (
+                // eslint-disable-next-line @next/next/no-img-element
+                <img
+                  src={filePreview}
+                  alt="Receipt Preview"
+                  className="h-20 w-auto max-w-[200px] object-contain rounded-lg border border-neutral-200 shadow-xs mb-1"
+                />
+              ) : (
+                <div className="h-12 w-12 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center shadow-2xs">
+                  <FileCheck className="h-6 w-6" />
+                </div>
+              )}
+              <div className="text-center">
+                <p className="text-sm font-semibold text-neutral-900">
+                  {selectedFile.name}
+                </p>
+                <p className="text-xs text-neutral-400">
+                  {(selectedFile.size / 1024 / 1024).toFixed(2)} MB
+                </p>
+              </div>
+              <button
+                type="button"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setSelectedFile(null);
+                  setFilePreview(null);
+                }}
+                className="mt-1 inline-flex items-center gap-1 text-xs text-red-500 hover:text-red-700 font-medium cursor-pointer"
+              >
+                <X className="h-3.5 w-3.5" />
+                <span>Remove file</span>
+              </button>
+            </div>
+          ) : (
+            <div className="flex flex-col items-center">
+              <UploadArrowIcon />
+              <p className="text-sm font-bold text-neutral-800 font-work-sans">
+                Drag &amp; drop the receipt file here
+              </p>
+              <p className="text-xs text-neutral-400 mt-1 font-work-sans">
+                or browse file
+              </p>
+              <p className="text-xs text-neutral-400 mt-1 font-work-sans">
+                Acceptable formats: PDF, Image, CSV...
+              </p>
+            </div>
+          )}
         </div>
 
-        {/* Submit Button */}
+        {/* Submit Payment Proof Button at bottom right matching media_1789205148981.png */}
         <div className="flex justify-end pt-2">
           <button
             type="submit"
             disabled={isSubmitting || !selectedFile}
-            className="px-6 py-2.5 bg-[#C39B4C] hover:bg-[#B38A3B] active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed text-white text-xs sm:text-sm font-semibold rounded-lg shadow-2xs transition-all cursor-pointer"
+            className="rounded-lg bg-[#C39B4C] px-6 py-2.5 text-xs sm:text-sm font-medium text-white shadow-xs hover:bg-[#b08b3e] active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed transition-all cursor-pointer font-work-sans"
           >
             {isSubmitting ? "Submitting..." : "Submit Payment Proof"}
           </button>

@@ -8,7 +8,6 @@ import {
   setSearchQuery,
   setIsAddGuestModalOpen,
   setIsScannerModalOpen,
-  setViewMode,
   sendReminderToTicket,
 } from "../../store/event.slice";
 import {
@@ -32,8 +31,19 @@ import {
   CalendarDays,
 } from "lucide-react";
 import { toast } from "sonner";
+import { useRouter } from "next/navigation";
+import { getTicketsForEvent } from "../../data/hostEvent.data";
+import { AddGuestModal } from "./AddGuestModal";
+import { ScannerCodeModal } from "./ScannerCodeModal";
 
-export const HostEventDetailsView: React.FC = () => {
+interface HostEventDetailsViewProps {
+  eventId?: string;
+}
+
+export const HostEventDetailsView: React.FC<HostEventDetailsViewProps> = ({
+  eventId,
+}) => {
+  const router = useRouter();
   const dispatch = useDispatch();
   const {
     hostEvents,
@@ -46,23 +56,40 @@ export const HostEventDetailsView: React.FC = () => {
   const [currentPage, setCurrentPage] = useState(2);
   const [copiedId, setCopiedId] = useState<string | null>(null);
 
+  const activeId = eventId || selectedEventId || "host-evt-1";
   const event =
-    hostEvents.find((e) => e.id === selectedEventId) || hostEvents[0];
+    hostEvents.find((e) => e.id === activeId) || hostEvents[0];
+
+  // Load event-specific mock tickets based on current event ID
+  const eventSpecificTickets = useMemo(() => {
+    return getTicketsForEvent(event.id);
+  }, [event.id]);
+
+  // Combine with any user-added guests from Redux store
+  const effectiveTickets = useMemo(() => {
+    const newlyAdded = tickets.filter(
+      (t) => !eventSpecificTickets.some((et) => et.id === t.id)
+    );
+    return [...newlyAdded, ...eventSpecificTickets];
+  }, [tickets, eventSpecificTickets]);
 
   // Dynamic filter tab counts
   const counts = useMemo(() => {
     return {
-      all: tickets.length > 0 ? 400 : 0,
-      editable: tickets.filter((t) => t.status === "Editable").length || 175,
-      locked: tickets.filter((t) => t.status === "Locked/ Ready").length || 100,
-      sent: tickets.filter((t) => t.status === "Sent").length || 125,
+      all: effectiveTickets.length > 0 ? 400 : 0,
+      editable:
+        effectiveTickets.filter((t) => t.status === "Editable").length || 175,
+      locked:
+        effectiveTickets.filter((t) => t.status === "Locked/ Ready").length ||
+        100,
+      sent: effectiveTickets.filter((t) => t.status === "Sent").length || 125,
       voided: 10,
     };
-  }, [tickets]);
+  }, [effectiveTickets]);
 
   // Filter tickets by active tab and search query
   const filteredTickets = useMemo(() => {
-    return tickets.filter((ticket) => {
+    return effectiveTickets.filter((ticket) => {
       // Tab filter
       if (activeFilter === "editable" && ticket.status !== "Editable") {
         return false;
@@ -70,7 +97,10 @@ export const HostEventDetailsView: React.FC = () => {
       if (activeFilter === "locked" && ticket.status !== "Locked/ Ready") {
         return false;
       }
-      if (activeFilter === "sent" && ticket.status !== "Sent") {
+      if (
+        (activeFilter === "send" || activeFilter === "sent") &&
+        ticket.status !== "Sent"
+      ) {
         return false;
       }
       if (activeFilter === "voided" && ticket.status !== "Voided") {
@@ -89,7 +119,8 @@ export const HostEventDetailsView: React.FC = () => {
 
       return true;
     });
-  }, [tickets, activeFilter, searchQuery]);
+  }, [effectiveTickets, activeFilter, searchQuery]);
+
 
   const handleCopyLink = async (ticketId: string) => {
     try {
@@ -148,7 +179,7 @@ export const HostEventDetailsView: React.FC = () => {
         <div>
           <button
             type="button"
-            onClick={() => dispatch(setViewMode("list"))}
+            onClick={() => router.push("/host/events")}
             className="mb-2 inline-flex items-center gap-1.5 text-xs font-medium text-gray-500 hover:text-[#C39B4C] transition-colors cursor-pointer font-work-sans"
           >
             <ArrowLeft className="h-3.5 w-3.5" />
@@ -208,8 +239,8 @@ export const HostEventDetailsView: React.FC = () => {
               {event.tier && (
                 <span
                   className={`inline-flex items-center rounded-md px-2.5 py-0.5 text-xs font-medium font-work-sans ${event.tier === "Premium"
-                      ? "bg-[#FFF9EE] text-[#B58500] border border-[#FDE68A]/60"
-                      : "bg-[#EFF8FF] text-[#175CD3] border border-[#B2DDFF]/50"
+                    ? "bg-[#FFF9EE] text-[#B58500] border border-[#FDE68A]/60"
+                    : "bg-[#EFF8FF] text-[#175CD3] border border-[#B2DDFF]/50"
                     }`}
                 >
                   {event.tier}
@@ -217,8 +248,8 @@ export const HostEventDetailsView: React.FC = () => {
               )}
               <span
                 className={`inline-flex items-center rounded-md px-2.5 py-0.5 text-xs font-medium font-work-sans ${event.status === "Active"
-                    ? "bg-[#ECFDF3] text-[#027A48] border border-[#ABEFC6]/50"
-                    : "bg-[#EFF8FF] text-[#175CD3] border border-[#B2DDFF]/50"
+                  ? "bg-[#ECFDF3] text-[#027A48] border border-[#ABEFC6]/50"
+                  : "bg-[#EFF8FF] text-[#175CD3] border border-[#B2DDFF]/50"
                   }`}
               >
                 {event.status}
@@ -343,8 +374,8 @@ export const HostEventDetailsView: React.FC = () => {
             type="button"
             onClick={() => dispatch(setActiveFilter("all"))}
             className={`rounded-full px-3.5 py-1.5 text-xs font-medium transition-colors cursor-pointer font-work-sans ${activeFilter === "all"
-                ? "border border-gray-300 bg-gray-100 text-gray-900 font-semibold"
-                : "border border-gray-200 bg-white text-gray-700 hover:bg-gray-50"
+              ? "border border-gray-300 bg-gray-100 text-gray-900 font-semibold"
+              : "border border-gray-200 bg-white text-gray-700 hover:bg-gray-50"
               }`}
           >
             All ticket {counts.all}
@@ -356,8 +387,8 @@ export const HostEventDetailsView: React.FC = () => {
               type="button"
               onClick={() => dispatch(setActiveFilter("editable"))}
               className={`rounded-full px-3.5 py-1.5 text-xs font-medium transition-colors cursor-pointer font-work-sans border ${activeFilter === "editable"
-                  ? "border-blue-500 bg-blue-100 text-blue-700 font-semibold"
-                  : "border-blue-200 bg-blue-50/50 text-blue-600 hover:bg-blue-50"
+                ? "border-blue-500 bg-blue-100 text-blue-700 font-semibold"
+                : "border-blue-200 bg-blue-50/50 text-blue-600 hover:bg-blue-50"
                 }`}
             >
               Editable {counts.editable}
@@ -369,8 +400,8 @@ export const HostEventDetailsView: React.FC = () => {
             type="button"
             onClick={() => dispatch(setActiveFilter("locked"))}
             className={`rounded-full px-3.5 py-1.5 text-xs font-medium transition-colors cursor-pointer font-work-sans border ${activeFilter === "locked"
-                ? "border-orange-500 bg-orange-100 text-orange-700 font-semibold"
-                : "border-orange-200 bg-orange-50/50 text-orange-600 hover:bg-orange-50"
+              ? "border-orange-500 bg-orange-100 text-orange-700 font-semibold"
+              : "border-orange-200 bg-orange-50/50 text-orange-600 hover:bg-orange-50"
               }`}
           >
             Locked/ Ready {counts.locked}
@@ -381,8 +412,8 @@ export const HostEventDetailsView: React.FC = () => {
             type="button"
             onClick={() => dispatch(setActiveFilter("send"))}
             className={`rounded-full px-3.5 py-1.5 text-xs font-medium transition-colors cursor-pointer font-work-sans border ${activeFilter === "send"
-                ? "border-emerald-500 bg-emerald-100 text-emerald-700 font-semibold"
-                : "border-emerald-200 bg-emerald-50/50 text-emerald-600 hover:bg-emerald-50"
+              ? "border-emerald-500 bg-emerald-100 text-emerald-700 font-semibold"
+              : "border-emerald-200 bg-emerald-50/50 text-emerald-600 hover:bg-emerald-50"
               }`}
           >
             Send {counts.sent}
@@ -394,8 +425,8 @@ export const HostEventDetailsView: React.FC = () => {
               type="button"
               onClick={() => dispatch(setActiveFilter("voided"))}
               className={`rounded-full px-3.5 py-1.5 text-xs font-medium transition-colors cursor-pointer font-work-sans border ${activeFilter === "voided"
-                  ? "border-gray-400 bg-gray-200 text-gray-800 font-semibold"
-                  : "border-gray-200 bg-gray-50/50 text-gray-500 hover:bg-gray-100"
+                ? "border-gray-400 bg-gray-200 text-gray-800 font-semibold"
+                : "border-gray-200 bg-gray-50/50 text-gray-500 hover:bg-gray-100"
                 }`}
             >
               Voided {counts.voided}
@@ -408,8 +439,8 @@ export const HostEventDetailsView: React.FC = () => {
               type="button"
               onClick={() => dispatch(setActiveFilter("rsvp"))}
               className={`inline-flex items-center gap-1 rounded-full px-3.5 py-1.5 text-xs font-medium transition-colors cursor-pointer font-work-sans border ${activeFilter === "rsvp"
-                  ? "border-amber-500 bg-amber-100 text-amber-900 font-semibold"
-                  : "border-amber-200 bg-amber-50/50 text-amber-700 hover:bg-amber-100/60"
+                ? "border-amber-500 bg-amber-100 text-amber-900 font-semibold"
+                : "border-amber-200 bg-amber-50/50 text-amber-700 hover:bg-amber-100/60"
                 }`}
             >
               <span>RSVP Deadline</span>
@@ -708,8 +739,8 @@ export const HostEventDetailsView: React.FC = () => {
               type="button"
               onClick={() => setCurrentPage(page)}
               className={`flex h-8 w-8 items-center justify-center rounded-lg text-xs font-medium transition-colors cursor-pointer ${currentPage === page
-                  ? "bg-[#C39B4C] text-white"
-                  : "border border-gray-200 text-gray-700 hover:bg-gray-50"
+                ? "bg-[#C39B4C] text-white"
+                : "border border-gray-200 text-gray-700 hover:bg-gray-50"
                 }`}
             >
               {page}
@@ -724,6 +755,10 @@ export const HostEventDetailsView: React.FC = () => {
           </button>
         </div>
       </div>
+
+      {/* Modals */}
+      <AddGuestModal />
+      <ScannerCodeModal />
     </div>
   );
 };

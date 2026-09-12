@@ -1,4 +1,8 @@
-import { IHostEventItem, IHostTicketGuest, ITicketFilterCounts } from "../event.interface";
+import {
+  IHostEventItem,
+  IHostTicketGuest,
+  ITicketFilterCounts,
+} from "../event.interface";
 
 export const MOCK_HOST_EVENTS: IHostEventItem[] = [
   {
@@ -38,7 +42,7 @@ export const MOCK_HOST_EVENTS: IHostEventItem[] = [
   {
     id: "host-evt-3",
     title: "Summer Gala 2026",
-    status: "Draft",
+    status: "Active",
     tier: "Standard",
     date: "Aug 3, 2026",
     time: "7:00 PM - 11:00 PM",
@@ -46,10 +50,11 @@ export const MOCK_HOST_EVENTS: IHostEventItem[] = [
     hostName: "Liam Martinez",
     hostEmail: "example@email.com",
     hostPhone: "+1256598326",
+    scannerCode: "SCAN-8821-X9",
     totalGuests: 230,
-    checkedIn: 0,
-    remaining: 0,
-    progressPercentage: 0,
+    checkedIn: 135,
+    remaining: 135,
+    progressPercentage: 47,
   },
   {
     id: "host-evt-4",
@@ -69,7 +74,8 @@ export const MOCK_HOST_EVENTS: IHostEventItem[] = [
   },
 ];
 
-export const MOCK_HOST_TICKETS: IHostTicketGuest[] = [
+// Tickets for Premium Active (media_1789202870795.png)
+export const MOCK_HOST_TICKETS_PREMIUM: IHostTicketGuest[] = [
   {
     id: "t-1",
     ticketId: "Guest 001",
@@ -228,6 +234,244 @@ export const MOCK_HOST_TICKETS: IHostTicketGuest[] = [
   },
 ];
 
+// Tickets for Standard Active (media_1789202881822.png)
+export const MOCK_HOST_TICKETS_STANDARD: IHostTicketGuest[] = [
+  {
+    id: "ts-1",
+    ticketId: "Guest 001",
+    guestName: "--",
+    table: "A1",
+    rsvpStatus: "--",
+    reminderStatus: "--",
+    ticketType: "General Admission",
+    ticketLink: "Copy link",
+    checkInTime: "5:06 PM",
+    status: "Locked/ Ready",
+  },
+  {
+    id: "ts-2",
+    ticketId: "Guest 002",
+    guestName: "--",
+    table: "A2",
+    rsvpStatus: "--",
+    reminderStatus: "--",
+    ticketType: "VIP",
+    ticketLink: "Copy link",
+    checkInTime: "5:15 PM",
+    status: "Editable",
+  },
+  {
+    id: "ts-3",
+    ticketId: "Guest 003",
+    guestName: "--",
+    table: "A3",
+    rsvpStatus: "--",
+    reminderStatus: "--",
+    ticketType: "Child",
+    ticketLink: "Copy link",
+    checkInTime: "5:22 PM",
+    status: "Editable",
+  },
+  {
+    id: "ts-4",
+    ticketId: "Guest 004",
+    guestName: "--",
+    table: "A12",
+    rsvpStatus: "--",
+    reminderStatus: "--",
+    ticketType: "VIP",
+    ticketLink: "Copy link",
+    checkInTime: "5:30 PM",
+    status: "Locked/ Ready",
+  },
+  {
+    id: "ts-5",
+    ticketId: "Guest 005",
+    guestName: "--",
+    table: "A14",
+    rsvpStatus: "--",
+    reminderStatus: "--",
+    ticketType: "Staff",
+    ticketLink: "Copy link",
+    checkInTime: "5:45 PM",
+    status: "Locked/ Ready",
+  },
+  {
+    id: "ts-6",
+    ticketId: "Guest 006",
+    guestName: "--",
+    table: "A5",
+    rsvpStatus: "--",
+    reminderStatus: "--",
+    ticketType: "Vendor",
+    ticketLink: "Copy link",
+    checkInTime: "5:50 PM",
+    status: "Locked/ Ready",
+  },
+  {
+    id: "ts-7",
+    ticketId: "Guest 007",
+    guestName: "--",
+    table: "A10",
+    rsvpStatus: "--",
+    reminderStatus: "--",
+    ticketType: "Staff",
+    ticketLink: "Copy link",
+    checkInTime: "6:00 PM",
+    status: "Locked/ Ready",
+  },
+  {
+    id: "ts-8",
+    ticketId: "Guest 008",
+    guestName: "--",
+    table: "A11",
+    rsvpStatus: "--",
+    reminderStatus: "--",
+    ticketType: "VIP",
+    ticketLink: "Copy link",
+    checkInTime: "6:12 PM",
+    status: "Locked/ Ready",
+  },
+  {
+    id: "ts-9",
+    ticketId: "Guest 009",
+    guestName: "--",
+    table: "A31",
+    rsvpStatus: "--",
+    reminderStatus: "--",
+    ticketType: "Vendor",
+    ticketLink: "Copy link",
+    checkInTime: "6:20 PM",
+    status: "Locked/ Ready",
+  },
+];
+
+// Tickets for Scheduled (media_1789202894051.png)
+export const MOCK_HOST_TICKETS_SCHEDULED: IHostTicketGuest[] = [
+  {
+    id: "tsc-1",
+    ticketId: "Guest 001",
+    guestName: "--",
+    table: "A1",
+    rsvpStatus: "--",
+    reminderStatus: "--",
+    ticketType: "General Admission",
+    ticketLink: "Copy link",
+    checkInTime: "5:06 PM",
+    status: "Locked/ Ready",
+  },
+  {
+    id: "tsc-2",
+    ticketId: "Guest 002",
+    guestName: "--",
+    table: "A2",
+    rsvpStatus: "--",
+    reminderStatus: "--",
+    ticketType: "VIP",
+    ticketLink: "Copy link",
+    checkInTime: "5:15 PM",
+    status: "Locked/ Ready",
+  },
+  {
+    id: "tsc-3",
+    ticketId: "Guest 003",
+    guestName: "--",
+    table: "A3",
+    rsvpStatus: "--",
+    reminderStatus: "--",
+    ticketType: "Child",
+    ticketLink: "Copy link",
+    checkInTime: "5:22 PM",
+    status: "Locked/ Ready",
+  },
+  {
+    id: "tsc-4",
+    ticketId: "Guest 004",
+    guestName: "--",
+    table: "A4",
+    rsvpStatus: "--",
+    reminderStatus: "--",
+    ticketType: "VIP",
+    ticketLink: "Copy link",
+    checkInTime: "5:30 PM",
+    status: "Locked/ Ready",
+  },
+  {
+    id: "tsc-5",
+    ticketId: "Guest 005",
+    guestName: "--",
+    table: "A5",
+    rsvpStatus: "--",
+    reminderStatus: "--",
+    ticketType: "Staff",
+    ticketLink: "Copy link",
+    checkInTime: "5:45 PM",
+    status: "Locked/ Ready",
+  },
+  {
+    id: "tsc-6",
+    ticketId: "Guest 006",
+    guestName: "--",
+    table: "A6",
+    rsvpStatus: "--",
+    reminderStatus: "--",
+    ticketType: "Vendor",
+    ticketLink: "Copy link",
+    checkInTime: "5:50 PM",
+    status: "Locked/ Ready",
+  },
+  {
+    id: "tsc-7",
+    ticketId: "Guest 007",
+    guestName: "--",
+    table: "A7",
+    rsvpStatus: "--",
+    reminderStatus: "--",
+    ticketType: "Staff",
+    ticketLink: "Copy link",
+    checkInTime: "6:00 PM",
+    status: "Locked/ Ready",
+  },
+  {
+    id: "tsc-8",
+    ticketId: "Guest 008",
+    guestName: "--",
+    table: "A8",
+    rsvpStatus: "--",
+    reminderStatus: "--",
+    ticketType: "VIP",
+    ticketLink: "Copy link",
+    checkInTime: "6:12 PM",
+    status: "Locked/ Ready",
+  },
+  {
+    id: "tsc-9",
+    ticketId: "Guest 009",
+    guestName: "--",
+    table: "A9",
+    rsvpStatus: "--",
+    reminderStatus: "--",
+    ticketType: "Vendor",
+    ticketLink: "Copy link",
+    checkInTime: "6:20 PM",
+    status: "Locked/ Ready",
+  },
+];
+
+export const getTicketsForEvent = (
+  eventId?: string
+): IHostTicketGuest[] => {
+  if (eventId === "host-evt-2") {
+    return MOCK_HOST_TICKETS_SCHEDULED;
+  }
+  if (eventId === "host-evt-3") {
+    return MOCK_HOST_TICKETS_STANDARD;
+  }
+  return MOCK_HOST_TICKETS_PREMIUM;
+};
+
+export const MOCK_HOST_TICKETS = MOCK_HOST_TICKETS_PREMIUM;
+
 export const MOCK_TICKET_FILTER_COUNTS: ITicketFilterCounts = {
   all: 400,
   editable: 175,
@@ -236,4 +480,3 @@ export const MOCK_TICKET_FILTER_COUNTS: ITicketFilterCounts = {
   voided: 10,
   rsvpDeadline: "RSVP Deadline",
 };
-

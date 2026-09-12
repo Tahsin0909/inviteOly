@@ -1,7 +1,8 @@
-﻿"use client";
+"use client";
 
 import React, { useState, useRef } from "react";
 import { useDispatch } from "react-redux";
+import { useRouter } from "next/navigation";
 import { IHostPendingPaymentEvent } from "../../../payment.interface";
 import { samplePaymentInvoice } from "../../../data/hostPayment.data";
 import { submitInvoice } from "../../../store/payment.slice";
@@ -29,6 +30,7 @@ export const HostInvoiceModal: React.FC<HostInvoiceModalProps> = ({
   onClose,
 }) => {
   const dispatch = useDispatch();
+  const router = useRouter();
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const [isSubmitMode, setIsSubmitMode] = useState<boolean>(false);
@@ -158,11 +160,10 @@ export const HostInvoiceModal: React.FC<HostInvoiceModalProps> = ({
                 <button
                   type="button"
                   onClick={() => setPaymentMethod("Bank Transfer")}
-                  className={`flex items-center justify-center gap-2 p-3 rounded-xl border text-xs font-medium transition-all cursor-pointer ${
-                    paymentMethod === "Bank Transfer"
-                      ? "border-[#C39B4C] bg-[#FFFBF0] text-[#C39B4C] font-semibold shadow-2xs"
-                      : "border-neutral-200 text-neutral-600 hover:bg-neutral-50"
-                  }`}
+                  className={`flex items-center justify-center gap-2 p-3 rounded-xl border text-xs font-medium transition-all cursor-pointer ${paymentMethod === "Bank Transfer"
+                    ? "border-[#C39B4C] bg-[#FFFBF0] text-[#C39B4C] font-semibold shadow-2xs"
+                    : "border-neutral-200 text-neutral-600 hover:bg-neutral-50"
+                    }`}
                 >
                   <Landmark className="size-4" />
                   <span>Bank Transfer</span>
@@ -171,11 +172,10 @@ export const HostInvoiceModal: React.FC<HostInvoiceModalProps> = ({
                 <button
                   type="button"
                   onClick={() => setPaymentMethod("Stripe")}
-                  className={`flex items-center justify-center gap-2 p-3 rounded-xl border text-xs font-medium transition-all cursor-pointer ${
-                    paymentMethod === "Stripe"
-                      ? "border-[#C39B4C] bg-[#FFFBF0] text-[#C39B4C] font-semibold shadow-2xs"
-                      : "border-neutral-200 text-neutral-600 hover:bg-neutral-50"
-                  }`}
+                  className={`flex items-center justify-center gap-2 p-3 rounded-xl border text-xs font-medium transition-all cursor-pointer ${paymentMethod === "Stripe"
+                    ? "border-[#C39B4C] bg-[#FFFBF0] text-[#C39B4C] font-semibold shadow-2xs"
+                    : "border-neutral-200 text-neutral-600 hover:bg-neutral-50"
+                    }`}
                 >
                   <CreditCard className="size-4" />
                   <span>Stripe</span>
@@ -388,6 +388,18 @@ export const HostInvoiceModal: React.FC<HostInvoiceModalProps> = ({
                 >
                   <Download className="size-3.5" />
                   <span>Download</span>
+                </button>
+
+                <button
+                  type="button"
+                  onClick={() => {
+                    onClose();
+                    router.push(`/host/payment-pending/${event.id}`);
+                  }}
+                  className="inline-flex items-center gap-1.5 px-3 py-2 border border-[#C39B4C]/60 text-[#C39B4C] hover:bg-[#FFFBF0] text-xs font-semibold rounded-lg shadow-2xs cursor-pointer transition-all"
+                >
+                  <Upload className="size-3.5" />
+                  <span>Upload Receipt</span>
                 </button>
 
                 {/* Submit Invoice Action Button */}

@@ -1908,6 +1908,69 @@ Automatically generates an official invoice upon purchasing any standard fixed-t
 
 ---
 
+#### 2.18.8 Submit Payment Proof Receipt File
+Uploads wire transfer receipt slip, bank confirmation document, or payment screenshot for an event.
+
+- **Method**: `POST`
+- **Endpoint**: `/host/payment-pending/:id/upload-receipt`
+- **Headers**:
+  - `Authorization: Bearer <token>`
+  - `Content-Type: multipart/form-data`
+- **Form Data**:
+  - `file`: `<Receipt File (PDF, PNG, JPG, CSV)>`
+  - `receiptName`: `"receipt_wire_SG26.pdf"`
+- **Response `200 OK`**:
+```json
+{
+  "success": true,
+  "message": "Payment receipt uploaded successfully and placed under administrative review",
+  "data": {
+    "eventId": "pay-event-1",
+    "receiptUrl": "/uploads/receipts/receipt_wire_SG26.pdf",
+    "status": "Under Review",
+    "uploadedAt": "2026-09-12T15:30:00Z"
+  }
+}
+```
+
+---
+
+#### 2.18.9 Submit Payment Invoice Details
+Submits official invoice transaction reference with chosen payment method (Bank Transfer, Stripe) and attached receipt slip.
+
+- **Method**: `POST`
+- **Endpoint**: `/host/payment-pending/:id/submit-invoice`
+- **Headers**:
+  - `Authorization: Bearer <token>`
+  - `Content-Type: application/json`
+- **Request Body**:
+```json
+{
+  "invoiceId": "INV-2026-8821",
+  "eventId": "pay-event-1",
+  "transactionReference": "REF-SG26-8821",
+  "paymentMethod": "Bank Transfer",
+  "amount": 499,
+  "receiptName": "wire_transfer_slip.pdf",
+  "notes": "Wire completed from JPMorgan Chase account on Aug 2."
+}
+```
+- **Response `200 OK`**:
+```json
+{
+  "success": true,
+  "message": "Invoice payment details submitted successfully and under review",
+  "data": {
+    "invoiceId": "INV-2026-8821",
+    "eventId": "pay-event-1",
+    "status": "Under Review",
+    "submittedAt": "2026-09-12T15:32:00Z"
+  }
+}
+```
+
+---
+
 ### 2.19 Host Events Management & Guest Ticketing Endpoints
 
 #### 2.19.1 Get All Host Events
