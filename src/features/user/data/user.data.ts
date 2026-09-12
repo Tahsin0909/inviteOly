@@ -17,7 +17,7 @@ export const adminUser: IUser = {
     updatedAt: "2026-07-29T10:00:00Z",
 };
 
-// 2. The Host User (Standard User from Host Registration)
+// 2. The Host User (Standard Host from Registration)
 export const hostUser: IUser = {
     id: "507f191e810c19729de860eb",
     firstName: "James",
@@ -26,6 +26,7 @@ export const hostUser: IUser = {
     profileImage: null,
     role: IRole.HOST,
     phone: "+1 (416) 555-0199",
+    referralCode: "HOST-REF-SMITH26",
     isEmailVerified: true,
     isActive: true,
     hasActiveSubscription: false,
@@ -36,7 +37,32 @@ export const hostUser: IUser = {
 
 export const standardUser: IUser = hostUser;
 
-// 3. The Partner User (from Partner Registration)
+// 3. The Referred Host User (Host registered via referral by another host, James Smith)
+export const referredHostUser: IUser = {
+    id: "507f191e810c19729de860ed",
+    firstName: "Marcus",
+    lastName: "Thorne",
+    email: "marcus.thorne@gmail.com",
+    profileImage: "https://i.pravatar.cc/150?img=12",
+    role: IRole.HOST,
+    phone: "+1 (415) 555-0842",
+    // Host-to-Host referral metadata
+    referredBy: "James Smith",
+    referredByHostId: "507f191e810c19729de860eb", // Refers to hostUser (James Smith)
+    referredByHostName: "James Smith",
+    referredByEmail: "james.smith@gmail.com",
+    referralCode: "HOST-REF-THORNE26",
+    isEmailVerified: true,
+    isActive: true,
+    hasActiveSubscription: true,
+    stripeCustomerId: "cus_ReferredHostStripeID",
+    createdAt: "2026-07-01T10:15:00Z",
+    updatedAt: "2026-08-05T14:20:00Z",
+};
+
+export const hostReferredUser: IUser = referredHostUser;
+
+// 4. The Partner User (from Partner Registration)
 export const partnerUser: IUser = {
     id: "507f191e810c19729de860ec",
     firstName: "Elena",
@@ -58,11 +84,21 @@ export const partnerUser: IUser = {
     updatedAt: "2026-07-28T16:45:00Z",
 };
 
+export const mockUsers: IUser[] = [
+    adminUser,
+    hostUser,
+    referredHostUser,
+    partnerUser,
+];
+
 export const adminToken =
     "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjUwN2YxOTFlODEwYzE5NzI5ZGU4NjBlYSIsImZpcnN0TmFtZSI6IlNhcmFoIiwibGFzdE5hbWUiOiJDb25ub3IiLCJlbWFpbCI6InNhcmFoLmNvbm5vckBpbnZpdGVvbmx5LmNvbSIsInJvbGUiOiJBRE1JTiIsInByb2ZpbGVJbWFnZSI6Imh0dHBzOi8vaS5wcmF2YXRhci5jYy8xNTA_aW1nPTUiLCJwaG9uZSI6IisxICg1NTUpIDk4Ny02NTQzIiwiaXNFbWFpbFZlcmlmaWVkIjp0cnVlLCJpc0FjdGl2ZSI6dHJ1ZSwiaGFzQWN0aXZlU3Vic2NyaXB0aW9uIjp0cnVlLCJzdHJpcGVDdXN0b21lcklkIjoiY3VzX0FkbWluU3RyaXBlSUQiLCJpYXQiOjE3MDAwMDAwMDAsImV4cCI6MjA4Mjc1ODQwMH0.bW9ja19zaWduYXR1cmU";
 
 export const hostToken =
     "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjUwN2YxOTFlODEwYzE5NzI5ZGU4NjBlYiIsImZpcnN0TmFtZSI6IkphbWVzIiwibGFzdE5hbWUiOiJTbWl0aCIsImVtYWlsIjoiamFtZXMuc21pdGhAZ21haWwuY29tIiwicm9sZSI6IkhPU1QiLCJwcm9maWxlSW1hZ2UiOm51bGwsInBob25lIjoiKzEgKDQxNikgNTU1LTAxOTkiLCJpc0VtYWlsVmVyaWZpZWQiOnRydWUsImlzQWN0aXZlIjp0cnVlLCJoYXNBY3RpdmVTdWJzY3JpcHRpb24iOmZhbHNlLCJzdHJpcGVDdXN0b21lcklkIjoiIiwiaWF0IjoxNzAwMDAwMDAwLCJleHAiOjIwODI3NTg0MDB9.bW9ja19zaWduYXR1cmU";
+
+export const referredHostToken =
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjUwN2YxOTFlODEwYzE5NzI5ZGU4NjBlZCIsImZpcnN0TmFtZSI6Ik1hcmN1cyIsImxhc3ROYW1lIjoiVGhvcm5lIiwiZW1haWwiOiJtYXJjdXMudGhvcm5lQGdtYWlsLmNvbSIsInJvbGUiOiJIT1NUIiwicHJvZmlsZUltYWdlIjoiaHR0cHM6Ly9pLnByYXZhdGFyLmNjLzE1MD9pbWc9MTIiLCJwaG9uZSI6IisxICg0MTUpIDU1NS0wODQyIiwicmVmZXJyZWRCeSI6IkphbWVzIFNtaXRoIiwicmVmZXJyZWRCeUhvc3RJZCI6IjUwN2YxOTFlODEwYzE5NzI5ZGU4NjBlYiIsImlzRW1haWxWZXJpZmllZCI6dHJ1ZSwiaXNBY3RpdmUiOnRydWUsImhhc0FjdGl2ZVN1YnNjcmlwdGlvbiI6dHJ1ZSwic3RyaXBlQ3VzdG9tZXJJZCI6ImN1c19SZWZlcnJlZEhvc3RTdHJpcGVJRCIsImlhdCI6MTcwMDAwMDAwMCwiZXhwIjoyMDgyNzU4NDAwfQ.bW9ja19zaWduYXR1cmU";
 
 export const userToken = hostToken;
 
@@ -71,11 +107,16 @@ export const partnerToken =
 
 // Default active user & token
 // export const currentUser: IUser = adminUser;
-export const currentUser: IUser = hostUser;
+// export const currentUser: IUser = hostUser;
+export const currentUser: IUser = referredHostUser;
 // export const currentUser: IUser = partnerUser;
 
 export const getTokenForUser = (user: IUser | null): string => {
     if (!user) return "";
+
+    if (user.id === referredHostUser.id) {
+        return referredHostToken;
+    }
 
     switch (user.role) {
         case IRole.ADMIN:

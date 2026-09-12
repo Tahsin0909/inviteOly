@@ -41,6 +41,13 @@ export interface IUser {
   companyIndustry?: string;
   companySize?: string;
   postalCode?: string;
+
+  // Referral tracking fields
+  referredBy?: string | null;
+  referredByHostId?: string | null;
+  referredByHostName?: string | null;
+  referredByEmail?: string | null;
+  referralCode?: string | null;
 }
 
 export type TCreateUser = {

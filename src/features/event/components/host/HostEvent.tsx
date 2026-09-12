@@ -1,17 +1,18 @@
 "use client";
 
-import React from "react";
-import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "@/redux/store";
+import { Plus } from "lucide-react";
+import { useRouter } from "next/navigation";
+import React from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useAuth } from "@/features/auth/hooks/useAuth";
 import { setSelectedEventId } from "../../store/event.slice";
 import { HostEventCard } from "./HostEventCard";
-import { Plus } from "lucide-react";
-import { toast } from "sonner";
-import { useRouter } from "next/navigation";
 
 export const HostEvent: React.FC = () => {
     const dispatch = useDispatch();
     const router = useRouter();
+    const { user, profile } = useAuth();
     const hostEvents = useSelector(
         (state: RootState) => state.event.hostEvents
     );
@@ -31,7 +32,18 @@ export const HostEvent: React.FC = () => {
     };
 
     const handleCreateNewEvent = () => {
-        toast.info("Create new event flow initiated");
+        const activeUser = user || profile;
+        const isReferred = Boolean(
+            activeUser?.referredBy ||
+            activeUser?.referredByHostId ||
+            activeUser?.referredByHostName
+        );
+
+        if (isReferred) {
+            router.push("/host/r-create-events");
+        } else {
+            router.push("/host/create-event");
+        }
     };
 
     return (
