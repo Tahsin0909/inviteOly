@@ -1,4 +1,4 @@
-export type TPricingTierKey =
+﻿export type TPricingTierKey =
   | "small"
   | "medium"
   | "large"
@@ -43,4 +43,72 @@ export interface IPayment {
   currency?: string;
   status?: string;
   createdAt?: string;
+}
+
+export type THostPaymentStatus =
+  | "Pending"
+  | "Under Review"
+  | "Confirmed"
+  | "Rejected";
+
+export interface IHostPendingPaymentEvent {
+  id: string;
+  eventName: string;
+  packageType: string;
+  eventDate: string;
+  eventTime: string;
+  eventType?: string;
+  hostName: string;
+  hostEmail?: string;
+  hostPhone?: string;
+  venueContact?: string;
+  totalGuest: number;
+  checkIn: number;
+  remaining: number;
+  status: THostPaymentStatus;
+  receiptUrl?: string | null;
+  invoiceId?: string;
+  amount?: number;
+  currency?: string;
+  createdAt?: string;
+}
+
+export interface IUploadPaymentProofPayload {
+  eventId: string;
+  file?: File | string | null;
+  receiptName?: string;
+  notes?: string;
+}
+
+export interface ISubmitInvoicePayload {
+  invoiceId: string;
+  eventId: string;
+  transactionReference: string;
+  paymentMethod: "Bank Transfer" | "Stripe" | "Manual Wire";
+  amount: number;
+  receiptFile?: File | string | null;
+  receiptName?: string;
+  notes?: string;
+}
+
+export interface IPaymentInvoice {
+  invoiceId: string;
+  eventId: string;
+  eventName: string;
+  hostName: string;
+  hostEmail: string;
+  hostPhone: string;
+  date: string;
+  amount: number;
+  currency: string;
+  packageType: string;
+  status: "Pending" | "Paid";
+  bankDetails: {
+    bankName: string;
+    accountName: string;
+    accountNumber: string;
+    routingNumber: string;
+    swiftCode?: string;
+    referenceNumber: string;
+  };
 }

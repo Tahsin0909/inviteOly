@@ -1,5 +1,10 @@
-import { z } from "zod";
+﻿import { z } from "zod";
 
-export const PaymentSchema = z.object({});
+export const UploadPaymentReceiptSchema = z.object({
+  eventId: z.string().min(1, "Event ID is required"),
+  notes: z.string().optional(),
+});
 
-export type PaymentSchemaType = z.infer<typeof PaymentSchema>;
+export type UploadPaymentReceiptSchemaType = z.infer<
+  typeof UploadPaymentReceiptSchema
+>;

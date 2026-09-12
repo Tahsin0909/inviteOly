@@ -71,8 +71,8 @@ export const partnerToken =
 
 // Default active user & token
 // export const currentUser: IUser = adminUser;
-// export const currentUser: IUser = hostUser;
-export const currentUser: IUser = partnerUser;
+export const currentUser: IUser = hostUser;
+// export const currentUser: IUser = partnerUser;
 
 export const getTokenForUser = (user: IUser | null): string => {
     if (!user) return "";

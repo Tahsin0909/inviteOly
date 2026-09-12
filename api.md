@@ -1666,6 +1666,169 @@ Rejects a disputed or invalid pending reward.
 
 ---
 
+### 2.18 Host Payment Pending & Proof Upload Endpoints
+
+#### 2.18.1 Get Host Pending Payment Events
+Retrieves all events created by or assigned to the host that are awaiting payment verification or receipt upload.
+
+- **Method**: `GET`
+- **Endpoint**: `/host/payment-pending`
+- **Headers**:
+  - `Authorization: Bearer <token>`
+- **Response `200 OK`**:
+```json
+{
+  "success": true,
+  "message": "Host pending payment events retrieved successfully",
+  "data": [
+    {
+      "id": "pay-event-1",
+      "eventName": "Summer Gala 2026",
+      "packageType": "Costume",
+      "eventDate": "Aug 3, 2026",
+      "eventTime": "7:00 PM - 11:00 PM",
+      "eventType": "Privet Event",
+      "hostName": "Liam Martinez",
+      "hostEmail": "example@email.com",
+      "hostPhone": "+1256598326",
+      "venueContact": "+1256598326",
+      "totalGuest": 230,
+      "checkIn": 0,
+      "remaining": 0,
+      "status": "Pending",
+      "invoiceId": "INV-2026-8821",
+      "amount": 499,
+      "currency": "USD",
+      "receiptUrl": null,
+      "createdAt": "2026-08-01T10:00:00Z"
+    }
+  ]
+}
+```
+
+---
+
+#### 2.18.2 Get Payment Invoice Details
+Retrieves official invoice breakdown, line items, and bank transfer credentials for a pending event.
+
+- **Method**: `GET`
+- **Endpoint**: `/host/payment-pending/:id/invoice`
+- **Headers**:
+  - `Authorization: Bearer <token>`
+- **Response `200 OK`**:
+```json
+{
+  "success": true,
+  "message": "Payment invoice retrieved successfully",
+  "data": {
+    "invoiceId": "INV-2026-8821",
+    "eventId": "pay-event-1",
+    "eventName": "Summer Gala 2026",
+    "hostName": "Liam Martinez",
+    "hostEmail": "example@email.com",
+    "hostPhone": "+1256598326",
+    "date": "Aug 3, 2026",
+    "amount": 499,
+    "currency": "USD",
+    "packageType": "Costume Package",
+    "status": "Pending",
+    "bankDetails": {
+      "bankName": "JPMorgan Chase Bank, N.A.",
+      "accountName": "InviteOly Events Inc.",
+      "accountNumber": "987654321098",
+      "routingNumber": "021000021",
+      "swiftCode": "CHASUS33",
+      "referenceNumber": "REF-SG26-8821"
+    }
+  }
+}
+```
+
+---
+
+#### 2.18.3 Upload Payment Proof / Receipt
+Uploads a wire transfer slip or bank receipt PDF/image proving payment for the pending event.
+
+- **Method**: `POST`
+- **Endpoint**: `/host/payment-pending/:id/upload-receipt`
+- **Headers**:
+  - `Authorization: Bearer <token>`
+  - `Content-Type: multipart/form-data`
+- **Body (`multipart/form-data`)**:
+  - `receipt`: `File (PDF, PNG, JPG, max 5MB)`
+  - `notes`: `Optional memo or transaction reference number`
+- **Response `200 OK`**:
+```json
+{
+  "success": true,
+  "message": "Payment receipt uploaded successfully and placed under review",
+  "data": {
+    "id": "pay-event-1",
+    "status": "Under Review",
+    "receiptUrl": "https://storage.inviteoly.com/receipts/rec-8821-summer-gala.pdf",
+    "uploadedAt": "2026-09-12T13:20:00Z"
+  }
+}
+```
+
+---
+
+#### 2.18.4 Confirm Host Event Payment (Admin Only)
+Confirms receipt of wire/bank funds and activates the host event.
+
+- **Method**: `POST`
+- **Endpoint**: `/host/payment-pending/:id/confirm`
+- **Headers**:
+  - `Authorization: Bearer <token>`
+- **Response `200 OK`**:
+```json
+{
+  "success": true,
+  "message": "Event payment confirmed and activated successfully",
+  "data": {
+    "id": "pay-event-1",
+    "status": "Confirmed"
+  }
+}
+```
+
+---
+
+#### 2.18.5 Submit Payment Invoice
+Submits payment details, bank wire reference ID, and receipt slip directly against an issued invoice.
+
+- **Method**: `POST`
+- **Endpoint**: `/host/payment-pending/:id/submit-invoice`
+- **Headers**:
+  - `Authorization: Bearer <token>`
+  - `Content-Type: application/json`
+- **Body**:
+```json
+{
+  "invoiceId": "INV-2026-8821",
+  "eventId": "pay-event-1",
+  "transactionReference": "REF-SG26-8821",
+  "paymentMethod": "Bank Transfer",
+  "amount": 499.00,
+  "receiptName": "wire-slip-8821.pdf",
+  "notes": "Sent via Chase online wire transfer"
+}
+```
+- **Response `200 OK`**:
+```json
+{
+  "success": true,
+  "message": "Payment invoice submitted successfully and queued for review",
+  "data": {
+    "invoiceId": "INV-2026-8821",
+    "status": "Under Review",
+    "submittedAt": "2026-09-12T13:25:00Z"
+  }
+}
+```
+
+---
+
 ## 3. Standard Error Response Structure
 
 In case of validation or server errors, all endpoints return:
