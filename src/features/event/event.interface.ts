@@ -100,3 +100,67 @@ export interface IEvent {
   id: string;
   [key: string]: unknown;
 }
+
+// Host Event Types
+export type THostEventStatus =
+  | "Active"
+  | "Scheduled"
+  | "Draft"
+  | "Upload Payment Receipt";
+
+export type THostEventTier = "Premium" | "Standard" | "Costume";
+
+export type THostTicketStatus = "Editable" | "Locked/ Ready" | "Sent" | "Voided";
+
+export type TRsvpStatus = "--" | "Pending" | "Confirm" | "Decline";
+
+export type TReminderStatus = "--" | "Reminder" | "Follow-up";
+
+export interface IHostEventItem {
+  id: string;
+  title: string;
+  status: THostEventStatus;
+  tier?: THostEventTier;
+  date: string;
+  time: string;
+  eventType: string;
+  hostName: string;
+  hostEmail: string;
+  hostPhone: string;
+  scannerCode?: string;
+  totalGuests: number;
+  checkedIn: number;
+  remaining: number;
+  progressPercentage: number;
+}
+
+export interface IHostTicketGuest {
+  id: string;
+  ticketId: string;
+  guestName: string;
+  guestEmail?: string;
+  table: string;
+  rsvpStatus: TRsvpStatus;
+  reminderStatus: TReminderStatus;
+  ticketType: string;
+  ticketLink?: string;
+  checkInTime?: string;
+  status: THostTicketStatus;
+}
+
+export interface IAddGuestPayload {
+  guestName: string;
+  guestEmail: string;
+  ticketType: string;
+  table: string;
+}
+
+export interface ITicketFilterCounts {
+  all: number;
+  editable: number;
+  locked: number;
+  sent: number;
+  voided: number;
+  rsvpDeadline?: string;
+}
+

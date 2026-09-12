@@ -1829,6 +1829,379 @@ Submits payment details, bank wire reference ID, and receipt slip directly again
 
 ---
 
+#### 2.18.6 Request Custom Pricing Quote & Admin Invoice Generation
+Submits custom event specifications (600+ guests, bespoke venue requirements). Admin receives this request and generates a tailored custom invoice.
+
+- **Method**: `POST`
+- **Endpoint**: `/host/pricing/custom-quote`
+- **Headers**:
+  - `Authorization: Bearer <token>`
+  - `Content-Type: application/json`
+- **Request Body**:
+```json
+{
+  "eventName": "Summer Gala 2026",
+  "eventDate": "Aug 3, 2026",
+  "eventTime": "7:00 PM - 11:00 PM",
+  "totalGuest": 650,
+  "hostName": "Liam Martinez",
+  "hostEmail": "example@email.com",
+  "hostPhone": "+1256598326",
+  "notes": "Large ballroom celebration requiring custom attendee check-in gates and VIP guest list allocation."
+}
+```
+- **Response `201 Created`**:
+```json
+{
+  "success": true,
+  "message": "Custom event quote request submitted to admin successfully. Invoice will be issued shortly.",
+  "data": {
+    "id": "pay-event-1",
+    "eventName": "Summer Gala 2026",
+    "packageType": "Costume",
+    "status": "Pending",
+    "invoiceId": "INV-2026-8821",
+    "amount": 499,
+    "currency": "USD",
+    "submittedAt": "2026-09-12T15:00:00Z"
+  }
+}
+```
+
+---
+
+#### 2.18.7 Auto-Generate Package Invoice for Fixed Plans
+Automatically generates an official invoice upon purchasing any standard fixed-tier package (e.g. Intimate, Signature, Grand).
+
+- **Method**: `POST`
+- **Endpoint**: `/host/pricing/auto-invoice`
+- **Headers**:
+  - `Authorization: Bearer <token>`
+  - `Content-Type: application/json`
+- **Request Body**:
+```json
+{
+  "planId": "intimate-standard",
+  "planName": "Standard",
+  "price": "$149",
+  "tierLabel": "Intimate",
+  "eventName": "Summer Gala 2026 (Standard)"
+}
+```
+- **Response `201 Created`**:
+```json
+{
+  "success": true,
+  "message": "Package invoice auto-generated successfully",
+  "data": {
+    "id": "pay-pkg-9921",
+    "eventName": "Summer Gala 2026 (Standard)",
+    "packageType": "Standard",
+    "status": "Pending",
+    "invoiceId": "INV-AUTO-4921",
+    "amount": 149,
+    "currency": "USD",
+    "createdAt": "2026-09-12T15:05:00Z"
+  }
+}
+```
+
+---
+
+### 2.19 Host Events Management & Guest Ticketing Endpoints
+
+#### 2.19.1 Get All Host Events
+Retrieves all events created by or assigned to the host, including active, scheduled, draft, and payment-receipt pending events with attendance progress.
+
+- **Method**: `GET`
+- **Endpoint**: `/host/events`
+- **Headers**:
+  - `Authorization: Bearer <token>`
+- **Response `200 OK`**:
+```json
+{
+  "success": true,
+  "message": "Host events retrieved successfully",
+  "data": [
+    {
+      "id": "host-evt-1",
+      "title": "Summer Gala 2026",
+      "status": "Active",
+      "tier": "Premium",
+      "date": "Aug 3, 2026",
+      "time": "7:00 PM - 11:00 PM",
+      "eventType": "Privet Event",
+      "hostName": "Liam Martinez",
+      "hostEmail": "example@email.com",
+      "hostPhone": "+1256598326",
+      "scannerCode": "SCAN-8821-X9",
+      "totalGuests": 230,
+      "checkedIn": 135,
+      "remaining": 135,
+      "progressPercentage": 47
+    },
+    {
+      "id": "host-evt-2",
+      "title": "Tech Summit 2026",
+      "status": "Scheduled",
+      "tier": "Standard",
+      "date": "Aug 3, 2026",
+      "time": "7:00 PM - 11:00 PM",
+      "eventType": "Privet Event",
+      "hostName": "Liam Martinez",
+      "hostEmail": "example@email.com",
+      "hostPhone": "+1256598326",
+      "scannerCode": "SCAN-5510-TS",
+      "totalGuests": 230,
+      "checkedIn": 0,
+      "remaining": 230,
+      "progressPercentage": 0
+    },
+    {
+      "id": "host-evt-3",
+      "title": "Summer Gala 2026",
+      "status": "Draft",
+      "tier": "Standard",
+      "date": "Aug 3, 2026",
+      "time": "7:00 PM - 11:00 PM",
+      "eventType": "Privet Event",
+      "hostName": "Liam Martinez",
+      "hostEmail": "example@email.com",
+      "hostPhone": "+1256598326",
+      "totalGuests": 230,
+      "checkedIn": 0,
+      "remaining": 0,
+      "progressPercentage": 0
+    },
+    {
+      "id": "host-evt-4",
+      "title": "Summer Gala 2026",
+      "status": "Upload Payment Receipt",
+      "tier": "Costume",
+      "date": "Aug 3, 2026",
+      "time": "7:00 PM - 11:00 PM",
+      "eventType": "Privet Event",
+      "hostName": "Liam Martinez",
+      "hostEmail": "example@email.com",
+      "hostPhone": "+1256598326",
+      "totalGuests": 230,
+      "checkedIn": 0,
+      "remaining": 0,
+      "progressPercentage": 0
+    }
+  ]
+}
+```
+
+---
+
+#### 2.19.2 Get Host Event By ID
+Retrieves detailed information, attendance statistics, and door scanner app credentials for a specific host event.
+
+- **Method**: `GET`
+- **Endpoint**: `/host/events/:id`
+- **Headers**:
+  - `Authorization: Bearer <token>`
+- **Response `200 OK`**:
+```json
+{
+  "success": true,
+  "message": "Host event details retrieved successfully",
+  "data": {
+    "id": "host-evt-1",
+    "title": "Summer Gala 2026",
+    "status": "Active",
+    "tier": "Premium",
+    "date": "Aug 3, 2026",
+    "time": "7:00 PM - 11:00 PM",
+    "eventType": "Privet Event",
+    "hostName": "Liam Martinez",
+    "hostEmail": "example@email.com",
+    "hostPhone": "+1256598326",
+    "scannerCode": "SCAN-8821-X9",
+    "totalGuests": 230,
+    "checkedIn": 135,
+    "remaining": 135,
+    "progressPercentage": 74.1
+  }
+}
+```
+
+---
+
+#### 2.19.3 Get Host Event Tickets & Attendees
+Retrieves the attendee roster and ticket allocation ledger for an event, with optional status and search filters.
+
+- **Method**: `GET`
+- **Endpoint**: `/host/events/:id/tickets?status=all&search=Marcus`
+- **Headers**:
+  - `Authorization: Bearer <token>`
+- **Query Parameters**:
+  - `status`: `all` | `editable` | `locked` | `sent` | `voided` (optional)
+  - `search`: search string matching guest name, email, or table (optional)
+- **Response `200 OK`**:
+```json
+{
+  "success": true,
+  "message": "Event tickets retrieved successfully",
+  "data": [
+    {
+      "id": "t-1",
+      "ticketId": "Guest 001",
+      "guestName": "Marcus Thorne",
+      "guestEmail": "m.thorne@example.com",
+      "table": "A1",
+      "rsvpStatus": "--",
+      "reminderStatus": "--",
+      "ticketType": "General Admission",
+      "ticketLink": "--",
+      "checkInTime": "--",
+      "status": "Editable"
+    },
+    {
+      "id": "t-4",
+      "ticketId": "Guest 004",
+      "guestName": "Nina Patel",
+      "guestEmail": "nina.patel@example.com",
+      "table": "A4",
+      "rsvpStatus": "--",
+      "reminderStatus": "--",
+      "ticketType": "VIP",
+      "ticketLink": "https://inviteonly.app/tickets/t-guest004",
+      "checkInTime": "5:30 PM",
+      "status": "Locked/ Ready"
+    },
+    {
+      "id": "t-7",
+      "ticketId": "Guest 007",
+      "guestName": "Zara Kim",
+      "guestEmail": "zara.kim@example.com",
+      "table": "A7",
+      "rsvpStatus": "Pending",
+      "reminderStatus": "Reminder",
+      "ticketType": "Child",
+      "ticketLink": "https://inviteonly.app/tickets/t-guest007",
+      "checkInTime": "6:00 PM",
+      "status": "Sent"
+    }
+  ]
+}
+```
+
+---
+
+#### 2.19.4 Add Guest / Create Ticket
+Adds an attendee to the host event and generates an editable ticket assignment.
+
+- **Method**: `POST`
+- **Endpoint**: `/host/events/:id/tickets`
+- **Headers**:
+  - `Authorization: Bearer <token>`
+  - `Content-Type: application/json`
+- **Request Body**:
+```json
+{
+  "guestName": "Marcus Thorne",
+  "guestEmail": "marcus.t@example.com",
+  "ticketType": "VIP",
+  "table": "A1"
+}
+```
+- **Response `201 Created`**:
+```json
+{
+  "success": true,
+  "message": "Guest added successfully",
+  "data": {
+    "id": "t-13",
+    "ticketId": "Guest 013",
+    "guestName": "Marcus Thorne",
+    "guestEmail": "marcus.t@example.com",
+    "table": "A1",
+    "rsvpStatus": "--",
+    "reminderStatus": "--",
+    "ticketType": "VIP",
+    "ticketLink": "https://inviteonly.app/tickets/t-guest013",
+    "checkInTime": "--",
+    "status": "Editable"
+  }
+}
+```
+
+---
+
+#### 2.19.5 Send Ticket Reminder
+Sends an automated RSVP / attendance reminder notification to a specific ticket holder.
+
+- **Method**: `POST`
+- **Endpoint**: `/host/events/:id/tickets/:ticketId/remind`
+- **Headers**:
+  - `Authorization: Bearer <token>`
+- **Response `200 OK`**:
+```json
+{
+  "success": true,
+  "message": "Reminder sent successfully to attendee",
+  "data": {
+    "ticketId": "Guest 007",
+    "reminderStatus": "Reminder",
+    "sentAt": "2026-09-12T14:30:00Z"
+  }
+}
+```
+
+---
+
+#### 2.19.6 Bulk Send Ticket Invitations
+Sends invitations and digital ticket claim links to all or selected guests.
+
+- **Method**: `POST`
+- **Endpoint**: `/host/events/:id/tickets/bulk-send`
+- **Headers**:
+  - `Authorization: Bearer <token>`
+  - `Content-Type: application/json`
+- **Request Body**:
+```json
+{
+  "ticketIds": ["t-1", "t-2", "t-3", "t-4", "t-5"]
+}
+```
+- **Response `200 OK`**:
+```json
+{
+  "success": true,
+  "message": "5 ticket invitations sent successfully",
+  "data": {
+    "sentCount": 5,
+    "timestamp": "2026-09-12T14:35:00Z"
+  }
+}
+```
+
+---
+
+#### 2.19.7 Regenerate Scanner App Login Code
+Generates a new secure access code for door attendants and event check-in staff.
+
+- **Method**: `POST`
+- **Endpoint**: `/host/events/:id/scanner-code/regenerate`
+- **Headers**:
+  - `Authorization: Bearer <token>`
+- **Response `200 OK`**:
+```json
+{
+  "success": true,
+  "message": "Scanner app login code regenerated successfully",
+  "data": {
+    "eventId": "host-evt-1",
+    "scannerCode": "SCAN-9142-X9",
+    "generatedAt": "2026-09-12T14:40:00Z"
+  }
+}
+```
+
+---
+
 ## 3. Standard Error Response Structure
 
 In case of validation or server errors, all endpoints return:

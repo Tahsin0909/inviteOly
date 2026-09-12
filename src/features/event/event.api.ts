@@ -1,6 +1,12 @@
 import { baseApi } from "@/redux/api/baseApi";
 import { ApiResponse } from "@/types/api";
-import { IEvent, IPartnerEvent } from "./event.interface";
+import {
+  IEvent,
+  IPartnerEvent,
+  IHostEventItem,
+  IHostTicketGuest,
+  IAddGuestPayload,
+} from "./event.interface";
 
 export const eventApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
@@ -20,18 +26,78 @@ export const eventApi = baseApi.injectEndpoints({
       query: (body) => ({ url: "/event", method: "POST", body }),
       invalidatesTags: ["event"],
     }),
-    updateEvent: builder.mutation<IEvent, Partial<IEvent> & { id: string }>(
-      {
-        query: ({ id, ...body }) => ({
-          url: `/event/${id}`,
-          method: "PUT",
-          body,
-        }),
-        invalidatesTags: ["event"],
-      }
-    ),
+    updateEvent: builder.mutation<IEvent, Partial<IEvent> & { id: string }>({
+      query: ({ id, ...body }) => ({
+        url: `/event/${id}`,
+        method: "PUT",
+        body,
+      }),
+      invalidatesTags: ["event"],
+    }),
     deleteEvent: builder.mutation<{ success: boolean; id: string }, string>({
       query: (id) => ({ url: `/event/${id}`, method: "DELETE" }),
+      invalidatesTags: ["event"],
+    }),
+
+    // Host Events Endpoints (RTK Query definitions without integration)
+    getHostEvents: builder.query<ApiResponse<IHostEventItem[]>, void>({
+      query: () => "/host/events",
+      providesTags: ["event"],
+    }),
+    getHostEventById: builder.query<ApiResponse<IHostEventItem>, string>({
+      query: (id) => `/host/events/${id}`,
+      providesTags: ["event"],
+    }),
+    getHostEventTickets: builder.query<
+      ApiResponse<IHostTicketGuest[]>,
+      { eventId: string; status?: string; search?: string }
+    >({
+      query: ({ eventId, status, search }) => ({
+        url: `/host/events/${eventId}/tickets`,
+        params: { status, search },
+      }),
+      providesTags: ["event"],
+    }),
+    addHostGuest: builder.mutation<
+      ApiResponse<IHostTicketGuest>,
+      { eventId: string; body: IAddGuestPayload }
+    >({
+      query: ({ eventId, body }) => ({
+        url: `/host/events/${eventId}/tickets`,
+        method: "POST",
+        body,
+      }),
+      invalidatesTags: ["event"],
+    }),
+    sendTicketReminder: builder.mutation<
+      ApiResponse<{ success: boolean }>,
+      { eventId: string; ticketId: string }
+    >({
+      query: ({ eventId, ticketId }) => ({
+        url: `/host/events/${eventId}/tickets/${ticketId}/remind`,
+        method: "POST",
+      }),
+      invalidatesTags: ["event"],
+    }),
+    bulkSendTickets: builder.mutation<
+      ApiResponse<{ sentCount: number }>,
+      { eventId: string; ticketIds: string[] }
+    >({
+      query: ({ eventId, ticketIds }) => ({
+        url: `/host/events/${eventId}/tickets/bulk-send`,
+        method: "POST",
+        body: { ticketIds },
+      }),
+      invalidatesTags: ["event"],
+    }),
+    regenerateScannerCode: builder.mutation<
+      ApiResponse<{ scannerCode: string }>,
+      string
+    >({
+      query: (eventId) => ({
+        url: `/host/events/${eventId}/scanner-code/regenerate`,
+        method: "POST",
+      }),
       invalidatesTags: ["event"],
     }),
   }),
@@ -44,4 +110,11 @@ export const {
   useCreateEventMutation,
   useUpdateEventMutation,
   useDeleteEventMutation,
+  useGetHostEventsQuery,
+  useGetHostEventByIdQuery,
+  useGetHostEventTicketsQuery,
+  useAddHostGuestMutation,
+  useSendTicketReminderMutation,
+  useBulkSendTicketsMutation,
+  useRegenerateScannerCodeMutation,
 } = eventApi;
