@@ -1,10 +1,12 @@
-﻿import { Metadata } from "next";
-import { UnderConstruction } from "@/components/dashboard/UnderConstruction";
+import { Metadata } from "next";
+import { AdminPartnerReward } from "@/features/reward";
 
 export const metadata: Metadata = {
   title: "Partner Reward - InviteOnly",
+  description: "Manage and track rewards earned by partners",
 };
 
 export default function Page() {
-  return <UnderConstruction title="Partner Reward" role="Admin" />;
+  return <AdminPartnerReward />;
 }
+

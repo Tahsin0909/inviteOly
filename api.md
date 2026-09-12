@@ -1462,6 +1462,210 @@ Cancels an unconfirmed host invitation.
 
 ---
 
+### 2.17 Reward & Partner Commission Endpoints
+
+#### 2.17.1 Get Reward Statistics
+Retrieves total rewards, pending rewards, paid rewards, reward payout balances, and current global commission percentage.
+
+- **Method**: `GET`
+- **Endpoint**: `/reward/stats`
+- **Headers**:
+  - `Authorization: Bearer <token>`
+- **Response `200 OK`**:
+```json
+{
+  "success": true,
+  "message": "Reward statistics retrieved successfully",
+  "data": {
+    "totalRewards": 5486,
+    "pendingRewards": 2400,
+    "paidRewards": 3150,
+    "rewardsPayout": 3150,
+    "commissionRate": 20
+  }
+}
+```
+
+---
+
+#### 2.17.2 Get Pending Rewards
+Retrieves all pending rewards earned from host ticket revenues and package subscriptions, with optional date range filtering.
+
+- **Method**: `GET`
+- **Endpoint**: `/reward/pending?dateFrom=01-08-2026&dateTo=31-08-2026`
+- **Headers**:
+  - `Authorization: Bearer <token>`
+- **Response `200 OK`**:
+```json
+{
+  "success": true,
+  "message": "Pending rewards retrieved successfully",
+  "data": [
+    {
+      "id": "rew-1",
+      "partnerName": "Sophie Nguyen",
+      "partnerEmail": "s.nguyen@apexlab.com",
+      "eventName": "Research Dept",
+      "orderId": "TXN-989567",
+      "date": "22-08-2026",
+      "ticketRevenue": "$6,300.00",
+      "rate": "15%",
+      "reward": "$945.00",
+      "status": "Pending"
+    },
+    {
+      "id": "rew-2",
+      "partnerName": "Marcus Thorne",
+      "partnerEmail": "m.thorne@apexlab.com",
+      "eventName": "Product Lab",
+      "orderId": "TXN-989564",
+      "date": "30-08-2026",
+      "ticketRevenue": "$4,200.00",
+      "rate": "10%",
+      "reward": "$405.00",
+      "status": "Pending"
+    }
+  ]
+}
+```
+
+---
+
+#### 2.17.3 Get Payout History / Ledger
+Retrieves the ledger of all paid rewards, methods, reference numbers, and recipients.
+
+- **Method**: `GET`
+- **Endpoint**: `/reward/payout-history`
+- **Headers**:
+  - `Authorization: Bearer <token>`
+- **Response `200 OK`**:
+```json
+{
+  "success": true,
+  "message": "Payout history retrieved successfully",
+  "data": [
+    {
+      "id": "pay-1",
+      "payoutId": "PAY-564854",
+      "partnerName": "Sophie Nguyen",
+      "partnerEmail": "s.nguyen@apexlab.com",
+      "date": "22-08-2026",
+      "referenceId": "TXN-989567",
+      "method": "Bank Transfer",
+      "reward": "$945.00",
+      "status": "Paid"
+    }
+  ]
+}
+```
+
+---
+
+#### 2.17.4 Update Commission Rate (Admin Only)
+Updates the global default reward commission percentage applied to partner ticket earnings.
+
+- **Method**: `PUT`
+- **Endpoint**: `/reward/commission-rate`
+- **Headers**:
+  - `Authorization: Bearer <token>`
+  - `Content-Type: application/json`
+- **Body**:
+```json
+{
+  "commissionRate": 20
+}
+```
+- **Response `200 OK`**:
+```json
+{
+  "success": true,
+  "message": "Commission rate updated successfully",
+  "data": {
+    "commissionRate": 20
+  }
+}
+```
+
+---
+
+#### 2.17.5 Request Payout (Partner / Host)
+Submits a request for a payout from accrued pending rewards.
+
+- **Method**: `POST`
+- **Endpoint**: `/reward/payout`
+- **Headers**:
+  - `Authorization: Bearer <token>`
+  - `Content-Type: application/json`
+- **Body**:
+```json
+{
+  "amount": 945.00,
+  "method": "Bank Transfer",
+  "accountDetails": "Chase Bank - Account Ending in 4321, Routing 021000021",
+  "notes": "August ticket revenue withdrawal"
+}
+```
+- **Response `201 Created`**:
+```json
+{
+  "success": true,
+  "message": "Payout request submitted successfully",
+  "data": {
+    "id": "pay-987123",
+    "payoutId": "PAY-564854",
+    "date": "12-09-2026",
+    "referenceId": "TXN-492019",
+    "method": "Bank Transfer",
+    "reward": "$945.00",
+    "status": "Paid"
+  }
+}
+```
+
+---
+
+#### 2.17.6 Approve Reward Payout (Admin Only)
+Approves an accrued pending reward and transitions it into payout ledger.
+
+- **Method**: `POST`
+- **Endpoint**: `/reward/approve/:id`
+- **Headers**:
+  - `Authorization: Bearer <token>`
+- **Response `200 OK`**:
+```json
+{
+  "success": true,
+  "message": "Reward approved and marked for payout successfully",
+  "data": {
+    "id": "rew-1",
+    "status": "Approved"
+  }
+}
+```
+
+---
+
+#### 2.17.7 Reject Reward (Admin Only)
+Rejects a disputed or invalid pending reward.
+
+- **Method**: `POST`
+- **Endpoint**: `/reward/reject/:id`
+- **Headers**:
+  - `Authorization: Bearer <token>`
+- **Response `200 OK`**:
+```json
+{
+  "success": true,
+  "message": "Reward rejected successfully",
+  "data": {
+    "id": "rew-1",
+    "status": "Rejected"
+  }
+}
+```
+
+---
+
 ## 3. Standard Error Response Structure
 
 In case of validation or server errors, all endpoints return:
