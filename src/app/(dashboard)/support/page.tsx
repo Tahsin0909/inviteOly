@@ -1,10 +1,6 @@
-﻿import { Metadata } from "next";
-import { UnderConstruction } from "@/components/dashboard/UnderConstruction";
-
-export const metadata: Metadata = {
-  title: "Help & Support - InviteOnly",
-};
+﻿import { redirect } from "next/navigation";
+import { WHATSAPP_SUPPORT_URL } from "@/constants/sidebarMenu";
 
 export default function Page() {
-  return <UnderConstruction title="Help & Support" role="Account" />;
+  redirect(WHATSAPP_SUPPORT_URL);
 }

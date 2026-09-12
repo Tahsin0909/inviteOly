@@ -114,6 +114,7 @@ export function AppSidebar() {
               {generalMenuItems.map((item) => {
                 const isActive = checkIsActive(item.url);
                 const IconComponent = item.icon;
+                const isExternal = item.external || item.url.startsWith("http");
 
                 return (
                   <SidebarMenuItem key={item.title}>
@@ -127,17 +128,32 @@ export function AppSidebar() {
                           : "text-neutral-700 hover:bg-[#FAF5EB]/50 hover:text-primary"
                       )}
                     >
-                      <Link href={item.url} onClick={closeSidebarOnMobile}>
-                        <IconComponent
-                          className={cn(
-                            "size-[18px] shrink-0 transition-colors",
-                            isActive
-                              ? "text-primary stroke-[2.2]"
-                              : "text-neutral-500 group-hover/menu-btn:text-primary stroke-[1.8]"
-                          )}
-                        />
-                        <span className="truncate">{item.title}</span>
-                      </Link>
+                      {isExternal ? (
+                        <a
+                          href={item.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          onClick={closeSidebarOnMobile}
+                          className="flex items-center gap-3 w-full"
+                        >
+                          <IconComponent
+                            className="size-[18px] shrink-0 text-neutral-500 group-hover/menu-btn:text-primary stroke-[1.8]"
+                          />
+                          <span className="truncate">{item.title}</span>
+                        </a>
+                      ) : (
+                        <Link href={item.url} onClick={closeSidebarOnMobile}>
+                          <IconComponent
+                            className={cn(
+                              "size-[18px] shrink-0 transition-colors",
+                              isActive
+                                ? "text-primary stroke-[2.2]"
+                                : "text-neutral-500 group-hover/menu-btn:text-primary stroke-[1.8]"
+                            )}
+                          />
+                          <span className="truncate">{item.title}</span>
+                        </Link>
+                      )}
                     </SidebarMenuButton>
                   </SidebarMenuItem>
                 );
@@ -157,6 +173,7 @@ export function AppSidebar() {
               {ACCOUNT_MENU_ITEMS.map((item) => {
                 const isActive = !item.isAction && checkIsActive(item.url);
                 const IconComponent = item.icon;
+                const isExternal = item.external || item.url.startsWith("http");
 
                 if (item.isAction) {
                   return (
@@ -187,17 +204,32 @@ export function AppSidebar() {
                           : "text-neutral-700 hover:bg-[#FAF5EB]/50 hover:text-primary"
                       )}
                     >
-                      <Link href={item.url} onClick={closeSidebarOnMobile}>
-                        <IconComponent
-                          className={cn(
-                            "size-[18px] shrink-0 transition-colors",
-                            isActive
-                              ? "text-primary stroke-[2.2]"
-                              : "text-neutral-500 group-hover/menu-btn:text-primary stroke-[1.8]"
-                          )}
-                        />
-                        <span className="truncate">{item.title}</span>
-                      </Link>
+                      {isExternal ? (
+                        <a
+                          href={item.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          onClick={closeSidebarOnMobile}
+                          className="flex items-center gap-3 w-full"
+                        >
+                          <IconComponent
+                            className="size-[18px] shrink-0 text-neutral-500 group-hover/menu-btn:text-primary stroke-[1.8]"
+                          />
+                          <span className="truncate">{item.title}</span>
+                        </a>
+                      ) : (
+                        <Link href={item.url} onClick={closeSidebarOnMobile}>
+                          <IconComponent
+                            className={cn(
+                              "size-[18px] shrink-0 transition-colors",
+                              isActive
+                                ? "text-primary stroke-[2.2]"
+                                : "text-neutral-500 group-hover/menu-btn:text-primary stroke-[1.8]"
+                            )}
+                          />
+                          <span className="truncate">{item.title}</span>
+                        </Link>
+                      )}
                     </SidebarMenuButton>
                   </SidebarMenuItem>
                 );

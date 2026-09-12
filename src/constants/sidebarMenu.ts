@@ -147,6 +147,9 @@ export const USER_MENU_ITEMS: SidebarMenuItem[] = [
   },
 ];
 
+export const WHATSAPP_SUPPORT_URL =
+  "https://wa.me/15550192834?text=Hello!%20I%20would%20like%20to%20inquire%20about%20hosting%20an%20invite-only%20event%20with%20InviteOly.";
+
 // Universal Account Items (shown in all sidebars)
 export const ACCOUNT_MENU_ITEMS: SidebarMenuItem[] = [
   {
@@ -162,7 +165,8 @@ export const ACCOUNT_MENU_ITEMS: SidebarMenuItem[] = [
   {
     title: "Help & Support",
     icon: HelpCircle,
-    url: "/support",
+    url: WHATSAPP_SUPPORT_URL,
+    external: true,
   },
   {
     title: "Logout",

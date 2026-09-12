@@ -7,6 +7,7 @@ export interface SidebarMenuItem {
   items?: SidebarSubItem[];
   badge?: string;
   isAction?: boolean;
+  external?: boolean;
 }
 
 export interface SidebarSubItem {
