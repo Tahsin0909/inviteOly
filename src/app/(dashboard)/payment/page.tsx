@@ -1,13 +1,12 @@
 import React, { Suspense } from "react";
+import { Payment } from "@/features/payment/components/Payment";
 import { Metadata } from "next";
-import RefereedCreateEvents from "@/features/event/components/host/refered-create-events/RefereedCreateEvents";
 
 export const metadata: Metadata = {
-  title: "Create Event (Referred Host) - InviteOnly",
-  description: "Create your event as a referred host partner",
+  title: "Complete Payment - InviteOnly",
 };
 
-export default function Page() {
+export default function PaymentPage() {
   return (
     <Suspense
       fallback={
@@ -16,7 +15,8 @@ export default function Page() {
         </div>
       }
     >
-      <RefereedCreateEvents />
+      <Payment />
     </Suspense>
   );
 }
+

@@ -1,6 +1,7 @@
 "use client";
 
-import { useRouter } from "next/navigation";
+import React, { useEffect } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/redux/store";
 import { setCurrentStep } from "@/features/event/store/createEvent.slice";
@@ -37,11 +38,23 @@ const STEPS: IStepItem[] = [
 
 export const RefereedCreateEvents: React.FC = () => {
     const router = useRouter();
+    const searchParams = useSearchParams();
     const dispatch = useDispatch();
     const { user, profile } = useAuth();
     const currentStep = useSelector(
         (state: RootState) => state.createEvent?.currentStep || 1
     );
+
+    // If redirected with ?step=X from payment or links, sync Redux step
+    const urlStep = searchParams?.get("step");
+    useEffect(() => {
+        if (urlStep) {
+            const stepNum = Number(urlStep);
+            if (stepNum >= 1 && stepNum <= 5) {
+                dispatch(setCurrentStep(stepNum));
+            }
+        }
+    }, [urlStep, dispatch]);
 
     const activeUser = user || profile;
     const referrerName =

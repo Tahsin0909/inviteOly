@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import { useRouter } from "next/navigation";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/redux/store";
 import { setCurrentStep } from "@/features/event/store/createEvent.slice";
@@ -10,6 +10,7 @@ import {
 } from "./preview-ticket";
 
 export const StepPreviewTicket: React.FC = () => {
+  const router = useRouter();
   const dispatch = useDispatch();
 
   // Read saved dynamic user input values from Redux
@@ -24,7 +25,28 @@ export const StepPreviewTicket: React.FC = () => {
   );
 
   const handleNext = () => {
-    dispatch(setCurrentStep(5));
+    // Determine clean parameter payload
+    const amount =
+      packageSelection?.price?.replace(/[^0-9]/g, "") || "149";
+    const packageName =
+      packageSelection?.packageName || "Standard Package (Intimate)";
+    const eventName = eventDetails?.eventName || "Luxury Event";
+
+    const isReferred =
+      typeof window !== "undefined" &&
+      window.location.pathname.includes("r-create-events");
+    const returnUrl = isReferred
+      ? "/host/r-create-events?step=5"
+      : "/host/create-event?step=5";
+
+    const queryParams = new URLSearchParams({
+      amount,
+      packageName,
+      eventName,
+      returnUrl,
+    });
+
+    router.push(`/payment?${queryParams.toString()}`);
   };
 
   const handleCancel = () => {
@@ -62,9 +84,10 @@ export const StepPreviewTicket: React.FC = () => {
         <button
           type="button"
           onClick={handleNext}
-          className="px-7 py-2.5 rounded-lg bg-[#C39B4C] hover:bg-[#b08b3e] text-white text-xs sm:text-sm font-medium transition-all cursor-pointer shadow-xs active:scale-[0.98]"
+          className="px-7 py-2.5 rounded-lg bg-[#C39B4C] hover:bg-[#b08b3e] text-white text-xs sm:text-sm font-semibold transition-all cursor-pointer shadow-xs active:scale-[0.98] flex items-center gap-1.5"
         >
-          Next
+          <span>Proceed to Payment</span>
+          <span>({packageSelection?.price || "$149"})</span>
         </button>
       </div>
     </div>
