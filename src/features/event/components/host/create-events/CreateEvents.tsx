@@ -4,7 +4,7 @@ import React, { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/redux/store";
-import { setCurrentStep } from "../../../store/createEvent.slice";
+import { setCurrentStep } from "@/features/event/store/createEvent.slice";
 import { useAuth } from "@/features/auth/hooks/useAuth";
 import { Check } from "lucide-react";
 import {
@@ -85,7 +85,7 @@ export const CreateEvents: React.FC = () => {
                 </p>
             </div>
 
-            {/* Stepper matching media_1789290322166.png */}
+            {/* Stepper matching media_1789291184487.png */}
             <div className="w-full max-w-4xl mx-auto py-6 px-4">
                 <div className="relative flex items-center justify-between">
                     {/* Connecting Line behind the circles */}
@@ -104,10 +104,10 @@ export const CreateEvents: React.FC = () => {
                                 {/* Circle node */}
                                 <div
                                     className={`flex h-8 w-8 sm:h-9 sm:w-9 items-center justify-center rounded-full transition-all ${isCompleted
-                                        ? "bg-[#0FA958] text-white shadow-2xs"
-                                        : isActive
-                                            ? "bg-white border-2 border-[#0FA958] text-[#0FA958] font-semibold ring-4 ring-[#0FA958]/10"
-                                            : "bg-white border border-neutral-400 text-neutral-600 font-medium group-hover:border-neutral-700"
+                                            ? "bg-[#0FA958] text-white shadow-2xs"
+                                            : isActive
+                                                ? "bg-white border-2 border-[#0FA958] text-[#0FA958] font-semibold ring-4 ring-[#0FA958]/10"
+                                                : "bg-white border border-neutral-400 text-neutral-600 font-medium group-hover:border-neutral-700"
                                         }`}
                                 >
                                     {isCompleted ? (
@@ -122,10 +122,10 @@ export const CreateEvents: React.FC = () => {
                                 {/* Step Title Label */}
                                 <span
                                     className={`mt-2.5 text-xs sm:text-[13px] font-work-sans text-center whitespace-nowrap transition-colors ${isActive
-                                        ? "font-semibold text-neutral-900"
-                                        : isCompleted
-                                            ? "font-medium text-neutral-800"
-                                            : "text-neutral-500 group-hover:text-neutral-900"
+                                            ? "font-semibold text-neutral-900"
+                                            : isCompleted
+                                                ? "font-medium text-neutral-800"
+                                                : "text-neutral-500 group-hover:text-neutral-900"
                                         }`}
                                 >
                                     {step.title}
@@ -137,7 +137,7 @@ export const CreateEvents: React.FC = () => {
             </div>
 
             {/* Current Step Component */}
-            <div className="w-full max-w-4xl mx-auto">
+            <div className="w-full max-w-5xl mx-auto">
                 {renderCurrentStepComponent()}
             </div>
         </div>
@@ -145,3 +145,4 @@ export const CreateEvents: React.FC = () => {
 };
 
 export default CreateEvents;
+
