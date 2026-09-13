@@ -1,9 +1,12 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { useRouter } from "next/navigation";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "@/redux/store";
+import { setCurrentStep } from "../../../store/createEvent.slice";
 import { useAuth } from "@/features/auth/hooks/useAuth";
-import { Check, ChevronLeft, ChevronRight } from "lucide-react";
+import { Check } from "lucide-react";
 import {
     StepPackage,
     StepEventDetails,
@@ -28,8 +31,13 @@ const STEPS: IStepItem[] = [
 
 export const CreateEvents: React.FC = () => {
     const router = useRouter();
+    const dispatch = useDispatch();
     const { user, profile } = useAuth();
-    const [currentStep, setCurrentStep] = useState<number>(1);
+
+    // Read currentStep from Redux store (persisted across reloads)
+    const currentStep = useSelector(
+        (state: RootState) => state.createEvent?.currentStep || 1
+    );
 
     useEffect(() => {
         const activeUser = user || profile;
@@ -42,6 +50,10 @@ export const CreateEvents: React.FC = () => {
             router.replace("/host/r-create-events");
         }
     }, [user, profile, router]);
+
+    const handleStepClick = (stepId: number) => {
+        dispatch(setCurrentStep(stepId));
+    };
 
     const renderCurrentStepComponent = () => {
         switch (currentStep) {
@@ -60,18 +72,6 @@ export const CreateEvents: React.FC = () => {
         }
     };
 
-    const handleNext = () => {
-        if (currentStep < STEPS.length) {
-            setCurrentStep((prev) => prev + 1);
-        }
-    };
-
-    const handlePrev = () => {
-        if (currentStep > 1) {
-            setCurrentStep((prev) => prev - 1);
-        }
-    };
-
     return (
         <div className="w-full space-y-8 font-work-sans pb-16">
             {/* Page Title */}
@@ -80,15 +80,16 @@ export const CreateEvents: React.FC = () => {
                     Create Event
                 </h1>
                 <p className="text-xs sm:text-sm text-neutral-500 font-work-sans mt-1">
-                    Follow the steps below to configure your packages, details, ticket design, and guest list.
+                    Follow the steps below to configure your packages, details, ticket
+                    design, and guest list.
                 </p>
             </div>
 
-            {/* Stepper matching media_1789206859662.png */}
+            {/* Stepper matching media_1789290322166.png */}
             <div className="w-full max-w-4xl mx-auto py-6 px-4">
                 <div className="relative flex items-center justify-between">
                     {/* Connecting Line behind the circles */}
-                    <div className="absolute left-6 right-6 top-4 h-[1.5px] bg-neutral-400/80 -translate-y-1/2 z-0" />
+                    <div className="absolute left-6 right-6 top-4 h-[1.5px] bg-neutral-300 -translate-y-1/2 z-0" />
 
                     {STEPS.map((step) => {
                         const isCompleted = step.id < currentStep;
@@ -97,8 +98,8 @@ export const CreateEvents: React.FC = () => {
                         return (
                             <div
                                 key={step.id}
-                                onClick={() => setCurrentStep(step.id)}
-                                className="relative z-10 flex flex-col items-center cursor-pointer group"
+                                onClick={() => handleStepClick(step.id)}
+                                className="relative z-10 flex flex-col items-center cursor-pointer group select-none"
                             >
                                 {/* Circle node */}
                                 <div
@@ -106,7 +107,7 @@ export const CreateEvents: React.FC = () => {
                                         ? "bg-[#0FA958] text-white shadow-2xs"
                                         : isActive
                                             ? "bg-white border-2 border-[#0FA958] text-[#0FA958] font-semibold ring-4 ring-[#0FA958]/10"
-                                            : "bg-white border border-neutral-500 text-neutral-700 font-medium group-hover:border-neutral-700"
+                                            : "bg-white border border-neutral-400 text-neutral-600 font-medium group-hover:border-neutral-700"
                                         }`}
                                 >
                                     {isCompleted ? (
@@ -124,7 +125,7 @@ export const CreateEvents: React.FC = () => {
                                         ? "font-semibold text-neutral-900"
                                         : isCompleted
                                             ? "font-medium text-neutral-800"
-                                            : "text-neutral-600 group-hover:text-neutral-900"
+                                            : "text-neutral-500 group-hover:text-neutral-900"
                                         }`}
                                 >
                                     {step.title}
@@ -138,33 +139,6 @@ export const CreateEvents: React.FC = () => {
             {/* Current Step Component */}
             <div className="w-full max-w-4xl mx-auto">
                 {renderCurrentStepComponent()}
-            </div>
-
-            {/* Step Navigation Controls */}
-            <div className="w-full max-w-4xl mx-auto flex items-center justify-between pt-2">
-                <button
-                    type="button"
-                    onClick={handlePrev}
-                    disabled={currentStep === 1}
-                    className="inline-flex items-center gap-1.5 px-4 py-2 text-xs sm:text-sm font-medium text-neutral-700 bg-white border border-neutral-200 rounded-lg hover:bg-neutral-50 active:scale-[0.98] disabled:opacity-40 disabled:cursor-not-allowed transition-all cursor-pointer shadow-2xs"
-                >
-                    <ChevronLeft className="h-4 w-4" />
-                    <span>Previous Step</span>
-                </button>
-
-                <span className="text-xs text-neutral-400 font-medium">
-                    Step {currentStep} of {STEPS.length}
-                </span>
-
-                <button
-                    type="button"
-                    onClick={handleNext}
-                    disabled={currentStep === STEPS.length}
-                    className="inline-flex items-center gap-1.5 px-5 py-2 text-xs sm:text-sm font-medium text-white bg-[#C39B4C] hover:bg-[#b08b3e] active:scale-[0.98] disabled:opacity-40 disabled:cursor-not-allowed rounded-lg transition-all cursor-pointer shadow-2xs"
-                >
-                    <span>{currentStep === STEPS.length ? "Finish" : "Next Step"}</span>
-                    <ChevronRight className="h-4 w-4" />
-                </button>
             </div>
         </div>
     );

@@ -1,7 +1,9 @@
 "use client";
 
-import React, { useState } from "react";
 import { useRouter } from "next/navigation";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "@/redux/store";
+import { setCurrentStep } from "@/features/event/store/createEvent.slice";
 import { useAuth } from "@/features/auth/hooks/useAuth";
 import {
     Check,
@@ -35,8 +37,11 @@ const STEPS: IStepItem[] = [
 
 export const RefereedCreateEvents: React.FC = () => {
     const router = useRouter();
+    const dispatch = useDispatch();
     const { user, profile } = useAuth();
-    const [currentStep, setCurrentStep] = useState<number>(1);
+    const currentStep = useSelector(
+        (state: RootState) => state.createEvent?.currentStep || 1
+    );
 
     const activeUser = user || profile;
     const referrerName =
@@ -64,13 +69,13 @@ export const RefereedCreateEvents: React.FC = () => {
 
     const handleNext = () => {
         if (currentStep < STEPS.length) {
-            setCurrentStep((prev) => prev + 1);
+            dispatch(setCurrentStep(currentStep + 1));
         }
     };
 
     const handlePrev = () => {
         if (currentStep > 1) {
-            setCurrentStep((prev) => prev - 1);
+            dispatch(setCurrentStep(currentStep - 1));
         }
     };
 
@@ -145,7 +150,7 @@ export const RefereedCreateEvents: React.FC = () => {
                         return (
                             <div
                                 key={step.id}
-                                onClick={() => setCurrentStep(step.id)}
+                                onClick={() => dispatch(setCurrentStep(step.id))}
                                 className="relative z-10 flex flex-col items-center cursor-pointer group"
                             >
                                 {/* Circle node */}

@@ -10,6 +10,8 @@ import { metricsReducer } from "@/features/metrics/store/metrics.slice";
 import { paymentReducer } from "@/features/payment/store/payment.slice";
 import { authReducer } from "@/features/auth/store/auth.slice";
 
+import { createEventReducer } from "@/features/event/store/createEvent.slice";
+
 import {
   FLUSH,
   PAUSE,
@@ -25,7 +27,7 @@ import storage from "redux-persist/lib/storage";
 const persistConfig = {
   key: "root",
   version: 1,
-  whitelist: [],
+  whitelist: ["createEvent"],
   storage,
 };
 
@@ -35,6 +37,7 @@ const rootReducer = combineReducers({
   venue: venueReducer,
   marketing: marketingReducer,
   event: eventReducer,
+  createEvent: createEventReducer,
   metrics: metricsReducer,
   payment: paymentReducer,
   user: userReducer,

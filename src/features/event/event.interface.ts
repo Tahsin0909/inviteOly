@@ -197,3 +197,51 @@ export interface IHostRsvpMetrics {
   segments?: IHostRsvpBreakdownItem[];
 }
 
+// Host Create Event Types
+export type TPackageCategory = "intimate" | "signature" | "grand" | "custom";
+export type TPackageTier = "standard" | "premium" | "custom";
+
+export interface ICreateEventPackageState {
+  category: TPackageCategory;
+  tier: TPackageTier;
+  packageName: string;
+  price: string;
+  guestRange: string;
+  features: string[];
+}
+
+export interface ICreateEventDetailsForm {
+  hostName: string;
+  email: string;
+  phone: string;
+  eventName: string;
+  eventType: string;
+  eventDate: string;
+  endDate: string;
+  startTime: string;
+  endTime: string;
+  ageRestriction?: string;
+  idRequirement?: string;
+  dressCode?: string;
+  ticketRequirementAge?: string;
+}
+
+export interface ICreateEventSettingsForm {
+  venue: string;
+  room: string;
+  venueState: string;
+  city: string;
+  postalCode: string;
+  venueContact: string;
+  venueGuestCapacity: string;
+  estimateGuestCount: string;
+  ticketNote?: string;
+}
+
+export interface ICreateEventState {
+  currentStep: number;
+  packageSelection: ICreateEventPackageState;
+  eventDetails: ICreateEventDetailsForm;
+  eventSettings: ICreateEventSettingsForm;
+}
+
