@@ -115,7 +115,7 @@ export const PackageIncludesList: React.FC<PackageIncludesListProps> = ({
       </div>
 
       {/* 18 Feature Items */}
-      <div className="p-5 sm:p-6 space-y-4 max-h-[960px] overflow-y-auto custom-scrollbar">
+      <div className="p-5 sm:p-6 space-y-4">
         {PREMIUM_FEATURES.map((feat, idx) => (
           <div key={idx} className="flex items-start gap-2.5 text-left">
             <CheckCircle2 className="size-4 sm:size-4.5 text-neutral-800 shrink-0 mt-0.5" />
