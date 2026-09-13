@@ -67,8 +67,8 @@ export const ChooseExperience: React.FC = () => {
                 type="button"
                 onClick={() => dispatch(setSelectedTierId(tier.id))}
                 className={`flex flex-col items-center justify-center px-4 sm:px-6 py-2 sm:py-2.5 rounded-xl text-center transition-all cursor-pointer ${isActive
-                    ? "bg-[#FFFBF0] border border-[#C39B4C]/50 text-neutral-900 shadow-xs"
-                    : "text-neutral-600 hover:bg-neutral-200/60 border border-transparent"
+                  ? "bg-[#FFFBF0] border border-[#C39B4C]/50 text-neutral-900 shadow-xs"
+                  : "text-neutral-600 hover:bg-neutral-200/60 border border-transparent"
                   }`}
               >
                 <span
@@ -90,14 +90,20 @@ export const ChooseExperience: React.FC = () => {
       </div>
 
       {/* Pricing Cards Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto pt-2">
+      <div
+        className={`gap-6 max-w-4xl mx-auto pt-2 ${currentTier.plans.length === 1
+          ? "flex justify-center"
+          : "grid grid-cols-1 md:grid-cols-2"
+          }`}
+      >
         {currentTier.plans.map((plan) => {
           const isPremium = plan.name.toLowerCase() === "premium";
 
           return (
             <div
               key={plan.id}
-              className={`bg-white rounded-3xl p-6 sm:p-8 flex flex-col justify-between transition-all relative ${isPremium
+              className={`bg-white rounded-3xl p-6 sm:p-8 flex flex-col justify-between transition-all relative ${currentTier.plans.length === 1 ? "w-full max-w-md" : ""
+                } ${isPremium
                   ? "border-2 border-[#C39B4C] shadow-lg"
                   : "border border-neutral-200/80 shadow-2xs hover:shadow-md"
                 }`}
@@ -115,8 +121,8 @@ export const ChooseExperience: React.FC = () => {
                 <div className="flex justify-center mb-5">
                   <div
                     className={`size-12 rounded-full flex items-center justify-center ${isPremium
-                        ? "bg-amber-50 text-[#C39B4C] border border-amber-200/60"
-                        : "bg-blue-50 text-blue-600 border border-blue-100"
+                      ? "bg-amber-50 text-[#C39B4C] border border-amber-200/60"
+                      : "bg-blue-50 text-blue-600 border border-blue-100"
                       }`}
                   >
                     {isPremium ? (
@@ -155,8 +161,8 @@ export const ChooseExperience: React.FC = () => {
                     <li key={idx} className="flex items-start gap-3">
                       <div
                         className={`size-4 rounded-full flex items-center justify-center shrink-0 mt-0.5 ${isPremium
-                            ? "text-[#C39B4C]"
-                            : "text-neutral-500"
+                          ? "text-[#C39B4C]"
+                          : "text-neutral-500"
                           }`}
                       >
                         <Check className="size-4 stroke-[2.5]" />
@@ -175,8 +181,8 @@ export const ChooseExperience: React.FC = () => {
                   type="button"
                   onClick={() => handleSelectPlan(plan)}
                   className={`w-full py-3 sm:py-3.5 rounded-xl font-semibold text-xs sm:text-sm transition-all cursor-pointer ${isPremium
-                      ? "bg-[#C39B4C] hover:bg-[#B38A3B] text-white shadow-xs"
-                      : "bg-white hover:bg-amber-50/50 border border-neutral-300 hover:border-[#C39B4C] text-neutral-800 hover:text-[#C39B4C] shadow-2xs"
+                    ? "bg-[#C39B4C] hover:bg-[#B38A3B] text-white shadow-xs"
+                    : "bg-white hover:bg-amber-50/50 border border-neutral-300 hover:border-[#C39B4C] text-neutral-800 hover:text-[#C39B4C] shadow-2xs"
                     }`}
                 >
                   {isPremium ? "Choose Premium" : "Choose Standard"}

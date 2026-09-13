@@ -18,12 +18,12 @@ export default function Pricing() {
   const dispatch = useDispatch();
 
   const [activeTierKey, setActiveTierKey] =
-    useState<TPricingTierKey>("medium");
+    useState<TPricingTierKey>("intimate");
   const [isCustomModalOpen, setIsCustomModalOpen] = useState<boolean>(false);
   const [customPlanName, setCustomPlanName] = useState<string>("Standard");
 
   const currentTier =
-    PRICING_TIERS.find((t) => t.id === activeTierKey) || PRICING_TIERS[1];
+    PRICING_TIERS.find((t) => t.id === activeTierKey) || PRICING_TIERS[0];
 
   const isSingleCard = currentTier.plans.length === 1;
 
