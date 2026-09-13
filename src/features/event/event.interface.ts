@@ -164,3 +164,36 @@ export interface ITicketFilterCounts {
   rsvpDeadline?: string;
 }
 
+// Host Dashboard Table & RSVP Metrics Types
+export type HostDashboardEventStatus = "Live Now" | "Scheduled" | "Pending";
+
+export interface IHostDashboardCheckIn {
+  checkedIn: number;
+  total: number;
+}
+
+export interface IHostDashboardEvent {
+  id: string;
+  eventName: string;
+  date: string;
+  rsvpRate?: number | null; // e.g. 92, 65, or null/undefined
+  checkIn?: IHostDashboardCheckIn | string | null; // e.g. { checkedIn: 286, total: 560 } or "286/560" or "--"
+  status: HostDashboardEventStatus;
+}
+
+export interface IHostRsvpBreakdownItem {
+  label: "Confirmed" | "Pending" | "Declined";
+  count: number;
+  color: string;
+}
+
+export interface IHostRsvpMetrics {
+  totalInvited: number;
+  confirmationRate: string; // e.g. "74.1%"
+  confirmed: number;
+  pending: number;
+  declined: number;
+  summaryText: string;
+  segments?: IHostRsvpBreakdownItem[];
+}
+

@@ -6,6 +6,8 @@ import {
   IHostEventItem,
   IHostTicketGuest,
   IAddGuestPayload,
+  IHostDashboardEvent,
+  IHostRsvpMetrics,
 } from "./event.interface";
 
 export const eventApi = baseApi.injectEndpoints({
@@ -100,6 +102,17 @@ export const eventApi = baseApi.injectEndpoints({
       }),
       invalidatesTags: ["event"],
     }),
+    getHostDashboardEvents: builder.query<
+      ApiResponse<IHostDashboardEvent[]>,
+      void
+    >({
+      query: () => "/host/dashboard/events",
+      providesTags: ["event"],
+    }),
+    getHostRsvpMetrics: builder.query<ApiResponse<IHostRsvpMetrics>, void>({
+      query: () => "/host/dashboard/rsvp-metrics",
+      providesTags: ["event"],
+    }),
   }),
 });
 
@@ -117,4 +130,6 @@ export const {
   useSendTicketReminderMutation,
   useBulkSendTicketsMutation,
   useRegenerateScannerCodeMutation,
+  useGetHostDashboardEventsQuery,
+  useGetHostRsvpMetricsQuery,
 } = eventApi;
