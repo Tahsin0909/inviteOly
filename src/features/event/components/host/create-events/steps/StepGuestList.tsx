@@ -1,25 +1,18 @@
 "use client";
 
-import React, { useState } from "react";
-import { useRouter } from "next/navigation";
-import { useSelector, useDispatch } from "react-redux";
-import { RootState } from "@/redux/store";
 import { resetCreateEvent } from "@/features/event/store/createEvent.slice";
+import { RootState } from "@/redux/store";
 import {
-  CheckCircle2,
-  Users,
-  UserPlus,
-  Mail,
-  Share2,
-  Download,
-  Copy,
-  Check,
-  Calendar,
-  MapPin,
-  Sparkles,
   ArrowRight,
+  Check,
+  CheckCircle2,
+  Share2,
   ShieldCheck,
+  UserPlus
 } from "lucide-react";
+import { useRouter } from "next/navigation";
+import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
 interface IGuest {
   id: string;
@@ -137,7 +130,7 @@ export const StepGuestList: React.FC = () => {
               </span>{" "}
               is now activated for{" "}
               <span className="font-medium text-emerald-950">
-                "{eventDetails?.eventName || "Your Event"}"
+                {eventDetails?.eventName || "Your Event"}
               </span>
               . You can now invite and manage your guest list.
             </p>
