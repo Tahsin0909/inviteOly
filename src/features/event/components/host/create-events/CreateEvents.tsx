@@ -13,6 +13,7 @@ import {
     StepGuestList,
     StepPackage,
     StepPreviewTicket,
+    StepEventPreview,
 } from "./steps";
 
 interface IStepItem {
@@ -27,6 +28,7 @@ const STEPS: IStepItem[] = [
     { id: 3, numberStr: "03", title: "Event Settings" },
     { id: 4, numberStr: "04", title: "Preview Ticket" },
     { id: 5, numberStr: "05", title: "Guest List" },
+    { id: 6, numberStr: "06", title: "Preview" },
 ];
 
 export const CreateEvents: React.FC = () => {
@@ -45,7 +47,7 @@ export const CreateEvents: React.FC = () => {
     useEffect(() => {
         if (urlStep) {
             const stepNum = Number(urlStep);
-            if (stepNum >= 1 && stepNum <= 5) {
+            if (stepNum >= 1 && stepNum <= 6) {
                 dispatch(setCurrentStep(stepNum));
             }
         }
@@ -79,6 +81,8 @@ export const CreateEvents: React.FC = () => {
                 return <StepPreviewTicket />;
             case 5:
                 return <StepGuestList />;
+            case 6:
+                return <StepEventPreview />;
             default:
                 return <StepPackage />;
         }
@@ -97,14 +101,14 @@ export const CreateEvents: React.FC = () => {
                 </p>
             </div>
 
-            {/* Stepper matching media_1789291184487.png */}
+            {/* Stepper */}
             <div className="w-full max-w-4xl mx-auto py-6 px-4">
                 <div className="relative flex items-center justify-between">
                     {/* Connecting Line behind the circles */}
                     <div className="absolute left-6 right-6 top-4 h-[1.5px] bg-neutral-300 -translate-y-1/2 z-0" />
 
                     {STEPS.map((step) => {
-                        const isCompleted = step.id < currentStep || (currentStep === 5 && step.id <= 5);
+                        const isCompleted = step.id < currentStep || (currentStep === 6 && step.id <= 6);
                         const isActive = step.id === currentStep;
 
                         return (

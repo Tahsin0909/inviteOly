@@ -6,6 +6,7 @@ import {
   ICreateEventSettingsForm,
   IUploadedGuestList,
   IGuestManualEntry,
+  IEventPreviewGuest,
 } from "../event.interface";
 
 const defaultPackage: ICreateEventPackageState = {
@@ -59,12 +60,33 @@ export const defaultUploadedGuestLists: IUploadedGuestList[] = [
   { id: "4", ticketType: "Staff", guestsCount: 142, status: "ready" },
 ];
 
+export const defaultPreviewGuests: IEventPreviewGuest[] = [
+  { id: "1", name: "Marcus Thorne", email: "example@gmail.com", ticketType: "General Admission", table: "A1" },
+  { id: "2", name: "Dmitri Ivanov", email: "dmitri.ivanov@example.com", ticketType: "General Admission", table: "A3" },
+  { id: "3", name: "Zaid Ali", email: "zaid.ali@example.com", ticketType: "Child", table: "A3" },
+  { id: "4", name: "Ethan Brooks", email: "ethan.brooks@example.com", ticketType: "VIP", table: "A4" },
+  { id: "5", name: "Raj Patel", email: "raj.patel@example.com", ticketType: "Staff", table: "A5" },
+  { id: "6", name: "Sofia Petrov", email: "sofia.petrov@example.com", ticketType: "Vendor", table: "A6" },
+  { id: "7", name: "Omar El-Sayed", email: "omar.elsayed@example.com", ticketType: "General Admission", table: "A7" },
+  { id: "8", name: "Maya Nguyen", email: "maya.nguyen@example.com", ticketType: "VIP", table: "A8" },
+  { id: "9", name: "Nina Johansson", email: "nina.johansson@example.com", ticketType: "Staff", table: "A9" },
+  { id: "10", name: "Jasper Liu", email: "jasper.liu@example.com", ticketType: "Child", table: "A10" },
+  { id: "11", name: "Lucia Ferrer", email: "lucia.ferrer@example.com", ticketType: "VIP", table: "A11" },
+  { id: "12", name: "Anika Bose", email: "anika.bose@example.com", ticketType: "Staff", table: "A12" },
+  { id: "13", name: "Chloe Martin", email: "chloe.martin@example.com", ticketType: "VIP", table: "A13" },
+  { id: "14", name: "Elena Ramirez", email: "elena.ramirez@example.com", ticketType: "Vendor", table: "A14" },
+  { id: "15", name: "Liam O'Connor", email: "liam.oconnor@example.com", ticketType: "Staff", table: "A15" },
+  { id: "16", name: "Marcus Thorne", email: "example@gmail.com", ticketType: "VIP", table: "A16" },
+  { id: "17", name: "Carlos Mendes", email: "carlos.mendes@example.com", ticketType: "Staff", table: "A17" },
+];
+
 const initialState: ICreateEventState = {
   currentStep: 1,
   packageSelection: defaultPackage,
   eventDetails: defaultDetails,
   eventSettings: defaultSettings,
   uploadedGuestLists: defaultUploadedGuestLists,
+  previewGuests: defaultPreviewGuests,
 };
 
 export const createEventSlice = createSlice({
@@ -152,6 +174,20 @@ export const createEventSlice = createSlice({
         });
       }
     },
+    setPreviewGuests: (state, action: PayloadAction<IEventPreviewGuest[]>) => {
+      state.previewGuests = action.payload;
+    },
+    updatePreviewGuest: (state, action: PayloadAction<IEventPreviewGuest>) => {
+      if (!state.previewGuests) return;
+      const index = state.previewGuests.findIndex((g) => g.id === action.payload.id);
+      if (index !== -1) {
+        state.previewGuests[index] = action.payload;
+      }
+    },
+    deletePreviewGuest: (state, action: PayloadAction<string>) => {
+      if (!state.previewGuests) return;
+      state.previewGuests = state.previewGuests.filter((g) => g.id !== action.payload);
+    },
     resetCreateEvent: () => initialState,
   },
 });
@@ -165,6 +201,9 @@ export const {
   addUploadedGuestList,
   removeUploadedGuestList,
   addManualGuest,
+  setPreviewGuests,
+  updatePreviewGuest,
+  deletePreviewGuest,
   resetCreateEvent,
 } = createEventSlice.actions;
 

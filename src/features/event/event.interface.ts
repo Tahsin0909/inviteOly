@@ -212,10 +212,13 @@ export interface ICreateEventPackageState {
 
 export interface ICreateEventDetailsForm {
   hostName: string;
+  hostType?: string;
   email: string;
   phone: string;
+  companyName?: string;
   eventName: string;
   eventType: string;
+  eventDescription?: string;
   eventDate: string;
   endDate: string;
   startTime: string;
@@ -255,11 +258,20 @@ export interface IGuestManualEntry {
   table?: string;
 }
 
+export interface IEventPreviewGuest {
+  id: string;
+  name: string;
+  email: string;
+  ticketType: string;
+  table: string;
+}
+
 export interface ICreateEventState {
   currentStep: number;
   packageSelection: ICreateEventPackageState;
   eventDetails: ICreateEventDetailsForm;
   eventSettings: ICreateEventSettingsForm;
   uploadedGuestLists?: IUploadedGuestList[];
+  previewGuests?: IEventPreviewGuest[];
 }
 
