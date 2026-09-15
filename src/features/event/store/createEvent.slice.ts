@@ -4,6 +4,8 @@ import {
   ICreateEventPackageState,
   ICreateEventDetailsForm,
   ICreateEventSettingsForm,
+  IUploadedGuestList,
+  IGuestManualEntry,
 } from "../event.interface";
 
 const defaultPackage: ICreateEventPackageState = {
@@ -50,11 +52,19 @@ const defaultSettings: ICreateEventSettingsForm = {
   ticketNote: "",
 };
 
+export const defaultUploadedGuestLists: IUploadedGuestList[] = [
+  { id: "1", ticketType: "Adult", guestsCount: 214, status: "ready" },
+  { id: "2", ticketType: "Child", guestsCount: 56, status: "ready" },
+  { id: "3", ticketType: "VIP", guestsCount: 176, status: "ready" },
+  { id: "4", ticketType: "Staff", guestsCount: 142, status: "ready" },
+];
+
 const initialState: ICreateEventState = {
   currentStep: 1,
   packageSelection: defaultPackage,
   eventDetails: defaultDetails,
   eventSettings: defaultSettings,
+  uploadedGuestLists: defaultUploadedGuestLists,
 };
 
 export const createEventSlice = createSlice({
@@ -88,6 +98,60 @@ export const createEventSlice = createSlice({
         ...action.payload,
       };
     },
+    setUploadedGuestLists: (
+      state,
+      action: PayloadAction<IUploadedGuestList[]>
+    ) => {
+      state.uploadedGuestLists = action.payload;
+    },
+    addUploadedGuestList: (
+      state,
+      action: PayloadAction<IUploadedGuestList>
+    ) => {
+      if (!state.uploadedGuestLists) {
+        state.uploadedGuestLists = [];
+      }
+      const existingIdx = state.uploadedGuestLists.findIndex(
+        (g) => g.ticketType.toLowerCase() === action.payload.ticketType.toLowerCase()
+      );
+      if (existingIdx !== -1) {
+        state.uploadedGuestLists[existingIdx] = {
+          ...state.uploadedGuestLists[existingIdx],
+          guestsCount:
+            state.uploadedGuestLists[existingIdx].guestsCount +
+            action.payload.guestsCount,
+          fileName: action.payload.fileName || state.uploadedGuestLists[existingIdx].fileName,
+        };
+      } else {
+        state.uploadedGuestLists.push(action.payload);
+      }
+    },
+    removeUploadedGuestList: (state, action: PayloadAction<string>) => {
+      if (state.uploadedGuestLists) {
+        state.uploadedGuestLists = state.uploadedGuestLists.filter(
+          (g) => g.id !== action.payload
+        );
+      }
+    },
+    addManualGuest: (state, action: PayloadAction<IGuestManualEntry>) => {
+      if (!state.uploadedGuestLists) {
+        state.uploadedGuestLists = [];
+      }
+      const ticketType = action.payload.ticketType || "General";
+      const existing = state.uploadedGuestLists.find(
+        (g) => g.ticketType.toLowerCase() === ticketType.toLowerCase()
+      );
+      if (existing) {
+        existing.guestsCount += 1;
+      } else {
+        state.uploadedGuestLists.push({
+          id: Date.now().toString(),
+          ticketType,
+          guestsCount: 1,
+          status: "ready",
+        });
+      }
+    },
     resetCreateEvent: () => initialState,
   },
 });
@@ -97,6 +161,10 @@ export const {
   setPackageSelection,
   setEventDetails,
   setEventSettings,
+  setUploadedGuestLists,
+  addUploadedGuestList,
+  removeUploadedGuestList,
+  addManualGuest,
   resetCreateEvent,
 } = createEventSlice.actions;
 

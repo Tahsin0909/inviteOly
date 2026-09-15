@@ -104,7 +104,7 @@ export const CreateEvents: React.FC = () => {
                     <div className="absolute left-6 right-6 top-4 h-[1.5px] bg-neutral-300 -translate-y-1/2 z-0" />
 
                     {STEPS.map((step) => {
-                        const isCompleted = step.id < currentStep;
+                        const isCompleted = step.id < currentStep || (currentStep === 5 && step.id <= 5);
                         const isActive = step.id === currentStep;
 
                         return (

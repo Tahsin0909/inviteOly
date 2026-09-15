@@ -238,10 +238,28 @@ export interface ICreateEventSettingsForm {
   ticketNote?: string;
 }
 
+export type TTicketType = "Adult" | "Child" | "VIP" | "Staff" | "Vendor" | "Others";
+
+export interface IUploadedGuestList {
+  id: string;
+  ticketType: TTicketType | string;
+  guestsCount: number;
+  fileName?: string;
+  status?: "ready" | "active";
+}
+
+export interface IGuestManualEntry {
+  name: string;
+  email: string;
+  ticketType: string;
+  table?: string;
+}
+
 export interface ICreateEventState {
   currentStep: number;
   packageSelection: ICreateEventPackageState;
   eventDetails: ICreateEventDetailsForm;
   eventSettings: ICreateEventSettingsForm;
+  uploadedGuestLists?: IUploadedGuestList[];
 }
 
