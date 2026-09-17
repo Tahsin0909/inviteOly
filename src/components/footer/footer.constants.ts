@@ -45,6 +45,86 @@ export const footerSections: IFooter[] = [
   hostsSection,
 ];
 
+export const getRoleBasedFooterSections = (
+  role: string | null | undefined,
+  isAuthenticated: boolean
+): IFooter[] => {
+  if (!isAuthenticated || !role) {
+    return [supportSection, productSection, partnersSection, hostsSection];
+  }
+
+  const normalizedRole = role.toUpperCase();
+
+  if (normalizedRole === "HOST") {
+    const dynamicHostSection: IFooter = {
+      title: "For Hosts",
+      links: [
+        { label: "Create an Event", href: "/host/create-event" },
+        { label: "My Events", href: "/host/events" },
+        { label: "Payment Status", href: "/host/payment-pending" },
+        { label: "Event Packages", href: "/#pricing" },
+      ],
+    };
+
+    const dynamicPartnerSection: IFooter = {
+      title: "For Partners",
+      links: [
+        { label: "Venue Directory", href: "/partners" },
+        { label: "Partner Benefits", href: "/partners/benefits" },
+      ],
+    };
+
+    return [supportSection, productSection, dynamicPartnerSection, dynamicHostSection];
+  }
+
+  if (normalizedRole === "PARTNER") {
+    const dynamicPartnerSection: IFooter = {
+      title: "For Partners",
+      links: [
+        { label: "Partner Dashboard", href: "/partner" },
+        { label: "My Venues", href: "/partner/venues" },
+        { label: "Invite Hosts", href: "/partner/invite-host" },
+        { label: "Partner Rewards", href: "/partner/rewards" },
+      ],
+    };
+
+    const dynamicHostSection: IFooter = {
+      title: "Event Tools",
+      links: [
+        { label: "Referred Events", href: "/partner/events" },
+        { label: "Marketing Kit", href: "/partner/marketing" },
+        { label: "Partner Training", href: "/partner/training" },
+      ],
+    };
+
+    return [supportSection, productSection, dynamicPartnerSection, dynamicHostSection];
+  }
+
+  if (normalizedRole === "ADMIN") {
+    const dynamicAdminEvents: IFooter = {
+      title: "Event Operations",
+      links: [
+        { label: "All Events", href: "/admin/events" },
+        { label: "Event Orders", href: "/admin/event-orders" },
+        { label: "User Management", href: "/admin/users" },
+      ],
+    };
+
+    const dynamicAdminPartners: IFooter = {
+      title: "Partner & Finance",
+      links: [
+        { label: "Partners Management", href: "/admin/partners" },
+        { label: "Payments", href: "/admin/payments" },
+        { label: "Promo Codes", href: "/admin/promos" },
+      ],
+    };
+
+    return [supportSection, productSection, dynamicAdminPartners, dynamicAdminEvents];
+  }
+
+  return [supportSection, productSection, partnersSection, hostsSection];
+};
+
 export const bottomLinks = [
   { label: "Privacy", href: "/privacy" },
   { label: "Terms", href: "/terms" },

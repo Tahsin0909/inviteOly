@@ -1,8 +1,19 @@
+"use client";
+
 import Link from "next/link";
-import { footerSections, bottomLinks } from "../footer.constants";
+import { useMemo } from "react";
+import { useAuth } from "@/features/auth/hooks/useAuth";
+import { getRoleBasedFooterSections, bottomLinks } from "../footer.constants";
 import { Brand } from "./Brand";
 
 export const Footer = () => {
+  const { getUserRole, isAuthenticated } = useAuth();
+  const role = getUserRole();
+
+  const activeSections = useMemo(() => {
+    return getRoleBasedFooterSections(role, isAuthenticated);
+  }, [role, isAuthenticated]);
+
   return (
     <footer className="bg-[#141414] text-white pt-14 sm:pt-16 md:pt-20 pb-10 border-t border-neutral-800/80">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -14,7 +25,7 @@ export const Footer = () => {
           </div>
 
           {/* Navigation Columns */}
-          {footerSections.map((section, idx) => (
+          {activeSections.map((section, idx) => (
             <div key={idx}>
               <h3 className="text-sm sm:text-base font-semibold font-work-sans text-white mb-4 tracking-normal">
                 {section.title}
@@ -24,7 +35,7 @@ export const Footer = () => {
                   <li key={id}>
                     <Link
                       href={link.href}
-                      className="text-neutral-400 text-sm font-work-sans transition-colors duration-200 hover:text-white"
+                      className="text-neutral-400 text-sm font-work-sans transition-colors duration-200 hover:text-[#B89047]"
                     >
                       {link.label}
                     </Link>
@@ -63,3 +74,4 @@ export const Footer = () => {
 };
 
 export default Footer;
+

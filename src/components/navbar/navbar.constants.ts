@@ -70,8 +70,8 @@ export const PUBLIC_NAVBAR_ITEMS: string[] = [
 
 // Role-based menu configuration
 export const ROLE_NAVBAR_MENU_CONFIG: Record<IRole, string[]> = {
-  [IRole.ADMIN]: ["howItWorks", "features", "pricing", "hosts", "partners"],
-  [IRole.USER]: ["howItWorks", "features", "pricing", "hosts", "partners"],
-  [IRole.HOST]: ["howItWorks", "features", "pricing", "hosts", "partners"],
-  [IRole.PARTNER]: ["howItWorks", "features", "pricing", "hosts", "partners"],
+  [IRole.ADMIN]: ["howItWorks", "features", "pricing"],
+  [IRole.USER]: ["howItWorks", "features", "pricing"],
+  [IRole.HOST]: ["howItWorks", "features", "pricing"],
+  [IRole.PARTNER]: ["howItWorks", "features", "pricing"],
 };

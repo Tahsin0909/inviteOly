@@ -155,7 +155,8 @@ export const ACCOUNT_MENU_ITEMS: SidebarMenuItem[] = [
   {
     title: "Download App APK",
     icon: Download,
-    url: "/download-app",
+    url: "https://drive.google.com/file/d/1IMJKb64oJksxEEd1Jh-a3KiQYLY6EOf5/view",
+    external: true,
   },
   {
     title: "Settings",
