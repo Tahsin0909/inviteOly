@@ -8,6 +8,8 @@ import {
   IAddGuestPayload,
   IHostDashboardEvent,
   IHostRsvpMetrics,
+  IAdminEventsResponseData,
+  IAdminEventDetails,
 } from "./event.interface";
 
 export const eventApi = baseApi.injectEndpoints({
@@ -113,6 +115,14 @@ export const eventApi = baseApi.injectEndpoints({
       query: () => "/host/dashboard/rsvp-metrics",
       providesTags: ["event"],
     }),
+    getAdminEvents: builder.query<ApiResponse<IAdminEventsResponseData>, void>({
+      query: () => "/admin/events",
+      providesTags: ["event"],
+    }),
+    getAdminEventById: builder.query<ApiResponse<IAdminEventDetails>, string>({
+      query: (id) => `/admin/events/${id}`,
+      providesTags: ["event"],
+    }),
   }),
 });
 
@@ -132,4 +142,6 @@ export const {
   useRegenerateScannerCodeMutation,
   useGetHostDashboardEventsQuery,
   useGetHostRsvpMetricsQuery,
+  useGetAdminEventsQuery,
+  useGetAdminEventByIdQuery,
 } = eventApi;

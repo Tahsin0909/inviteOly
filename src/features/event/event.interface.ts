@@ -275,3 +275,65 @@ export interface ICreateEventState {
   previewGuests?: IEventPreviewGuest[];
 }
 
+// Admin Event Management Interfaces
+export type AdminEventTier = "Standard" | "Premium";
+
+export interface IAdminEventCard {
+  id: string;
+  title: string;
+  tier: AdminEventTier;
+  date: string;
+  time: string;
+  hostName: string;
+  venue: string;
+  totalGuests: number;
+  status?: "Active" | "Completed" | "Pending";
+}
+
+export interface IAdminEventMetrics {
+  totalEvents: number;
+  activeEvents: number;
+  completedEvents: number;
+}
+
+export interface IAdminEventsResponseData {
+  metrics: IAdminEventMetrics;
+  events: IAdminEventCard[];
+}
+
+export interface IAdminEventGuest {
+  id: string;
+  name: string;
+  email: string;
+  ticketType: string;
+  seat: string;
+}
+
+export interface IAdminEventDetails {
+  id: string;
+  tier: AdminEventTier;
+  hostName: string;
+  hostType: string;
+  email: string;
+  phone: string;
+  companyName: string;
+  eventName: string;
+  eventType: string;
+  eventDescription: string;
+  eventDate: string;
+  endDate: string;
+  startTime: string;
+  endTime: string;
+  venue: string;
+  room: string;
+  venueState: string;
+  city: string;
+  postalCode: string;
+  venueContact: string;
+  venueGuestCapacity: string | number;
+  estimateGuestCount: string | number;
+  guests: IAdminEventGuest[];
+}
+
+
+
