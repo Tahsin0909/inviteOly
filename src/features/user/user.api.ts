@@ -5,6 +5,10 @@ import {
   IAdminUserProfile,
   IUser,
   TCreateUser,
+  IAdminPartnerListItem,
+  IAdminPartnerDetails,
+  IInvitePartnerPayload,
+  TPartnerStatus,
 } from "./user.interface";
 
 export const userApi = baseApi.injectEndpoints({
@@ -77,6 +81,59 @@ export const userApi = baseApi.injectEndpoints({
       }),
       invalidatesTags: ["users"],
     }),
+
+    // Admin Partner Endpoints
+    getAdminPartners: builder.query<
+      ApiResponse<IAdminPartnerListItem[], true>,
+      { page?: number; limit?: number; searchTerm?: string; status?: string }
+    >({
+      query: ({ page, limit, searchTerm, status }) => ({
+        url: "/admin/partners",
+        params: { page, limit, searchTerm, status },
+      }),
+      providesTags: ["users"],
+    }),
+
+    getAdminPartnerById: builder.query<ApiResponse<IAdminPartnerDetails>, string>({
+      query: (id) => `/admin/partners/${id}`,
+      providesTags: ["users"],
+    }),
+
+    invitePartner: builder.mutation<
+      ApiResponse<{ success: boolean; message: string }>,
+      IInvitePartnerPayload
+    >({
+      query: (body) => ({
+        url: "/admin/partners/invite",
+        method: "POST",
+        body,
+      }),
+      invalidatesTags: ["users"],
+    }),
+
+    updatePartnerPreferred: builder.mutation<
+      ApiResponse<{ success: boolean; isPreferred: boolean }>,
+      { id: string; isPreferred: boolean }
+    >({
+      query: ({ id, isPreferred }) => ({
+        url: `/admin/partners/${id}/preferred`,
+        method: "PATCH",
+        body: { isPreferred },
+      }),
+      invalidatesTags: ["users"],
+    }),
+
+    updatePartnerStatus: builder.mutation<
+      ApiResponse<{ success: boolean; status: TPartnerStatus }>,
+      { id: string; status: TPartnerStatus }
+    >({
+      query: ({ id, status }) => ({
+        url: `/admin/partners/${id}/status`,
+        method: "PATCH",
+        body: { status },
+      }),
+      invalidatesTags: ["users"],
+    }),
   }),
 });
 
@@ -89,4 +146,10 @@ export const {
   useGetAdminUsersQuery,
   useGetAdminUserProfileQuery,
   useSuspendUserMutation,
+  useGetAdminPartnersQuery,
+  useGetAdminPartnerByIdQuery,
+  useInvitePartnerMutation,
+  useUpdatePartnerPreferredMutation,
+  useUpdatePartnerStatusMutation,
 } = userApi;
+

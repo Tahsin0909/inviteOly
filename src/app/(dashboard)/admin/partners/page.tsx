@@ -1,10 +1,16 @@
-﻿import { Metadata } from "next";
-import { UnderConstruction } from "@/components/dashboard/UnderConstruction";
+import { Metadata } from "next";
+import { AllPartner } from "@/features/user/components/admin/AllPartner";
 
 export const metadata: Metadata = {
-  title: "Partner Management - InviteOnly",
+  title: "Partners Management - InviteOnly",
+  description:
+    "Manage partner accounts, venue relationships, referrals, activity, and partner status.",
 };
 
-export default function Page() {
-  return <UnderConstruction title="Partner Management" role="Admin" />;
+export default function AdminPartnersPage() {
+  return (
+    <div className="w-full">
+      <AllPartner />
+    </div>
+  );
 }

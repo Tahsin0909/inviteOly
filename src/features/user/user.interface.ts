@@ -131,5 +131,87 @@ export interface IAdminUserProfile {
   events: IAdminEventCard[];
 }
 
+// Admin Partner Management Interfaces
+export type TPartnerStatus = "Active" | "Deactivate" | "Suspended";
 
+export interface IAdminPartnerListItem {
+  id: string;
+  name: string;
+  email: string;
+  avatarUrl?: string;
+  initials?: string;
+  businessName: string;
+  venueName: string;
+  status: TPartnerStatus;
+  eventCount: number;
+  isPreferred: boolean;
+  joinDate: string;
+}
 
+export interface IAdminPartnerEvent {
+  id: string;
+  title: string;
+  date: string;
+  venue: string;
+  amount: string;
+  status: "Completed" | "Upcoming" | "Cancelled";
+}
+
+export interface IAdminPartnerVenueSpace {
+  name: string;
+  statusLabel?: string;
+}
+
+export interface IAdminPartnerVenue {
+  id: string;
+  name: string;
+  address: string;
+  parkingInfo?: string;
+  spaces: IAdminPartnerVenueSpace[];
+}
+
+export interface IAdminPartnerDetails {
+  id: string;
+  firstName: string;
+  lastName: string;
+  name: string;
+  email: string;
+  phone?: string;
+  avatarUrl?: string;
+  initials?: string;
+  role: string;
+  partnerType: string;
+  businessName: string;
+  businessEmail: string;
+  website?: string;
+  businessAddress?: string;
+  venueName: string;
+  status: TPartnerStatus;
+  isPreferred: boolean;
+  venueCount: number;
+  referredEventsCount: number;
+  rewardsPoints: string;
+  events: IAdminPartnerEvent[];
+  venues: IAdminPartnerVenue[];
+}
+
+export interface IInvitePartnerPayload {
+  firstName: string;
+  lastName: string;
+  role: string;
+  partnerType: string;
+  businessName: string;
+  businessEmail: string;
+  phone?: string;
+  website?: string;
+  businessAddress?: string;
+}
+
+export interface IAdminPartnerStats {
+  totalPartners: number;
+  totalPartnersTrend?: string;
+  activePartners: number;
+  activePartnersTrend?: string;
+  preferredPartners: number;
+  referredEvents: number;
+}

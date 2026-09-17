@@ -2923,6 +2923,237 @@ Approves an event order and verifies the customer's payment proof.
 
 ---
 
+### 2.24 Admin Partner Management Endpoints
+
+Endpoints for administrators to manage partner accounts, invite new partners, update partner preferred status, and view partner venues and referred events.
+
+#### 2.24.1 Get All Partners (Admin)
+Retrieves a paginated list of partners with filtering by status and search terms.
+
+- **Method**: `GET`
+- **Endpoint**: `/admin/partners`
+- **Query Parameters**:
+  - `page` (optional, default: 1): Page number
+  - `limit` (optional, default: 10): Items per page
+  - `searchTerm` (optional): Partner name, business name, or email
+  - `status` (optional): `Active` | `Deactivate` | `Suspended`
+- **Headers**:
+  - `Authorization: Bearer <token>`
+- **Response `200 OK`**:
+```json
+{
+  "success": true,
+  "message": "Partners retrieved successfully",
+  "meta": {
+    "page": 2,
+    "limit": 10,
+    "total": 486,
+    "totalPage": 49
+  },
+  "data": [
+    {
+      "id": "ptr-1",
+      "name": "Marcus Thorne",
+      "email": "m.thorne@apexlab.com",
+      "avatarUrl": "https://i.pravatar.cc/150?img=12",
+      "initials": "MT",
+      "businessName": "Elite Events Co.",
+      "venueName": "The Grand Ballroom",
+      "status": "Active",
+      "eventCount": 2,
+      "isPreferred": true,
+      "joinDate": "Oct 12, 2023"
+    },
+    {
+      "id": "partner-priya-nair",
+      "name": "Priya Nair",
+      "email": "john.doe@example.com",
+      "initials": "PN",
+      "businessName": "Bloom Weddings",
+      "venueName": "Hilton Downtown",
+      "status": "Active",
+      "eventCount": 17,
+      "isPreferred": true,
+      "joinDate": "Aug 15, 2023"
+    }
+  ]
+}
+```
+
+---
+
+#### 2.24.2 Get Partner Details By ID (Admin)
+Retrieves full partner profile details, including venue count, referred events count, reward points, contact information, events list, and venues list with spaces.
+
+- **Method**: `GET`
+- **Endpoint**: `/admin/partners/:id`
+- **Headers**:
+  - `Authorization: Bearer <token>`
+- **Response `200 OK`**:
+```json
+{
+  "success": true,
+  "message": "Partner profile details retrieved successfully",
+  "data": {
+    "id": "partner-priya-nair",
+    "firstName": "Shaima",
+    "lastName": "Hussain",
+    "name": "Priya Nair",
+    "email": "john.doe@example.com",
+    "phone": "+(XXX)XXX-XXXX",
+    "initials": "PN",
+    "role": "Partner",
+    "partnerType": "Venue",
+    "businessName": "Elite Events Co.",
+    "businessEmail": "john.doe@example.com",
+    "website": "www.invitoly.com",
+    "businessAddress": "123 East St, San Francisco Ca 94112",
+    "venueName": "Hilton Downtown",
+    "status": "Active",
+    "isPreferred": true,
+    "venueCount": 5,
+    "referredEventsCount": 17,
+    "rewardsPoints": "$3,210",
+    "events": [
+      {
+        "id": "evt-p1",
+        "title": "Nair-Patel Reception",
+        "date": "Aug 20, 2026",
+        "venue": "Hilton Downtown",
+        "amount": "$22,800",
+        "status": "Completed"
+      },
+      {
+        "id": "evt-p2",
+        "title": "Chen Wedding",
+        "date": "Oct 5, 2026",
+        "venue": "Hilton Downtown",
+        "amount": "$19,500",
+        "status": "Upcoming"
+      }
+    ],
+    "venues": [
+      {
+        "id": "v-1",
+        "name": "The Grand Ballroom",
+        "address": "123 Main Street, New York, NY 10001",
+        "parkingInfo": "Parking is available at the East Entrance. Valet parking is available Friday–Sunday evenings.",
+        "spaces": [
+          { "name": "Ballroom A", "statusLabel": "Available Space" },
+          { "name": "Ballroom B", "statusLabel": "Available Space" },
+          { "name": "Garden Hall", "statusLabel": "Available Space" }
+        ]
+      },
+      {
+        "id": "v-2",
+        "name": "The Crystal Garden",
+        "address": "456 Garden Way, San Francisco, CA 94102",
+        "parkingInfo": "Self-parking garage available on site with 200 spaces.",
+        "spaces": [
+          { "name": "Outdoor Pavilion", "statusLabel": "Available Space" },
+          { "name": "Glass Greenhouse", "statusLabel": "Available Space" }
+        ]
+      }
+    ]
+  }
+}
+```
+
+---
+
+#### 2.24.3 Invite a Partner
+Sends a personalized partner invitation with role and venue details.
+
+- **Method**: `POST`
+- **Endpoint**: `/admin/partners/invite`
+- **Headers**:
+  - `Authorization: Bearer <token>`
+  - `Content-Type: application/json`
+- **Request Body**:
+```json
+{
+  "firstName": "Shaima",
+  "lastName": "Hussain",
+  "role": "Partner",
+  "partnerType": "Venue",
+  "businessName": "Elite Events Co.",
+  "businessEmail": "john.doe@example.com",
+  "phone": "+(XXX)XXX-XXXX",
+  "website": "www.invitoly.com",
+  "businessAddress": "123 East St, San Francisco Ca 94112"
+}
+```
+- **Response `201 Created`**:
+```json
+{
+  "success": true,
+  "message": "Invitation sent successfully to john.doe@example.com",
+  "data": {
+    "success": true,
+    "invitationId": "inv-9021",
+    "email": "john.doe@example.com"
+  }
+}
+```
+
+---
+
+#### 2.24.4 Update Partner Preferred Status
+Toggles or updates the preferred partner status. Preferred partners appear first in search results and receive priority support.
+
+- **Method**: `PATCH`
+- **Endpoint**: `/admin/partners/:id/preferred`
+- **Headers**:
+  - `Authorization: Bearer <token>`
+  - `Content-Type: application/json`
+- **Request Body**:
+```json
+{
+  "isPreferred": true
+}
+```
+- **Response `200 OK`**:
+```json
+{
+  "success": true,
+  "message": "Partner preferred status updated successfully",
+  "data": {
+    "success": true,
+    "isPreferred": true
+  }
+}
+```
+
+---
+
+#### 2.24.5 Update Partner Account Status
+Updates partner status between Active, Deactivate, and Suspended.
+
+- **Method**: `PATCH`
+- **Endpoint**: `/admin/partners/:id/status`
+- **Headers**:
+  - `Authorization: Bearer <token>`
+  - `Content-Type: application/json`
+- **Request Body**:
+```json
+{
+  "status": "Active"
+}
+```
+- **Response `200 OK`**:
+```json
+{
+  "success": true,
+  "message": "Partner account status updated to Active",
+  "data": {
+    "success": true,
+    "status": "Active"
+  }
+}
+```
+
+---
+
 ## 3. Standard Error Response Structure
 
 In case of validation or server errors, all endpoints return:
