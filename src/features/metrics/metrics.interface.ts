@@ -69,4 +69,58 @@ export interface IHostMetricsResponse {
   data: IHostMetrics;
 }
 
+export type AdminMetricIconType =
+  | "totalPartner"
+  | "totalHost"
+  | "newRegisteredPartner"
+  | "newRegisteredHost";
+
+export interface IAdminMetricCard {
+  id: string;
+  title: string;
+  value: string | number;
+  growthRate: string;
+  iconType: AdminMetricIconType;
+  colorVariant?: "gold";
+}
+
+export interface IAdminMetrics {
+  welcomeName?: string;
+  welcomeSubtitle?: string;
+  cards: IAdminMetricCard[];
+}
+
+export interface IAdminMetricsResponse {
+  success: boolean;
+  message: string;
+  data: IAdminMetrics;
+}
+
+export type RevenueTimeframe = "Last 7 Days" | "Last 30 Days" | "Last 12 Months";
+
+export interface IMonthlyRevenue {
+  month: string;
+  amount: number;
+  formattedAmount?: string;
+  isSelected?: boolean;
+  tooltipText?: string;
+}
+
+export interface IRevenueBreakdown {
+  totalRevenue: string;
+  timeframe?: RevenueTimeframe;
+  selectedMonth?: string;
+  selectedMonthAmount?: string;
+  data: IMonthlyRevenue[];
+}
+
+export interface IRecentRegisteredUser {
+  id: string;
+  name: string;
+  role: "Partner" | "Host" | "Admin";
+  email?: string;
+  registeredAt?: string;
+}
+
+
 
