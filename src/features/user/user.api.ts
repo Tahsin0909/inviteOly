@@ -1,6 +1,11 @@
 import { baseApi } from "@/redux/api/baseApi";
 import { ApiParams, ApiResponse } from "@/types/api";
-import { IUser, TCreateUser } from "./user.interface";
+import {
+  IAdminUserListItem,
+  IAdminUserProfile,
+  IUser,
+  TCreateUser,
+} from "./user.interface";
 
 export const userApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
@@ -45,6 +50,33 @@ export const userApi = baseApi.injectEndpoints({
       }),
       invalidatesTags: ["users"],
     }),
+
+    getAdminUsers: builder.query<
+      ApiResponse<IAdminUserListItem[], true>,
+      { page?: number; limit?: number; searchTerm?: string; role?: string }
+    >({
+      query: ({ page, limit, searchTerm, role }) => ({
+        url: "/admin/users",
+        params: { page, limit, searchTerm, role },
+      }),
+      providesTags: ["users"],
+    }),
+
+    getAdminUserProfile: builder.query<ApiResponse<IAdminUserProfile>, string>({
+      query: (id) => `/admin/users/${id}`,
+      providesTags: ["users"],
+    }),
+
+    suspendUser: builder.mutation<
+      ApiResponse<{ success: boolean; status: string }>,
+      string
+    >({
+      query: (id) => ({
+        url: `/admin/users/${id}/suspend`,
+        method: "POST",
+      }),
+      invalidatesTags: ["users"],
+    }),
   }),
 });
 
@@ -54,4 +86,7 @@ export const {
   useCreateUserMutation,
   useUpdateUserMutation,
   useDeleteUserMutation,
+  useGetAdminUsersQuery,
+  useGetAdminUserProfileQuery,
+  useSuspendUserMutation,
 } = userApi;

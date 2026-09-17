@@ -2685,6 +2685,163 @@ Retrieves full event audit details including host info, basic event metadata, sc
 
 ---
 
+### 2.22 Admin User Management Endpoints
+
+#### 2.22.1 Get Admin Users List
+Retrieves a paginated list of registered users with roles, join dates, and event participation metrics.
+
+- **Method**: `GET`
+- **Endpoint**: `/admin/users`
+- **Headers**:
+  - `Authorization: Bearer <token>`
+- **Query Parameters**:
+  - `searchTerm` *(optional, string)*: Filter by user name, email, or user ID.
+  - `role` *(optional, string)*: Filter by `"Host"` or `"Partner"`.
+  - `page` *(optional, number)*: Page index (default: `1`).
+  - `limit` *(optional, number)*: Items per page (default: `10`).
+- **Response `200 OK`**:
+```json
+{
+  "success": true,
+  "message": "Admin users retrieved successfully",
+  "data": [
+    {
+      "id": "usr-admin-1",
+      "name": "Marcus Thorne",
+      "email": "m.thorne@apexlab.com",
+      "avatarUrl": "https://i.pravatar.cc/150?img=12",
+      "role": "Host",
+      "joinDate": "Oct 12, 2023",
+      "eventCount": {
+        "active": 2,
+        "total": 5
+      },
+      "status": "Active"
+    },
+    {
+      "id": "usr-admin-2",
+      "name": "Marcus Thorne",
+      "email": "m.thorne@apexlab.com",
+      "avatarUrl": "https://i.pravatar.cc/150?img=12",
+      "role": "Partner",
+      "joinDate": "Oct 12, 2023",
+      "eventCount": {
+        "active": 2,
+        "total": 5
+      },
+      "status": "Active"
+    },
+    {
+      "id": "usr-admin-3",
+      "name": "Jinsoo Park",
+      "email": "j.park@apexlab.com",
+      "avatarUrl": "https://i.pravatar.cc/150?img=33",
+      "role": "Host",
+      "joinDate": "Oct 18, 2023",
+      "eventCount": {
+        "active": 4,
+        "total": 5
+      },
+      "status": "Active"
+    }
+  ],
+  "meta": {
+    "page": 1,
+    "limit": 10,
+    "total": 9,
+    "totalPage": 1
+  }
+}
+```
+
+---
+
+#### 2.22.2 Get Admin User Profile & Subscription Details
+Retrieves user profile details, active subscription package, plan pricing, and list of hosted/partner events.
+
+- **Method**: `GET`
+- **Endpoint**: `/admin/users/:id`
+- **Headers**:
+  - `Authorization: Bearer <token>`
+- **Response `200 OK`**:
+```json
+{
+  "success": true,
+  "message": "Admin user profile retrieved successfully",
+  "data": {
+    "id": "usr-admin-1",
+    "name": "John Doe",
+    "email": "john@email.com",
+    "address": "Dhaka,Bangladesh",
+    "currentPlan": "Monthly",
+    "avatarUrl": "https://i.pravatar.cc/300?img=11",
+    "bannerUrl": "/dashboardMetricsBg.png",
+    "status": "Active",
+    "subscription": {
+      "plan": "Premium",
+      "price": "$120.00",
+      "lastEventDate": "Aug, 05, 2026",
+      "totalEvent": 10
+    },
+    "events": [
+      {
+        "id": "evt-admin-1",
+        "title": "Spring Fling Festival",
+        "tier": "Standard",
+        "date": "Apr 22, 2026",
+        "time": "3:00 PM - 9:00 PM",
+        "hostName": "Ethan Patel",
+        "venue": "Meadowview Gardens, San Francisco",
+        "totalGuests": 175
+      },
+      {
+        "id": "evt-admin-2",
+        "title": "Winter Wonderland Ball",
+        "tier": "Premium",
+        "date": "Dec 12, 2026",
+        "time": "8:00 PM - 12:00 AM",
+        "hostName": "Sophia Kim",
+        "venue": "Crystal Palace, New York",
+        "totalGuests": 310
+      },
+      {
+        "id": "evt-admin-3",
+        "title": "Summer Gala 2026",
+        "tier": "Premium",
+        "date": "Aug 3, 2026",
+        "time": "7:00 PM - 11:00 PM",
+        "hostName": "Liam Martinez",
+        "venue": "Royal Convention Hall, Dhaka",
+        "totalGuests": 230
+      }
+    ]
+  }
+}
+```
+
+---
+
+#### 2.22.3 Suspend User Account
+Updates user status to suspended or activates/reactivates.
+
+- **Method**: `POST`
+- **Endpoint**: `/admin/users/:id/suspend`
+- **Headers**:
+  - `Authorization: Bearer <token>`
+- **Response `200 OK`**:
+```json
+{
+  "success": true,
+  "message": "User suspended successfully",
+  "data": {
+    "success": true,
+    "status": "Suspended"
+  }
+}
+```
+
+---
+
 ## 3. Standard Error Response Structure
 
 In case of validation or server errors, all endpoints return:
@@ -2700,6 +2857,7 @@ In case of validation or server errors, all endpoints return:
   ]
 }
 ```
+
 
 
 

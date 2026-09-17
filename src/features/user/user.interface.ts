@@ -1,3 +1,5 @@
+import { IAdminEventCard } from "../event/event.interface";
+
 export enum IRole {
   ADMIN = "ADMIN",
   HOST = "HOST",
@@ -93,5 +95,41 @@ export interface IChangePartnerPasswordDto {
 export interface IPartnerProfileResponse {
   user: IUser;
 }
+
+// Admin User Management Interfaces
+export interface IAdminUserListItem {
+  id: string;
+  name: string;
+  email: string;
+  avatarUrl: string;
+  role: "Host" | "Partner" | "Admin";
+  joinDate: string;
+  eventCount: {
+    active: number;
+    total: number;
+  };
+  status?: "Active" | "Suspended";
+}
+
+export interface IAdminUserProfileSubscription {
+  plan: string;
+  price: string;
+  lastEventDate: string;
+  totalEvent: number;
+}
+
+export interface IAdminUserProfile {
+  id: string;
+  name: string;
+  email: string;
+  address: string;
+  currentPlan: string;
+  avatarUrl: string;
+  bannerUrl?: string;
+  status: "Active" | "Suspended";
+  subscription: IAdminUserProfileSubscription;
+  events: IAdminEventCard[];
+}
+
 
 
