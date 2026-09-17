@@ -335,5 +335,55 @@ export interface IAdminEventDetails {
   guests: IAdminEventGuest[];
 }
 
+// Admin Event Orders Interfaces
+export type EventOrderStatus =
+  | "Waiting Approval"
+  | "Awaiting Approval"
+  | "Upload Invoice"
+  | "Approved";
+
+export interface IEventOrderInvoiceItem {
+  no: number;
+  description: string;
+  qty: number;
+  price: number;
+  subtotal: number;
+}
+
+export interface IEventOrderInvoice {
+  invoiceNumber: string;
+  date: string;
+  issuedTo: {
+    name: string;
+    phone: string;
+    address: string;
+  };
+  items: IEventOrderInvoiceItem[];
+  grandTotal: number;
+  isPaid: boolean;
+  paymentInfo: {
+    name: string;
+    bankAccountNo: string;
+  };
+  businessInfo: {
+    name: string;
+    phone: string;
+    address: string;
+  };
+}
+
+export interface IEventOrderItem {
+  id: string;
+  status: EventOrderStatus;
+  title: string;
+  date: string;
+  time: string;
+  hostName: string;
+  venue: string;
+  totalGuests: number;
+  invoice?: IEventOrderInvoice;
+}
+
+
 
 

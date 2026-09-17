@@ -1,0 +1,101 @@
+import { IEventOrderInvoice, IEventOrderItem } from "../event.interface";
+
+export const defaultEventOrderInvoice: IEventOrderInvoice = {
+  invoiceNumber: "45632190",
+  date: "09/08/2022",
+  issuedTo: {
+    name: "Mr. Erik Ron",
+    phone: "+314-984-5774",
+    address: "521 County Rd #323 Comanche, Texas(TX), 76442",
+  },
+  items: [
+    {
+      no: 1,
+      description: "Basic Sweater",
+      qty: 2,
+      price: 100,
+      subtotal: 200,
+    },
+  ],
+  grandTotal: 2000,
+  isPaid: true,
+  paymentInfo: {
+    name: "Mr. Erik Ron",
+    bankAccountNo: "836208730930",
+  },
+  businessInfo: {
+    name: "BUTTERFLY CLOTHING SHOP",
+    phone: "+314-984-5774",
+    address: "521 County Rd #323 Comanche, Texas(TX), 76442",
+  },
+};
+
+export const staticAdminEventOrders: IEventOrderItem[] = [
+  {
+    id: "ord-admin-1",
+    status: "Waiting Approval",
+    title: "Summer Gala 2026",
+    date: "Aug 3, 2026",
+    time: "7:00 PM - 11:00 PM",
+    hostName: "Liam Martinez",
+    venue: "Royal Convention Hall, Dhaka",
+    totalGuests: 230,
+    invoice: defaultEventOrderInvoice,
+  },
+  {
+    id: "ord-admin-2",
+    status: "Awaiting Approval",
+    title: "Summer Gala 2026",
+    date: "Aug 3, 2026",
+    time: "7:00 PM - 11:00 PM",
+    hostName: "Liam Martinez",
+    venue: "Royal Convention Hall, Dhaka",
+    totalGuests: 230,
+    invoice: defaultEventOrderInvoice,
+  },
+  {
+    id: "ord-admin-3",
+    status: "Awaiting Approval",
+    title: "Summer Gala 2026",
+    date: "Aug 3, 2026",
+    time: "7:00 PM - 11:00 PM",
+    hostName: "Liam Martinez",
+    venue: "Royal Convention Hall, Dhaka",
+    totalGuests: 230,
+    invoice: defaultEventOrderInvoice,
+  },
+  {
+    id: "ord-admin-4",
+    status: "Waiting Approval",
+    title: "Summer Gala 2026",
+    date: "Aug 3, 2026",
+    time: "7:00 PM - 11:00 PM",
+    hostName: "Liam Martinez",
+    venue: "Royal Convention Hall, Dhaka",
+    totalGuests: 900,
+    invoice: defaultEventOrderInvoice,
+  },
+  {
+    id: "ord-admin-5",
+    status: "Upload Invoice",
+    title: "Summer Gala 2026",
+    date: "Aug 3, 2026",
+    time: "7:00 PM - 11:00 PM",
+    hostName: "Liam Martinez",
+    venue: "Royal Convention Hall, Dhaka",
+    totalGuests: 1000,
+    invoice: defaultEventOrderInvoice,
+  },
+  {
+    id: "ord-admin-6",
+    status: "Upload Invoice",
+    title: "Tech Summit 2026",
+    date: "Aug 3, 2026",
+    time: "7:00 PM - 11:00 PM",
+    hostName: "Liam Martinez",
+    venue: "Royal Convention Hall, Dhaka",
+    totalGuests: 1500,
+    invoice: defaultEventOrderInvoice,
+  },
+];
+

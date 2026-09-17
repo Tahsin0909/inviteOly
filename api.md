@@ -2842,6 +2842,87 @@ Updates user status to suspended or activates/reactivates.
 
 ---
 
+### 2.23 Admin Event Orders Endpoints
+
+#### 2.23.1 Get Admin Event Orders List
+Retrieves customer event ticket orders, payment review statuses, and invoice details.
+
+- **Method**: `GET`
+- **Endpoint**: `/admin/event-orders`
+- **Headers**:
+  - `Authorization: Bearer <token>`
+- **Response `200 OK`**:
+```json
+{
+  "success": true,
+  "message": "Admin event orders retrieved successfully",
+  "data": [
+    {
+      "id": "ord-admin-1",
+      "status": "Waiting Approval",
+      "title": "Summer Gala 2026",
+      "date": "Aug 3, 2026",
+      "time": "7:00 PM - 11:00 PM",
+      "hostName": "Liam Martinez",
+      "venue": "Royal Convention Hall, Dhaka",
+      "totalGuests": 230,
+      "invoice": {
+        "invoiceNumber": "45632190",
+        "date": "09/08/2022",
+        "issuedTo": {
+          "name": "Mr. Erik Ron",
+          "phone": "+314-984-5774",
+          "address": "521 County Rd #323 Comanche, Texas(TX), 76442"
+        },
+        "items": [
+          {
+            "no": 1,
+            "description": "Basic Sweater",
+            "qty": 2,
+            "price": 100,
+            "subtotal": 200
+          }
+        ],
+        "grandTotal": 2000,
+        "isPaid": true,
+        "paymentInfo": {
+          "name": "Mr. Erik Ron",
+          "bankAccountNo": "836208730930"
+        },
+        "businessInfo": {
+          "name": "BUTTERFLY CLOTHING SHOP",
+          "phone": "+314-984-5774",
+          "address": "521 County Rd #323 Comanche, Texas(TX), 76442"
+        }
+      }
+    }
+  ]
+}
+```
+
+---
+
+#### 2.23.2 Approve Event Ticket Order
+Approves an event order and verifies the customer's payment proof.
+
+- **Method**: `POST`
+- **Endpoint**: `/admin/event-orders/:id/approve`
+- **Headers**:
+  - `Authorization: Bearer <token>`
+- **Response `200 OK`**:
+```json
+{
+  "success": true,
+  "message": "Event ticket order approved successfully",
+  "data": {
+    "success": true,
+    "status": "Approved"
+  }
+}
+```
+
+---
+
 ## 3. Standard Error Response Structure
 
 In case of validation or server errors, all endpoints return:
@@ -2857,6 +2938,7 @@ In case of validation or server errors, all endpoints return:
   ]
 }
 ```
+
 
 
 

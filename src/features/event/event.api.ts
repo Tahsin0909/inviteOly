@@ -10,6 +10,7 @@ import {
   IHostRsvpMetrics,
   IAdminEventsResponseData,
   IAdminEventDetails,
+  IEventOrderItem,
 } from "./event.interface";
 
 export const eventApi = baseApi.injectEndpoints({
@@ -123,6 +124,20 @@ export const eventApi = baseApi.injectEndpoints({
       query: (id) => `/admin/events/${id}`,
       providesTags: ["event"],
     }),
+    getAdminEventOrders: builder.query<ApiResponse<IEventOrderItem[]>, void>({
+      query: () => "/admin/event-orders",
+      providesTags: ["event"],
+    }),
+    approveEventOrder: builder.mutation<
+      ApiResponse<{ success: boolean; status: string }>,
+      string
+    >({
+      query: (orderId) => ({
+        url: `/admin/event-orders/${orderId}/approve`,
+        method: "POST",
+      }),
+      invalidatesTags: ["event"],
+    }),
   }),
 });
 
@@ -144,4 +159,6 @@ export const {
   useGetHostRsvpMetricsQuery,
   useGetAdminEventsQuery,
   useGetAdminEventByIdQuery,
+  useGetAdminEventOrdersQuery,
+  useApproveEventOrderMutation,
 } = eventApi;
