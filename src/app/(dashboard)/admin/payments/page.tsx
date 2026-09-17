@@ -1,10 +1,15 @@
-﻿import { Metadata } from "next";
-import { UnderConstruction } from "@/components/dashboard/UnderConstruction";
+import { Metadata } from "next";
+import { AdminPayment } from "@/features/payment/components/AdminPayment";
 
 export const metadata: Metadata = {
-  title: "Payment - InviteOnly",
+  title: "Payments Management - InviteOnly",
+  description: "Track and manage all payment transactions in one place.",
 };
 
-export default function Page() {
-  return <UnderConstruction title="Payment" role="Admin" />;
+export default function AdminPaymentsPage() {
+  return (
+    <div className="w-full">
+      <AdminPayment />
+    </div>
+  );
 }

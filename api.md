@@ -3154,6 +3154,235 @@ Updates partner status between Active, Deactivate, and Suspended.
 
 ---
 
+### 2.25 Admin Payments Management Endpoints
+
+Endpoints for administrators to track and manage all payment transactions, revenue metrics, and custom payment creations.
+
+#### 2.25.1 Get Admin Transactions
+Retrieves a paginated list of transactions with support for search query filtering.
+
+- **Method**: `GET`
+- **Endpoint**: `/admin/payments/transactions`
+- **Query Parameters**:
+  - `page` (optional, default: 1): Page number
+  - `limit` (optional, default: 15): Items per page
+  - `searchTerm` (optional): Filter by transaction ID, payment type, customer name, email, or amount
+- **Headers**:
+  - `Authorization: Bearer <token>`
+- **Response `200 OK`**:
+```json
+{
+  "success": true,
+  "message": "Transactions retrieved successfully",
+  "meta": {
+    "page": 2,
+    "limit": 15,
+    "total": 13,
+    "totalPage": 5
+  },
+  "data": [
+    {
+      "id": "tx-1",
+      "transactionId": "#INV-8821",
+      "paymentType": "Costume",
+      "amount": "$199.00",
+      "status": "Success",
+      "paymentDate": "Oct 24, 2024",
+      "customerName": "Marcus Thorne",
+      "customerEmail": "m.thorne@apexlab.com"
+    },
+    {
+      "id": "tx-2",
+      "transactionId": "#INV-8820",
+      "paymentType": "Costume",
+      "amount": "$199.00",
+      "status": "Payment Field",
+      "paymentDate": "Oct 24, 2024",
+      "customerName": "Jinsoo Park",
+      "customerEmail": "j.park@apexlab.com"
+    }
+  ]
+}
+```
+
+---
+
+#### 2.25.2 Get Admin Payment Metrics
+Retrieves the revenue metrics including Total Revenue, This Month Revenue, and Today Revenue with growth trends.
+
+- **Method**: `GET`
+- **Endpoint**: `/admin/payments/metrics`
+- **Headers**:
+  - `Authorization: Bearer <token>`
+- **Response `200 OK`**:
+```json
+{
+  "success": true,
+  "message": "Payment metrics retrieved successfully",
+  "data": {
+    "totalRevenue": "$18,420",
+    "totalRevenueTrend": "+8.5%",
+    "thisMonthRevenue": "$18,420",
+    "thisMonthRevenueTrend": "+8.5%",
+    "todayRevenue": "$18,420",
+    "todayRevenueTrend": "+8.5%"
+  }
+}
+```
+
+---
+
+#### 2.25.3 Add Custom Payment
+Creates a custom payment transaction entry for billing or offline/manual collections.
+
+- **Method**: `POST`
+- **Endpoint**: `/admin/payments/custom`
+- **Headers**:
+  - `Authorization: Bearer <token>`
+  - `Content-Type: application/json`
+- **Request Body**:
+```json
+{
+  "amount": 1000,
+  "paymentType": "Costume",
+  "recipientEmail": "partner@example.com",
+  "note": "Manual partner event settlement"
+}
+```
+- **Response `201 Created`**:
+```json
+{
+  "success": true,
+  "message": "Custom payment of $1,000.00 created successfully",
+  "data": {
+    "success": true,
+    "transactionId": "#INV-8842",
+    "amount": "$1,000.00",
+    "status": "Success"
+  }
+}
+```
+
+---
+
+### 2.26 Admin Promotional Codes Endpoints
+
+Endpoints for administrators to create, list, and manage discount and promotional codes.
+
+#### 2.26.1 Get Promotional Codes
+Retrieves a paginated list of promotional codes with discount types, values, and validity status.
+
+- **Method**: `GET`
+- **Endpoint**: `/admin/promotional-codes`
+- **Query Parameters**:
+  - `page` (optional, default: 1): Page number
+  - `limit` (optional, default: 10): Items per page
+  - `searchTerm` (optional): Filter by promo code name
+- **Headers**:
+  - `Authorization: Bearer <token>`
+- **Response `200 OK`**:
+```json
+{
+  "success": true,
+  "message": "Promotional codes retrieved successfully",
+  "meta": {
+    "page": 2,
+    "limit": 10,
+    "total": 9,
+    "totalPage": 5
+  },
+  "data": [
+    {
+      "id": "promo-1",
+      "code": "SAVE20",
+      "type": "Percentage",
+      "value": "20%",
+      "validFrom": "2026-09-01",
+      "validTo": "2026-10-25",
+      "status": "Active"
+    },
+    {
+      "id": "promo-2",
+      "code": "SAVE20",
+      "type": "Fixed",
+      "value": "$20",
+      "validFrom": "2026-09-01",
+      "validTo": "2026-10-25",
+      "status": "Active"
+    },
+    {
+      "id": "promo-5",
+      "code": "SAVE20",
+      "type": "Fixed",
+      "value": "$20",
+      "validFrom": "2026-09-01",
+      "validTo": "2026-10-25",
+      "status": "Expired"
+    }
+  ]
+}
+```
+
+---
+
+#### 2.26.2 Create Promotional Code
+Creates a new promotional code with percentage or fixed discount, validity window, and usage conditions.
+
+- **Method**: `POST`
+- **Endpoint**: `/admin/promotional-codes`
+- **Headers**:
+  - `Authorization: Bearer <token>`
+  - `Content-Type: application/json`
+- **Request Body**:
+```json
+{
+  "code": "SAVE25",
+  "discountType": "Percentage",
+  "discountValue": "25%",
+  "validFrom": "2026-08-31",
+  "validTo": "2026-09-30"
+}
+```
+- **Response `201 Created`**:
+```json
+{
+  "success": true,
+  "message": "Promotional code SAVE25 created successfully",
+  "data": {
+    "id": "promo-101",
+    "code": "SAVE25",
+    "type": "Percentage",
+    "value": "25%",
+    "validFrom": "2026-08-31",
+    "validTo": "2026-09-30",
+    "status": "Active"
+  }
+}
+```
+
+---
+
+#### 2.26.3 Delete Promotional Code
+Removes an existing promotional code.
+
+- **Method**: `DELETE`
+- **Endpoint**: `/admin/promotional-codes/:id`
+- **Headers**:
+  - `Authorization: Bearer <token>`
+- **Response `200 OK`**:
+```json
+{
+  "success": true,
+  "message": "Promotional code removed successfully",
+  "data": {
+    "success": true,
+    "id": "promo-1"
+  }
+}
+```
+
+---
+
 ## 3. Standard Error Response Structure
 
 In case of validation or server errors, all endpoints return:

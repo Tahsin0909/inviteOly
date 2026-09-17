@@ -1,10 +1,13 @@
-﻿import { baseApi } from "@/redux/api/baseApi";
+import { baseApi } from "@/redux/api/baseApi";
 import { ApiResponse } from "@/types/api";
 import {
   IPayment,
   IHostPendingPaymentEvent,
   IPaymentInvoice,
   ISubmitInvoicePayload,
+  IAdminTransaction,
+  IAdminPaymentMetrics,
+  IAddCustomPaymentPayload,
 } from "./payment.interface";
 
 export const paymentApi = baseApi.injectEndpoints({
@@ -85,6 +88,35 @@ export const paymentApi = baseApi.injectEndpoints({
       }),
       invalidatesTags: ["payment"],
     }),
+
+    // Admin Payments Endpoints
+    getAdminTransactions: builder.query<
+      ApiResponse<IAdminTransaction[], true>,
+      { page?: number; limit?: number; searchTerm?: string }
+    >({
+      query: ({ page, limit, searchTerm }) => ({
+        url: "/admin/payments/transactions",
+        params: { page, limit, searchTerm },
+      }),
+      providesTags: ["payment"],
+    }),
+
+    getAdminPaymentMetrics: builder.query<ApiResponse<IAdminPaymentMetrics>, void>({
+      query: () => "/admin/payments/metrics",
+      providesTags: ["payment"],
+    }),
+
+    addCustomPayment: builder.mutation<
+      ApiResponse<{ success: boolean; transactionId: string }>,
+      IAddCustomPaymentPayload
+    >({
+      query: (body) => ({
+        url: "/admin/payments/custom",
+        method: "POST",
+        body,
+      }),
+      invalidatesTags: ["payment"],
+    }),
   }),
 });
 
@@ -100,4 +132,8 @@ export const {
   useUploadPaymentProofMutation,
   useSubmitPaymentInvoiceMutation,
   useConfirmHostPaymentMutation,
+  useGetAdminTransactionsQuery,
+  useGetAdminPaymentMetricsQuery,
+  useAddCustomPaymentMutation,
 } = paymentApi;
+

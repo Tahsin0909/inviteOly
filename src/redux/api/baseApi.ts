@@ -17,6 +17,7 @@ export const baseApi = createApi({
     },
   }),
   tagTypes: [
+    "promotional-codes",
     "reward",
     "hostandpartner",
     "venue",

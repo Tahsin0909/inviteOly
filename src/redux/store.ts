@@ -1,6 +1,7 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import { userReducer } from "@/features/user/store/user.slice";
 import { baseApi } from "@/redux/api/baseApi";
+import { promotionalCodesReducer } from "@/features/promotional-codes/store/promotional-codes.slice";
 import { rewardReducer } from "@/features/reward/store/reward.slice";
 import { hostandpartnerReducer } from "@/features/hostandpartner/store/hostandpartner.slice";
 import { venueReducer } from "@/features/venue/store/venue.slice";
@@ -32,6 +33,7 @@ const persistConfig = {
 };
 
 const rootReducer = combineReducers({
+  promotionalCodes: promotionalCodesReducer,
   reward: rewardReducer,
   hostandpartner: hostandpartnerReducer,
   venue: venueReducer,

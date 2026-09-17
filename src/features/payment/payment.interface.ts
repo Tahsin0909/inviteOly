@@ -1,4 +1,4 @@
-﻿export type TPricingTierKey =
+export type TPricingTierKey =
   | "small"
   | "medium"
   | "large"
@@ -111,4 +111,35 @@ export interface IPaymentInvoice {
     swiftCode?: string;
     referenceNumber: string;
   };
+}
+
+// Admin Payments Management Interfaces
+export type TAdminPaymentStatus = "Success" | "Payment Field" | "Payment Failed";
+export type TAdminPaymentType = "Costume" | "Auto pay" | "Custom";
+
+export interface IAdminTransaction {
+  id: string;
+  transactionId: string;
+  paymentType: string;
+  amount: string;
+  status: TAdminPaymentStatus;
+  paymentDate: string;
+  customerName?: string;
+  customerEmail?: string;
+}
+
+export interface IAdminPaymentMetrics {
+  totalRevenue: string;
+  totalRevenueTrend?: string;
+  thisMonthRevenue: string;
+  thisMonthRevenueTrend?: string;
+  todayRevenue: string;
+  todayRevenueTrend?: string;
+}
+
+export interface IAddCustomPaymentPayload {
+  amount: number | string;
+  recipientEmail?: string;
+  paymentType?: string;
+  note?: string;
 }
