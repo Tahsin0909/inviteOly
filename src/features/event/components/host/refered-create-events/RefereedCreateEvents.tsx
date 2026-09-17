@@ -8,8 +8,6 @@ import { setCurrentStep } from "@/features/event/store/createEvent.slice";
 import { useAuth } from "@/features/auth/hooks/useAuth";
 import {
     Check,
-    ChevronLeft,
-    ChevronRight,
     ArrowLeft,
     Sparkles,
     UserCheck,
@@ -65,10 +63,21 @@ export const RefereedCreateEvents: React.FC = () => {
         "James Smith (Host Partner)";
     const referralCode = activeUser?.referralCode || "HOST-REF-SMITH26";
 
+    const referredPackageId =
+        searchParams.get("package") ||
+        searchParams.get("packageId") ||
+        "intimate-standard";
+
     const renderCurrentStepComponent = () => {
         switch (currentStep) {
             case 1:
-                return <StepPackage />;
+                return (
+                    <StepPackage
+                        isReferred={true}
+                        referrerName={referrerName}
+                        packageId={referredPackageId}
+                    />
+                );
             case 2:
                 return <StepEventDetails />;
             case 3:
@@ -80,19 +89,13 @@ export const RefereedCreateEvents: React.FC = () => {
             case 6:
                 return <StepEventPreview />;
             default:
-                return <StepPackage />;
-        }
-    };
-
-    const handleNext = () => {
-        if (currentStep < STEPS.length) {
-            dispatch(setCurrentStep(currentStep + 1));
-        }
-    };
-
-    const handlePrev = () => {
-        if (currentStep > 1) {
-            dispatch(setCurrentStep(currentStep - 1));
+                return (
+                    <StepPackage
+                        isReferred={true}
+                        referrerName={referrerName}
+                        packageId={referredPackageId}
+                    />
+                );
         }
     };
 
@@ -154,7 +157,7 @@ export const RefereedCreateEvents: React.FC = () => {
                 </span>
             </div>
 
-            {/* Stepper matching media_1789206859662.png */}
+            {/* Stepper */}
             <div className="w-full max-w-4xl mx-auto py-4 px-4">
                 <div className="relative flex items-center justify-between">
                     {/* Connecting Line behind the circles */}
@@ -206,35 +209,8 @@ export const RefereedCreateEvents: React.FC = () => {
             </div>
 
             {/* Current Step Component */}
-            <div className="w-full max-w-4xl mx-auto">
+            <div className="w-full max-w-5xl mx-auto">
                 {renderCurrentStepComponent()}
-            </div>
-
-            {/* Step Navigation Controls */}
-            <div className="w-full max-w-4xl mx-auto flex items-center justify-between pt-2">
-                <button
-                    type="button"
-                    onClick={handlePrev}
-                    disabled={currentStep === 1}
-                    className="inline-flex items-center gap-1.5 px-4 py-2 text-xs sm:text-sm font-medium text-neutral-700 bg-white border border-neutral-200 rounded-lg hover:bg-neutral-50 active:scale-[0.98] disabled:opacity-40 disabled:cursor-not-allowed transition-all cursor-pointer shadow-2xs"
-                >
-                    <ChevronLeft className="h-4 w-4" />
-                    <span>Previous Step</span>
-                </button>
-
-                <span className="text-xs text-neutral-400 font-medium">
-                    Step {currentStep} of {STEPS.length}
-                </span>
-
-                <button
-                    type="button"
-                    onClick={handleNext}
-                    disabled={currentStep === STEPS.length}
-                    className="inline-flex items-center gap-1.5 px-5 py-2 text-xs sm:text-sm font-medium text-white bg-[#C39B4C] hover:bg-[#b08b3e] active:scale-[0.98] disabled:opacity-40 disabled:cursor-not-allowed rounded-lg transition-all cursor-pointer shadow-2xs"
-                >
-                    <span>{currentStep === STEPS.length ? "Finish" : "Next Step"}</span>
-                    <ChevronRight className="h-4 w-4" />
-                </button>
             </div>
         </div>
     );
