@@ -55,35 +55,37 @@ export const Account = () => {
   return (
     <div className="flex items-center justify-center">
       <DropdownMenu open={isOpen} onOpenChange={setIsOpen}>
-        <DropdownMenuTrigger className="flex items-center gap-2 sm:gap-2.5 bg-neutral-900/90 hover:bg-neutral-800 text-white border border-neutral-700/80 hover:border-primary/60 rounded-full pl-2 pr-3.5 py-1.5 transition-all duration-200 outline-none cursor-pointer group shadow-xs">
+        <DropdownMenuTrigger className="flex items-center gap-1.5 sm:gap-2.5 bg-neutral-900/90 hover:bg-neutral-800 text-white border border-neutral-700/80 hover:border-primary/60 rounded-full pl-1.5 sm:pl-2 pr-2.5 sm:pr-3.5 py-1.5 transition-all duration-200 outline-none cursor-pointer group shadow-xs">
           {/* User Initial Circle */}
           <div className="size-7 rounded-full bg-primary/20 border border-primary/40 flex items-center justify-center text-xs font-bold text-primary shrink-0">
             {initials}
           </div>
 
           {/* User Name */}
-          <span className="text-xs sm:text-sm font-medium font-work-sans text-neutral-200 group-hover:text-white max-w-[110px] truncate">
+          <span className="text-xs sm:text-sm font-medium font-work-sans text-neutral-200 group-hover:text-white max-w-[70px] xs:max-w-[90px] sm:max-w-[110px] truncate">
             {currentUser?.firstName || "Account"}
           </span>
 
-          {/* Role Badge */}
-          {isReferredHost ? (
-            <span className="text-[10px] font-semibold tracking-wider text-emerald-400 bg-emerald-500/15 border border-emerald-500/30 px-1.5 py-0.5 rounded-full leading-none flex items-center gap-1">
-              <Sparkles className="size-2.5" />
-              Referred
-            </span>
-          ) : (
-            <span className="text-[10px] font-semibold uppercase tracking-wider text-primary bg-primary/10 border border-primary/30 px-1.5 py-0.5 rounded-full leading-none">
-              {roleName}
-            </span>
-          )}
+          {/* Role Badge - visible on sm+ (tablets and desktops) */}
+          <div className="hidden sm:flex items-center">
+            {isReferredHost ? (
+              <span className="text-[10px] font-semibold tracking-wider text-emerald-400 bg-emerald-500/15 border border-emerald-500/30 px-1.5 py-0.5 rounded-full leading-none flex items-center gap-1">
+                <Sparkles className="size-2.5" />
+                Referred
+              </span>
+            ) : (
+              <span className="text-[10px] font-semibold uppercase tracking-wider text-primary bg-primary/10 border border-primary/30 px-1.5 py-0.5 rounded-full leading-none">
+                {roleName}
+              </span>
+            )}
+          </div>
 
           {/* Chevron */}
           <ChevronDown className="size-3.5 text-neutral-400 group-hover:text-white transition-transform duration-200 shrink-0" />
         </DropdownMenuTrigger>
 
         <DropdownMenuContent
-          className="w-72 bg-neutral-900/95 border border-neutral-800 text-white p-2.5 rounded-2xl shadow-xl z-50 backdrop-blur-md font-work-sans max-h-[85vh] overflow-y-auto"
+          className="w-72 sm:w-80 bg-neutral-900/95 border border-neutral-800 text-white p-2.5 rounded-2xl shadow-xl z-50 backdrop-blur-md font-work-sans max-h-[85vh] overflow-y-auto"
           align="end"
         >
           {/* User Info Header */}

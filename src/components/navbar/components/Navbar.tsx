@@ -28,14 +28,14 @@ export const Navbar = () => {
           </div>
 
           {/* Right Action Buttons */}
-          <div className="flex items-center sm:gap-4 gap-3">
-            <div className="xl:block hidden">
-              {isAuthenticated && token ? (
-                <Account />
-              ) : (
+          <div className="flex items-center gap-2 sm:gap-3">
+            {isAuthenticated && token ? (
+              <Account />
+            ) : (
+              <div className="hidden sm:block">
                 <NavbarAuthButtons />
-              )}
-            </div>
+              </div>
+            )}
             <MobileMenu />
           </div>
         </div>
