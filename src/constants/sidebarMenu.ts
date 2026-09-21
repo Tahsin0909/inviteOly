@@ -64,7 +64,7 @@ export const ADMIN_MENU_ITEMS: SidebarMenuItem[] = [
     url: "/admin/promos",
   },
   {
-    title: "Payment",
+    title: "Payments",
     icon: CreditCard,
     url: "/admin/payments",
   },

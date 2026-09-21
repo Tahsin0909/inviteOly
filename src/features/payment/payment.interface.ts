@@ -114,18 +114,36 @@ export interface IPaymentInvoice {
 }
 
 // Admin Payments Management Interfaces
-export type TAdminPaymentStatus = "Success" | "Payment Field" | "Payment Failed";
-export type TAdminPaymentType = "Costume" | "Auto pay" | "Custom";
+export type TAdminPaymentStatus =
+  | "Paid"
+  | "Payment Failed"
+  | "Refunded"
+  | "Success"
+  | "Payment Field";
+export type TAdminPaymentType = "Custom" | "Auto pay" | "Signature" | "VIP Luxury" | "Costume";
 
 export interface IAdminTransaction {
   id: string;
   transactionId: string;
-  paymentType: string;
+  paymentType?: string;
   amount: string;
   status: TAdminPaymentStatus;
   paymentDate: string;
-  customerName?: string;
-  customerEmail?: string;
+  customerName: string;
+  customerEmail: string;
+  hostName?: string;
+  eventName: string;
+  packageName: string;
+  paymentMethod: string;
+  promoCode?: string;
+  discount?: string;
+  note?: string;
+  refundInfo?: {
+    isRefunded: boolean;
+    refundAmount?: string;
+    refundDate?: string;
+    reason?: string;
+  };
 }
 
 export interface IAdminPaymentMetrics {
@@ -133,13 +151,21 @@ export interface IAdminPaymentMetrics {
   totalRevenueTrend?: string;
   thisMonthRevenue: string;
   thisMonthRevenueTrend?: string;
-  todayRevenue: string;
+  refundedOrFailed?: string;
+  refundedOrFailedTrend?: string;
+  todayRevenue?: string;
   todayRevenueTrend?: string;
 }
 
 export interface IAddCustomPaymentPayload {
   amount: number | string;
   recipientEmail?: string;
+  customerName?: string;
+  customerEmail?: string;
+  eventName?: string;
+  packageName?: string;
+  paymentMethod?: string;
+  paymentDate?: string;
   paymentType?: string;
   note?: string;
 }
