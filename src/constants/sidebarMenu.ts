@@ -122,7 +122,7 @@ export const PARTNER_MENU_ITEMS: SidebarMenuItem[] = [
     url: "/partner/marketing",
   },
   {
-    title: "Reward",
+    title: "Rewards",
     icon: Award,
     url: "/partner/rewards",
   },
