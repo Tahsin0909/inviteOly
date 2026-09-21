@@ -1,4 +1,10 @@
-export type TRewardStatus = "Pending" | "Approved" | "Paid" | "Rejected";
+export type TRewardStatus =
+  | "Pending"
+  | "Approved"
+  | "Paid"
+  | "On Hold"
+  | "Canceled"
+  | "Rejected";
 export type TPayoutStatus = "Paid" | "Payout" | "Processing" | "Failed";
 export type TPayoutMethod = "Bank Transfer" | "PayPal" | "Stripe";
 
@@ -6,6 +12,7 @@ export interface IRewardStats {
   totalRewards: number;
   pendingRewards: number;
   paidRewards: number;
+  nextPayoutDate?: string;
   rewardsPayout?: number;
   commissionRate?: number;
 }
@@ -17,11 +24,17 @@ export interface IPendingRewardItem {
   eventName: string;
   orderId: string;
   date: string;
-  ticketRevenue: string | number;
-  rate: string | number;
+  ticketRevenue?: string | number;
+  rate?: string | number;
   reward: string | number;
+  rewardEarned?: string | number;
   status: TRewardStatus;
-  hostName?: string;
+  hostName: string;
+  hostPaymentDate?: string;
+  payoutDate?: string;
+  bookingAmount?: string | number;
+  packageName?: string;
+  note?: string;
 }
 
 export interface IPayoutHistoryItem {

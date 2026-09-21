@@ -69,7 +69,7 @@ export const ADMIN_MENU_ITEMS: SidebarMenuItem[] = [
     url: "/admin/payments",
   },
   {
-    title: "Partner Reward",
+    title: "Partner Rewards",
     icon: Award,
     url: "/admin/partner-rewards",
   },
@@ -122,7 +122,7 @@ export const PARTNER_MENU_ITEMS: SidebarMenuItem[] = [
     url: "/partner/marketing",
   },
   {
-    title: "Rewards",
+    title: "Partner Rewards",
     icon: Award,
     url: "/partner/rewards",
   },
