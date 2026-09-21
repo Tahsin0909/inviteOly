@@ -12,6 +12,10 @@ export const ALL_NAVBAR_MENU_ITEMS: Record<string, IMenu> = {
     label: "Features",
     href: "/#features",
   },
+  faq: {
+    label: "FAQ",
+    href: "/faq",
+  },
   pricing: {
     label: "Pricing",
     href: "/#pricing",
@@ -70,8 +74,8 @@ export const PUBLIC_NAVBAR_ITEMS: string[] = [
 
 // Role-based menu configuration
 export const ROLE_NAVBAR_MENU_CONFIG: Record<IRole, string[]> = {
-  [IRole.ADMIN]: ["howItWorks", "features", "pricing"],
-  [IRole.USER]: ["howItWorks", "features", "pricing"],
-  [IRole.HOST]: ["howItWorks", "features", "pricing"],
-  [IRole.PARTNER]: ["howItWorks", "features", "pricing"],
+  [IRole.ADMIN]: ["howItWorks", "features", "pricing", "faq"],
+  [IRole.USER]: ["howItWorks", "features", "pricing", "faq"],
+  [IRole.HOST]: ["howItWorks", "features", "pricing", "faq"],
+  [IRole.PARTNER]: ["howItWorks", "features", "pricing", "faq"],
 };
