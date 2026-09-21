@@ -301,6 +301,36 @@ export interface IAdminEventsResponseData {
   events: IAdminEventCard[];
 }
 
+export type TAdminTicketStatus =
+  | "Scanned"
+  | "Accepted"
+  | "Sent"
+  | "Ready"
+  | "Declined"
+  | "Voided";
+
+export interface IAdminGuestTicket {
+  id: string;
+  ticketNumber: string; // e.g. "Guest 001"
+  name: string; // e.g. "Marcus Thorne"
+  email?: string; // e.g. "marcus@example.com"
+  ticketType: string; // e.g. "General Admission"
+  table?: string; // e.g. "Table 8"
+  deliveryMethod: "Email" | "Copied by Host" | "Not delivered";
+  deliveryDate?: string; // e.g. "Sent Oct 3, 10:42 AM"
+  rsvpStatus: "Accepted" | "Awaiting response" | "Not started" | "Declined";
+  rsvpDate?: string; // e.g. "Oct 3, 2:18 PM"
+  checkInStatus: string; // e.g. "Oct 18, 5:14 PM" or "Not checked in"
+  checkInGate?: string; // e.g. "Gate 1"
+  status: TAdminTicketStatus;
+  canResendEmail: boolean;
+  activityHistory?: Array<{
+    timestamp: string;
+    title: string;
+    description: string;
+  }>;
+}
+
 export interface IAdminEventGuest {
   id: string;
   name: string;
@@ -332,7 +362,15 @@ export interface IAdminEventDetails {
   venueContact: string;
   venueGuestCapacity: string | number;
   estimateGuestCount: string | number;
+  partnerName?: string;
+  partnerId?: string;
+  packageTitle?: string;
+  packageCapacity?: string | number;
+  assignedGuestsCount?: number;
+  totalCapacity?: number;
+  checkedInCount?: number;
   guests: IAdminEventGuest[];
+  ticketGuests?: IAdminGuestTicket[];
 }
 
 // Admin Event Orders Interfaces
