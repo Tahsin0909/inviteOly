@@ -44,6 +44,8 @@ const defaultDetails: ICreateEventDetailsForm = {
 const defaultSettings: ICreateEventSettingsForm = {
   venue: "",
   room: "",
+  address: "",
+  state: "",
   venueState: "",
   city: "",
   postalCode: "",

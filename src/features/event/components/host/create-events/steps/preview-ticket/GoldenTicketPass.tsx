@@ -12,10 +12,12 @@ import {
   ICreateEventDetailsForm,
   ICreateEventSettingsForm,
 } from "@/features/event/event.interface";
+import { cn, formatTo12Hour } from "@/lib/utils";
 
 interface GoldenTicketPassProps {
   eventDetails?: ICreateEventDetailsForm;
   eventSettings?: ICreateEventSettingsForm;
+  isPremium?: boolean;
 }
 
 // Crisp Vector QR Code SVG matching media_1789292285749.png
@@ -96,17 +98,23 @@ const ScrollFlourish: React.FC = () => (
 export const GoldenTicketPass: React.FC<GoldenTicketPassProps> = ({
   eventDetails,
   eventSettings,
+  isPremium = false,
 }) => {
   // Read dynamic user inputs with realistic luxury fallbacks
   const eventName = eventDetails?.eventName || "EVENT NAME";
   const venueName = eventSettings?.venue || "VENUE NAME";
-  const address = eventSettings?.venueState
-    ? `${eventSettings.venueState}`
-    : "1234 Event Way, City, State 12345";
-  const startTime = eventDetails?.startTime || "06:00 PM";
-  const endTime = eventDetails?.endTime || "11:00 PM";
+  const fullAddress = [
+    eventSettings?.address,
+    eventSettings?.city,
+    eventSettings?.state || eventSettings?.venueState,
+    eventSettings?.postalCode,
+  ]
+    .filter(Boolean)
+    .join(", ");
+  const address = fullAddress || "1234 Event Way, City, State 12345";
+  const startTime = formatTo12Hour(eventDetails?.startTime) || "6:00 PM";
+  const endTime = formatTo12Hour(eventDetails?.endTime) || "11:00 PM";
   const room = eventSettings?.room || "Grand Ballroom";
-  const guestName = eventDetails?.hostName || "Jhon Doe";
 
   return (
     <div className="overflow-hidden ">
@@ -146,8 +154,13 @@ export const GoldenTicketPass: React.FC<GoldenTicketPassProps> = ({
                 </p>
               </div>
 
-              {/* 4 Details Badges Grid with Vertical Dividers */}
-              <div className="grid grid-cols-4 border-y border-[#E5C378]/60 py-2.5 my-3 divide-x divide-[#E5C378]/50 text-neutral-700">
+              {/* Details Badges Grid with Vertical Dividers (3 columns for standard, 4 for premium) */}
+              <div
+                className={cn(
+                  "grid border-y border-[#E5C378]/60 py-2.5 my-3 divide-x divide-[#E5C378]/50 text-neutral-700",
+                  isPremium ? "grid-cols-4" : "grid-cols-3"
+                )}
+              >
                 {/* Start Time */}
                 <div className="flex flex-col items-center px-1">
                   <Clock className="size-3.5 text-[#C39B4C] mb-1" />
@@ -181,19 +194,21 @@ export const GoldenTicketPass: React.FC<GoldenTicketPassProps> = ({
                   </span>
                 </div>
 
-                {/* Seat */}
-                <div className="flex flex-col items-center px-1">
-                  <Armchair className="size-3.5 text-[#C39B4C] mb-1" />
-                  <span className="text-[9px] text-neutral-400 font-medium leading-none mb-1">
-                    Seat
-                  </span>
-                  <span className="text-[10px] sm:text-[11px] font-bold text-neutral-800">
-                    14
-                  </span>
-                </div>
+                {/* Seat (Premium package only) */}
+                {isPremium && (
+                  <div className="flex flex-col items-center px-1">
+                    <Armchair className="size-3.5 text-[#C39B4C] mb-1" />
+                    <span className="text-[9px] text-neutral-400 font-medium leading-none mb-1">
+                      Seat
+                    </span>
+                    <span className="text-[10px] sm:text-[11px] font-bold text-neutral-800">
+                      14
+                    </span>
+                  </div>
+                )}
               </div>
 
-              {/* Admit One & Guest Name */}
+              {/* Admit One & Guest 001 */}
               <div className="space-y-0.5 pt-0.5">
                 <div className="flex items-center justify-center gap-2">
                   <span className="h-[1px] w-8 bg-[#E5C378]/80" />
@@ -202,11 +217,11 @@ export const GoldenTicketPass: React.FC<GoldenTicketPassProps> = ({
                   </span>
                   <span className="h-[1px] w-8 bg-[#E5C378]/80" />
                 </div>
-                <p className="text-[10px] font-bold text-neutral-600 tracking-wider">
-                  VIP
+                <p className="text-[10px] font-bold text-neutral-600 tracking-wider uppercase">
+                  {isPremium ? "VIP" : "GENERAL ADMISSION"}
                 </p>
                 <p className="text-xs sm:text-sm font-bold text-neutral-900 font-serif">
-                  {guestName}
+                  Guest 001
                 </p>
               </div>
             </div>

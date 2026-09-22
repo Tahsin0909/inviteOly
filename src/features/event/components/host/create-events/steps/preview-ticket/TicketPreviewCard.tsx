@@ -5,6 +5,7 @@ import Image from "next/image";
 import {
   ICreateEventDetailsForm,
   ICreateEventSettingsForm,
+  ICreateEventPackageState,
 } from "@/features/event/event.interface";
 import { GoldenTicketPass } from "./GoldenTicketPass";
 import { WalletBadgesRow } from "./WalletBadgesRow";
@@ -18,12 +19,16 @@ import { TicketTermsDisclaimer } from "./TicketTermsDisclaimer";
 interface TicketPreviewCardProps {
   eventDetails?: ICreateEventDetailsForm;
   eventSettings?: ICreateEventSettingsForm;
+  packageSelection?: ICreateEventPackageState;
 }
 
 export const TicketPreviewCard: React.FC<TicketPreviewCardProps> = ({
   eventDetails,
   eventSettings,
+  packageSelection,
 }) => {
+  const isPremium = packageSelection?.tier === "premium";
+
   return (
     <div className="bg-white rounded-3xl border border-neutral-200/80 shadow-xs p-5 sm:p-8 space-y-6 font-work-sans">
       {/* 1. Header Branding with ticketIcon.png matching media_1789292285749.png */}
@@ -55,30 +60,33 @@ export const TicketPreviewCard: React.FC<TicketPreviewCardProps> = ({
       <GoldenTicketPass
         eventDetails={eventDetails}
         eventSettings={eventSettings}
+        isPremium={isPremium}
       />
 
       {/* 3. 4 Wallet & Status Badges */}
       <WalletBadgesRow />
 
-      {/* 4. RSVP Decision Box (Disabled in Preview Mode) */}
-      <RsvpDemoCard />
+      {/* 4. RSVP Decision Box & Deadline (Premium only) */}
+      {isPremium && (
+        <>
+          <RsvpDemoCard />
+          <RsvpDeadlineAlert />
+        </>
+      )}
 
-      {/* 5. RSVP Deadline Alert Box */}
-      <RsvpDeadlineAlert />
-
-      {/* 6. Event Details Card */}
+      {/* 5. Event Details Card */}
       <EventDetailsPreviewCard
         eventDetails={eventDetails}
         eventSettings={eventSettings}
       />
 
-      {/* 7. Important Note From Host Card */}
+      {/* 6. Important Note From Host Card */}
       <HostNotePreviewCard note={eventSettings?.ticketNote} />
 
-      {/* 8. 5-Item Security Notice Bar */}
+      {/* 7. 5-Item Security Notice Bar */}
       <SecurityNoticeBar />
 
-      {/* 9. Legal Terms Disclaimer */}
+      {/* 8. Legal Terms Disclaimer */}
       <TicketTermsDisclaimer />
     </div>
   );

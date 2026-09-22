@@ -19,6 +19,7 @@ import {
   CheckCircle2,
   X,
 } from "lucide-react";
+import { formatTo12Hour } from "@/lib/utils";
 
 export const StepEventPreview: React.FC = () => {
   const router = useRouter();
@@ -65,18 +66,15 @@ export const StepEventPreview: React.FC = () => {
 
   const eventDate = eventDetails?.eventDate || "mm/dd/yyyy";
   const endDate = eventDetails?.endDate || "mm/dd/yyyy";
-  const startTime = eventDetails?.startTime || "--:-- --";
-  const endTime = eventDetails?.endTime || "--:-- --";
+  const startTime = formatTo12Hour(eventDetails?.startTime) || "--:-- --";
+  const endTime = formatTo12Hour(eventDetails?.endTime) || "--:-- --";
 
   const venue = eventSettings?.venue || "Select venue";
-  const room = eventSettings?.room || "Hall A";
-  const venueState = eventSettings?.venueState || "Banasree_Dhaka_Bangladesh";
-  const city = eventSettings?.city || "Banasree,Dhaka,Bangladesh";
-  const postalCode = eventSettings?.postalCode || "Banasree_Dhaka_Bangladesh";
-  const venueContact = eventSettings?.venueContact || "+015467456469";
-
-  const venueGuestCapacity = eventSettings?.venueGuestCapacity || "e.g,500";
-  const estimateGuestCount = eventSettings?.estimateGuestCount || "e.g,400";
+  const room = eventSettings?.room || "N/A";
+  const address = eventSettings?.address || "";
+  const state = eventSettings?.state || eventSettings?.venueState || "Dhaka Division";
+  const city = eventSettings?.city || "Dhaka";
+  const postalCode = eventSettings?.postalCode || "1219";
 
   const handleEditClick = (guest: IEventPreviewGuest) => {
     setEditingGuest(guest);
@@ -330,14 +328,14 @@ export const StepEventPreview: React.FC = () => {
             />
           </div>
 
-          <div>
+          <div className="md:col-span-2">
             <label className="block text-xs font-semibold text-neutral-700 mb-1.5">
-              Venue State
+              Full Address
             </label>
             <input
               type="text"
               readOnly
-              value={venueState}
+              value={address}
               className="w-full px-3.5 py-2.5 text-xs sm:text-sm bg-neutral-50 border border-neutral-200/90 rounded-lg text-neutral-800 focus:outline-none"
             />
           </div>
@@ -356,6 +354,18 @@ export const StepEventPreview: React.FC = () => {
 
           <div>
             <label className="block text-xs font-semibold text-neutral-700 mb-1.5">
+              State
+            </label>
+            <input
+              type="text"
+              readOnly
+              value={state}
+              className="w-full px-3.5 py-2.5 text-xs sm:text-sm bg-neutral-50 border border-neutral-200/90 rounded-lg text-neutral-800 focus:outline-none"
+            />
+          </div>
+
+          <div className="md:col-span-2">
+            <label className="block text-xs font-semibold text-neutral-700 mb-1.5">
               Postal Code
             </label>
             <input
@@ -365,55 +375,10 @@ export const StepEventPreview: React.FC = () => {
               className="w-full px-3.5 py-2.5 text-xs sm:text-sm bg-neutral-50 border border-neutral-200/90 rounded-lg text-neutral-800 focus:outline-none"
             />
           </div>
-
-          <div>
-            <label className="block text-xs font-semibold text-neutral-700 mb-1.5">
-              Venue Contact
-            </label>
-            <input
-              type="text"
-              readOnly
-              value={venueContact}
-              className="w-full px-3.5 py-2.5 text-xs sm:text-sm bg-neutral-50 border border-neutral-200/90 rounded-lg text-neutral-800 focus:outline-none"
-            />
-          </div>
         </div>
       </section>
 
-      {/* 5. Attendance and Capacity */}
-      <section className="space-y-4">
-        <h2 className="text-base sm:text-lg font-bold font-space-grotesk text-neutral-900">
-          Attendance and Capacity
-        </h2>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div>
-            <label className="block text-xs font-semibold text-neutral-700 mb-1.5">
-              Venue Guest Capacity
-            </label>
-            <input
-              type="text"
-              readOnly
-              value={venueGuestCapacity}
-              className="w-full px-3.5 py-2.5 text-xs sm:text-sm bg-neutral-50 border border-neutral-200/90 rounded-lg text-neutral-800 focus:outline-none"
-            />
-          </div>
-
-          <div>
-            <label className="block text-xs font-semibold text-neutral-700 mb-1.5">
-              Estimate Guest Count
-            </label>
-            <input
-              type="text"
-              readOnly
-              value={estimateGuestCount}
-              className="w-full px-3.5 py-2.5 text-xs sm:text-sm bg-neutral-50 border border-neutral-200/90 rounded-lg text-neutral-800 focus:outline-none"
-            />
-          </div>
-        </div>
-      </section>
-
-      {/* 6. Guest List Table */}
+      {/* 5. Guest List Table */}
       <section className="space-y-4">
         <div className="overflow-x-auto rounded-xl border border-neutral-200/90 bg-white shadow-2xs">
           <table className="w-full text-left text-xs sm:text-sm border-collapse">
@@ -592,10 +557,10 @@ export const StepEventPreview: React.FC = () => {
 
             <div>
               <h3 className="text-xl font-bold font-space-grotesk text-neutral-900">
-                Event Published Successfully!
+                Event Created Successfully!
               </h3>
               <p className="text-xs sm:text-sm text-neutral-500 mt-1">
-                Your event &ldquo;{eventName}&rdquo; has been finalized and published. Your digital tickets and guest lists are active.
+                Your event &ldquo;{eventName}&rdquo; has been finalized. Your digital tickets and guest list are now active.
               </p>
             </div>
 

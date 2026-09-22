@@ -454,7 +454,7 @@ export const StepEventDetails: React.FC = () => {
           onClick={handleCancel}
           className="px-6 py-2.5 rounded-lg bg-neutral-100 hover:bg-neutral-200 text-neutral-700 text-xs sm:text-sm font-medium transition-all cursor-pointer"
         >
-          Cancel
+          Back
         </button>
 
         <button

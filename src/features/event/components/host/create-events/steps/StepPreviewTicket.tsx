@@ -67,6 +67,7 @@ export const StepPreviewTicket: React.FC = () => {
           <TicketPreviewCard
             eventDetails={eventDetails}
             eventSettings={eventSettings}
+            packageSelection={packageSelection}
           />
         </div>
       </div>

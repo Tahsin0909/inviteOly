@@ -64,13 +64,15 @@ export type TCreateEventDetailsSchema = z.infer<typeof createEventDetailsSchema>
  */
 export const createEventSettingsSchema = z.object({
   venue: z.string().min(1, "Venue is required"),
-  room: z.string().min(1, "Room is required"),
-  venueState: z.string().min(1, "Venue state is required"),
+  room: z.string().optional(),
+  address: z.string().min(1, "Full address is required"),
+  state: z.string().min(1, "State is required"),
+  venueState: z.string().optional(),
   city: z.string().min(1, "City is required"),
   postalCode: z.string().min(1, "Postal code is required"),
-  venueContact: z.string().min(1, "Venue contact is required"),
-  venueGuestCapacity: z.string().min(1, "Venue guest capacity is required"),
-  estimateGuestCount: z.string().min(1, "Estimated guest count is required"),
+  venueContact: z.string().optional(),
+  venueGuestCapacity: z.string().optional(),
+  estimateGuestCount: z.string().optional(),
   ticketNote: z.string().optional(),
 });
 

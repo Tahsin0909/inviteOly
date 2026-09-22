@@ -31,12 +31,10 @@ export const StepEventSettings: React.FC = () => {
     defaultValues: {
       venue: savedSettings?.venue || "",
       room: savedSettings?.room || "",
-      venueState: savedSettings?.venueState || "",
+      address: savedSettings?.address || "",
+      state: savedSettings?.state || savedSettings?.venueState || "",
       city: savedSettings?.city || "",
       postalCode: savedSettings?.postalCode || "",
-      venueContact: savedSettings?.venueContact || "",
-      venueGuestCapacity: savedSettings?.venueGuestCapacity || "",
-      estimateGuestCount: savedSettings?.estimateGuestCount || "",
       ticketNote: savedSettings?.ticketNote || "",
     },
   });
@@ -49,11 +47,19 @@ export const StepEventSettings: React.FC = () => {
           setValue(key as keyof TCreateEventSettingsSchema, val);
         }
       });
+      if (!savedSettings.state && savedSettings.venueState) {
+        setValue("state", savedSettings.venueState);
+      }
     }
   }, [savedSettings, setValue]);
 
   const onSubmit = (data: TCreateEventSettingsSchema) => {
-    dispatch(setEventSettings(data));
+    dispatch(
+      setEventSettings({
+        ...data,
+        venueState: data.state,
+      })
+    );
     // Advance to Step 4 (Preview Ticket)
     dispatch(setCurrentStep(4));
   };
@@ -99,7 +105,7 @@ export const StepEventSettings: React.FC = () => {
 
           <div>
             <label className="block text-xs sm:text-[13px] font-medium text-neutral-700 mb-1.5">
-              Room <span className="text-red-500">*</span>
+              Room
             </label>
             <input
               type="text"
@@ -120,37 +126,38 @@ export const StepEventSettings: React.FC = () => {
           </div>
         </div>
 
-        {/* Venue State & City */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
-          <div>
-            <label className="block text-xs sm:text-[13px] font-medium text-neutral-700 mb-1.5">
-              Venue State <span className="text-red-500">*</span>
-            </label>
-            <input
-              type="text"
-              placeholder="Banasree,Dhaka,Bangladesh"
-              {...register("venueState")}
-              className={cn(
-                "w-full px-4 py-2.5 rounded-xl border bg-white text-sm text-neutral-900 placeholder:text-neutral-400 focus:outline-none focus:ring-2 transition-all",
-                errors.venueState
-                  ? "border-red-400 focus:ring-red-200"
-                  : "border-neutral-200 focus:ring-[#C39B4C]/25 focus:border-[#C39B4C]"
-              )}
-            />
-            {errors.venueState && (
-              <p className="text-xs text-red-500 mt-1">
-                {errors.venueState.message}
-              </p>
+        {/* Full Address */}
+        <div>
+          <label className="block text-xs sm:text-[13px] font-medium text-neutral-700 mb-1.5">
+            Full Address <span className="text-red-500">*</span>
+          </label>
+          <input
+            type="text"
+            placeholder="e.g. 123 Main Street, Suite 100"
+            {...register("address")}
+            className={cn(
+              "w-full px-4 py-2.5 rounded-xl border bg-white text-sm text-neutral-900 placeholder:text-neutral-400 focus:outline-none focus:ring-2 transition-all",
+              errors.address
+                ? "border-red-400 focus:ring-red-200"
+                : "border-neutral-200 focus:ring-[#C39B4C]/25 focus:border-[#C39B4C]"
             )}
-          </div>
+          />
+          {errors.address && (
+            <p className="text-xs text-red-500 mt-1">
+              {errors.address.message}
+            </p>
+          )}
+        </div>
 
+        {/* City, State & Postal Code */}
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6">
           <div>
             <label className="block text-xs sm:text-[13px] font-medium text-neutral-700 mb-1.5">
               City <span className="text-red-500">*</span>
             </label>
             <input
               type="text"
-              placeholder="Banasree,Dhaka,Bangladesh"
+              placeholder="Dhaka"
               {...register("city")}
               className={cn(
                 "w-full px-4 py-2.5 rounded-xl border bg-white text-sm text-neutral-900 placeholder:text-neutral-400 focus:outline-none focus:ring-2 transition-all",
@@ -165,17 +172,36 @@ export const StepEventSettings: React.FC = () => {
               </p>
             )}
           </div>
-        </div>
 
-        {/* Postal Code & Venue Contact */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
+          <div>
+            <label className="block text-xs sm:text-[13px] font-medium text-neutral-700 mb-1.5">
+              State <span className="text-red-500">*</span>
+            </label>
+            <input
+              type="text"
+              placeholder="Dhaka Division"
+              {...register("state")}
+              className={cn(
+                "w-full px-4 py-2.5 rounded-xl border bg-white text-sm text-neutral-900 placeholder:text-neutral-400 focus:outline-none focus:ring-2 transition-all",
+                errors.state
+                  ? "border-red-400 focus:ring-red-200"
+                  : "border-neutral-200 focus:ring-[#C39B4C]/25 focus:border-[#C39B4C]"
+              )}
+            />
+            {errors.state && (
+              <p className="text-xs text-red-500 mt-1">
+                {errors.state.message}
+              </p>
+            )}
+          </div>
+
           <div>
             <label className="block text-xs sm:text-[13px] font-medium text-neutral-700 mb-1.5">
               Postal Code <span className="text-red-500">*</span>
             </label>
             <input
               type="text"
-              placeholder="Banasree,Dhaka,Bangladesh"
+              placeholder="1219"
               {...register("postalCode")}
               className={cn(
                 "w-full px-4 py-2.5 rounded-xl border bg-white text-sm text-neutral-900 placeholder:text-neutral-400 focus:outline-none focus:ring-2 transition-all",
@@ -190,95 +216,20 @@ export const StepEventSettings: React.FC = () => {
               </p>
             )}
           </div>
-
-          <div>
-            <label className="block text-xs sm:text-[13px] font-medium text-neutral-700 mb-1.5">
-              Venue Contact <span className="text-red-500">*</span>
-            </label>
-            <input
-              type="tel"
-              placeholder="+015487456489"
-              {...register("venueContact")}
-              className={cn(
-                "w-full px-4 py-2.5 rounded-xl border bg-white text-sm text-neutral-900 placeholder:text-neutral-400 focus:outline-none focus:ring-2 transition-all",
-                errors.venueContact
-                  ? "border-red-400 focus:ring-red-200"
-                  : "border-neutral-200 focus:ring-[#C39B4C]/25 focus:border-[#C39B4C]"
-              )}
-            />
-            {errors.venueContact && (
-              <p className="text-xs text-red-500 mt-1">
-                {errors.venueContact.message}
-              </p>
-            )}
-          </div>
         </div>
       </div>
 
-      {/* Section 2: Attendance and Capacity */}
+      {/* Section 2: Ticket Note */}
       <div className="space-y-4 pt-2">
         <h2 className="text-xl font-bold font-space-grotesk text-neutral-900">
-          Attendance and Capacity
-        </h2>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
-          <div>
-            <label className="block text-xs sm:text-[13px] font-medium text-neutral-700 mb-1.5">
-              Venue Guest Capacity <span className="text-red-500">*</span>
-            </label>
-            <input
-              type="text"
-              placeholder="e.g,500"
-              {...register("venueGuestCapacity")}
-              className={cn(
-                "w-full px-4 py-2.5 rounded-xl border bg-white text-sm text-neutral-900 placeholder:text-neutral-400 focus:outline-none focus:ring-2 transition-all",
-                errors.venueGuestCapacity
-                  ? "border-red-400 focus:ring-red-200"
-                  : "border-neutral-200 focus:ring-[#C39B4C]/25 focus:border-[#C39B4C]"
-              )}
-            />
-            {errors.venueGuestCapacity && (
-              <p className="text-xs text-red-500 mt-1">
-                {errors.venueGuestCapacity.message}
-              </p>
-            )}
-          </div>
-
-          <div>
-            <label className="block text-xs sm:text-[13px] font-medium text-neutral-700 mb-1.5">
-              Estimate Guest Count <span className="text-red-500">*</span>
-            </label>
-            <input
-              type="text"
-              placeholder="e.g,400"
-              {...register("estimateGuestCount")}
-              className={cn(
-                "w-full px-4 py-2.5 rounded-xl border bg-white text-sm text-neutral-900 placeholder:text-neutral-400 focus:outline-none focus:ring-2 transition-all",
-                errors.estimateGuestCount
-                  ? "border-red-400 focus:ring-red-200"
-                  : "border-neutral-200 focus:ring-[#C39B4C]/25 focus:border-[#C39B4C]"
-              )}
-            />
-            {errors.estimateGuestCount && (
-              <p className="text-xs text-red-500 mt-1">
-                {errors.estimateGuestCount.message}
-              </p>
-            )}
-          </div>
-        </div>
-      </div>
-
-      {/* Section 3: Ticket Note */}
-      <div className="space-y-4 pt-2">
-        <h2 className="text-xl font-bold font-space-grotesk text-neutral-900">
-          Ticket Note
+          NOTE FROM HOST
         </h2>
 
         <div>
           <textarea
             rows={5}
-            placeholder="Lorem ipsum dolor sit amet consectetur. Purus sem egestas suspendisse sit tristique libero massa imperdiet laoreet. Nunc iaculis pharetra enim integer feugiat. Arcu lectus consectetur vitae etiam urna urna congue ut metus. Orci montes mus a magnis lobortis quis faucibus eget. Morbi faucibus pulvinar tristique quis lectus. Sem nisi mauris tristique mauris lorem. Ut adipiscing viverra varius justo sit."
             {...register("ticketNote")}
+            placeholder="Write a personalized note for guests to display on their tickets, such as a welcome message or special instructions"
             className="w-full p-4 rounded-xl border border-neutral-200 bg-white text-sm text-neutral-900 placeholder:text-neutral-400 focus:outline-none focus:ring-2 focus:ring-[#C39B4C]/25 focus:border-[#C39B4C] transition-all leading-relaxed resize-y"
           />
         </div>

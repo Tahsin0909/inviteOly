@@ -5,6 +5,7 @@ import {
   ICreateEventDetailsForm,
   ICreateEventSettingsForm,
 } from "@/features/event/event.interface";
+import { formatTo12Hour } from "@/lib/utils";
 
 interface EventDetailsPreviewCardProps {
   eventDetails?: ICreateEventDetailsForm;
@@ -16,13 +17,29 @@ export const EventDetailsPreviewCard: React.FC<
 > = ({ eventDetails, eventSettings }) => {
   const eventType = eventDetails?.eventType || "Wedding Reception";
   const eventDate = eventDetails?.eventDate || "August 30, 2026";
-  const startTime = eventDetails?.startTime || "6:00 PM";
-  const endTime = eventDetails?.endTime || "11:00 PM";
+  const startTime = formatTo12Hour(eventDetails?.startTime) || "6:00 PM";
+  const endTime = formatTo12Hour(eventDetails?.endTime) || "11:00 PM";
 
   const room = eventSettings?.room || "The Grand Ballroom";
   const venue = eventSettings?.venue || "Ballroom A";
-  const address =
-    eventSettings?.venueState || "123 Main Street, New York, NY 10001";
+  const fullAddress = [
+    eventSettings?.address,
+    eventSettings?.city,
+    eventSettings?.state || eventSettings?.venueState,
+    eventSettings?.postalCode,
+  ]
+    .filter(Boolean)
+    .join(", ");
+  const address = fullAddress || "123 Main Street, New York, NY 10001";
+
+  // Event requirements
+  const dressCode = eventDetails?.dressCode || "Formal / Black Tie";
+  const idRequirement =
+    eventDetails?.idRequirement || "Government-Issued Photo ID Required";
+  const ageRestriction = eventDetails?.ageRestriction || "All Ages Welcome";
+  const ticketRequirement = eventDetails?.ticketRequirementAge
+    ? `Children under ${eventDetails.ticketRequirementAge} do not require a ticket`
+    : "All attendees require a valid ticket";
 
   return (
     <div className="bg-white border border-neutral-200/80 rounded-2xl p-5 sm:p-6 space-y-4 shadow-xs font-work-sans">
@@ -53,20 +70,45 @@ export const EventDetailsPreviewCard: React.FC<
 
         {/* Right Column */}
         <div className="space-y-1">
-          <p className="font-bold text-neutral-900 text-sm sm:text-[15px]">
-            {room}
-          </p>
+          {room && (
+            <p className="font-bold text-neutral-900 text-sm sm:text-[15px]">
+              {room}
+            </p>
+          )}
           <p className="text-neutral-600">{venue}</p>
           <p className="text-neutral-500">{address}</p>
         </div>
       </div>
 
-      {/* Parking Info Block */}
-      <div className="border-t border-neutral-100 pt-3.5 text-xs sm:text-[13px]">
-        <p className="font-bold text-neutral-900">Parking</p>
-        <p className="text-neutral-600 mt-0.5">
-          Parking Available At East Entrance.
-        </p>
+      {/* Event Requirements & Guidelines */}
+      <div className="border-t border-neutral-100 pt-3.5 grid grid-cols-1 sm:grid-cols-2 gap-3.5 text-xs sm:text-[13px]">
+        <div>
+          <p className="font-bold text-neutral-900">Dress Code</p>
+          <p className="text-neutral-600 mt-0.5">{dressCode}</p>
+        </div>
+
+        <div>
+          <p className="font-bold text-neutral-900">ID Requirement</p>
+          <p className="text-neutral-600 mt-0.5">{idRequirement}</p>
+        </div>
+
+        <div>
+          <p className="font-bold text-neutral-900">Age Restriction</p>
+          <p className="text-neutral-600 mt-0.5">{ageRestriction}</p>
+        </div>
+
+        <div>
+          <p className="font-bold text-neutral-900">Ticket Requirement</p>
+          <p className="text-neutral-600 mt-0.5">{ticketRequirement}</p>
+        </div>
+
+        {/* Parking Info Block */}
+        <div className="sm:col-span-2 pt-1 border-t border-neutral-100/60">
+          <p className="font-bold text-neutral-900">Parking</p>
+          <p className="text-neutral-600 mt-0.5">
+            Parking Available At East Entrance.
+          </p>
+        </div>
       </div>
     </div>
   );

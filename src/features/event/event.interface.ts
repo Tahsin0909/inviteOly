@@ -231,13 +231,15 @@ export interface ICreateEventDetailsForm {
 
 export interface ICreateEventSettingsForm {
   venue: string;
-  room: string;
-  venueState: string;
+  room?: string;
+  address: string;
+  state: string;
+  venueState?: string;
   city: string;
   postalCode: string;
-  venueContact: string;
-  venueGuestCapacity: string;
-  estimateGuestCount: string;
+  venueContact?: string;
+  venueGuestCapacity?: string;
+  estimateGuestCount?: string;
   ticketNote?: string;
 }
 
