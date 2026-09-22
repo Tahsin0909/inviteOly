@@ -63,11 +63,6 @@ export const RefereedCreateEvents: React.FC = () => {
         "James Smith (Host Partner)";
     const referralCode = activeUser?.referralCode || "HOST-REF-SMITH26";
 
-    const referredPackageId =
-        searchParams.get("package") ||
-        searchParams.get("packageId") ||
-        "intimate-standard";
-
     const renderCurrentStepComponent = () => {
         switch (currentStep) {
             case 1:
@@ -75,7 +70,6 @@ export const RefereedCreateEvents: React.FC = () => {
                     <StepPackage
                         isReferred={true}
                         referrerName={referrerName}
-                        packageId={referredPackageId}
                     />
                 );
             case 2:
@@ -93,7 +87,6 @@ export const RefereedCreateEvents: React.FC = () => {
                     <StepPackage
                         isReferred={true}
                         referrerName={referrerName}
-                        packageId={referredPackageId}
                     />
                 );
         }
@@ -152,8 +145,8 @@ export const RefereedCreateEvents: React.FC = () => {
                 <Sparkles className="h-4 w-4 text-[#C39B4C] shrink-0" />
                 <span>
                     <strong>Host Referral Benefit Active:</strong> Because you were referred by{" "}
-                    <strong>{referrerName}</strong>, your account receives expedited invoice processing,
-                    custom ticket branding, and VIP attendee roster allocation.
+                    <strong>{referrerName}</strong>, you receive <strong>$50 off Premium</strong> on every event size,
+                    expedited invoice processing, custom ticket branding, and VIP attendee roster allocation.
                 </span>
             </div>
 

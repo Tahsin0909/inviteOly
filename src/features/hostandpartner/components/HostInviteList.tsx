@@ -4,7 +4,7 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/redux/store";
 import { setActiveView } from "../store/hostandpartner.slice";
-import { Calendar, Clock, Plus, User } from "lucide-react";
+import { Calendar, Plus, User } from "lucide-react";
 
 export const HostInviteList: React.FC = () => {
   const dispatch = useDispatch();
@@ -29,7 +29,7 @@ export const HostInviteList: React.FC = () => {
 
         <button
           type="button"
-          onClick={() => dispatch(setActiveView("select-plan"))}
+          onClick={() => dispatch(setActiveView("invite-form"))}
           className="inline-flex items-center gap-2 px-5 py-2.5 bg-[#C39B4C] hover:bg-[#B38A3B] active:scale-[0.99] text-white text-xs sm:text-sm font-medium rounded-lg shadow-xs transition-all cursor-pointer shrink-0 self-start sm:self-auto"
         >
           <Plus className="size-4" />
@@ -49,12 +49,12 @@ export const HostInviteList: React.FC = () => {
             No host invitations yet
           </h3>
           <p className="text-xs sm:text-sm text-neutral-500 max-w-sm mx-auto mb-5">
-            Get started by inviting a host, selecting their event package tier,
-            and specifying event date and venue.
+            Get started by inviting a host, specifying event details,
+            and sending them an invitation.
           </p>
           <button
             type="button"
-            onClick={() => dispatch(setActiveView("select-plan"))}
+            onClick={() => dispatch(setActiveView("invite-form"))}
             className="inline-flex items-center gap-2 px-4 py-2 bg-[#C39B4C] hover:bg-[#B38A3B] text-white text-xs sm:text-sm font-medium rounded-lg shadow-xs transition-all cursor-pointer"
           >
             <Plus className="size-4" />
@@ -83,16 +83,11 @@ export const HostInviteList: React.FC = () => {
 
                 <div className="border-t border-neutral-100 my-4" />
 
-                {/* Date and Time Row */}
-                <div className="flex items-center justify-between text-xs text-neutral-600 font-medium font-work-sans mb-3">
+                {/* Event Date Row */}
+                <div className="flex items-center text-xs text-neutral-600 font-medium font-work-sans mb-3">
                   <div className="flex items-center gap-2">
                     <Calendar className="size-4 text-neutral-400 shrink-0" />
                     <span>{invite.eventDate}</span>
-                  </div>
-
-                  <div className="flex items-center gap-2">
-                    <Clock className="size-4 text-neutral-400 shrink-0" />
-                    <span>{invite.eventTime || "7:00 PM - 11:00 PM"}</span>
                   </div>
                 </div>
 

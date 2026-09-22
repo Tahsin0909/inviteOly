@@ -4,7 +4,6 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "@/redux/store";
 import HostInviteList from "./HostInviteList";
-import ChooseExperience from "./ChooseExperience";
 import InviteHostForm from "./InviteHostForm";
 
 export const InviteAHost: React.FC = () => {
@@ -14,9 +13,10 @@ export const InviteAHost: React.FC = () => {
 
     return (
         <div className="w-full">
-            {activeView === "select-plan" && <ChooseExperience />}
             {activeView === "invite-form" && <InviteHostForm />}
             {activeView === "list" && <HostInviteList />}
+            {/* Fallback for any legacy select-plan state to directly show invite-form */}
+            {activeView === "select-plan" && <InviteHostForm />}
         </div>
     );
 };

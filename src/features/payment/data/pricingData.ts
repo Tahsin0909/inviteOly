@@ -38,6 +38,8 @@ export const INVITE_PRICING_TIERS: IPricingTier[] = [
         description:
           "Create A More Exclusive, Personalized Experience For Every Guest-With All The Power Of Standard.",
         price: "$349",
+        referredPrice: "$299",
+        discountAmount: "$50 off",
         guestRange: "Up To 200 Guests",
         features: [
           "Everything Included In The Standard Package",
@@ -90,6 +92,8 @@ export const INVITE_PRICING_TIERS: IPricingTier[] = [
         description:
           "Create A More Exclusive, Personalized Experience For Every Guest-With All The Power Of Standard.",
         price: "$449",
+        referredPrice: "$399",
+        discountAmount: "$50 off",
         guestRange: "Up To 400 Guests",
         features: [
           "Everything Included In The Standard Package",
@@ -142,6 +146,8 @@ export const INVITE_PRICING_TIERS: IPricingTier[] = [
         description:
           "Create A More Exclusive, Personalized Experience For Every Guest-With All The Power Of Standard.",
         price: "$549",
+        referredPrice: "$499",
+        discountAmount: "$50 off",
         guestRange: "Up To 600 Guests",
         features: [
           "Everything Included In The Standard Package",

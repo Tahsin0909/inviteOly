@@ -1,18 +1,15 @@
 "use client";
 
-import { INVITE_PRICING_TIERS } from "@/features/payment/data/pricingData";
 import { initialVenues } from "@/features/venue/data/venue.data";
-import { RootState } from "@/redux/store";
 import { zodResolver } from "@hookform/resolvers/zod";
 import {
   ArrowLeft,
   Calendar,
-  CheckCircle2,
   ChevronDown,
 } from "lucide-react";
 import React from "react";
 import { useForm } from "react-hook-form";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { toast } from "sonner";
 import { IHostInvite } from "../hostandpartner.interface";
 import {
@@ -27,15 +24,6 @@ import {
 
 export const InviteHostForm: React.FC = () => {
   const dispatch = useDispatch();
-  const { selectedPlan, selectedTierId } = useSelector(
-    (state: RootState) => state.hostandpartner
-  );
-
-  const currentTier =
-    INVITE_PRICING_TIERS.find((t) => t.id === selectedTierId) ||
-    INVITE_PRICING_TIERS[0];
-
-  const plan = selectedPlan || currentTier.plans[0];
 
   const {
     register,
@@ -77,11 +65,11 @@ export const InviteHostForm: React.FC = () => {
       eventTime: "7:00 PM - 11:00 PM",
       totalGuest: 200,
       status: "Pending Confirmation",
-      packageId: plan.id,
-      packageName: plan.name,
-      tierId: currentTier.id,
-      tierLabel: `${currentTier.tab.label} (${currentTier.tab.sublabel})`,
-      packagePrice: plan.price || "$149",
+      packageId: "",
+      packageName: "Host Selects Package",
+      tierId: "",
+      tierLabel: "Host Selects Package",
+      packagePrice: "",
       createdAt: new Date().toISOString(),
     };
 
@@ -92,23 +80,15 @@ export const InviteHostForm: React.FC = () => {
   return (
     <div className="w-full max-w-4xl mx-auto space-y-6 font-work-sans pb-16">
       {/* Top Navigation */}
-      <div className="flex items-center justify-between">
+      <div>
         <button
           type="button"
-          onClick={() => dispatch(setActiveView("select-plan"))}
+          onClick={() => dispatch(setActiveView("list"))}
           className="inline-flex items-center gap-2 px-4 py-2 bg-white border border-neutral-200 hover:bg-neutral-50 text-neutral-800 text-xs sm:text-sm font-medium rounded-lg shadow-2xs transition-all cursor-pointer"
         >
           <ArrowLeft className="size-4" />
-          <span>Change Package</span>
+          <span>Back to Invitations</span>
         </button>
-
-        {/* Selected Package Banner */}
-        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#FFFBF0] border border-[#C39B4C]/40 text-xs text-[#C39B4C] font-semibold">
-          <CheckCircle2 className="size-3.5" />
-          <span>
-            {plan.name} ({currentTier.tab.label}) &bull; {plan.price || "Custom"}
-          </span>
-        </div>
       </div>
 
       {/* Main Card */}
@@ -118,7 +98,7 @@ export const InviteHostForm: React.FC = () => {
             Invite Host to Create Event
           </h1>
           <p className="text-xs sm:text-sm text-neutral-500 font-work-sans mt-1">
-            Provide the host and event booking details below. The host will receive an invitation to set up their event.
+            Provide the host and event booking details below. The host will receive an invitation to select their package and set up their event.
           </p>
         </div>
 
@@ -130,7 +110,6 @@ export const InviteHostForm: React.FC = () => {
             </label>
             <input
               type="text"
-              placeholder="John Doe"
               {...register("hostName")}
               className={`w-full px-4 py-2.5 rounded-xl border text-xs sm:text-sm text-neutral-900 placeholder:text-neutral-400 focus:outline-none transition-all bg-white ${errors.hostName
                 ? "border-red-400 focus:ring-2 focus:ring-red-200"
@@ -152,7 +131,6 @@ export const InviteHostForm: React.FC = () => {
               </label>
               <input
                 type="email"
-                placeholder="john.doe@example.com"
                 {...register("hostEmail")}
                 className={`w-full px-4 py-2.5 rounded-xl border text-xs sm:text-sm text-neutral-900 placeholder:text-neutral-400 focus:outline-none transition-all bg-white ${errors.hostEmail
                   ? "border-red-400 focus:ring-2 focus:ring-red-200"
@@ -172,7 +150,6 @@ export const InviteHostForm: React.FC = () => {
               </label>
               <input
                 type="tel"
-                placeholder="+(XXX)XXX-XXXX"
                 {...register("hostPhone")}
                 className="w-full px-4 py-2.5 rounded-xl border border-neutral-200 text-xs sm:text-sm text-neutral-900 placeholder:text-neutral-400 focus:outline-none focus:ring-2 focus:ring-[#C39B4C]/20 focus:border-[#C39B4C] transition-all bg-white"
               />
@@ -232,10 +209,10 @@ export const InviteHostForm: React.FC = () => {
             </div>
           </div>
 
-          {/* Event Date and Time */}
+          {/* Event Date */}
           <div className="pt-2">
             <h3 className="text-base sm:text-lg font-bold font-space-grotesk text-neutral-900 mb-4">
-              Event Date and Time
+              Event Date
             </h3>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">

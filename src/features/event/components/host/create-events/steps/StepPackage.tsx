@@ -13,20 +13,29 @@ import {
   ICreateEventPackageState,
 } from "@/features/event/event.interface";
 import { INVITE_PRICING_TIERS } from "@/features/payment/data/pricingData";
+import { useAuth } from "@/features/auth/hooks/useAuth";
 import { CheckCircle2, Star, Sparkles, Gem, Mail } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 interface StepPackageProps {
   isReferred?: boolean;
   referrerName?: string;
-  packageId?: string;
 }
 
 export const StepPackage: React.FC<StepPackageProps> = ({
   isReferred = false,
   referrerName = "James Smith (Host Partner)",
-  packageId = "intimate-standard",
 }) => {
+  const { user, profile } = useAuth();
+  const activeUser = user || profile;
+  const isHostReferred =
+    isReferred ||
+    Boolean(
+      activeUser?.referredBy ||
+      activeUser?.referredByHostId ||
+      activeUser?.referredByHostName
+    );
+
   const dispatch = useDispatch();
   const selectedPackage = useSelector(
     (state: RootState) => state.createEvent.packageSelection
@@ -62,120 +71,18 @@ export const StepPackage: React.FC<StepPackageProps> = ({
     dispatch(setCurrentStep(2));
   };
 
-  // If referred by partner, show only the single assigned/referred package
-  if (isReferred) {
-    let referredTier = INVITE_PRICING_TIERS[0];
-    let referredPlan = referredTier.plans[0];
-
-    for (const tier of INVITE_PRICING_TIERS) {
-      const found = tier.plans.find((p) => p.id === packageId);
-      if (found) {
-        referredTier = tier;
-        referredPlan = found;
-        break;
-      }
-    }
-
-    return (
-      <div className="w-full space-y-8 font-work-sans py-2">
-        {/* Header section */}
-        <div className="text-center space-y-2 max-w-xl mx-auto">
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#FFF4E5] border border-amber-200/80 text-[#D97706] text-xs font-semibold shadow-2xs">
-            <Sparkles className="size-3.5" />
-            <span>Partner Referred Package</span>
-          </div>
-          <h2 className="text-2xl sm:text-3xl font-bold font-space-grotesk text-neutral-900 tracking-tight">
-            Your Assigned Event Package
-          </h2>
-          <p className="text-xs sm:text-sm text-neutral-500 leading-relaxed">
-            Your event partner{" "}
-            <strong className="text-neutral-800 font-semibold">
-              {referrerName}
-            </strong>{" "}
-            has selected and assigned the following package for your event.
-          </p>
-        </div>
-
-        {/* Single Referred Package Card */}
-        <div className="max-w-lg mx-auto">
-          <div className="relative bg-white rounded-3xl border border-[#C39B4C] ring-2 ring-[#C39B4C]/20 shadow-md p-6 sm:p-8 flex flex-col justify-between">
-            {/* Top Ribbon */}
-            <div className="absolute -top-3.5 right-6 sm:right-8 bg-[#C39B4C] text-white px-3.5 py-1.5 rounded-b-lg shadow-sm flex items-center gap-1.5">
-              <Sparkles className="size-3 fill-white text-white" />
-              <span className="text-[10px] font-bold tracking-tight uppercase leading-none">
-                Partner Selected
-              </span>
-            </div>
-
-            <div>
-              {/* Icon badge */}
-              <div className="size-12 rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-2xs bg-[#FFF9EC] text-[#C39B4C]">
-                <Gem className="size-6" />
-              </div>
-
-              {/* Plan Name */}
-              <h3 className="text-xl sm:text-2xl font-bold font-space-grotesk text-neutral-900 text-center">
-                {referredPlan.name} Package
-              </h3>
-              <p className="text-xs sm:text-[13px] text-[#C39B4C] font-semibold text-center mt-1">
-                {referredTier.tab.label} Tier ({referredPlan.guestRange})
-              </p>
-
-              {/* Description */}
-              <p className="text-xs sm:text-[13px] text-neutral-500 font-work-sans text-center mt-2 leading-relaxed max-w-sm mx-auto">
-                {referredPlan.description}
-              </p>
-
-              {/* Price */}
-              <div className="text-center mt-6">
-                <span className="text-3xl sm:text-4xl font-bold font-space-grotesk tracking-tight text-[#C39B4C]">
-                  {referredPlan.price}
-                </span>
-                <p className="text-xs text-neutral-400 font-work-sans mt-0.5">
-                  {referredPlan.guestRange}
-                </p>
-              </div>
-
-              {/* Features List */}
-              <div className="space-y-3.5 mt-7 font-work-sans text-xs sm:text-[13px] text-neutral-800">
-                {referredPlan.features.map((feature, idx) => (
-                  <div key={idx} className="flex items-start gap-2.5">
-                    <CheckCircle2 className="size-4 sm:size-4.5 shrink-0 mt-0.5 text-[#C39B4C]" />
-                    <span className="leading-snug">{feature}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* Action Button */}
-            <div className="pt-8">
-              <button
-                type="button"
-                onClick={() =>
-                  handleSelectPlan(
-                    referredPlan.name.toLowerCase() === "premium"
-                      ? "premium"
-                      : "standard",
-                    referredPlan.name,
-                    referredPlan.price || "$149",
-                    referredPlan.guestRange,
-                    referredPlan.features,
-                    referredTier.tab.label
-                  )
-                }
-                className="w-full py-3.5 px-4 rounded-xl font-semibold text-sm transition-all cursor-pointer shadow-xs active:scale-[0.98] bg-[#C39B4C] hover:bg-[#b08b3e] text-white"
-              >
-                Confirm &amp; Continue with this Package
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-    );
-  }
-
   return (
     <div className="w-full space-y-8 font-work-sans py-2">
+      {/* Referred Host Welcome Banner */}
+      {isHostReferred && (
+        <div className="flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-amber-50/80 border border-[#C39B4C]/30 text-xs sm:text-sm text-amber-900 max-w-xl mx-auto shadow-2xs">
+          <Sparkles className="size-4 text-[#C39B4C] shrink-0" />
+          <span>
+            Referred by <strong>{referrerName}</strong>. You receive an exclusive <strong>$50 off Premium</strong> on any event size!
+          </span>
+        </div>
+      )}
+
       {/* Header section */}
       <div className="text-center space-y-2 max-w-xl mx-auto">
         <h2 className="text-3xl sm:text-4xl font-bold font-space-grotesk text-neutral-900 tracking-tight">
@@ -284,6 +191,12 @@ export const StepPackage: React.FC<StepPackageProps> = ({
               selectedPackage?.category === activeCategory &&
               selectedPackage?.tier === (isPremium ? "premium" : "standard");
 
+            const hasReferralDiscount =
+              isHostReferred && isPremium && Boolean(plan.referredPrice);
+            const displayPrice = hasReferralDiscount
+              ? plan.referredPrice
+              : plan.price;
+
             return (
               <div
                 key={plan.id}
@@ -333,15 +246,34 @@ export const StepPackage: React.FC<StepPackageProps> = ({
 
                   {/* Price */}
                   <div className="text-center mt-6">
-                    <span
-                      className={cn(
-                        "text-3xl sm:text-4xl font-bold font-space-grotesk tracking-tight",
-                        isPremium ? "text-[#C39B4C]" : "text-neutral-900"
-                      )}
-                    >
-                      {plan.price}
-                    </span>
-                    <p className="text-xs text-neutral-400 font-work-sans mt-0.5">
+                    {hasReferralDiscount ? (
+                      <div className="space-y-1">
+                        <div className="flex items-baseline justify-center gap-2.5">
+                          <span className="text-lg sm:text-xl font-bold font-space-grotesk text-neutral-400 line-through">
+                            {plan.price}
+                          </span>
+                          <span className="text-3xl sm:text-4xl font-bold font-space-grotesk tracking-tight text-[#C39B4C]">
+                            {plan.referredPrice}
+                          </span>
+                        </div>
+                        <div className="flex items-center justify-center">
+                          <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-amber-100 text-amber-800 border border-amber-200 shadow-2xs">
+                            <Sparkles className="size-3 text-[#C39B4C]" />
+                            Special Pricing: $50 Off
+                          </span>
+                        </div>
+                      </div>
+                    ) : (
+                      <span
+                        className={cn(
+                          "text-3xl sm:text-4xl font-bold font-space-grotesk tracking-tight",
+                          isPremium ? "text-[#C39B4C]" : "text-neutral-900"
+                        )}
+                      >
+                        {plan.price}
+                      </span>
+                    )}
+                    <p className="text-xs text-neutral-400 font-work-sans mt-1">
                       {plan.guestRange}
                     </p>
                   </div>
@@ -370,7 +302,7 @@ export const StepPackage: React.FC<StepPackageProps> = ({
                       handleSelectPlan(
                         isPremium ? "premium" : "standard",
                         plan.name,
-                        plan.price || "$149",
+                        displayPrice || "$149",
                         plan.guestRange,
                         plan.features,
                         currentCategoryData.tab.label

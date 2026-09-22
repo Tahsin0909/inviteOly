@@ -23,6 +23,8 @@ export interface IPricingPlan {
   buttonVariant: TButtonVariant;
   isPopular?: boolean;
   ribbonText?: string;
+  referredPrice?: string;
+  discountAmount?: string;
 }
 
 export interface IPricingTab {
