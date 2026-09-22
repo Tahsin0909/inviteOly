@@ -34,7 +34,6 @@ const ID_REQUIREMENTS = [
   "Government ID Required",
   "18+ Photo ID Required",
   "21+ Photo ID Required",
-  "VIP Invitation & ID Required",
 ];
 
 const DRESS_CODES = [
@@ -58,9 +57,12 @@ export const StepEventDetails: React.FC = () => {
     register,
     handleSubmit,
     setValue,
+    watch,
+    trigger,
     formState: { errors },
   } = useForm<TCreateEventDetailsSchema>({
     resolver: zodResolver(createEventDetailsSchema),
+    mode: "onChange",
     defaultValues: {
       hostName: savedDetails?.hostName || "",
       email: savedDetails?.email || "",
@@ -77,6 +79,26 @@ export const StepEventDetails: React.FC = () => {
       ticketRequirementAge: savedDetails?.ticketRequirementAge || "",
     },
   });
+
+  const eventDate = watch("eventDate");
+  const endDate = watch("endDate");
+  const startTime = watch("startTime");
+  const endTime = watch("endTime");
+  const ticketRequirementAge = watch("ticketRequirementAge");
+
+  // Re-validate endDate whenever eventDate changes
+  useEffect(() => {
+    if (endDate) {
+      trigger("endDate");
+    }
+  }, [eventDate, endDate, trigger]);
+
+  // Re-validate endTime whenever startTime, eventDate, or endDate changes
+  useEffect(() => {
+    if (endTime) {
+      trigger("endTime");
+    }
+  }, [startTime, eventDate, endDate, endTime, trigger]);
 
   // Re-sync with Redux when mounted if savedDetails change
   useEffect(() => {
@@ -106,13 +128,13 @@ export const StepEventDetails: React.FC = () => {
       {/* Section 1: New Event / Host Information */}
       <div className="space-y-4">
         <h2 className="text-xl font-bold font-space-grotesk text-neutral-900">
-          New Event
+          Host’s Information
         </h2>
 
         {/* Host or Client Name */}
         <div>
           <label className="block text-xs sm:text-[13px] font-medium text-neutral-700 mb-1.5">
-            Host or Client Name <span className="text-red-500">*</span>
+            Name <span className="text-red-500">*</span>
           </label>
           <input
             type="text"
@@ -275,6 +297,7 @@ export const StepEventDetails: React.FC = () => {
               <input
                 type="date"
                 placeholder="mm/dd/yyyy"
+                min={eventDate || undefined}
                 {...register("endDate")}
                 className={cn(
                   "w-full px-4 py-2.5 rounded-xl border bg-white text-sm text-neutral-900 placeholder:text-neutral-400 focus:outline-none focus:ring-2 transition-all",
@@ -324,6 +347,11 @@ export const StepEventDetails: React.FC = () => {
             <input
               type="time"
               placeholder="--:-- --"
+              min={
+                eventDate && endDate && eventDate === endDate && startTime
+                  ? startTime
+                  : undefined
+              }
               {...register("endTime")}
               className={cn(
                 "w-full px-4 py-2.5 rounded-xl border bg-white text-sm text-neutral-900 placeholder:text-neutral-400 focus:outline-none focus:ring-2 transition-all",
@@ -344,11 +372,11 @@ export const StepEventDetails: React.FC = () => {
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
           <div>
             <label className="block text-xs sm:text-[13px] font-medium text-neutral-700 mb-1.5">
-              Age Restriction
+              Age Requirement
             </label>
             <input
               type="text"
-              placeholder="Write restriction age"
+              placeholder="All Ages / 18+ / 21+ / Custom Age"
               {...register("ageRestriction")}
               className="w-full px-4 py-2.5 rounded-xl border border-neutral-200 bg-white text-sm text-neutral-900 placeholder:text-neutral-400 focus:outline-none focus:ring-2 focus:ring-[#C39B4C]/25 focus:border-[#C39B4C] transition-all"
             />
@@ -399,13 +427,18 @@ export const StepEventDetails: React.FC = () => {
 
           <div>
             <label className="block text-xs sm:text-[13px] font-medium text-neutral-700 mb-1.5">
-              Ticket Requirement{" "}
+              Ticket Age Exception{" "}
               <span className="text-neutral-400 font-normal">
-                (Children Under [Age] Do Not Require a Ticket)
+                (Children Under{" "}
+                {ticketRequirementAge && ticketRequirementAge.toString().trim() !== ""
+                  ? ticketRequirementAge.toString().trim()
+                  : "[Age]"}{" "}
+                Do Not Require a Ticket)
               </span>
             </label>
             <input
-              type="text"
+              type="number"
+              min="0"
               placeholder="5"
               {...register("ticketRequirementAge")}
               className="w-full px-4 py-2.5 rounded-xl border border-neutral-200 bg-white text-sm text-neutral-900 placeholder:text-neutral-400 focus:outline-none focus:ring-2 focus:ring-[#C39B4C]/25 focus:border-[#C39B4C] transition-all"

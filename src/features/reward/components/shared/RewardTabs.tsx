@@ -21,7 +21,7 @@ export const RewardTabs: React.FC<RewardTabsProps> = ({
           : "text-neutral-500 hover:text-neutral-800 font-medium"
           }`}
       >
-        Pending & Approved
+        Pending Reward
         {activeTab === "pending" && (
           <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-[#C39B4C] rounded-full" />
         )}

@@ -133,3 +133,4 @@ export const PartnerPendingRewardTable: React.FC<
 };
 
 export default PartnerPendingRewardTable;
+

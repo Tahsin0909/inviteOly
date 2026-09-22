@@ -78,3 +78,4 @@ export const PartnerPayoutHistoryTable: React.FC<
 };
 
 export default PartnerPayoutHistoryTable;
+
