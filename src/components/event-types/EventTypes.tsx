@@ -68,11 +68,19 @@ const DEFAULT_EVENT_TYPES: readonly EventTypeItem[] = [
         alt: "Luxury private party with elegant ambient lighting",
         href: "/events/private-parties",
     },
+    // {
+    //     id: "cultural-events",
+    //     title: "Cultural Events",
+    //     image:
+    //         "https://images.unsplash.com/photo-1506157786151-b8491531f063?w=1200&auto=format&fit=crop&q=90",
+    //     alt: "Large-scale cultural event with dramatic stage lighting",
+    //     href: "/events/cultural",
+    // },
     {
         id: "cultural-events",
         title: "Cultural Events",
         image:
-            "https://images.unsplash.com/photo-1506157786151-b8491531f063?w=1200&auto=format&fit=crop&q=90",
+            "/culturalImage.jpg",
         alt: "Large-scale cultural event with dramatic stage lighting",
         href: "/events/cultural",
     },

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 "use client";
 
 import React, { useEffect, useRef, useState } from "react";
@@ -139,7 +140,7 @@ const CreateEventCta: React.FC<CreateEventCtaProps> = ({
                 <div className="max-w-xl text-left">
                     {/* Main Headline */}
                     <h2 className="font-space-grotesk font-bold text-white uppercase text-2xl sm:text-3xl md:text-4xl lg:text-[42px] leading-tight tracking-tight drop-shadow-xs">
-                        {title}
+                        SIMPLE PRICING <br /> NO HIDDEN FEES.
                     </h2>
 
                     {/* Subtitle */}
