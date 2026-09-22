@@ -6,7 +6,7 @@ export const INVITE_PRICING_TIERS: IPricingTier[] = [
     tab: {
       id: "intimate",
       label: "Intimate",
-      sublabel: "Up To 200",
+      sublabel: "Up To 200 Guests",
     },
     plans: [
       {
@@ -16,7 +16,7 @@ export const INVITE_PRICING_TIERS: IPricingTier[] = [
         description:
           "Everything You Need To Manage A Smooth, Organized Event From One Powerful Dashboard.",
         price: "$149",
-        guestRange: "Up To 200",
+        guestRange: "Up To 200 Guests",
         features: [
           "Secure QR-Code Tickets For A Premium Guest Entry Experience",
           "Easy-To-Use Host Dashboard To Manage And Send Tickets From",
@@ -37,8 +37,8 @@ export const INVITE_PRICING_TIERS: IPricingTier[] = [
         ribbonText: "Most Popular",
         description:
           "Create A More Exclusive, Personalized Experience For Every Guest-With All The Power Of Standard.",
-        price: "$399",
-        guestRange: "Up To 200",
+        price: "$349",
+        guestRange: "Up To 200 Guests",
         features: [
           "Everything Included In The Standard Package",
           "Each Ticket Is Personalized With The Individual Guest's Name.",
@@ -58,7 +58,7 @@ export const INVITE_PRICING_TIERS: IPricingTier[] = [
     tab: {
       id: "signature",
       label: "Signature",
-      sublabel: "Up To 400",
+      sublabel: "Up To 400 Guests",
     },
     plans: [
       {
@@ -67,8 +67,8 @@ export const INVITE_PRICING_TIERS: IPricingTier[] = [
         iconType: "standard",
         description:
           "Everything You Need To Manage A Smooth, Organized Event From One Powerful Dashboard.",
-        price: "$299",
-        guestRange: "Up To 400",
+        price: "$249",
+        guestRange: "Up To 400 Guests",
         features: [
           "Secure QR-Code Tickets For A Premium Guest Entry Experience",
           "Easy-To-Use Host Dashboard To Manage And Send Tickets From",
@@ -90,7 +90,7 @@ export const INVITE_PRICING_TIERS: IPricingTier[] = [
         description:
           "Create A More Exclusive, Personalized Experience For Every Guest-With All The Power Of Standard.",
         price: "$449",
-        guestRange: "Up To 400",
+        guestRange: "Up To 400 Guests",
         features: [
           "Everything Included In The Standard Package",
           "Each Ticket Is Personalized With The Individual Guest's Name.",
@@ -110,7 +110,7 @@ export const INVITE_PRICING_TIERS: IPricingTier[] = [
     tab: {
       id: "grand",
       label: "Grand",
-      sublabel: "Up To 600",
+      sublabel: "Up To 600 Guests",
     },
     plans: [
       {
@@ -119,8 +119,8 @@ export const INVITE_PRICING_TIERS: IPricingTier[] = [
         iconType: "standard",
         description:
           "Everything You Need To Manage A Smooth, Organized Event From One Powerful Dashboard.",
-        price: "$449",
-        guestRange: "Up To 600",
+        price: "$349",
+        guestRange: "Up To 600 Guests",
         features: [
           "Secure QR-Code Tickets For A Premium Guest Entry Experience",
           "Easy-To-Use Host Dashboard To Manage And Send Tickets From",
@@ -141,8 +141,8 @@ export const INVITE_PRICING_TIERS: IPricingTier[] = [
         ribbonText: "Most Popular",
         description:
           "Create A More Exclusive, Personalized Experience For Every Guest-With All The Power Of Standard.",
-        price: "$599",
-        guestRange: "Up To 600",
+        price: "$549",
+        guestRange: "Up To 600 Guests",
         features: [
           "Everything Included In The Standard Package",
           "Each Ticket Is Personalized With The Individual Guest's Name.",
@@ -162,29 +162,23 @@ export const INVITE_PRICING_TIERS: IPricingTier[] = [
     tab: {
       id: "custom",
       label: "Custom",
-      sublabel: "600+",
+      sublabel: "600+ Guests",
     },
     plans: [
       {
         id: "custom-quote",
-        name: "Custom",
+        name: "Custom Event",
         iconType: "costume",
         isPopular: true,
         ribbonText: "Bespoke",
         description:
-          "Tailored High-Capacity Event Solutions With Dedicated Support, Custom Integrations & VIP Concierge.",
-        price: "Custom",
-        guestRange: "600+ Guests",
+          "",
+        price: "",
+        guestRange: "",
         features: [
-          "Everything Included In Standard & Premium",
-          "Unlimited Or High-Capacity Guest Allotment (600+ Attendees)",
-          "Dedicated Account Manager & VIP Event Concierge",
-          "Custom Digital Ticket Pass & Invitation Card Branding",
-          "Multi-Gate Scanning App Logistics & Onsite Support",
-          "Bespoke RSVP Flow & Custom Data Collection Fields",
-          "Direct Invoice Billing & Wire Transfer Payment Terms",
+          "Planning an event with more than 600 guests or needs that do not fit our standard packages? Contact us to discuss your event, receive a custom quote, and learn how InviteOly may be able to assist with your guest-management and entry needs.",
         ],
-        buttonText: "Request Custom Quote",
+        buttonText: "Contact Us for a Custom Quote",
         buttonVariant: "solid",
       },
     ],
