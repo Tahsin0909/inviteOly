@@ -29,6 +29,13 @@ const EVENT_TYPES = [
   "Other Luxury Event",
 ];
 
+const AGE_RESTRICTIONS = [
+  "All Ages",
+  "18+",
+  "21+",
+  "Custom Age",
+];
+
 const ID_REQUIREMENTS = [
   "Not Required",
   "Government ID Required",
@@ -85,6 +92,24 @@ export const StepEventDetails: React.FC = () => {
   const startTime = watch("startTime");
   const endTime = watch("endTime");
   const ticketRequirementAge = watch("ticketRequirementAge");
+  const ageRestriction = watch("ageRestriction");
+
+  const [customAge, setCustomAge] = React.useState(() => {
+    if (
+      savedDetails?.ageRestriction &&
+      !["All Ages", "18+", "21+"].includes(savedDetails.ageRestriction)
+    ) {
+      return savedDetails.ageRestriction === "Custom Age"
+        ? ""
+        : savedDetails.ageRestriction;
+    }
+    return "";
+  });
+
+  const isCustomAge = Boolean(
+    ageRestriction &&
+    !["All Ages", "18+", "21+"].includes(ageRestriction)
+  );
 
   // Re-validate endDate whenever eventDate changes
   useEffect(() => {
@@ -372,14 +397,60 @@ export const StepEventDetails: React.FC = () => {
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
           <div>
             <label className="block text-xs sm:text-[13px] font-medium text-neutral-700 mb-1.5">
-              Age Requirement
+              Age Restriction
             </label>
-            <input
-              type="text"
-              placeholder="All Ages / 18+ / 21+ / Custom Age"
-              {...register("ageRestriction")}
-              className="w-full px-4 py-2.5 rounded-xl border border-neutral-200 bg-white text-sm text-neutral-900 placeholder:text-neutral-400 focus:outline-none focus:ring-2 focus:ring-[#C39B4C]/25 focus:border-[#C39B4C] transition-all"
-            />
+            <div className="relative">
+              <select
+                value={
+                  ["All Ages", "18+", "21+"].includes(ageRestriction || "")
+                    ? ageRestriction
+                    : isCustomAge
+                      ? "Custom Age"
+                      : ""
+                }
+                onChange={(e) => {
+                  const val = e.target.value;
+                  if (val === "Custom Age") {
+                    setValue(
+                      "ageRestriction",
+                      customAge ? customAge : "Custom Age",
+                      { shouldValidate: true }
+                    );
+                  } else {
+                    setValue("ageRestriction", val, { shouldValidate: true });
+                  }
+                }}
+                className="w-full px-4 py-2.5 rounded-xl border border-neutral-200 bg-white text-sm text-neutral-900 appearance-none focus:outline-none focus:ring-2 focus:ring-[#C39B4C]/25 focus:border-[#C39B4C] transition-all cursor-pointer"
+              >
+                <option value="">Select Age Restriction</option>
+                {AGE_RESTRICTIONS.map((age) => (
+                  <option key={age} value={age}>
+                    {age}
+                  </option>
+                ))}
+              </select>
+              <ChevronDown className="absolute right-3.5 top-1/2 -translate-y-1/2 size-4 text-neutral-400 pointer-events-none" />
+            </div>
+
+            {isCustomAge && (
+              <div className="mt-2">
+                <input
+                  type="text"
+                  placeholder="Specify Custom Age (e.g. 16+ or 25+)"
+                  value={customAge}
+                  onChange={(e) => {
+                    const val = e.target.value;
+                    setCustomAge(val);
+                    setValue(
+                      "ageRestriction",
+                      val.trim() ? val.trim() : "Custom Age",
+                      { shouldValidate: true }
+                    );
+                  }}
+                  className="w-full px-4 py-2 rounded-xl border border-neutral-200 bg-white text-sm text-neutral-900 placeholder:text-neutral-400 focus:outline-none focus:ring-2 focus:ring-[#C39B4C]/25 focus:border-[#C39B4C] transition-all"
+                />
+              </div>
+            )}
           </div>
 
           <div>
