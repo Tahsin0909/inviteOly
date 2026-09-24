@@ -17,6 +17,9 @@ export function DashboardHeader() {
   const subSection = pathSegments[1];
 
   const formatTitle = (str: string) => {
+    if (str === "r-create-events") {
+      return "Create Event";
+    }
     return str
       .split("-")
       .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
