@@ -1,7 +1,6 @@
-import React from "react";
-import Image from "next/image";
-import Link from "next/link";
 import { cn } from "@/lib/utils";
+import Image from "next/image";
+import React from "react";
 
 export interface EventTypeItem {
     id: string;
@@ -123,9 +122,8 @@ const EventTypes: React.FC<EventTypesProps> = ({
                 {/* 6-Card Event Types Grid */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6 lg:gap-7">
                     {events.map((event) => (
-                        <Link
+                        <div
                             key={event.id}
-                            href={event.href || "#"}
                             className={cn(
                                 "group relative block aspect-[16/11] sm:aspect-[16/11] w-full rounded-2xl sm:rounded-[22px] overflow-hidden",
                                 "border border-white/10 hover:border-primary/60",
@@ -175,7 +173,7 @@ const EventTypes: React.FC<EventTypesProps> = ({
                                     {event.title}
                                 </span>
                             </div>
-                        </Link>
+                        </div>
                     ))}
                 </div>
             </div>

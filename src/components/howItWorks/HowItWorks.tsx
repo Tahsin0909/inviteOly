@@ -70,15 +70,14 @@ const DEFAULT_STEPS: readonly HowItWorksStep[] = [
 ];
 
 const HowItWorks: React.FC<HowItWorksProps> = ({
-    eyebrow = "HOW IT WORKS",
+    eyebrow = "EASY STEPS",
     title = "FROM INVITATION TO CHECK-IN, MADE SIMPLE",
     steps = DEFAULT_STEPS,
     className,
 }) => {
     return (
         <section
-            id="how-it-works"
-            aria-label="How it works"
+
             className={cn(
                 "pt-16 sm:pt-20 md:pt-24 pb-10 sm:pb-14 md:pb-16 bg-background",
                 className

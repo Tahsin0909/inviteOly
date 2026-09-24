@@ -147,23 +147,8 @@ export const StepPackage: React.FC<StepPackageProps> = ({
               Custom Enterprise Package
             </h3>
             <p className="text-xs sm:text-sm text-neutral-500 mt-2 font-work-sans leading-relaxed">
-              Designed for large luxury galas, multi-venue festivals, and events
-              with 600+ guests. Get a tailored quote and dedicated event concierge.
+              Planning an event with more than 600 guests or needs that do not fit our standard packages? Contact us to discuss your event, receive a custom quote, and learn how InviteOly may be able to assist with your guest-management and entry needs.
             </p>
-          </div>
-          <div className="py-4 border-y border-neutral-100 text-left space-y-3 font-work-sans text-xs sm:text-sm text-neutral-700">
-            <div className="flex items-center gap-2.5">
-              <CheckCircle2 className="size-4 text-[#C39B4C] shrink-0" />
-              <span>Unlimited attendees and tiered entry zones</span>
-            </div>
-            <div className="flex items-center gap-2.5">
-              <CheckCircle2 className="size-4 text-[#C39B4C] shrink-0" />
-              <span>Custom white-label branding &amp; VIP ticket design</span>
-            </div>
-            <div className="flex items-center gap-2.5">
-              <CheckCircle2 className="size-4 text-[#C39B4C] shrink-0" />
-              <span>On-site check-in attendants &amp; scanner hardware</span>
-            </div>
           </div>
           <button
             type="button"
