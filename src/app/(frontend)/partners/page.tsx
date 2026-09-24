@@ -33,11 +33,11 @@ import {
 import { WHATSAPP_SUPPORT_URL } from "@/constants/sidebarMenu";
 
 export const metadata: Metadata = {
-  title: "Partner Program | InviteOnly - A Premium Service Your Clients Will Remember",
+  title: "Partner Program | InviteOly - A Premium Service Your Clients Will Remember",
   description:
-    "Join InviteOnly’s Partner Program. Offer secure QR-code tickets, live guest check-in, and capacity control without technology development expenses. Earn a 10% Partner Reward on qualifying paid bookings.",
+    "Join InviteOly’s Partner Program. Offer secure QR-code tickets, live guest check-in, and capacity control without technology development expenses. Earn a 10% Partner Reward on qualifying paid bookings.",
   keywords: [
-    "InviteOnly Partner Program",
+    "InviteOly Partner Program",
     "event venue partnership",
     "wedding planner ticketing",
     "banquet hall guest management",
@@ -126,14 +126,14 @@ const WHY_PARTNER_PILLARS = [
     icon: Megaphone,
     title: "Strengthen Your Marketing",
     description:
-      "Gain exposure as an InviteOnly Partner through website listings, partnership announcements, and social-media opportunities.",
+      "Gain exposure as an InviteOly Partner through website listings, partnership announcements, and social-media opportunities.",
   },
 ];
 
 // Partner Responsibilities checklist from Page 9
 const PARTNER_RESPONSIBILITIES = [
   "Provide and assign professional Door Assistants.",
-  "Ensure Door Assistants download the InviteOnly Scan App.",
+  "Ensure Door Assistants download the InviteOly Scan App.",
   "Provide a compatible smartphone with a working camera.",
   "Provide a backup scanning device.",
   "Provide a power bank or reliable charging option.",
@@ -182,15 +182,15 @@ const TERMINATION_VIOLATIONS = [
   "Sharing Scanner Login Codes with unauthorized individuals",
   "Intentionally allowing unauthorized guests to enter an event",
   "Manipulating tickets, scans, check-in records, or event capacity",
-  "Impersonating InviteOnly or falsely claiming to represent the company",
-  "Creating unauthorized InviteOnly social-media accounts, websites, or business profiles",
-  "Collecting money or entering agreements on behalf of InviteOnly without authorization",
+  "Impersonating InviteOly or falsely claiming to represent the company",
+  "Creating unauthorized InviteOly social-media accounts, websites, or business profiles",
+  "Collecting money or entering agreements on behalf of InviteOly without authorization",
   "Harassment, discrimination, threats, violence, or unsafe conduct",
-  "Serious or repeated mistreatment of Hosts, guests, or InviteOnly representatives",
-  "Copying, reselling, reverse engineering, or misusing InviteOnly technology",
-  "Using InviteOnly information or materials to create or support a competing service",
+  "Serious or repeated mistreatment of Hosts, guests, or InviteOly representatives",
+  "Copying, reselling, reverse engineering, or misusing InviteOly technology",
+  "Using InviteOly information or materials to create or support a competing service",
   "Abandoning confirmed event-entry responsibilities",
-  "Violating applicable laws or placing InviteOnly, its Hosts, or guests at significant risk",
+  "Violating applicable laws or placing InviteOly, its Hosts, or guests at significant risk",
 ];
 
 export default function PartnersLandingPage() {
@@ -209,7 +209,7 @@ export default function PartnersLandingPage() {
             <div className="lg:col-span-7 space-y-6">
               <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#B89047]/15 border border-[#B89047]/30 text-[#E5C170] text-xs font-semibold tracking-[0.2em] uppercase font-space-grotesk">
                 <Sparkles className="size-3.5 text-[#E5C170]" />
-                <span>InviteOnly Partner Program</span>
+                <span>InviteOly Partner Program</span>
               </div>
 
               <div>
@@ -222,7 +222,7 @@ export default function PartnersLandingPage() {
               </div>
 
               <p className="text-sm sm:text-base text-neutral-300 leading-relaxed max-w-xl">
-                InviteOnly’s Partner Program provides a premium guest-management platform that allows event professionals to offer secure QR-code tickets, live guest check-in, and capacity control—without the expense of developing and maintaining their own technology.
+                InviteOly’s Partner Program provides a premium guest-management platform that allows event professionals to offer secure QR-code tickets, live guest check-in, and capacity control—without the expense of developing and maintaining their own technology.
               </p>
 
               <div className="p-4 rounded-2xl bg-neutral-800/50 border border-neutral-700/60 flex items-center gap-3">
@@ -263,7 +263,7 @@ export default function PartnersLandingPage() {
               <div className="relative rounded-2xl overflow-hidden border border-neutral-700/70 shadow-2xl group">
                 <Image
                   src="/authSideImage.png"
-                  alt="Luxury event entry with InviteOnly scanning"
+                  alt="Luxury event entry with InviteOly scanning"
                   width={600}
                   height={700}
                   className="w-full h-[400px] sm:h-[460px] object-cover transition-transform duration-700 group-hover:scale-105"
@@ -282,7 +282,7 @@ export default function PartnersLandingPage() {
                     </span>
                   </div>
                   <p className="text-xs text-neutral-300 leading-snug">
-                    Door staff verify single-scan tickets in under a second with the InviteOnly Scan App.
+                    Door staff verify single-scan tickets in under a second with the InviteOly Scan App.
                   </p>
                 </div>
               </div>
@@ -299,10 +299,10 @@ export default function PartnersLandingPage() {
               PARTNER NETWORK
             </span>
             <h2 className="text-3xl sm:text-4xl font-bold font-space-grotesk text-white">
-              Who Can Become an InviteOnly Partner?
+              Who Can Become an InviteOly Partner?
             </h2>
             <p className="text-sm sm:text-base text-neutral-400 max-w-2xl mx-auto leading-relaxed">
-              InviteOnly Partners are event professionals and businesses that regularly work with clients hosting private events, including:
+              InviteOly Partners are event professionals and businesses that regularly work with clients hosting private events, including:
             </p>
           </div>
 
@@ -339,7 +339,7 @@ export default function PartnersLandingPage() {
                 Partner Expectations & Quality Standard
               </h3>
               <p className="text-xs sm:text-sm text-neutral-300 leading-relaxed">
-                Partners should be able to confidently recommend InviteOnly to their clients and explain how the service works using provided materials. Partners must provide trained Door Assistants to scan tickets using the InviteOnly Scan App.
+                Partners should be able to confidently recommend InviteOly to their clients and explain how the service works using provided materials. Partners must provide trained Door Assistants to scan tickets using the InviteOly Scan App.
               </p>
               <p className="text-xs text-neutral-400 leading-relaxed border-t border-neutral-800 pt-3">
                 Partnership applications are reviewed to ensure each Partner is a good fit and can provide a professional experience for clients and guests.
@@ -369,7 +369,7 @@ export default function PartnersLandingPage() {
               PARTNER BENEFITS
             </span>
             <h2 className="text-3xl sm:text-4xl font-bold font-space-grotesk text-white">
-              Why Partner with InviteOnly?
+              Why Partner with InviteOly?
             </h2>
             <p className="text-sm text-neutral-400">
               Deliver a world-class arrival experience while elevating your venue&apos;s prestige.
@@ -459,7 +459,7 @@ export default function PartnersLandingPage() {
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            {/* Card 1: InviteOnly Partner Status (Page 5) */}
+            {/* Card 1: InviteOly Partner Status (Page 5) */}
             <div className="rounded-3xl bg-neutral-900/60 border border-neutral-800 p-8 sm:p-10 flex flex-col justify-between space-y-6">
               <div className="space-y-6">
                 <div className="flex items-center justify-between">
@@ -473,10 +473,10 @@ export default function PartnersLandingPage() {
 
                 <div>
                   <h3 className="text-2xl font-bold font-space-grotesk text-white">
-                    InviteOnly Partner Status
+                    InviteOly Partner Status
                   </h3>
                   <p className="text-xs sm:text-sm text-neutral-400 mt-2 leading-relaxed">
-                    InviteOnly Partners earn a 10% Partner Reward on qualifying paid bookings referred through their Partner Dashboard.
+                    InviteOly Partners earn a 10% Partner Reward on qualifying paid bookings referred through their Partner Dashboard.
                   </p>
                 </div>
 
@@ -544,10 +544,10 @@ export default function PartnersLandingPage() {
                   </p>
                   <ul className="space-y-3 text-xs sm:text-sm text-white">
                     {[
-                      "More frequent featured exposure on InviteOnly's social-media platforms",
+                      "More frequent featured exposure on InviteOly's social-media platforms",
                       "Priority consideration for website features and promotional opportunities",
                       "The Partner's custom logo displayed on eligible digital tickets",
-                      "Official recognition as a trusted InviteOnly Preferred Partner badge",
+                      "Official recognition as a trusted InviteOly Preferred Partner badge",
                     ].map((item, i) => (
                       <li key={i} className="flex items-start gap-2.5">
                         <BadgeCheck className="size-4.5 text-[#E5C170] shrink-0 mt-0.5" />
@@ -586,7 +586,7 @@ export default function PartnersLandingPage() {
               How to Become a Preferred Partner
             </h2>
             <p className="text-sm text-neutral-400">
-              InviteOnly Preferred Partners are recognized for consistently promoting InviteOnly and delivering exceptional client and guest experiences.
+              InviteOly Preferred Partners are recognized for consistently promoting InviteOly and delivering exceptional client and guest experiences.
             </p>
           </div>
 
@@ -603,11 +603,11 @@ export default function PartnersLandingPage() {
               <ul className="space-y-2 text-xs sm:text-sm text-neutral-300">
                 <li className="flex items-start gap-2">
                   <Check className="size-4 text-[#B89047] shrink-0 mt-0.5" />
-                  <span>Uses InviteOnly consistently throughout the year; or</span>
+                  <span>Uses InviteOly consistently throughout the year; or</span>
                 </li>
                 <li className="flex items-start gap-2">
                   <Check className="size-4 text-[#B89047] shrink-0 mt-0.5" />
-                  <span>Refers or services at least 10 InviteOnly events each year.</span>
+                  <span>Refers or services at least 10 InviteOly events each year.</span>
                 </li>
               </ul>
             </div>
@@ -627,7 +627,7 @@ export default function PartnersLandingPage() {
                 </li>
                 <li className="flex items-start gap-2">
                   <Check className="size-4 text-[#B89047] shrink-0 mt-0.5" />
-                  <span>Consistently follows InviteOnly Guest Entry Policies & Procedures.</span>
+                  <span>Consistently follows InviteOly Guest Entry Policies & Procedures.</span>
                 </li>
                 <li className="flex items-start gap-2">
                   <Check className="size-4 text-[#B89047] shrink-0 mt-0.5" />
@@ -639,7 +639,7 @@ export default function PartnersLandingPage() {
                 </li>
                 <li className="flex items-start gap-2">
                   <Check className="size-4 text-[#B89047] shrink-0 mt-0.5" />
-                  <span>Maintains a positive record with InviteOnly clients and guests.</span>
+                  <span>Maintains a positive record with InviteOly clients and guests.</span>
                 </li>
               </ul>
             </div>
@@ -656,26 +656,26 @@ export default function PartnersLandingPage() {
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs sm:text-sm text-neutral-300">
               <div className="flex items-start gap-2.5">
                 <Check className="size-4 text-[#B89047] shrink-0 mt-0.5" />
-                <span>Promotes InviteOnly as an available service to eligible clients.</span>
+                <span>Promotes InviteOly as an available service to eligible clients.</span>
               </div>
               <div className="flex items-start gap-2.5">
                 <Check className="size-4 text-[#B89047] shrink-0 mt-0.5" />
-                <span>Uses approved InviteOnly marketing materials to accurately explain the service.</span>
+                <span>Uses approved InviteOly marketing materials to accurately explain the service.</span>
               </div>
               <div className="flex items-start gap-2.5">
                 <Check className="size-4 text-[#B89047] shrink-0 mt-0.5" />
-                <span>Allows InviteOnly to showcase the partnership through testimonials, photos, or event examples when permission has been provided.</span>
+                <span>Allows InviteOly to showcase the partnership through testimonials, photos, or event examples when permission has been provided.</span>
               </div>
               <div className="flex items-start gap-2.5">
                 <Check className="size-4 text-[#B89047] shrink-0 mt-0.5" />
-                <span>Protects the branding, and service standards of InviteOnly.</span>
+                <span>Protects the branding, and service standards of InviteOly.</span>
               </div>
             </div>
 
             {/* 6-Month Review Callout Banner */}
             <div className="p-5 rounded-2xl bg-black border border-neutral-700 space-y-2">
               <p className="text-xs sm:text-sm text-white font-medium leading-relaxed">
-                Preferred Partner status is reviewed every six months to confirm that participating Partners continue to meet InviteOnly’s usage, service, and quality standards.
+                Preferred Partner status is reviewed every six months to confirm that participating Partners continue to meet InviteOly’s usage, service, and quality standards.
               </p>
               <p className="text-xs text-neutral-400">
                 Preferred Partner status is earned and maintained. It may be removed if a Partner no longer meets the required standards.
@@ -738,7 +738,7 @@ export default function PartnersLandingPage() {
                 </p>
                 <ul className="space-y-1.5 text-xs text-neutral-300 list-disc list-inside">
                   <li>The event&apos;s Scanner Login Code</li>
-                  <li>InviteOnly Scan App instructions</li>
+                  <li>InviteOly Scan App instructions</li>
                   <li>Guest-entry procedures</li>
                   <li>Event requirements & approved training materials</li>
                 </ul>
@@ -790,7 +790,7 @@ export default function PartnersLandingPage() {
               <h3 className="text-sm font-bold font-space-grotesk text-white flex items-center gap-2">
                 <AlertTriangle className="size-4 text-[#E5C170]" /> Report Problems Promptly
               </h3>
-              <p className="text-xs text-neutral-400">Partners must notify InviteOnly promptly about:</p>
+              <p className="text-xs text-neutral-400">Partners must notify InviteOly promptly about:</p>
               <ul className="space-y-2 text-xs text-neutral-300">
                 <li className="flex items-start gap-2">
                   <span className="text-[#B89047]">•</span>
@@ -806,23 +806,23 @@ export default function PartnersLandingPage() {
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="text-[#B89047]">•</span>
-                  <span>Unauthorized or misleading use of the InviteOnly brand</span>
+                  <span>Unauthorized or misleading use of the InviteOly brand</span>
                 </li>
               </ul>
             </div>
 
             <div className="p-6 rounded-2xl bg-neutral-900/50 border border-neutral-800 space-y-3">
               <h3 className="text-sm font-bold font-space-grotesk text-white flex items-center gap-2">
-                <Scale className="size-4 text-[#E5C170]" /> InviteOnly Brand Protection
+                <Scale className="size-4 text-[#E5C170]" /> InviteOly Brand Protection
               </h3>
               <p className="text-xs text-neutral-300 leading-relaxed">
-                The InviteOnly name, logo, platform designs, marketing materials, and other brand assets belong to InviteOnly.
+                The InviteOly name, logo, platform designs, marketing materials, and other brand assets belong to InviteOly.
               </p>
               <p className="text-xs text-neutral-400 leading-relaxed">
-                Partners may use only the official marketing materials provided through the Partner Dashboard or materials specifically approved by InviteOnly.
+                Partners may use only the official marketing materials provided through the Partner Dashboard or materials specifically approved by InviteOly.
               </p>
               <div className="p-3 rounded-xl bg-neutral-950 border border-neutral-800 text-[11px] text-neutral-400">
-                Without written permission from InviteOnly, Partners may not modify or redistribute brand assets.
+                Without written permission from InviteOly, Partners may not modify or redistribute brand assets.
               </div>
             </div>
           </div>
@@ -837,7 +837,7 @@ export default function PartnersLandingPage() {
                 Partner Account Standards
               </h3>
               <p className="text-xs sm:text-sm text-neutral-400 mt-1">
-                InviteOnly may use a three-step process for routine or correctable violations:
+                InviteOly may use a three-step process for routine or correctable violations:
               </p>
             </div>
 
@@ -854,7 +854,7 @@ export default function PartnersLandingPage() {
             </div>
 
             <div className="p-4 rounded-xl bg-neutral-950 border border-neutral-800 text-xs text-neutral-400 leading-relaxed">
-              <strong className="text-white">Note:</strong> InviteOnly may skip any warning stage when a violation is serious, intentional, repeated, unlawful, or creates a safety, privacy, financial, legal, or reputational risk.
+              <strong className="text-white">Note:</strong> InviteOly may skip any warning stage when a violation is serious, intentional, repeated, unlawful, or creates a safety, privacy, financial, legal, or reputational risk.
             </div>
           </div>
 
@@ -888,7 +888,7 @@ export default function PartnersLandingPage() {
             </div>
 
             <p className="text-xs text-neutral-400 border-t border-neutral-800/80 pt-4 leading-relaxed">
-              InviteOnly may temporarily suspend an account while a suspected violation is reviewed. Partner Rewards connected to fraudulent, refunded, disputed, cancelled, or otherwise ineligible bookings may be withheld or reversed according to the Partner Agreement.
+              InviteOly may temporarily suspend an account while a suspected violation is reviewed. Partner Rewards connected to fraudulent, refunded, disputed, cancelled, or otherwise ineligible bookings may be withheld or reversed according to the Partner Agreement.
             </p>
           </div>
         </section>

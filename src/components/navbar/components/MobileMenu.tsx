@@ -220,7 +220,7 @@ export const MobileMenu = () => {
             /* Unauthenticated View with Auth Buttons + Demo Switcher */
             <div className="space-y-3">
               <div className="p-3 rounded-xl bg-neutral-800/50 border border-neutral-700/60 flex flex-col gap-2">
-                <p className="text-xs text-neutral-400">Join InviteOnly to manage luxury guest lists & RSVPs</p>
+                <p className="text-xs text-neutral-400">Join InviteOly to manage luxury guest lists & RSVPs</p>
                 <NavbarAuthButtons onItemClick={handleLinkClick} className="w-full justify-center" />
               </div>
 
@@ -323,7 +323,7 @@ export const MobileMenu = () => {
         </div>
 
         <SheetDescription className="sr-only">
-          InviteOnly Mobile Menu & Account Switcher
+          InviteOly Mobile Menu & Account Switcher
         </SheetDescription>
       </SheetContent>
     </Sheet>

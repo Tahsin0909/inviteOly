@@ -4,7 +4,7 @@ import { HostPendingPaymentBanner } from "@/features/payment/components/pricingC
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Host Dashboard - InviteOnly",
+  title: "Host Dashboard - InviteOly",
 };
 
 export default function HostDashboardPage() {

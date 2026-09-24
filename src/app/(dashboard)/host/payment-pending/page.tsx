@@ -2,7 +2,7 @@
 import { HostPayment } from "@/features/payment/components/pricingCard/host-payment";
 
 export const metadata: Metadata = {
-  title: "Payment Pending - InviteOnly",
+  title: "Payment Pending - InviteOly",
   description: "Track your pending event payments and upload proof of payment",
 };
 

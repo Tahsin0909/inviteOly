@@ -2,7 +2,7 @@ import { AllUserList } from "@/features/user/components/admin/AllUserList";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "User Management - InviteOnly",
+  title: "User Management - InviteOly",
 };
 
 export default function AdminUsersPage() {

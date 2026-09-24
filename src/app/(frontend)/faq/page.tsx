@@ -4,11 +4,11 @@ import { ALL_FAQS } from "@/lib/data/faq.data";
 import FaqClient from "./components/FaqClient";
 
 export const metadata: Metadata = {
-  title: "Frequently Asked Questions | InviteOnly",
+  title: "Frequently Asked Questions | InviteOly",
   description:
-    "Find answers to common questions about InviteOnly's guest management, secure QR ticketing, RSVP workflow, and door scanning.",
+    "Find answers to common questions about InviteOly's guest management, secure QR ticketing, RSVP workflow, and door scanning.",
   keywords: [
-    "InviteOnly FAQ",
+    "InviteOly FAQ",
     "guest management questions",
     "QR ticketing FAQ",
     "RSVP deadline help",

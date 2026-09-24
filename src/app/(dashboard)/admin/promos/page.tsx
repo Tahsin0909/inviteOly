@@ -2,7 +2,7 @@ import { Metadata } from "next";
 import { AllCodes } from "@/features/promotional-codes/components/AllCodes";
 
 export const metadata: Metadata = {
-  title: "Promotional Codes - InviteOnly",
+  title: "Promotional Codes - InviteOly",
   description: "Create and manage discount and promotional codes.",
 };
 

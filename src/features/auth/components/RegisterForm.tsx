@@ -78,7 +78,7 @@ export default function RegisterForm() {
           Create Your Account
         </h1>
         <p className="mt-2 text-xs sm:text-sm text-muted-foreground font-work-sans leading-relaxed max-w-xs mx-auto">
-          Join InviteOnly and simplify your event planning experience.
+          Join InviteOly and simplify your event planning experience.
         </p>
       </div>
 

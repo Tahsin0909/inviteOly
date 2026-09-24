@@ -36,7 +36,7 @@ export default function PartnerBenefitsPage() {
             Partner Benefits Program
           </h1>
           <p className="text-sm sm:text-base text-neutral-400 mt-3.5 leading-relaxed">
-            Discover why top venues, luxury hotels, and wedding planners recommend InviteOnly to their high-value clients.
+            Discover why top venues, luxury hotels, and wedding planners recommend InviteOly to their high-value clients.
           </p>
         </div>
 
@@ -138,7 +138,7 @@ export default function PartnerBenefitsPage() {
             Start Earning Referral Rewards
           </h3>
           <p className="text-sm text-neutral-400 max-w-md mx-auto">
-            Join hundreds of trusted venues and planners recommending InviteOnly.
+            Join hundreds of trusted venues and planners recommending InviteOly.
           </p>
           <div className="pt-2">
             <Link

@@ -60,13 +60,13 @@ export default function FaqClient() {
       <div className="text-center max-w-2xl mx-auto mb-10">
         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#B89047]/10 border border-[#B89047]/25 text-[#B89047] text-xs font-semibold tracking-[0.2em] uppercase font-space-grotesk mb-3">
           <Sparkles className="size-3" />
-          <span>InviteOnly FAQ</span>
+          <span>InviteOly FAQ</span>
         </div>
         <h1 className="text-3xl sm:text-5xl font-bold font-space-grotesk text-white tracking-tight">
           Frequently Asked Questions
         </h1>
         <p className="text-sm sm:text-base text-neutral-400 mt-3 leading-relaxed">
-          Everything you need to know about InviteOnly&apos;s guest management, secure QR ticketing, RSVP workflow, and door scanning.
+          Everything you need to know about InviteOly&apos;s guest management, secure QR ticketing, RSVP workflow, and door scanning.
         </p>
 
         {/* Search Box */}

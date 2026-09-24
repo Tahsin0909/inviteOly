@@ -53,7 +53,7 @@ export const Footer = () => {
         <div className="flex sm:flex-row flex-col items-center justify-between gap-4 text-sm text-neutral-400">
           <div>
             <p className="text-center sm:text-left">
-              &copy; 2026 InviteOnly. All rights reserved.
+              &copy; 2026 InviteOly. All rights reserved.
             </p>
           </div>
           <div className="flex items-center gap-6">

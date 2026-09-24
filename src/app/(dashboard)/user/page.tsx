@@ -4,7 +4,7 @@ import { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "User Dashboard - InviteOnly",
+  title: "User Dashboard - InviteOly",
 };
 
 export default function UserDashboardPage() {

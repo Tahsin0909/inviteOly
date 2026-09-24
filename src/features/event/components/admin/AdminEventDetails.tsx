@@ -159,7 +159,7 @@ export const AdminEventDetails: React.FC<AdminEventDetailsProps> = ({
 
   // Action Handlers
   const handleCopyLink = (ticket: IAdminGuestTicket) => {
-    const url = `https://inviteonly.com/ticket/${ticket.id}`;
+    const url = `https://InviteOly.com/ticket/${ticket.id}`;
     navigator.clipboard.writeText(url);
     toast.success(`Copied ticket link for ${ticket.name} (${ticket.ticketNumber})`);
   };
@@ -955,7 +955,7 @@ export const AdminEventDetails: React.FC<AdminEventDetailsProps> = ({
           <div className="bg-gradient-to-r from-neutral-900 to-neutral-800 text-white p-6 relative">
             <div className="flex items-center justify-between">
               <span className="text-[11px] font-semibold uppercase tracking-widest text-[#E5C170]">
-                InviteOnly Digital Ticket
+                InviteOly Digital Ticket
               </span>
               <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-[#C39B4C]/20 border border-[#C39B4C]/40 text-[#E5C170]">
                 {selectedTicket?.status}

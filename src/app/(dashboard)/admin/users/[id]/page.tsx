@@ -2,7 +2,7 @@ import { AdminUserDetails } from "@/features/user/components/admin/AdminUserDeta
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-    title: "User Profile - InviteOnly",
+    title: "User Profile - InviteOly",
 };
 
 interface PageProps {

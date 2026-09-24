@@ -1,6 +1,6 @@
-# InviteOnly Authentication API Reference
+# InviteOly Authentication API Reference
 
-This document provides a comprehensive reference for the backend authentication and OTP endpoints integrated into the InviteOnly client.
+This document provides a comprehensive reference for the backend authentication and OTP endpoints integrated into the InviteOly client.
 
 ---
 
@@ -985,7 +985,7 @@ Uploads and updates the partner's profile photograph.
   "success": true,
   "message": "Profile avatar uploaded successfully",
   "data": {
-    "profileImage": "https://cdn.inviteonly.com/avatars/partner_507f191e810c19729de860ec.jpg"
+    "profileImage": "https://cdn.InviteOly.com/avatars/partner_507f191e810c19729de860ec.jpg"
   }
 }
 ```
@@ -2130,7 +2130,7 @@ Retrieves the attendee roster and ticket allocation ledger for an event, with op
       "rsvpStatus": "--",
       "reminderStatus": "--",
       "ticketType": "VIP",
-      "ticketLink": "https://inviteonly.app/tickets/t-guest004",
+      "ticketLink": "https://InviteOly.app/tickets/t-guest004",
       "checkInTime": "5:30 PM",
       "status": "Locked/ Ready"
     },
@@ -2143,7 +2143,7 @@ Retrieves the attendee roster and ticket allocation ledger for an event, with op
       "rsvpStatus": "Pending",
       "reminderStatus": "Reminder",
       "ticketType": "Child",
-      "ticketLink": "https://inviteonly.app/tickets/t-guest007",
+      "ticketLink": "https://InviteOly.app/tickets/t-guest007",
       "checkInTime": "6:00 PM",
       "status": "Sent"
     }
@@ -2184,7 +2184,7 @@ Adds an attendee to the host event and generates an editable ticket assignment.
     "rsvpStatus": "--",
     "reminderStatus": "--",
     "ticketType": "VIP",
-    "ticketLink": "https://inviteonly.app/tickets/t-guest013",
+    "ticketLink": "https://InviteOly.app/tickets/t-guest013",
     "checkInTime": "--",
     "status": "Editable"
   }

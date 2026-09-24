@@ -117,7 +117,7 @@ export const ScannerCodeModal: React.FC = () => {
               Attendant Instructions:
             </h4>
             <ul className="mt-1.5 list-disc pl-4 text-xs text-amber-800/90 space-y-1 font-work-sans">
-              <li>Open the InviteOnly Ticket Scanner App on your device.</li>
+              <li>Open the InviteOly Ticket Scanner App on your device.</li>
               <li>Enter or scan this login code to activate ticket verification.</li>
               <li>Ticket scans will immediately update this live dashboard.</li>
             </ul>

@@ -99,7 +99,7 @@ export default function HelpCenterPage() {
         {/* Hero Section */}
         <div className="text-center max-w-3xl mx-auto mb-16">
           <span className="text-xs font-semibold tracking-[0.2em] text-[#B89047] uppercase font-space-grotesk">
-            INVITEONLY HELP CENTER
+            InviteOly HELP CENTER
           </span>
           <h1 className="text-3xl sm:text-5xl font-bold font-space-grotesk text-white mt-3 tracking-tight">
             How can we help you today?

@@ -60,7 +60,7 @@ export default function ContactPage() {
             GET IN TOUCH
           </span>
           <h1 className="text-3xl sm:text-5xl font-bold font-space-grotesk text-white mt-3 tracking-tight">
-            Contact InviteOnly
+            Contact InviteOly
           </h1>
           <p className="text-sm sm:text-base text-neutral-400 mt-3 leading-relaxed">
             Have questions about wedding packages, custom enterprise ticketing, or partnership opportunities? We’d love to hear from you.
@@ -83,10 +83,10 @@ export default function ContactPage() {
                   <div>
                     <span className="text-xs text-neutral-400 block font-medium">Email Support</span>
                     <a
-                      href="mailto:support@inviteonly.com"
+                      href="mailto:support@InviteOly.com"
                       className="text-sm font-semibold text-white hover:text-[#B89047] transition-colors"
                     >
-                      support@inviteonly.com
+                      support@InviteOly.com
                     </a>
                   </div>
                 </div>

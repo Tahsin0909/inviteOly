@@ -36,7 +36,7 @@ export default function LoginForm() {
           Welcome Back
         </h1>
         <p className="mt-2 text-xs sm:text-sm text-muted-foreground font-work-sans">
-          Login to your InviteOnly account
+          Login to your InviteOly account
         </p>
       </div>
 

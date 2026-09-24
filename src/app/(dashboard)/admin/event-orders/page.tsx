@@ -2,7 +2,7 @@ import { EventOrders } from "@/features/event/components/admin/Order/EventOrders
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Event Orders - InviteOnly",
+  title: "Event Orders - InviteOly",
 };
 
 export default function AdminEventOrdersPage() {

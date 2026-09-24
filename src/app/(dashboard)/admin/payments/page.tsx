@@ -2,7 +2,7 @@ import { Metadata } from "next";
 import { AdminPayment } from "@/features/payment/components/AdminPayment";
 
 export const metadata: Metadata = {
-  title: "Payments Management - InviteOnly",
+  title: "Payments Management - InviteOly",
   description: "Track and manage all payment transactions in one place.",
 };
 

@@ -3,7 +3,7 @@ import { Metadata } from "next";
 import CreateEvents from "@/features/event/components/host/create-events/CreateEvents";
 
 export const metadata: Metadata = {
-  title: "Create Event - InviteOnly",
+  title: "Create Event - InviteOly",
   description: "Create and configure your next luxury event",
 };
 

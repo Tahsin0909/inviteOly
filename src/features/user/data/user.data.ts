@@ -5,7 +5,7 @@ export const adminUser: IUser = {
     id: "507f191e810c19729de860ea",
     firstName: "Sarah",
     lastName: "Connor",
-    email: "sarah.connor@inviteonly.com",
+    email: "sarah.connor@InviteOly.com",
     profileImage: "https://i.pravatar.cc/150?img=5",
     role: IRole.ADMIN,
     phone: "+1 (555) 987-6543",

@@ -3,8 +3,8 @@ import Link from "next/link";
 import { Lock, ShieldAlert, ArrowLeft } from "lucide-react";
 
 export const metadata = {
-  title: "Privacy Policy - InviteOnly",
-  description: "Learn how InviteOnly collects, protects, and handles personal data and guest lists.",
+  title: "Privacy Policy - InviteOly",
+  description: "Learn how InviteOly collects, protects, and handles personal data and guest lists.",
 };
 
 export default function PrivacyPage() {
@@ -40,7 +40,7 @@ export default function PrivacyPage() {
               1. Our Privacy Commitment
             </h2>
             <p>
-              At InviteOnly, privacy is built into the architecture of our platform. We understand that wedding guest lists, VIP gala attendees, and private party details are deeply sensitive. We never sell, monetize, or publicly disclose your guest contact details or attendance records.
+              At InviteOly, privacy is built into the architecture of our platform. We understand that wedding guest lists, VIP gala attendees, and private party details are deeply sensitive. We never sell, monetize, or publicly disclose your guest contact details or attendance records.
             </p>
           </section>
 
@@ -102,8 +102,8 @@ export default function PrivacyPage() {
             </h2>
             <p className="text-sm text-neutral-400">
               If you have any questions or wish to exercise your data privacy rights, please contact our Data Protection Officer at{" "}
-              <a href="mailto:privacy@inviteonly.com" className="text-[#B89047] hover:underline font-medium">
-                privacy@inviteonly.com
+              <a href="mailto:privacy@InviteOly.com" className="text-[#B89047] hover:underline font-medium">
+                privacy@InviteOly.com
               </a>.
             </p>
           </section>

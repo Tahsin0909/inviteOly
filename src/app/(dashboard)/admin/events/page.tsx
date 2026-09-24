@@ -2,7 +2,7 @@ import { AllEvents } from "@/features/event/components/admin/AllEvents";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Event Management - InviteOnly",
+  title: "Event Management - InviteOly",
 };
 
 export default function AdminEventsPage() {

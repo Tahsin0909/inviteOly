@@ -3,7 +3,7 @@ import { PartnerMetrics } from "@/features/metrics/components/partnerMetrics/Par
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Partner Dashboard - InviteOnly",
+  title: "Partner Dashboard - InviteOly",
 };
 
 export default function PartnerDashboardPage() {

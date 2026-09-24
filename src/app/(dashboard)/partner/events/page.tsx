@@ -2,7 +2,7 @@ import { EventManagement } from "@/features/event/components/partner/EventManage
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Events Management - InviteOnly",
+  title: "Events Management - InviteOly",
 };
 
 export default function PartnerEventsPage() {

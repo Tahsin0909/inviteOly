@@ -2,7 +2,7 @@
 import { PartnerMarketing } from "@/features/marketing";
 
 export const metadata: Metadata = {
-  title: "Partner Marketing - InviteOnly",
+  title: "Partner Marketing - InviteOly",
 };
 
 export default function Page() {

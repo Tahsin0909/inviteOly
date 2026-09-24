@@ -124,7 +124,7 @@ export const HostEventDetailsView: React.FC<HostEventDetailsViewProps> = ({
 
   const handleCopyLink = async (ticketId: string) => {
     try {
-      const dummyLink = `https://inviteonly.app/tickets/t-${ticketId.replace(/\s+/g, "").toLowerCase()}`;
+      const dummyLink = `https://InviteOly.app/tickets/t-${ticketId.replace(/\s+/g, "").toLowerCase()}`;
       await navigator.clipboard.writeText(dummyLink);
       setCopiedId(ticketId);
       toast.success("Ticket link copied to clipboard!");

@@ -3,7 +3,7 @@ import { Payment } from "@/features/payment/components/Payment";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Complete Payment - InviteOnly",
+  title: "Complete Payment - InviteOly",
 };
 
 export default function PaymentPage() {

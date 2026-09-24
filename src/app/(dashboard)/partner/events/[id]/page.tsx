@@ -2,7 +2,7 @@ import { EventDetails } from "@/features/event/components/partner/EventDetails";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Event Details - InviteOnly",
+  title: "Event Details - InviteOly",
 };
 
 interface PageProps {

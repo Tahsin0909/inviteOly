@@ -5,7 +5,7 @@ import { RecentRegisterUser } from "@/features/user/components/admin/RecentRegis
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Admin Overview - InviteOnly",
+  title: "Admin Overview - InviteOly",
 };
 
 export default function AdminDashboardPage() {

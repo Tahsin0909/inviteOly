@@ -30,7 +30,7 @@ export default function TicketingPage() {
             Next-Generation Secure Event Passes
           </h1>
           <p className="text-sm sm:text-base text-neutral-400 mt-4 leading-relaxed max-w-2xl mx-auto">
-            Say goodbye to paper invitations, spreadsheets, and party crashes. InviteOnly generates personalized cryptographic tickets that guarantee an exclusive guest experience.
+            Say goodbye to paper invitations, spreadsheets, and party crashes. InviteOly generates personalized cryptographic tickets that guarantee an exclusive guest experience.
           </p>
 
           <div className="mt-8 flex items-center justify-center gap-4 flex-wrap">
