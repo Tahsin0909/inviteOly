@@ -88,7 +88,7 @@ export const HOST_MENU_ITEMS: SidebarMenuItem[] = [
     url: "/host/events",
   },
   {
-    title: "Payment Pending",
+    title: "Payment",
     icon: Clock,
     url: "/host/payment-pending",
   },
@@ -107,7 +107,7 @@ export const PARTNER_MENU_ITEMS: SidebarMenuItem[] = [
     url: "/partner/invite-host",
   },
   {
-    title: "Events Management",
+    title: "Event Management",
     icon: CalendarDays,
     url: "/partner/events",
   },
@@ -153,7 +153,7 @@ export const WHATSAPP_SUPPORT_URL =
 // Universal Account Items (shown in all sidebars)
 export const ACCOUNT_MENU_ITEMS: SidebarMenuItem[] = [
   {
-    title: "Download App APK",
+    title: "Download InviteOly App",
     icon: Download,
     url: "https://drive.google.com/file/d/1IMJKb64oJksxEEd1Jh-a3KiQYLY6EOf5/view",
     external: true,

@@ -1,36 +1,32 @@
-import React from "react";
-import type { Metadata } from "next";
-import Link from "next/link";
-import Image from "next/image";
+import { WHATSAPP_SUPPORT_URL } from "@/constants/sidebarMenu";
 import {
-  Building2,
+  ArrowRight,
+  Award,
+  BadgeCheck,
+  BatteryCharging,
   Building,
+  Building2,
   CalendarCheck,
+  Camera,
+  Check,
+  CheckCircle2,
+  Gift,
   HeartHandshake,
+  Hotel,
+  Lock,
+  Megaphone,
+  MessageCircle,
   Music,
-  UtensilsCrossed,
   Palette,
   ShieldCheck,
-  Hotel,
-  Camera,
-  Sparkles,
-  Award,
-  CheckCircle2,
-  ArrowRight,
-  Gift,
-  Users,
   Smartphone,
-  BatteryCharging,
-  Lock,
-  ShieldAlert,
-  AlertTriangle,
-  Scale,
-  MessageCircle,
-  Check,
-  BadgeCheck,
-  Megaphone,
+  Sparkles,
+  Users,
+  UtensilsCrossed
 } from "lucide-react";
-import { WHATSAPP_SUPPORT_URL } from "@/constants/sidebarMenu";
+import type { Metadata } from "next";
+import Image from "next/image";
+import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "Partner Program | InviteOly - A Premium Service Your Clients Will Remember",
@@ -152,46 +148,6 @@ const PROTECTED_INFO_ITEMS = [
   "Check-in and attendance records",
 ];
 
-// 3-step violation standards from Page 12
-const ACCOUNT_STANDARDS = [
-  {
-    step: "01",
-    title: "First Violation: Written Warning",
-    description:
-      "The Partner will be notified of the issue and instructed on how to correct it.",
-  },
-  {
-    step: "02",
-    title: "Second Violation: Final Warning",
-    description:
-      "The Partner may receive a final written warning and be required to correct the issue or complete additional training.",
-  },
-  {
-    step: "03",
-    title: "Third Violation: Suspension or Termination",
-    description:
-      "The Partner's account, benefits, rewards eligibility, or Partner status may be suspended or permanently terminated.",
-  },
-];
-
-// Immediate termination violations from Page 13
-const TERMINATION_VIOLATIONS = [
-  "Fraud, theft, falsified bookings, or Partner Reward abuse",
-  "Misuse or unauthorized disclosure of guest information",
-  "Selling or improperly sharing guest lists or ticket information",
-  "Sharing Scanner Login Codes with unauthorized individuals",
-  "Intentionally allowing unauthorized guests to enter an event",
-  "Manipulating tickets, scans, check-in records, or event capacity",
-  "Impersonating InviteOly or falsely claiming to represent the company",
-  "Creating unauthorized InviteOly social-media accounts, websites, or business profiles",
-  "Collecting money or entering agreements on behalf of InviteOly without authorization",
-  "Harassment, discrimination, threats, violence, or unsafe conduct",
-  "Serious or repeated mistreatment of Hosts, guests, or InviteOly representatives",
-  "Copying, reselling, reverse engineering, or misusing InviteOly technology",
-  "Using InviteOly information or materials to create or support a competing service",
-  "Abandoning confirmed event-entry responsibilities",
-  "Violating applicable laws or placing InviteOly, its Hosts, or guests at significant risk",
-];
 
 export default function PartnersLandingPage() {
   return (
@@ -590,95 +546,41 @@ export default function PartnersLandingPage() {
             </p>
           </div>
 
-          {/* Criteria Grid (Page 7) */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {/* Active Usage */}
-            <div className="p-6 sm:p-8 rounded-2xl bg-neutral-900/60 border border-neutral-800 space-y-4">
-              <div className="inline-block px-3 py-1 rounded-md bg-neutral-800 text-[#E5C170] text-xs font-bold uppercase tracking-wider font-space-grotesk">
-                ACTIVE USAGE
+          {/* Preferred Partner Qualification Criteria */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="p-6 sm:p-8 rounded-2xl bg-neutral-900/60 border border-neutral-800 space-y-4 hover:border-[#B89047]/40 transition-colors">
+              <div className="size-10 rounded-xl bg-[#B89047]/10 text-[#B89047] flex items-center justify-center">
+                <CalendarCheck className="size-5" />
               </div>
-              <h3 className="text-lg font-bold font-space-grotesk text-white">
-                The Partner:
-              </h3>
-              <ul className="space-y-2 text-xs sm:text-sm text-neutral-300">
-                <li className="flex items-start gap-2">
-                  <Check className="size-4 text-[#B89047] shrink-0 mt-0.5" />
-                  <span>Uses InviteOly consistently throughout the year; or</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <Check className="size-4 text-[#B89047] shrink-0 mt-0.5" />
-                  <span>Refers or services at least 10 InviteOly events each year.</span>
-                </li>
-              </ul>
-            </div>
-
-            {/* Client Experience */}
-            <div className="p-6 sm:p-8 rounded-2xl bg-neutral-900/60 border border-neutral-800 space-y-4">
-              <div className="inline-block px-3 py-1 rounded-md bg-neutral-800 text-[#E5C170] text-xs font-bold uppercase tracking-wider font-space-grotesk">
-                CLIENT EXPERIENCE
-              </div>
-              <h3 className="text-lg font-bold font-space-grotesk text-white">
-                The Partner:
-              </h3>
-              <ul className="space-y-2 text-xs sm:text-sm text-neutral-300">
-                <li className="flex items-start gap-2">
-                  <Check className="size-4 text-[#B89047] shrink-0 mt-0.5" />
-                  <span>Provides professional event coordination and communication.</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <Check className="size-4 text-[#B89047] shrink-0 mt-0.5" />
-                  <span>Consistently follows InviteOly Guest Entry Policies & Procedures.</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <Check className="size-4 text-[#B89047] shrink-0 mt-0.5" />
-                  <span>Provides a professional, organized, and welcoming entrance experience.</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <Check className="size-4 text-[#B89047] shrink-0 mt-0.5" />
-                  <span>Properly prepares Door Assistants before each event.</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <Check className="size-4 text-[#B89047] shrink-0 mt-0.5" />
-                  <span>Maintains a positive record with InviteOly clients and guests.</span>
-                </li>
-              </ul>
-            </div>
-          </div>
-
-          {/* Partnership Commitment Box (Page 8) */}
-          <div className="p-6 sm:p-8 rounded-3xl bg-neutral-900/40 border border-neutral-800 space-y-6">
-            <div className="flex items-center gap-2">
-              <span className="px-3 py-1 rounded-md bg-neutral-800 text-[#E5C170] text-xs font-bold uppercase tracking-wider font-space-grotesk">
-                PARTNERSHIP COMMITMENT
+              <span className="text-xs font-bold text-[#E5C170] uppercase font-space-grotesk tracking-wider block">
+                Requirement 1
               </span>
-            </div>
-
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs sm:text-sm text-neutral-300">
-              <div className="flex items-start gap-2.5">
-                <Check className="size-4 text-[#B89047] shrink-0 mt-0.5" />
-                <span>Promotes InviteOly as an available service to eligible clients.</span>
-              </div>
-              <div className="flex items-start gap-2.5">
-                <Check className="size-4 text-[#B89047] shrink-0 mt-0.5" />
-                <span>Uses approved InviteOly marketing materials to accurately explain the service.</span>
-              </div>
-              <div className="flex items-start gap-2.5">
-                <Check className="size-4 text-[#B89047] shrink-0 mt-0.5" />
-                <span>Allows InviteOly to showcase the partnership through testimonials, photos, or event examples when permission has been provided.</span>
-              </div>
-              <div className="flex items-start gap-2.5">
-                <Check className="size-4 text-[#B89047] shrink-0 mt-0.5" />
-                <span>Protects the branding, and service standards of InviteOly.</span>
-              </div>
-            </div>
-
-            {/* 6-Month Review Callout Banner */}
-            <div className="p-5 rounded-2xl bg-black border border-neutral-700 space-y-2">
-              <p className="text-xs sm:text-sm text-white font-medium leading-relaxed">
-                Preferred Partner status is reviewed every six months to confirm that participating Partners continue to meet InviteOly’s usage, service, and quality standards.
+              <p className="text-sm sm:text-base font-medium text-white leading-relaxed">
+                Services at least 10 InviteOnly events each year
               </p>
-              <p className="text-xs text-neutral-400">
-                Preferred Partner status is earned and maintained. It may be removed if a Partner no longer meets the required standards.
+            </div>
+
+            <div className="p-6 sm:p-8 rounded-2xl bg-neutral-900/60 border border-neutral-800 space-y-4 hover:border-[#B89047]/40 transition-colors">
+              <div className="size-10 rounded-xl bg-[#B89047]/10 text-[#B89047] flex items-center justify-center">
+                <Camera className="size-5" />
+              </div>
+              <span className="text-xs font-bold text-[#E5C170] uppercase font-space-grotesk tracking-wider block">
+                Requirement 2
+              </span>
+              <p className="text-sm sm:text-base font-medium text-white leading-relaxed">
+                Allows InviteOly to showcase the partnership through testimonials, photos, or event examples when permission has been provided.
+              </p>
+            </div>
+
+            <div className="p-6 sm:p-8 rounded-2xl bg-neutral-900/60 border border-neutral-800 space-y-4 hover:border-[#B89047]/40 transition-colors">
+              <div className="size-10 rounded-xl bg-[#B89047]/10 text-[#B89047] flex items-center justify-center">
+                <ShieldCheck className="size-5" />
+              </div>
+              <span className="text-xs font-bold text-[#E5C170] uppercase font-space-grotesk tracking-wider block">
+                Requirement 3
+              </span>
+              <p className="text-sm sm:text-base font-medium text-white leading-relaxed">
+                Consistently follows InviteOly Guest Entry Policies &amp; Procedures.
               </p>
             </div>
           </div>
@@ -768,130 +670,7 @@ export default function PartnersLandingPage() {
           </div>
         </section>
 
-        {/* =========================================================================
-            PAGES 11, 12 & 13: COMPLIANCE, STANDARDS & TERMINATION POLICIES
-            ========================================================================= */}
-        <section className="space-y-12">
-          <div className="text-center max-w-2xl mx-auto space-y-3">
-            <span className="text-xs font-semibold tracking-[0.2em] text-[#B89047] uppercase font-space-grotesk">
-              COMPLIANCE & BRAND PROTECTION
-            </span>
-            <h2 className="text-3xl sm:text-4xl font-bold font-space-grotesk text-white">
-              Partner Account Standards & Policies
-            </h2>
-            <p className="text-sm text-neutral-400">
-              Maintaining high integrity, security, and brand standards across all member venues and vendors.
-            </p>
-          </div>
 
-          {/* Page 11: Prompt Reporting & Brand Protection */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div className="p-6 rounded-2xl bg-neutral-900/50 border border-neutral-800 space-y-3">
-              <h3 className="text-sm font-bold font-space-grotesk text-white flex items-center gap-2">
-                <AlertTriangle className="size-4 text-[#E5C170]" /> Report Problems Promptly
-              </h3>
-              <p className="text-xs text-neutral-400">Partners must notify InviteOly promptly about:</p>
-              <ul className="space-y-2 text-xs text-neutral-300">
-                <li className="flex items-start gap-2">
-                  <span className="text-[#B89047]">•</span>
-                  <span>Unauthorized access to an account</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="text-[#B89047]">•</span>
-                  <span>Lost or compromised Scanner Login Codes</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="text-[#B89047]">•</span>
-                  <span>Technical issues affecting event entry</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="text-[#B89047]">•</span>
-                  <span>Unauthorized or misleading use of the InviteOly brand</span>
-                </li>
-              </ul>
-            </div>
-
-            <div className="p-6 rounded-2xl bg-neutral-900/50 border border-neutral-800 space-y-3">
-              <h3 className="text-sm font-bold font-space-grotesk text-white flex items-center gap-2">
-                <Scale className="size-4 text-[#E5C170]" /> InviteOly Brand Protection
-              </h3>
-              <p className="text-xs text-neutral-300 leading-relaxed">
-                The InviteOly name, logo, platform designs, marketing materials, and other brand assets belong to InviteOly.
-              </p>
-              <p className="text-xs text-neutral-400 leading-relaxed">
-                Partners may use only the official marketing materials provided through the Partner Dashboard or materials specifically approved by InviteOly.
-              </p>
-              <div className="p-3 rounded-xl bg-neutral-950 border border-neutral-800 text-[11px] text-neutral-400">
-                Without written permission from InviteOly, Partners may not modify or redistribute brand assets.
-              </div>
-            </div>
-          </div>
-
-          {/* Page 12: 3-Step Account Standards */}
-          <div className="p-6 sm:p-8 rounded-3xl bg-neutral-900/60 border border-neutral-800 space-y-6">
-            <div>
-              <span className="text-xs font-semibold tracking-wider text-[#B89047] uppercase font-space-grotesk">
-                COMPLIANCE
-              </span>
-              <h3 className="text-xl sm:text-2xl font-bold font-space-grotesk text-white mt-1">
-                Partner Account Standards
-              </h3>
-              <p className="text-xs sm:text-sm text-neutral-400 mt-1">
-                InviteOly may use a three-step process for routine or correctable violations:
-              </p>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-              {ACCOUNT_STANDARDS.map((std) => (
-                <div key={std.step} className="p-5 rounded-2xl bg-neutral-950/70 border border-neutral-800 space-y-2">
-                  <span className="text-2xl font-bold font-space-grotesk text-[#E5C170]">
-                    {std.step}
-                  </span>
-                  <h4 className="text-sm font-bold text-white">{std.title}</h4>
-                  <p className="text-xs text-neutral-400 leading-relaxed">{std.description}</p>
-                </div>
-              ))}
-            </div>
-
-            <div className="p-4 rounded-xl bg-neutral-950 border border-neutral-800 text-xs text-neutral-400 leading-relaxed">
-              <strong className="text-white">Note:</strong> InviteOly may skip any warning stage when a violation is serious, intentional, repeated, unlawful, or creates a safety, privacy, financial, legal, or reputational risk.
-            </div>
-          </div>
-
-          {/* Page 13: Violations Resulting in Immediate Termination */}
-          <div className="p-6 sm:p-8 rounded-3xl bg-red-950/20 border border-red-900/40 space-y-6">
-            <div className="flex items-center gap-3">
-              <div className="size-10 rounded-xl bg-red-500/20 border border-red-500/30 text-red-400 flex items-center justify-center shrink-0">
-                <ShieldAlert className="size-5" />
-              </div>
-              <div>
-                <span className="text-xs font-bold uppercase tracking-wider text-red-400 font-space-grotesk">
-                  STRICT COMPLIANCE
-                </span>
-                <h3 className="text-lg sm:text-xl font-bold font-space-grotesk text-white">
-                  Violations That May Result in Immediate Termination
-                </h3>
-              </div>
-            </div>
-
-            <p className="text-xs sm:text-sm text-neutral-300">
-              A Partner account may be immediately suspended or permanently terminated for:
-            </p>
-
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 text-xs text-neutral-300">
-              {TERMINATION_VIOLATIONS.map((violation, idx) => (
-                <div key={idx} className="flex items-start gap-2 p-2.5 rounded-xl bg-neutral-900/60 border border-neutral-800/80">
-                  <span className="text-red-400 font-bold shrink-0">•</span>
-                  <span className="leading-snug">{violation}</span>
-                </div>
-              ))}
-            </div>
-
-            <p className="text-xs text-neutral-400 border-t border-neutral-800/80 pt-4 leading-relaxed">
-              InviteOly may temporarily suspend an account while a suspected violation is reviewed. Partner Rewards connected to fraudulent, refunded, disputed, cancelled, or otherwise ineligible bookings may be withheld or reversed according to the Partner Agreement.
-            </p>
-          </div>
-        </section>
 
         {/* =========================================================================
             FINAL CTA BANNER
