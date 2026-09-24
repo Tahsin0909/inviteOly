@@ -196,21 +196,21 @@ const TERMINATION_VIOLATIONS = [
 export default function PartnersLandingPage() {
   return (
     <main className="min-h-screen bg-[#0F0F0F] text-white pt-24 pb-20 font-work-sans">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl space-y-24">
+      <div className="container mx-auto space-y-24">
         {/* =========================================================================
             PAGE 1: HERO SECTION - PARTNER PROGRAM
             ========================================================================= */}
-        <section className="relative rounded-3xl border border-neutral-800/80 bg-gradient-to-b from-neutral-900/90 via-neutral-900/60 to-neutral-950 overflow-hidden p-6 sm:p-12 lg:p-16">
+        <section className="relative rounded-3xl  overflow-hidden">
           <div className="absolute top-0 right-0 w-96 h-96 bg-[#B89047]/10 rounded-full blur-3xl pointer-events-none" />
           <div className="absolute bottom-0 left-0 w-80 h-80 bg-[#B89047]/5 rounded-full blur-2xl pointer-events-none" />
 
           <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
             {/* Left Copy */}
             <div className="lg:col-span-7 space-y-6">
-              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#B89047]/15 border border-[#B89047]/30 text-[#E5C170] text-xs font-semibold tracking-[0.2em] uppercase font-space-grotesk">
+              {/* <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#B89047]/15 border border-[#B89047]/30 text-[#E5C170] text-xs font-semibold tracking-[0.2em] uppercase font-space-grotesk">
                 <Sparkles className="size-3.5 text-[#E5C170]" />
                 <span>InviteOly Partner Program</span>
-              </div>
+              </div> */}
 
               <div>
                 <p className="font-space-grotesk italic text-[#E5C170] text-xl sm:text-2xl md:text-3xl font-medium tracking-wide">

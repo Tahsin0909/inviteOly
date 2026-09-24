@@ -1,18 +1,17 @@
 "use client";
 
-import React, { useState } from "react";
-import Link from "next/link";
-import {
-  Mail,
-  Phone,
-  MapPin,
-  Clock,
-  Send,
-  MessageCircle,
-  CheckCircle2,
-} from "lucide-react";
-import { toast } from "sonner";
 import { WHATSAPP_SUPPORT_URL } from "@/constants/sidebarMenu";
+import {
+  CheckCircle2,
+  Clock,
+  Mail,
+  MessageCircle,
+  Phone,
+  Send
+} from "lucide-react";
+import Link from "next/link";
+import React, { useState } from "react";
+import { toast } from "sonner";
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
@@ -86,7 +85,7 @@ export default function ContactPage() {
                       href="mailto:support@InviteOly.com"
                       className="text-sm font-semibold text-white hover:text-[#B89047] transition-colors"
                     >
-                      support@InviteOly.com
+                      support@inviteoly.com
                     </a>
                   </div>
                 </div>
@@ -97,12 +96,9 @@ export default function ContactPage() {
                   </div>
                   <div>
                     <span className="text-xs text-neutral-400 block font-medium">Phone Enquiries</span>
-                    <a
-                      href="tel:+18005550199"
-                      className="text-sm font-semibold text-white hover:text-[#B89047] transition-colors"
-                    >
-                      +1 (800) 555-0199
-                    </a>
+                    <span className="text-sm font-semibold text-neutral-400">
+                      —
+                    </span>
                   </div>
                 </div>
 
@@ -122,7 +118,7 @@ export default function ContactPage() {
                     </Link>
                   </div>
                 </div>
-
+                {/* 
                 <div className="flex items-start gap-4">
                   <div className="size-10 rounded-xl bg-[#B89047]/10 text-[#B89047] flex items-center justify-center shrink-0">
                     <MapPin className="size-5" />
@@ -134,7 +130,7 @@ export default function ContactPage() {
                       San Francisco, CA 94104
                     </p>
                   </div>
-                </div>
+                </div> */}
 
                 <div className="flex items-start gap-4">
                   <div className="size-10 rounded-xl bg-[#B89047]/10 text-[#B89047] flex items-center justify-center shrink-0">
@@ -143,7 +139,7 @@ export default function ContactPage() {
                   <div>
                     <span className="text-xs text-neutral-400 block font-medium">Hours of Operation</span>
                     <p className="text-sm text-neutral-300">
-                      Monday – Friday: 8am – 8pm EST<br />
+                      Monday – Friday: 8am – 8pm PT<br />
                       Weekend Emergency Event Support: 24/7
                     </p>
                   </div>
@@ -246,7 +242,6 @@ export default function ContactPage() {
                         name="phone"
                         value={formData.phone}
                         onChange={handleChange}
-                        placeholder="+1 (555) 000-0000"
                         className="w-full h-11 px-3.5 rounded-xl bg-neutral-900 border border-neutral-800 text-sm text-white placeholder:text-neutral-500 focus:outline-none focus:border-[#B89047]"
                       />
                     </div>
