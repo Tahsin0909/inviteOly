@@ -69,7 +69,7 @@ export const getRoleBasedFooterSections = (
     const dynamicPartnerSection: IFooter = {
       title: "For Partners",
       links: [
-        { label: "Venue Directory", href: "/partners" },
+        { label: "Partner Agreement", href: "/partners-agreement" },
         { label: "Partner Benefits", href: "/partners/benefits" },
       ],
     };

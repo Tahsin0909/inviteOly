@@ -21,12 +21,15 @@ const EVENT_TYPES = [
   "Birthday Celebration",
   "Anniversary Party",
   "Corporate Gala",
-  "Private Reception",
+  "Private Event",
   "Networking Soiree",
   "Product Launch",
   "Charity Fundraiser",
   "Conference",
-  "Other Luxury Event",
+  "Quinceanera",
+  "Henna",
+  "Nikah",
+  "Other Event",
 ];
 
 const AGE_RESTRICTIONS = [
@@ -209,7 +212,7 @@ export const StepEventDetails: React.FC = () => {
             </label>
             <input
               type="tel"
-              placeholder="+1XXXXXXXX-XXXX"
+              placeholder="(415) 555-0123."
               {...register("phone")}
               className={cn(
                 "w-full px-4 py-2.5 rounded-xl border bg-white text-sm text-neutral-900 placeholder:text-neutral-400 focus:outline-none focus:ring-2 transition-all",

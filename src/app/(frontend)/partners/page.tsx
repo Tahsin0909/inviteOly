@@ -339,7 +339,7 @@ export default function PartnersLandingPage() {
                 Partner Expectations & Quality Standard
               </h3>
               <p className="text-xs sm:text-sm text-neutral-300 leading-relaxed">
-                Partners should be able to confidently recommend InviteOly to their clients and explain how the service works using provided materials. Partners must provide trained Door Assistants to scan tickets using the InviteOly Scan App.
+                For events booked through a Partner, the Partner provides trained entry staff and scanning devices unless the Host and Partner agree otherwise
               </p>
               <p className="text-xs text-neutral-400 leading-relaxed border-t border-neutral-800 pt-3">
                 Partnership applications are reviewed to ensure each Partner is a good fit and can provide a professional experience for clients and guests.
