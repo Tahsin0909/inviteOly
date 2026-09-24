@@ -22,22 +22,37 @@ interface IStepItem {
     title: string;
 }
 
-const STEPS: IStepItem[] = [
-    { id: 1, numberStr: "01", title: "Package" },
-    { id: 2, numberStr: "02", title: "Event Details" },
-    { id: 3, numberStr: "03", title: "Event Settings" },
-    { id: 4, numberStr: "04", title: "Preview Ticket" },
-    { id: 5, numberStr: "05", title: "Guest List" },
-    { id: 6, numberStr: "06", title: "Preview" },
-];
-
 export const CreateEvents: React.FC = () => {
     const router = useRouter();
     const searchParams = useSearchParams();
     const dispatch = useDispatch();
     const { user, profile } = useAuth();
 
-    // Read currentStep from Redux store (persisted across reloads)
+    // Read packageSelection and currentStep from Redux store
+    const packageSelection = useSelector(
+        (state: RootState) => state.createEvent?.packageSelection
+    );
+    const isStandard =
+        packageSelection?.tier?.toLowerCase() === "standard" ||
+        packageSelection?.packageName?.toLowerCase().includes("standard");
+
+    const steps: IStepItem[] = isStandard
+        ? [
+            { id: 1, numberStr: "01", title: "Package" },
+            { id: 2, numberStr: "02", title: "Event Details" },
+            { id: 3, numberStr: "03", title: "Event Settings" },
+            { id: 4, numberStr: "04", title: "Preview Ticket" },
+            { id: 5, numberStr: "05", title: "Preview" },
+        ]
+        : [
+            { id: 1, numberStr: "01", title: "Package" },
+            { id: 2, numberStr: "02", title: "Event Details" },
+            { id: 3, numberStr: "03", title: "Event Settings" },
+            { id: 4, numberStr: "04", title: "Preview Ticket" },
+            { id: 5, numberStr: "05", title: "Guest List" },
+            { id: 6, numberStr: "06", title: "Preview" },
+        ];
+
     const currentStep = useSelector(
         (state: RootState) => state.createEvent?.currentStep || 1
     );
@@ -47,11 +62,19 @@ export const CreateEvents: React.FC = () => {
     useEffect(() => {
         if (urlStep) {
             const stepNum = Number(urlStep);
-            if (stepNum >= 1 && stepNum <= 6) {
+            const maxStep = isStandard ? 5 : 6;
+            if (stepNum >= 1 && stepNum <= maxStep) {
                 dispatch(setCurrentStep(stepNum));
             }
         }
-    }, [urlStep, dispatch]);
+    }, [urlStep, isStandard, dispatch]);
+
+    // Ensure step does not exceed max step for standard
+    useEffect(() => {
+        if (isStandard && currentStep > 5) {
+            dispatch(setCurrentStep(5));
+        }
+    }, [isStandard, currentStep, dispatch]);
 
     useEffect(() => {
         const activeUser = user || profile;
@@ -80,7 +103,7 @@ export const CreateEvents: React.FC = () => {
             case 4:
                 return <StepPreviewTicket />;
             case 5:
-                return <StepGuestList />;
+                return isStandard ? <StepEventPreview /> : <StepGuestList />;
             case 6:
                 return <StepEventPreview />;
             default:
@@ -107,8 +130,9 @@ export const CreateEvents: React.FC = () => {
                     {/* Connecting Line behind the circles */}
                     <div className="absolute left-6 right-6 top-4 h-[1.5px] bg-neutral-300 -translate-y-1/2 z-0" />
 
-                    {STEPS.map((step) => {
-                        const isCompleted = step.id < currentStep || (currentStep === 6 && step.id <= 6);
+                    {steps.map((step) => {
+                        const maxStep = isStandard ? 5 : 6;
+                        const isCompleted = step.id < currentStep || (currentStep === maxStep && step.id <= maxStep);
                         const isActive = step.id === currentStep;
 
                         return (

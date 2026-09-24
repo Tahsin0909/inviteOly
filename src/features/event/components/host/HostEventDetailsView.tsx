@@ -110,7 +110,7 @@ export const HostEventDetailsView: React.FC<HostEventDetailsViewProps> = ({
       // Search query filter
       if (searchQuery.trim()) {
         const q = searchQuery.toLowerCase();
-        const matchesName = ticket.guestName.toLowerCase().includes(q);
+        const matchesName = event.tier !== "Standard" && ticket.guestName.toLowerCase().includes(q);
         const matchesId = ticket.ticketId.toLowerCase().includes(q);
         const matchesTable = ticket.table.toLowerCase().includes(q);
         const matchesType = ticket.ticketType.toLowerCase().includes(q);
@@ -119,7 +119,7 @@ export const HostEventDetailsView: React.FC<HostEventDetailsViewProps> = ({
 
       return true;
     });
-  }, [effectiveTickets, activeFilter, searchQuery]);
+  }, [effectiveTickets, activeFilter, searchQuery, event.tier]);
 
 
   const handleCopyLink = async (ticketId: string) => {
@@ -140,13 +140,19 @@ export const HostEventDetailsView: React.FC<HostEventDetailsViewProps> = ({
   };
 
   const handleExport = () => {
+    const isStandardTier = event.tier === "Standard";
+    const headerRow = isStandardTier
+      ? "Ticket,Table,Ticket Type,Check-in Time,Status"
+      : "Ticket,Guest Name,Table,RSVP Status,Ticket Type,Check-in Time,Status";
     const csvContent =
       "data:text/csv;charset=utf-8," +
-      ["Ticket,Guest Name,Table,RSVP Status,Ticket Type,Check-in Time,Status"]
+      [headerRow]
         .concat(
           tickets.map(
             (t) =>
-              `"${t.ticketId}","${t.guestName}","${t.table}","${t.rsvpStatus}","${t.ticketType}","${t.checkInTime || "--"}","${t.status}"`
+              isStandardTier
+                ? `"${t.ticketId}","${t.table}","${t.ticketType}","${t.checkInTime || "--"}","${t.status}"`
+                : `"${t.ticketId}","${t.guestName}","${t.table}","${t.rsvpStatus}","${t.ticketType}","${t.checkInTime || "--"}","${t.status}"`
           )
         )
         .join("\n");
@@ -168,8 +174,9 @@ export const HostEventDetailsView: React.FC<HostEventDetailsViewProps> = ({
   };
 
   // Determine layout mode based on event tier and status
+  const isStandardTier = event.tier === "Standard";
   const isScheduled = event.status === "Scheduled";
-  const isStandard = event.tier === "Standard" && !isScheduled;
+  const isStandard = isStandardTier && !isScheduled;
   const isPremium = !isScheduled && !isStandard;
 
   return (
@@ -202,7 +209,7 @@ export const HostEventDetailsView: React.FC<HostEventDetailsViewProps> = ({
               type="text"
               value={searchQuery}
               onChange={(e) => dispatch(setSearchQuery(e.target.value))}
-              placeholder="Search guest name, email or phone..."
+              placeholder={isStandardTier ? "Search ticket (e.g. Guest 001)..." : "Search guest name, email or phone..."}
               className="w-full rounded-lg border border-gray-200 bg-white py-2 pl-9 pr-3.5 text-xs sm:text-sm text-gray-900 placeholder:text-gray-400 focus:border-[#C39B4C] focus:outline-none focus:ring-1 focus:ring-[#C39B4C] transition-all font-work-sans"
             />
           </div>
@@ -217,15 +224,17 @@ export const HostEventDetailsView: React.FC<HostEventDetailsViewProps> = ({
             Export
           </button>
 
-          {/* Add Guests Button */}
-          <button
-            type="button"
-            onClick={() => dispatch(setIsAddGuestModalOpen(true))}
-            className="inline-flex items-center gap-1.5 rounded-lg bg-[#C39B4C] px-4 py-2 text-xs sm:text-sm font-medium text-white hover:bg-[#b08b3e] transition-colors cursor-pointer font-work-sans shadow-2xs"
-          >
-            <UserPlus className="h-4 w-4" />
-            Add Guests
-          </button>
+          {/* Add Guests Button (Premium only) */}
+          {!isStandardTier && (
+            <button
+              type="button"
+              onClick={() => dispatch(setIsAddGuestModalOpen(true))}
+              className="inline-flex items-center gap-1.5 rounded-lg bg-[#C39B4C] px-4 py-2 text-xs sm:text-sm font-medium text-white hover:bg-[#b08b3e] transition-colors cursor-pointer font-work-sans shadow-2xs"
+            >
+              <UserPlus className="h-4 w-4" />
+              Add Guests
+            </button>
+          )}
         </div>
       </div>
 
@@ -504,8 +513,7 @@ export const HostEventDetailsView: React.FC<HostEventDetailsViewProps> = ({
               {/* Standard Active Table Header */}
               {isStandard && (
                 <tr>
-                  <th className="py-3.5 pl-6 pr-4">Ticket</th>
-                  <th className="py-3.5 px-4">Assign to Name</th>
+                  <th className="py-3.5 pl-6 pr-4">Ticket (Guest #)</th>
                   <th className="py-3.5 px-4">Table</th>
                   <th className="py-3.5 px-4">Ticket Type</th>
                   <th className="py-3.5 px-4">Ticket Link</th>
@@ -516,8 +524,8 @@ export const HostEventDetailsView: React.FC<HostEventDetailsViewProps> = ({
               {/* Scheduled Table Header */}
               {isScheduled && (
                 <tr>
-                  <th className="py-3.5 pl-6 pr-4">Ticket</th>
-                  <th className="py-3.5 px-4">Assign to Name</th>
+                  <th className="py-3.5 pl-6 pr-4">{isStandardTier ? "Ticket (Guest #)" : "Ticket"}</th>
+                  {!isStandardTier && <th className="py-3.5 px-4">Guest Name</th>}
                   <th className="py-3.5 px-4">Table</th>
                   <th className="py-3.5 px-4">Status</th>
                   <th className="py-3.5 px-4">Ticket Type</th>
@@ -531,7 +539,7 @@ export const HostEventDetailsView: React.FC<HostEventDetailsViewProps> = ({
               {filteredTickets.length === 0 ? (
                 <tr>
                   <td
-                    colSpan={isPremium ? 9 : isStandard ? 6 : 7}
+                    colSpan={isPremium ? 9 : isStandard ? 5 : isStandardTier ? 6 : 7}
                     className="py-12 text-center text-gray-500 font-work-sans"
                   >
                     No tickets found matching current filters.
@@ -549,13 +557,11 @@ export const HostEventDetailsView: React.FC<HostEventDetailsViewProps> = ({
                         {ticket.ticketId}
                       </td>
 
-                      {/* Guest Name / Assign to Name */}
-                      {isPremium ? (
+                      {/* Guest Name (Premium only - never shown for Standard) */}
+                      {!isStandardTier && (
                         <td className="py-3.5 px-4 text-gray-700">
                           {ticket.guestName}
                         </td>
-                      ) : (
-                        <td className="py-3.5 px-4 text-gray-400">--</td>
                       )}
 
                       {/* Table Column */}

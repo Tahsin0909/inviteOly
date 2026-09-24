@@ -61,6 +61,8 @@ export const AdminEventDetails: React.FC<AdminEventDetailsProps> = ({
   const event: IAdminEventDetails =
     apiData?.data || getAdminEventDetailsById(eventId) || staticAdminEventDetails;
 
+  const isStandard = event.tier === "Standard";
+
   // Active Tab
   const [activeTab, setActiveTab] = useState<TabType>("guests");
 
@@ -122,10 +124,11 @@ export const AdminEventDetails: React.FC<AdminEventDetailsProps> = ({
       // Search query (name, email, ticketNumber)
       if (searchQuery.trim()) {
         const query = searchQuery.toLowerCase().trim();
-        const matchName = ticket.name.toLowerCase().includes(query);
-        const matchEmail = (ticket.email || "").toLowerCase().includes(query);
+        const matchName = !isStandard && ticket.name.toLowerCase().includes(query);
+        const matchEmail = !isStandard && (ticket.email || "").toLowerCase().includes(query);
         const matchNumber = ticket.ticketNumber.toLowerCase().includes(query);
-        if (!matchName && !matchEmail && !matchNumber) return false;
+        const matchType = ticket.ticketType.toLowerCase().includes(query);
+        if (!matchName && !matchEmail && !matchNumber && !matchType) return false;
       }
 
       // Ticket Type
@@ -147,7 +150,7 @@ export const AdminEventDetails: React.FC<AdminEventDetailsProps> = ({
 
       return true;
     });
-  }, [guestTickets, searchQuery, ticketTypeFilter, statusFilter, deliveryFilter]);
+  }, [guestTickets, searchQuery, ticketTypeFilter, statusFilter, deliveryFilter, isStandard]);
 
   // Paginated Tickets
   const totalItems = filteredTickets.length;
@@ -197,15 +200,19 @@ export const AdminEventDetails: React.FC<AdminEventDetailsProps> = ({
         t.id === selectedTicket.id
           ? {
             ...t,
-            name: editForm.name,
-            email: editForm.email,
+            name: isStandard ? t.name : editForm.name,
+            email: isStandard ? t.email : editForm.email,
             ticketType: editForm.ticketType,
             table: editForm.table || undefined,
           }
           : t
       )
     );
-    toast.success(`Updated ticket details for ${editForm.name}`);
+    toast.success(
+      isStandard
+        ? `Updated ticket ${selectedTicket.ticketNumber}`
+        : `Updated ticket details for ${editForm.name}`
+    );
     setEditTicketOpen(false);
   };
 
@@ -215,7 +222,11 @@ export const AdminEventDetails: React.FC<AdminEventDetailsProps> = ({
   };
 
   const handleRegenerateLink = (ticket: IAdminGuestTicket) => {
-    toast.success(`Regenerated secure ticket link for ${ticket.name}`);
+    toast.success(
+      isStandard
+        ? `Regenerated secure ticket link for ${ticket.ticketNumber}`
+        : `Regenerated secure ticket link for ${ticket.name}`
+    );
   };
 
   const handleVoidTicket = (ticket: IAdminGuestTicket) => {
@@ -279,23 +290,30 @@ export const AdminEventDetails: React.FC<AdminEventDetailsProps> = ({
   };
 
   const handleExportCsv = () => {
-    const headers = "Ticket Number,Name,Email,Ticket Type,Table,Delivery,RSVP,Check-in,Status\n";
+    const headers = isStandard
+      ? "Ticket Number,Ticket Type,Table,Delivery,RSVP,Check-in,Status\n"
+      : "Ticket Number,Name,Email,Ticket Type,Table,Delivery,RSVP,Check-in,Status\n";
     const rows = guestTickets
       .map(
         (t) =>
-          `"${t.ticketNumber}","${t.name}","${t.email || ""}","${t.ticketType}","${t.table || ""
-          }","${t.deliveryMethod}","${t.rsvpStatus}","${t.checkInStatus}","${t.status}"`
+          isStandard
+            ? `"${t.ticketNumber}","${t.ticketType}","${t.table || ""}","${t.deliveryMethod}","${t.rsvpStatus}","${t.checkInStatus}","${t.status}"`
+            : `"${t.ticketNumber}","${t.name}","${t.email || ""}","${t.ticketType}","${t.table || ""
+            }","${t.deliveryMethod}","${t.rsvpStatus}","${t.checkInStatus}","${t.status}"`
       )
       .join("\n");
     const blob = new Blob([headers + rows], { type: "text/csv;charset=utf-8;" });
     const url = URL.createObjectURL(blob);
     const link = document.createElement("a");
     link.setAttribute("href", url);
-    link.setAttribute("download", `${event.eventName.replace(/\s+/g, "_")}_Guests.csv`);
+    link.setAttribute(
+      "download",
+      `${event.eventName.replace(/\s+/g, "_")}_${isStandard ? "Tickets" : "Guests"}.csv`
+    );
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
-    toast.success("Guest list exported to CSV.");
+    toast.success(isStandard ? "Tickets exported to CSV." : "Guest list exported to CSV.");
   };
 
   // Status Badge Styling
@@ -468,10 +486,12 @@ export const AdminEventDetails: React.FC<AdminEventDetailsProps> = ({
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
             <div>
               <h2 className="text-base sm:text-lg font-bold font-space-grotesk text-neutral-900">
-                Guest & Ticket Management
+                {isStandard ? "Ticket Management" : "Guest & Ticket Management"}
               </h2>
               <p className="text-xs sm:text-sm text-neutral-500">
-                View ticket assignments, delivery activity, RSVP responses and entry records.
+                {isStandard
+                  ? "View numbered ticket assignments, delivery links, and entry records."
+                  : "View ticket assignments, delivery activity, RSVP responses and entry records."}
               </p>
             </div>
 
@@ -482,17 +502,19 @@ export const AdminEventDetails: React.FC<AdminEventDetailsProps> = ({
                 className="px-3.5 py-2 rounded-lg bg-white border border-neutral-200 text-xs font-semibold text-neutral-700 hover:bg-neutral-50 transition-colors inline-flex items-center gap-1.5 cursor-pointer shadow-2xs"
               >
                 <Download className="size-3.5 text-neutral-500" />
-                <span>Export Guest List</span>
+                <span>{isStandard ? "Export Tickets" : "Export Guest List"}</span>
               </button>
 
-              <button
-                type="button"
-                onClick={() => setAddGuestOpen(true)}
-                className="px-4 py-2 rounded-lg bg-[#C39B4C] hover:bg-[#b08b41] active:scale-[0.99] text-white text-xs font-semibold inline-flex items-center gap-1.5 cursor-pointer shadow-xs transition-all"
-              >
-                <Plus className="size-3.5 stroke-[2.5]" />
-                <span>Add Guest</span>
-              </button>
+              {!isStandard && (
+                <button
+                  type="button"
+                  onClick={() => setAddGuestOpen(true)}
+                  className="px-4 py-2 rounded-lg bg-[#C39B4C] hover:bg-[#b08b41] active:scale-[0.99] text-white text-xs font-semibold inline-flex items-center gap-1.5 cursor-pointer shadow-xs transition-all"
+                >
+                  <Plus className="size-3.5 stroke-[2.5]" />
+                  <span>Add Guest</span>
+                </button>
+              )}
             </div>
           </div>
 
@@ -508,7 +530,7 @@ export const AdminEventDetails: React.FC<AdminEventDetailsProps> = ({
                   setSearchQuery(e.target.value);
                   setCurrentPage(1);
                 }}
-                placeholder="Search guest, email or ticket number"
+                placeholder={isStandard ? "Search ticket number (e.g. Guest 001)..." : "Search guest, email or ticket number"}
                 className="w-full h-10 pl-9 pr-3 rounded-lg bg-white border border-neutral-200 text-xs text-neutral-800 placeholder:text-neutral-400 focus:outline-none focus:border-[#C39B4C] transition-colors"
               />
               {searchQuery && (
@@ -590,10 +612,10 @@ export const AdminEventDetails: React.FC<AdminEventDetailsProps> = ({
                 <thead>
                   <tr className="border-b border-neutral-200/80 bg-neutral-50/50">
                     <th className="py-3 px-4 text-[11px] font-semibold text-neutral-500 uppercase tracking-wider">
-                      GUEST
+                      {isStandard ? "GUEST #" : "GUEST"}
                     </th>
                     <th className="py-3 px-4 text-[11px] font-semibold text-neutral-500 uppercase tracking-wider">
-                      TICKET
+                      {isStandard ? "TICKET TYPE" : "TICKET"}
                     </th>
                     <th className="py-3 px-4 text-[11px] font-semibold text-neutral-500 uppercase tracking-wider">
                       DELIVERY
@@ -622,19 +644,41 @@ export const AdminEventDetails: React.FC<AdminEventDetailsProps> = ({
                       >
                         {/* 1. GUEST */}
                         <td className="py-3.5 px-4 whitespace-nowrap">
-                          <p className="font-bold text-neutral-900">{ticket.name}</p>
-                          <p className="text-[11px] text-neutral-500">
-                            {ticket.email || "No email provided"}
-                          </p>
+                          {isStandard ? (
+                            <>
+                              <p className="font-bold text-neutral-900">{ticket.ticketNumber}</p>
+                              <p className="text-[11px] text-neutral-400">
+                                Standard Package (No name)
+                              </p>
+                            </>
+                          ) : (
+                            <>
+                              <p className="font-bold text-neutral-900">{ticket.name}</p>
+                              <p className="text-[11px] text-neutral-500">
+                                {ticket.email || "No email provided"}
+                              </p>
+                            </>
+                          )}
                         </td>
 
                         {/* 2. TICKET */}
                         <td className="py-3.5 px-4 whitespace-nowrap">
-                          <p className="font-bold text-neutral-900">{ticket.ticketNumber}</p>
-                          <p className="text-[11px] text-neutral-500">
-                            {ticket.ticketType}
-                            {ticket.table ? ` • ${ticket.table}` : ""}
-                          </p>
+                          {isStandard ? (
+                            <>
+                              <p className="font-bold text-neutral-900">{ticket.ticketType}</p>
+                              <p className="text-[11px] text-neutral-500">
+                                {ticket.table ? ticket.table : "Open Seating"}
+                              </p>
+                            </>
+                          ) : (
+                            <>
+                              <p className="font-bold text-neutral-900">{ticket.ticketNumber}</p>
+                              <p className="text-[11px] text-neutral-500">
+                                {ticket.ticketType}
+                                {ticket.table ? ` • ${ticket.table}` : ""}
+                              </p>
+                            </>
+                          )}
                         </td>
 
                         {/* 3. DELIVERY */}
@@ -986,8 +1030,10 @@ export const AdminEventDetails: React.FC<AdminEventDetailsProps> = ({
             {/* Ticket Details */}
             <div className="grid grid-cols-2 gap-3 text-xs">
               <div className="p-3 rounded-xl bg-neutral-50 border border-neutral-100">
-                <p className="text-neutral-400">Guest Name</p>
-                <p className="font-bold text-neutral-900 mt-0.5">{selectedTicket?.name}</p>
+                <p className="text-neutral-400">{isStandard ? "Ticket / Guest #" : "Guest Name"}</p>
+                <p className="font-bold text-neutral-900 mt-0.5">
+                  {isStandard ? selectedTicket?.ticketNumber : selectedTicket?.name}
+                </p>
               </div>
               <div className="p-3 rounded-xl bg-neutral-50 border border-neutral-100">
                 <p className="text-neutral-400">Ticket Type</p>
@@ -1053,32 +1099,38 @@ export const AdminEventDetails: React.FC<AdminEventDetailsProps> = ({
               Edit Ticket Details ({selectedTicket?.ticketNumber})
             </DialogTitle>
             <DialogDescription className="text-xs text-neutral-500">
-              Update guest details for customer support or seat reassignments.
+              {isStandard
+                ? "Update ticket category and table seating for this numbered ticket."
+                : "Update guest details for customer support or seat reassignments."}
             </DialogDescription>
           </DialogHeader>
 
           <form onSubmit={handleSaveEdit} className="space-y-4 pt-2 text-xs">
-            <div className="space-y-1">
-              <label className="font-medium text-neutral-700">Guest Name</label>
-              <input
-                type="text"
-                required
-                value={editForm.name}
-                onChange={(e) => setEditForm((prev) => ({ ...prev, name: e.target.value }))}
-                className="w-full h-9 px-3 rounded-lg border border-neutral-200 text-xs text-neutral-900 focus:outline-none focus:border-[#C39B4C]"
-              />
-            </div>
+            {!isStandard && (
+              <>
+                <div className="space-y-1">
+                  <label className="font-medium text-neutral-700">Guest Name</label>
+                  <input
+                    type="text"
+                    required
+                    value={editForm.name}
+                    onChange={(e) => setEditForm((prev) => ({ ...prev, name: e.target.value }))}
+                    className="w-full h-9 px-3 rounded-lg border border-neutral-200 text-xs text-neutral-900 focus:outline-none focus:border-[#C39B4C]"
+                  />
+                </div>
 
-            <div className="space-y-1">
-              <label className="font-medium text-neutral-700">Guest Email</label>
-              <input
-                type="email"
-                value={editForm.email}
-                onChange={(e) => setEditForm((prev) => ({ ...prev, email: e.target.value }))}
-                placeholder="guest@example.com"
-                className="w-full h-9 px-3 rounded-lg border border-neutral-200 text-xs text-neutral-900 focus:outline-none focus:border-[#C39B4C]"
-              />
-            </div>
+                <div className="space-y-1">
+                  <label className="font-medium text-neutral-700">Guest Email</label>
+                  <input
+                    type="email"
+                    value={editForm.email}
+                    onChange={(e) => setEditForm((prev) => ({ ...prev, email: e.target.value }))}
+                    placeholder="guest@example.com"
+                    className="w-full h-9 px-3 rounded-lg border border-neutral-200 text-xs text-neutral-900 focus:outline-none focus:border-[#C39B4C]"
+                  />
+                </div>
+              </>
+            )}
 
             <div className="grid grid-cols-2 gap-3">
               <div className="space-y-1">

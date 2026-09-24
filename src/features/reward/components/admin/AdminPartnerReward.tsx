@@ -1,23 +1,22 @@
 ﻿"use client";
 
-import React, { useState, useMemo } from "react";
-import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/redux/store";
+import React, { useMemo, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { toast } from "sonner";
+import { IPendingRewardItem } from "../../reward.interface";
 import {
+  approveReward,
   setActiveTab,
   setCurrentPage,
-  approveReward,
 } from "../../store/reward.slice";
-import { IPendingRewardItem } from "../../reward.interface";
-import AdminRewardStats from "./AdminRewardStats";
-import AdminCommissionControl from "./AdminCommissionControl";
-import AdminRewardFilters from "./AdminRewardFilters";
-import AdminPendingRewardTable from "./AdminPendingRewardTable";
-import AdminPayoutLedgerTable from "./AdminPayoutLedgerTable";
-import AdminApprovePayoutModal from "./AdminApprovePayoutModal";
-import { RewardTabs } from "../shared/RewardTabs";
 import { RewardPagination } from "../shared/RewardPagination";
-import { toast } from "sonner";
+import { RewardTabs } from "../shared/RewardTabs";
+import AdminApprovePayoutModal from "./AdminApprovePayoutModal";
+import AdminPayoutLedgerTable from "./AdminPayoutLedgerTable";
+import AdminPendingRewardTable from "./AdminPendingRewardTable";
+import AdminRewardFilters from "./AdminRewardFilters";
+import AdminRewardStats from "./AdminRewardStats";
 
 export const AdminPartnerReward: React.FC = () => {
   const dispatch = useDispatch();
@@ -34,7 +33,7 @@ export const AdminPartnerReward: React.FC = () => {
   const payoutHistory = rewardState?.payoutHistory || [];
   const activeTab = rewardState?.activeTab || "pending";
   const currentPage = rewardState?.currentPage || 2;
-  const commissionRate = rewardState?.commissionRate || 20;
+  // const commissionRate = rewardState?.commissionRate || 20;
   const dateFrom = rewardState?.dateFrom || "";
   const dateTo = rewardState?.dateTo || "";
 
@@ -68,7 +67,7 @@ export const AdminPartnerReward: React.FC = () => {
       <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-4">
         <div>
           <h1 className="text-2xl sm:text-3xl font-bold font-space-grotesk text-neutral-900 tracking-tight">
-            Partner Reward
+            Partner Rewards
           </h1>
           <p className="text-xs sm:text-sm text-neutral-500 font-work-sans mt-1">
             Manage and track rewards earned by partners
@@ -76,9 +75,9 @@ export const AdminPartnerReward: React.FC = () => {
         </div>
 
         {/* When on Payout History, Commission % appears in the top right per design */}
-        {activeTab === "history" && (
+        {/* {activeTab === "history" && (
           <AdminCommissionControl currentRate={commissionRate} />
-        )}
+        )} */}
       </div>
 
       {/* ========================================================================= */}
@@ -100,7 +99,7 @@ export const AdminPartnerReward: React.FC = () => {
       {activeTab === "pending" && (
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
           <AdminRewardFilters dateFrom={dateFrom} dateTo={dateTo} />
-          <AdminCommissionControl currentRate={commissionRate} />
+          {/* <AdminCommissionControl currentRate={commissionRate} /> */}
         </div>
       )}
 

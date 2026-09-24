@@ -30,6 +30,8 @@ export const PartnerSettings: React.FC<PartnerSettingsProps> = ({
     "PARTNER"
   ).toUpperCase();
 
+
+
   const isPartner = currentRole === "PARTNER";
 
   // 1. Profile State initialized with exact values from design specification

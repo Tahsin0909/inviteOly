@@ -26,6 +26,13 @@ export const StepEventPreview: React.FC = () => {
   const dispatch = useDispatch();
 
   // Redux data
+  const packageSelection = useSelector(
+    (state: RootState) => state.createEvent?.packageSelection
+  );
+  const isStandard =
+    packageSelection?.tier?.toLowerCase() === "standard" ||
+    packageSelection?.packageName?.toLowerCase().includes("standard");
+
   const eventDetails = useSelector(
     (state: RootState) => state.createEvent?.eventDetails
   );
@@ -378,66 +385,107 @@ export const StepEventPreview: React.FC = () => {
         </div>
       </section>
 
-      {/* 5. Guest List Table */}
-      <section className="space-y-4">
-        <div className="overflow-x-auto rounded-xl border border-neutral-200/90 bg-white shadow-2xs">
-          <table className="w-full text-left text-xs sm:text-sm border-collapse">
-            <thead>
-              <tr className="bg-neutral-50/90 border-b border-neutral-200/90 text-neutral-700 font-semibold">
-                <th className="py-3 px-4 font-semibold">Guest Name</th>
-                <th className="py-3 px-4 font-semibold">Email</th>
-                <th className="py-3 px-4 font-semibold">Ticket Type</th>
-                <th className="py-3 px-4 font-semibold">Table</th>
-                <th className="py-3 px-4 font-semibold text-right">Action</th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-neutral-100 text-neutral-700">
-              {guests.map((g) => (
-                <tr key={g.id} className="hover:bg-neutral-50/50 transition-colors">
-                  <td className="py-3.5 px-4 font-semibold text-neutral-900 whitespace-nowrap">
-                    {g.name}
-                  </td>
-                  <td className="py-3.5 px-4 text-neutral-500 whitespace-nowrap">
-                    {g.email}
-                  </td>
-                  <td className="py-3.5 px-4 text-neutral-600 whitespace-nowrap">
-                    {g.ticketType}
-                  </td>
-                  <td className="py-3.5 px-4 text-neutral-500 italic whitespace-nowrap">
-                    {g.table}
-                  </td>
-                  <td className="py-3.5 px-4 text-right whitespace-nowrap">
-                    <div className="inline-flex items-center gap-2">
-                      <button
-                        type="button"
-                        onClick={() => handleEditClick(g)}
-                        title="Edit guest"
-                        className="text-neutral-400 hover:text-neutral-700 transition-colors p-1"
-                      >
-                        <Pencil className="size-3.5" />
-                      </button>
-                      <button
-                        type="button"
-                        onClick={() => handleDelete(g.id)}
-                        title="Delete guest"
-                        className="text-neutral-400 hover:text-red-500 transition-colors p-1"
-                      >
-                        <Trash2 className="size-3.5" />
-                      </button>
-                    </div>
-                  </td>
-                </tr>
+      {/* 5. Guest List Table (Premium) or Numbered Ticket Allocation (Standard) */}
+      {isStandard ? (
+        <section className="space-y-4">
+          <div className="p-5 rounded-2xl bg-neutral-50/70 border border-neutral-200/90 space-y-4">
+            <div className="flex items-center justify-between flex-wrap gap-2">
+              <div>
+                <h3 className="text-base font-bold font-space-grotesk text-neutral-900">
+                  Numbered Ticket Allocation
+                </h3>
+                <p className="text-xs text-neutral-500 mt-0.5">
+                  Standard Package tickets are issued with sequential guest numbers (Guest 001, Guest 002, etc.). No personalized guest list is required.
+                </p>
+              </div>
+              <span className="px-3 py-1 rounded-full text-xs font-semibold bg-[#FEF7EC] text-[#B89047] border border-[#F6DFA9]">
+                Standard Package
+              </span>
+            </div>
+
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-1">
+              {["Guest 001", "Guest 002", "Guest 003", "Guest 004", "Guest 005", "Guest 006", "Guest 007", "Guest 008"].map((guestNum) => (
+                <div
+                  key={guestNum}
+                  className="p-3 bg-white rounded-xl border border-neutral-200/80 shadow-2xs flex items-center justify-between"
+                >
+                  <div>
+                    <p className="text-xs font-bold text-neutral-900 font-space-grotesk">{guestNum}</p>
+                    <p className="text-[11px] text-neutral-400">General Admission</p>
+                  </div>
+                  <span className="text-[10px] font-semibold text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded-md">
+                    Ready
+                  </span>
+                </div>
               ))}
-            </tbody>
-          </table>
-        </div>
-      </section>
+            </div>
+
+            <p className="text-[11px] text-neutral-400 italic">
+              * Showing first 8 sample ticket allocations. Complete batch will be generated upon confirmation.
+            </p>
+          </div>
+        </section>
+      ) : (
+        <section className="space-y-4">
+          <div className="overflow-x-auto rounded-xl border border-neutral-200/90 bg-white shadow-2xs">
+            <table className="w-full text-left text-xs sm:text-sm border-collapse">
+              <thead>
+                <tr className="bg-neutral-50/90 border-b border-neutral-200/90 text-neutral-700 font-semibold">
+                  <th className="py-3 px-4 font-semibold">Guest Name</th>
+                  <th className="py-3 px-4 font-semibold">Email</th>
+                  <th className="py-3 px-4 font-semibold">Ticket Type</th>
+                  <th className="py-3 px-4 font-semibold">Table</th>
+                  <th className="py-3 px-4 font-semibold text-right">Action</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-neutral-100 text-neutral-700">
+                {guests.map((g) => (
+                  <tr key={g.id} className="hover:bg-neutral-50/50 transition-colors">
+                    <td className="py-3.5 px-4 font-semibold text-neutral-900 whitespace-nowrap">
+                      {g.name}
+                    </td>
+                    <td className="py-3.5 px-4 text-neutral-500 whitespace-nowrap">
+                      {g.email}
+                    </td>
+                    <td className="py-3.5 px-4 text-neutral-600 whitespace-nowrap">
+                      {g.ticketType}
+                    </td>
+                    <td className="py-3.5 px-4 text-neutral-500 italic whitespace-nowrap">
+                      {g.table}
+                    </td>
+                    <td className="py-3.5 px-4 text-right whitespace-nowrap">
+                      <div className="inline-flex items-center gap-2">
+                        <button
+                          type="button"
+                          onClick={() => handleEditClick(g)}
+                          title="Edit guest"
+                          className="text-neutral-400 hover:text-neutral-700 transition-colors p-1"
+                        >
+                          <Pencil className="size-3.5" />
+                        </button>
+                        <button
+                          type="button"
+                          onClick={() => handleDelete(g.id)}
+                          title="Delete guest"
+                          className="text-neutral-400 hover:text-red-500 transition-colors p-1"
+                        >
+                          <Trash2 className="size-3.5" />
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </section>
+      )}
 
       {/* 7. Bottom Action Buttons */}
       <div className="flex items-center justify-between pt-6 border-t border-neutral-100">
         <button
           type="button"
-          onClick={() => dispatch(setCurrentStep(5))}
+          onClick={() => dispatch(setCurrentStep(isStandard ? 4 : 5))}
           className="px-6 py-2.5 rounded-lg bg-neutral-100 hover:bg-neutral-200 text-neutral-700 text-xs sm:text-sm font-medium transition-all cursor-pointer"
         >
           Back
@@ -560,7 +608,7 @@ export const StepEventPreview: React.FC = () => {
                 Event Created Successfully!
               </h3>
               <p className="text-xs sm:text-sm text-neutral-500 mt-1">
-                Your event &ldquo;{eventName}&rdquo; has been finalized. Your digital tickets and guest list are now active.
+                Your event &ldquo;{eventName}&rdquo; has been finalized. {isStandard ? "Your numbered digital tickets are now active." : "Your digital tickets and guest list are now active."}
               </p>
             </div>
 
