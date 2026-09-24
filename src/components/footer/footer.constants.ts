@@ -25,6 +25,7 @@ export const partnersSection: IFooter = {
   links: [
     { label: "Become a Partner", href: "/partners" },
     { label: "Partner Benefits", href: "/partners/benefits" },
+    { label: "Partner Agreement", href: "/partners-agreement" },
     { label: "Partner Login", href: "/login" },
   ],
 };
@@ -33,6 +34,7 @@ export const hostsSection: IFooter = {
   title: "For Hosts",
   links: [
     { label: "Create an Event", href: "/create-event" },
+    { label: "Host Agreement", href: "/host-agreement" },
     { label: "Guest Management", href: "/guest-management" },
     { label: "Ticketing", href: "/ticketing" },
   ],
@@ -60,7 +62,7 @@ export const getRoleBasedFooterSections = (
       title: "For Hosts",
       links: [
         { label: "Create an Event", href: "/host/create-event" },
-        { label: "My Events", href: "/host/events" },
+        { label: "Host Agreement", href: "/host-agreement" },
         { label: "Payment Status", href: "/host/payment-pending" },
         { label: "Event Packages", href: "/#pricing" },
       ],
@@ -128,6 +130,8 @@ export const getRoleBasedFooterSections = (
 export const bottomLinks = [
   { label: "Privacy", href: "/privacy" },
   { label: "Terms", href: "/terms" },
+  { label: "Host Agreement", href: "/host-agreement" },
+  { label: "Partner Agreement", href: "/partners-agreement" },
 ];
 
 // Preserved for backward compatibility
