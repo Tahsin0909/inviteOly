@@ -23,6 +23,14 @@ export interface IUser {
   website?: string | null;
   businessAddress?: string | null;
 
+  // Partner bank / payout fields
+  bankName?: string | null;
+  accountHolderName?: string | null;
+  accountNumber?: string | null;
+  routingNumber?: string | null;
+  accountType?: string | null;
+  swiftCode?: string | null;
+
   // Account & system flags
   isEmailVerified?: boolean;
   isActive?: boolean;
@@ -74,6 +82,15 @@ export type TCreateUser = {
   postalCode?: string;
 };
 
+export interface IPartnerBankInfo {
+  accountHolderName: string;
+  bankName: string;
+  accountNumber: string;
+  routingNumber: string;
+  accountType: "checking" | "savings" | "business";
+  swiftCode?: string;
+}
+
 export interface IUpdatePartnerProfileDto {
   firstName?: string;
   lastName?: string;
@@ -84,6 +101,12 @@ export interface IUpdatePartnerProfileDto {
   website?: string;
   businessAddress?: string;
   profileImage?: string;
+  bankName?: string;
+  accountHolderName?: string;
+  accountNumber?: string;
+  routingNumber?: string;
+  accountType?: string;
+  swiftCode?: string;
 }
 
 export interface IChangePartnerPasswordDto {

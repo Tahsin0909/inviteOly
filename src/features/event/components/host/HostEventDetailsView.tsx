@@ -614,11 +614,11 @@ export const HostEventDetailsView: React.FC<HostEventDetailsViewProps> = ({
                             </span>
                           ) : ticket.rsvpStatus === "Confirm" ? (
                             <span className="font-medium text-[#12B76A]">
-                              Confirm
+                              Confirmed
                             </span>
                           ) : ticket.rsvpStatus === "Decline" ? (
                             <span className="font-medium text-gray-400">
-                              Decline
+                              Declined
                             </span>
                           ) : (
                             <span className="text-gray-400">--</span>
