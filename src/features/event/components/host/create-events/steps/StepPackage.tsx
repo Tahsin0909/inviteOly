@@ -1,21 +1,21 @@
 "use client";
 
-import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "@/redux/store";
+import { useAuth } from "@/features/auth/hooks/useAuth";
 import {
-  setPackageSelection,
-  setCurrentStep,
-} from "@/features/event/store/createEvent.slice";
-import {
+  ICreateEventPackageState,
   TPackageCategory,
   TPackageTier,
-  ICreateEventPackageState,
 } from "@/features/event/event.interface";
+import {
+  setCurrentStep,
+  setPackageSelection,
+} from "@/features/event/store/createEvent.slice";
 import { INVITE_PRICING_TIERS } from "@/features/payment/data/pricingData";
-import { useAuth } from "@/features/auth/hooks/useAuth";
-import { CheckCircle2, Star, Sparkles, Gem, Mail } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { RootState } from "@/redux/store";
+import { CheckCircle2, Gem, Mail, Sparkles } from "lucide-react";
+import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
 interface StepPackageProps {
   isReferred?: boolean;
@@ -193,14 +193,14 @@ export const StepPackage: React.FC<StepPackageProps> = ({
                 )}
               >
                 {/* Most Popular Ribbon on Premium */}
-                {plan.isPopular && (
+                {/* {plan.isPopular && (
                   <div className="absolute -top-3 right-6 sm:right-8 bg-[#C39B4C] text-white px-3 py-1.5 rounded-b-lg shadow-sm flex flex-col items-center">
                     <Star className="size-3 fill-white text-white mb-0.5" />
                     <span className="text-[10px] font-bold tracking-tight uppercase leading-none">
                       {plan.ribbonText || "Most Popular"}
                     </span>
                   </div>
-                )}
+                )} */}
 
                 <div>
                   {/* Icon badge */}

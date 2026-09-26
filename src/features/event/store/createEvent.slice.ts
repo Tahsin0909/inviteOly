@@ -31,6 +31,7 @@ const defaultDetails: ICreateEventDetailsForm = {
   phone: "",
   eventName: "",
   eventType: "",
+  eventDescription: "",
   eventDate: "",
   endDate: "",
   startTime: "",

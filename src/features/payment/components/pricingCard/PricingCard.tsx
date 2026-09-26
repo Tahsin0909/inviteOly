@@ -1,10 +1,10 @@
 "use client";
 
-import React from "react";
-import { CheckCircle2, Star, Sparkles, Crown } from "lucide-react";
-import { IPricingPlan } from "../../payment.interface";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import { CheckCircle2, Crown, Sparkles } from "lucide-react";
+import React from "react";
+import { IPricingPlan } from "../../payment.interface";
 
 interface PricingCardProps {
   plan: IPricingPlan;
@@ -25,7 +25,7 @@ export const PricingCard: React.FC<PricingCardProps> = ({
       )}
     >
       {/* Most Popular Ribbon */}
-      {plan.isPopular && (
+      {/* {plan.isPopular && (
         <div
           className="absolute top-0 right-6 w-14 bg-[#C39B4C] text-white pt-2.5 pb-4 px-1 flex flex-col items-center justify-center text-center shadow-md [clip-path:polygon(0_0,100%_0,100%_100%,50%_86%,0_100%)] z-10"
           aria-label={plan.ribbonText || "Most Popular"}
@@ -38,7 +38,7 @@ export const PricingCard: React.FC<PricingCardProps> = ({
             Popular
           </span>
         </div>
-      )}
+      )} */}
 
       {/* Top Content: Icon, Title, Description, Price */}
       <div>

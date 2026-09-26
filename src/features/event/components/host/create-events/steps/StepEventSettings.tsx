@@ -195,9 +195,9 @@ export const StepEventSettings: React.FC = () => {
             )}
           </div>
 
-          <div>
+          {/* <div>
             <label className="block text-xs sm:text-[13px] font-medium text-neutral-700 mb-1.5">
-              Postal Code <span className="text-red-500">*</span>
+              Postal Code
             </label>
             <input
               type="text"
@@ -215,7 +215,7 @@ export const StepEventSettings: React.FC = () => {
                 {errors.postalCode.message}
               </p>
             )}
-          </div>
+          </div> */}
         </div>
       </div>
 
@@ -242,7 +242,7 @@ export const StepEventSettings: React.FC = () => {
           onClick={handleCancel}
           className="px-6 py-2.5 rounded-lg bg-neutral-100 hover:bg-neutral-200 text-neutral-700 text-xs sm:text-sm font-medium transition-all cursor-pointer"
         >
-          Cancel
+          Back
         </button>
 
         <button

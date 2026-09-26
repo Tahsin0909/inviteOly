@@ -498,7 +498,6 @@ export const HostEventDetailsView: React.FC<HostEventDetailsViewProps> = ({
               {/* Premium Active Table Header */}
               {isPremium && (
                 <tr>
-                  <th className="py-3.5 pl-6 pr-4">Ticket</th>
                   <th className="py-3.5 px-4">Guest Name</th>
                   <th className="py-3.5 px-4">Table</th>
                   <th className="py-3.5 px-4">RSVP Status</th>
@@ -553,10 +552,14 @@ export const HostEventDetailsView: React.FC<HostEventDetailsViewProps> = ({
                       className="hover:bg-gray-50/60 transition-colors"
                     >
                       {/* Ticket ID */}
-                      <td className="py-3.5 pl-6 pr-4 font-medium text-gray-800">
+                      {/* <td className="py-3.5 pl-6 pr-4 font-medium text-gray-800">
                         {ticket.ticketId}
-                      </td>
-
+                      </td> */}
+                      {isStandardTier && (
+                        <td className="py-3.5 px-4 text-gray-700">
+                          {ticket.ticketId}
+                        </td>
+                      )}
                       {/* Guest Name (Premium only - never shown for Standard) */}
                       {!isStandardTier && (
                         <td className="py-3.5 px-4 text-gray-700">

@@ -79,6 +79,7 @@ export const StepEventDetails: React.FC = () => {
       phone: savedDetails?.phone || "",
       eventName: savedDetails?.eventName || "",
       eventType: savedDetails?.eventType || "",
+      eventDescription: savedDetails?.eventDescription || "",
       eventDate: savedDetails?.eventDate || "",
       endDate: savedDetails?.endDate || "",
       startTime: savedDetails?.startTime || "",
@@ -114,6 +115,8 @@ export const StepEventDetails: React.FC = () => {
     !["All Ages", "18+", "21+"].includes(ageRestriction)
   );
 
+  const isAdultOnly = ageRestriction === "18+" || ageRestriction === "21+";
+
   // Re-validate endDate whenever eventDate changes
   useEffect(() => {
     if (endDate) {
@@ -128,6 +131,13 @@ export const StepEventDetails: React.FC = () => {
     }
   }, [startTime, eventDate, endDate, endTime, trigger]);
 
+  // Clear ticket requirement age exception if an adult-only restriction is selected (18+ or 21+)
+  useEffect(() => {
+    if (isAdultOnly && ticketRequirementAge) {
+      setValue("ticketRequirementAge", "");
+    }
+  }, [isAdultOnly, ticketRequirementAge, setValue]);
+
   // Re-sync with Redux when mounted if savedDetails change
   useEffect(() => {
     if (savedDetails) {
@@ -140,7 +150,11 @@ export const StepEventDetails: React.FC = () => {
   }, [savedDetails, setValue]);
 
   const onSubmit = (data: TCreateEventDetailsSchema) => {
-    dispatch(setEventDetails(data));
+    const finalData = {
+      ...data,
+      ticketRequirementAge: isAdultOnly ? "" : data.ticketRequirementAge,
+    };
+    dispatch(setEventDetails(finalData));
     dispatch(setCurrentStep(3));
   };
 
@@ -286,6 +300,29 @@ export const StepEventDetails: React.FC = () => {
           {errors.eventType && (
             <p className="text-xs text-red-500 mt-1">
               {errors.eventType.message}
+            </p>
+          )}
+        </div>
+
+        {/* Event Description */}
+        <div>
+          <label className="block text-xs sm:text-[13px] font-medium text-neutral-700 mb-1.5">
+            Event Description
+          </label>
+          <textarea
+            rows={4}
+            placeholder="Tell your guests about the event, what to expect, special activities, or dress themes..."
+            {...register("eventDescription")}
+            className={cn(
+              "w-full px-4 py-2.5 rounded-xl border bg-white text-sm text-neutral-900 placeholder:text-neutral-400 leading-relaxed resize-none focus:outline-none focus:ring-2 transition-all",
+              errors.eventDescription
+                ? "border-red-400 focus:ring-red-200"
+                : "border-neutral-200 focus:ring-[#C39B4C]/25 focus:border-[#C39B4C]"
+            )}
+          />
+          {errors.eventDescription && (
+            <p className="text-xs text-red-500 mt-1">
+              {errors.eventDescription.message}
             </p>
           )}
         </div>
@@ -499,25 +536,27 @@ export const StepEventDetails: React.FC = () => {
             </div>
           </div>
 
-          <div>
-            <label className="block text-xs sm:text-[13px] font-medium text-neutral-700 mb-1.5">
-              Ticket Age Exception{" "}
-              <span className="text-neutral-400 font-normal">
-                (Children Under{" "}
-                {ticketRequirementAge && ticketRequirementAge.toString().trim() !== ""
-                  ? ticketRequirementAge.toString().trim()
-                  : "[Age]"}{" "}
-                Do Not Require a Ticket)
-              </span>
-            </label>
-            <input
-              type="number"
-              min="0"
-              placeholder="5"
-              {...register("ticketRequirementAge")}
-              className="w-full px-4 py-2.5 rounded-xl border border-neutral-200 bg-white text-sm text-neutral-900 placeholder:text-neutral-400 focus:outline-none focus:ring-2 focus:ring-[#C39B4C]/25 focus:border-[#C39B4C] transition-all"
-            />
-          </div>
+          {!isAdultOnly && (
+            <div>
+              <label className="block text-xs sm:text-[13px] font-medium text-neutral-700 mb-1.5">
+                Ticket Age Exception{" "}
+                <span className="text-neutral-400 font-normal">
+                  (Children Under{" "}
+                  {ticketRequirementAge && ticketRequirementAge.toString().trim() !== ""
+                    ? ticketRequirementAge.toString().trim()
+                    : "[Age]"}{" "}
+                  Do Not Require a Ticket)
+                </span>
+              </label>
+              <input
+                type="number"
+                min="0"
+                placeholder="5"
+                {...register("ticketRequirementAge")}
+                className="w-full px-4 py-2.5 rounded-xl border border-neutral-200 bg-white text-sm text-neutral-900 placeholder:text-neutral-400 focus:outline-none focus:ring-2 focus:ring-[#C39B4C]/25 focus:border-[#C39B4C] transition-all"
+              />
+            </div>
+          )}
         </div>
       </div>
 

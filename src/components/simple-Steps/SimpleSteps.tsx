@@ -69,7 +69,7 @@ const DEFAULT_STEPS: readonly HowItWorksStep[] = [
     },
 ];
 
-const HowItWorks: React.FC<HowItWorksProps> = ({
+const SimpleSteps: React.FC<HowItWorksProps> = ({
     eyebrow = "EASY STEPS",
     title = "FROM INVITATION TO CHECK-IN, MADE SIMPLE",
     steps = DEFAULT_STEPS,
@@ -131,4 +131,4 @@ const HowItWorks: React.FC<HowItWorksProps> = ({
     );
 };
 
-export default HowItWorks;
+export default SimpleSteps;

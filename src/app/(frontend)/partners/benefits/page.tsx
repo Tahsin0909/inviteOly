@@ -50,7 +50,7 @@ export default function PartnerBenefitsPage() {
               Direct Referral Rewards
             </h2>
             <p className="text-xs sm:text-sm text-neutral-400 leading-relaxed">
-              Earn $100 for each verified event booking referred through your unique link or code. Rewards can be claimed as direct wire deposits or converted into VIP promo credits.
+              Earn $100 for each verified event booking referred through your unique link or code.
             </p>
           </div>
 
@@ -58,11 +58,13 @@ export default function PartnerBenefitsPage() {
             <div className="size-11 rounded-xl bg-[#B89047]/10 text-[#B89047] flex items-center justify-center">
               <Award className="size-5" />
             </div>
-            <h2 className="text-lg font-bold font-space-grotesk text-white">
-              Preferred Partner Badge
-            </h2>
+            <div>
+              <h2 className="text-lg font-bold font-space-grotesk text-white">
+                Preferred Partner Badge
+              </h2>
+            </div>
             <p className="text-xs sm:text-sm text-neutral-400 leading-relaxed">
-              Partners who refer 5+ events unlock Preferred Partner status, appearing first in our venue search engine and receiving priority customer concierge support.
+              Partners who refer to 10 successful events unlock Preferred Partner status, appearing first in our venue search engine and receiving priority customer concierge support.
             </p>
           </div>
 

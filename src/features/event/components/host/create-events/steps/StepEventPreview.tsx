@@ -81,7 +81,7 @@ export const StepEventPreview: React.FC = () => {
   const address = eventSettings?.address || "";
   const state = eventSettings?.state || eventSettings?.venueState || "Dhaka Division";
   const city = eventSettings?.city || "Dhaka";
-  const postalCode = eventSettings?.postalCode || "1219";
+  const postalCode = eventSettings?.postalCode || "---";
 
   const handleEditClick = (guest: IEventPreviewGuest) => {
     setEditingGuest(guest);
@@ -581,7 +581,7 @@ export const StepEventPreview: React.FC = () => {
                   onClick={() => setEditingGuest(null)}
                   className="px-4 py-2 text-xs font-medium text-neutral-600 hover:bg-neutral-100 rounded-lg"
                 >
-                  Cancel
+                  Back
                 </button>
                 <button
                   type="submit"

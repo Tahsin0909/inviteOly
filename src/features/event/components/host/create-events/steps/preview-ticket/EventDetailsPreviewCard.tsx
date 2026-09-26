@@ -37,9 +37,13 @@ export const EventDetailsPreviewCard: React.FC<
   const idRequirement =
     eventDetails?.idRequirement || "Government-Issued Photo ID Required";
   const ageRestriction = eventDetails?.ageRestriction || "All Ages Welcome";
-  const ticketRequirement = eventDetails?.ticketRequirementAge
-    ? `Children under ${eventDetails.ticketRequirementAge} do not require a ticket`
-    : "All attendees require a valid ticket";
+  const isAdultOnly =
+    eventDetails?.ageRestriction === "18+" ||
+    eventDetails?.ageRestriction === "21+";
+  const ticketRequirement =
+    !isAdultOnly && eventDetails?.ticketRequirementAge
+      ? `Children under ${eventDetails.ticketRequirementAge} do not require a ticket`
+      : "All attendees require a valid ticket";
 
   return (
     <div className="bg-white border border-neutral-200/80 rounded-2xl p-5 sm:p-6 space-y-4 shadow-xs font-work-sans">

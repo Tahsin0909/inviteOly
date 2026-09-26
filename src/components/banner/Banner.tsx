@@ -1,10 +1,9 @@
-import React from "react";
-import Image, { type StaticImageData } from "next/image";
-import Link from "next/link";
 import BannerImage from "@/assets/banner/banner.png";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import Image, { type StaticImageData } from "next/image";
+import Link from "next/link";
+import React from "react";
 
 export interface BannerAvatar {
     id: string | number;
@@ -94,28 +93,28 @@ export interface BannerProps {
     priority?: boolean;
 }
 
-const DEFAULT_AVATARS: readonly BannerAvatar[] = [
-    {
-        id: "1",
-        src: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=120&auto=format&fit=crop&q=80",
-        alt: "Event Host 1",
-    },
-    {
-        id: "2",
-        src: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=120&auto=format&fit=crop&q=80",
-        alt: "Event Host 2",
-    },
-    {
-        id: "3",
-        src: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=120&auto=format&fit=crop&q=80",
-        alt: "Event Host 3",
-    },
-    {
-        id: "4",
-        src: "https://images.unsplash.com/photo-1517841905240-472988babdf9?w=120&auto=format&fit=crop&q=80",
-        alt: "Event Host 4",
-    },
-];
+// const DEFAULT_AVATARS: readonly BannerAvatar[] = [
+//     {
+//         id: "1",
+//         src: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=120&auto=format&fit=crop&q=80",
+//         alt: "Event Host 1",
+//     },
+//     {
+//         id: "2",
+//         src: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=120&auto=format&fit=crop&q=80",
+//         alt: "Event Host 2",
+//     },
+//     {
+//         id: "3",
+//         src: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=120&auto=format&fit=crop&q=80",
+//         alt: "Event Host 3",
+//     },
+//     {
+//         id: "4",
+//         src: "https://images.unsplash.com/photo-1517841905240-472988babdf9?w=120&auto=format&fit=crop&q=80",
+//         alt: "Event Host 4",
+//     },
+// ];
 
 const Banner: React.FC<BannerProps> = ({
     titleLine1 = "The Modern Way to Manage",
@@ -125,9 +124,9 @@ const Banner: React.FC<BannerProps> = ({
     ctaText = "Create Your Event",
     ctaHref = "/create-event",
     onCtaClick,
-    statsCount = "500+",
-    statsText = "event created this month",
-    avatars = DEFAULT_AVATARS,
+    // statsCount = "500+",
+    // statsText = "event created this month",
+    // avatars = DEFAULT_AVATARS,
     backgroundImage = BannerImage,
     overlayClassName,
     className,
@@ -205,7 +204,7 @@ const Banner: React.FC<BannerProps> = ({
                 {/* Social Proof */}
                 <div className="mt-6 sm:mt-7 flex items-center justify-center gap-2.5 sm:gap-3 flex-wrap">
                     {/* Overlapping Avatar Stack */}
-                    {avatars && avatars.length > 0 && (
+                    {/* {avatars && avatars.length > 0 && (
                         <div className="flex -space-x-2.5 overflow-hidden">
                             {avatars.map((avatar) => (
                                 <Avatar
@@ -223,13 +222,13 @@ const Banner: React.FC<BannerProps> = ({
                                 </Avatar>
                             ))}
                         </div>
-                    )}
+                    )} */}
 
                     {/* Social Proof Text */}
-                    <p className="text-white/90 text-xs sm:text-sm font-work-sans">
+                    {/* <p className="text-white/90 text-xs sm:text-sm font-work-sans">
                         <span className="font-semibold text-white">{statsCount}</span>{" "}
                         <span className="text-white/80">{statsText}</span>
-                    </p>
+                    </p> */}
                 </div>
             </div>
         </section>

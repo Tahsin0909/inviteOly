@@ -3,7 +3,7 @@ import { IFooter, ISocial } from "./footer.interface";
 export const supportSection: IFooter = {
   title: "Support",
   links: [
-    { label: "Help Center", href: "/help" },
+    // { label: "Help Center", href: "/help" },
     { label: "Contact Us", href: "/contact" },
     { label: "Terms of Service", href: "/terms" },
     { label: "Privacy Policy", href: "/privacy" },

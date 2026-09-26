@@ -236,7 +236,7 @@ export interface ICreateEventSettingsForm {
   state: string;
   venueState?: string;
   city: string;
-  postalCode: string;
+  postalCode?: string;
   venueContact?: string;
   venueGuestCapacity?: string;
   estimateGuestCount?: string;

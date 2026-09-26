@@ -212,15 +212,15 @@ export const GoldenTicketPass: React.FC<GoldenTicketPassProps> = ({
               <div className="space-y-0.5 pt-0.5">
                 <div className="flex items-center justify-center gap-2">
                   <span className="h-[1px] w-8 bg-[#E5C378]/80" />
-                  <span className="text-[10px] text-[#C39B4C] font-semibold tracking-widest uppercase">
+                  <span className="text-xs sm:text-md text-[#C39B4C] font-semibold tracking-widest uppercase">
                     • ADMIT ONE •
                   </span>
                   <span className="h-[1px] w-8 bg-[#E5C378]/80" />
                 </div>
-                <p className="text-[10px] font-bold text-neutral-600 tracking-wider uppercase">
+                <p className="text-xs sm:text-md font-bold text-neutral-600 tracking-wider uppercase">
                   {isPremium ? "VIP" : "GENERAL ADMISSION"}
                 </p>
-                <p className="text-xs sm:text-sm font-bold text-neutral-900 font-serif">
+                <p className="text-sm sm:text-lg font-bold text-neutral-900 font-serif">
                   Guest 001
                 </p>
               </div>
