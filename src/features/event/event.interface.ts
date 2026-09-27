@@ -105,12 +105,18 @@ export interface IEvent {
 export type THostEventStatus =
   | "Active"
   | "Scheduled"
+  | "Live"
   | "Draft"
   | "Upload Payment Receipt";
 
 export type THostEventTier = "Premium" | "Standard" | "Costume";
 
-export type THostTicketStatus = "Editable" | "Locked/ Ready" | "Sent" | "Voided";
+export type THostTicketStatus =
+  | "Editable"
+  | "Locked/ Ready"
+  | "Sent"
+  | "Voided"
+  | "Checked In";
 
 export type TRsvpStatus = "--" | "Pending" | "Confirm" | "Decline";
 
