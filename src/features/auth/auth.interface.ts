@@ -8,9 +8,13 @@ export type TPartnerType =
   | "Catering"
   | "Photography"
   | "DJ / Entertainment"
+  | "Doctor and Floral"
+  | "Decor and Floral"
   | "Decor & Floral"
+  | "Planner / coordinator"
   | "Planner / Coordinator"
-  | "Other";
+  | "Other"
+  | string;
 
 export interface AuthState {
   email: string;

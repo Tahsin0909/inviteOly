@@ -1,7 +1,11 @@
 import RegisterForm from "@/features/auth/components/RegisterForm";
-import React from "react";
+import React, { Suspense } from "react";
 
 export default function RegisterPage() {
-  return <RegisterForm />;
+  return (
+    <Suspense fallback={<div className="min-h-[400px] flex items-center justify-center text-xs text-muted-foreground">Loading...</div>}>
+      <RegisterForm />
+    </Suspense>
+  );
 }
 

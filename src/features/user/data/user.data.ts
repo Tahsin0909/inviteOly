@@ -62,8 +62,8 @@ export const referredHostUser: IUser = {
 
 export const hostReferredUser: IUser = referredHostUser;
 
-// 4. The Partner User (from Partner Registration)
-export const partnerUser: IUser = {
+// 4. The Venue Partner User (Partner with partnerType: Venue)
+export const venuePartnerUser: IUser = {
     id: "507f191e810c19729de860ec",
     firstName: "Elena",
     lastName: "Rodriguez",
@@ -84,11 +84,36 @@ export const partnerUser: IUser = {
     updatedAt: "2026-07-28T16:45:00Z",
 };
 
+export const partnerUser: IUser = venuePartnerUser;
+
+// 5. The Random Partner User (Partner with partnerType: Photography)
+export const randomPartnerUser: IUser = {
+    id: "507f191e810c19729de860ee",
+    firstName: "Liam",
+    lastName: "Henderson",
+    email: "liam@hendersonphoto.com",
+    profileImage: "https://i.pravatar.cc/150?img=14",
+    role: IRole.PARTNER,
+    partnerType: "Photography",
+    businessName: "Henderson Visuals & Photography",
+    businessEmail: "liam@hendersonphoto.com",
+    phone: "+1 (555) 789-2345",
+    website: "https://hendersonphoto.com",
+    businessAddress: "742 Broadway Ave, Suite 400, New York, NY 10003",
+    isEmailVerified: true,
+    isActive: true,
+    hasActiveSubscription: true,
+    stripeCustomerId: "cus_RandomPartnerStripeID",
+    createdAt: "2026-02-14T10:00:00Z",
+    updatedAt: "2026-08-10T12:00:00Z",
+};
+
 export const mockUsers: IUser[] = [
     adminUser,
     hostUser,
     referredHostUser,
-    partnerUser,
+    venuePartnerUser,
+    randomPartnerUser,
 ];
 
 export const adminToken =
@@ -105,17 +130,28 @@ export const userToken = hostToken;
 export const partnerToken =
     "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjUwN2YxOTFlODEwYzE5NzI5ZGU4NjBlYyIsImZpcnN0TmFtZSI6IkVsZW5hIiwibGFzdE5hbWUiOiJSb2RyaWd1ZXoiLCJlbWFpbCI6ImVsZW5hQGdsb2JhbHBhcnRuZXJzLm5ldCIsInJvbGUiOiJQQVJUTkVSIiwicGFydG5lclR5cGUiOiJWZW51ZSIsImJ1c2luZXNzTmFtZSI6IkVsZWdhbmNlIEV2ZW50IFZlbnVlcyIsImJ1c2luZXNzRW1haWwiOiJlbGVuYUBnbG9iYWxwYXJ0bmVycy5uZXQiLCJwaG9uZSI6IiszNCA5MSA1NTUgMDEyMyIsIndlYnNpdGUiOiJodHRwczovL2VsZWdhbmNldmVudWVzLmNvbSIsImJ1c2luZXNzQWRkcmVzcyI6IkNhbGxlIFNlcnJhbm8gNDUsIDI4MDAxIE1hZHJpZCwgU3BhaW4iLCJwcm9maWxlSW1hZ2UiOiJodHRwczovL2kucHJhdmF0YXIuY2MvMTUwP2ltZz05IiwiaXNFbWFpbFZlcmlmaWVkIjp0cnVlLCJpc0FjdGl2ZSI6dHJ1ZSwiaGFzQWN0aXZlU3Vic2NyaXB0aW9uIjp0cnVlLCJzdHJpcGVDdXN0b21lcklkIjoiY3VzX1BhcnRuZXJTdHJpcGVJRCIsImlhdCI6MTcwMDAwMDAwMCwiZXhwIjoyMDgyNzU4NDAwfQ.bW9ja19zaWduYXR1cmU";
 
+export const venuePartnerToken = partnerToken;
+
+export const randomPartnerToken =
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjUwN2YxOTFlODEwYzE5NzI5ZGU4NjBlZSIsImZpcnN0TmFtZSI6IkxpYW0iLCJsYXN0TmFtZSI6IkhlbmRlcnNvbiIsImVtYWlsIjoibGlhbUBoZW5kZXJzb25waG90by5jb20iLCJyb2xlIjoiUEFSVE5FUiIsInBhcnRuZXJUeXBlIjoiUGhvdG9ncmFwaHkiLCJidXNpbmVzc05hbWUiOiJIZW5kZXJzb24gVmlzdWFscyAmIFBob3RvZ3JhcGh5IiwiYnVzaW5lc3NFbWFpbCI6ImxpYW1AaGVuZGVyc29ucGhvdG8uY29tIiwicGhvbmUiOiIrMSAoNTU1KSA3ODktMjM0NSIsIndlYnNpdGUiOiJodHRwczovL2hlbmRlcnNvbnBob3RvLmNvbSIsImJ1c2luZXNzQWRkcmVzcyI6Ijc0MiBCcm9hZHdheSBBdmUsIFN1aXRlIDQwMCwgTmV3IFlvcmssIE5ZIDEwMDAzIiwicHJvZmlsZUltYWdlIjoiaHR0cHM6Ly9pLnByYXZhdGFyLmNjLzE1MD9pbWc9MTQiLCJpc0VtYWlsVmVyaWZpZWQiOnRydWUsImlzQWN0aXZlIjp0cnVlLCJoYXNBY3RpdmVTdWJzY3JpcHRpb24iOnRydWUsInN0cmlwZUN1c3RvbWVySWQiOiJjdXNfUmFuZG9tUGFydG5lclN0cmlwZUlEIiwiaWF0IjoxNzAwMDAwMDAwLCJleHAiOjIwODI3NTg0MDB9.bW9ja19zaWduYXR1cmU";
+
 // Default active user & token
 // export const currentUser: IUser = adminUser;
 // export const currentUser: IUser = hostUser;
 export const currentUser: IUser = referredHostUser;
-// export const currentUser: IUser = partnerUser;
+// export const currentUser: IUser = venuePartnerUser;
 
 export const getTokenForUser = (user: IUser | null): string => {
     if (!user) return "";
 
     if (user.id === referredHostUser.id) {
         return referredHostToken;
+    }
+    if (user.id === randomPartnerUser.id) {
+        return randomPartnerToken;
+    }
+    if (user.id === venuePartnerUser.id) {
+        return venuePartnerToken;
     }
 
     switch (user.role) {
@@ -125,7 +161,7 @@ export const getTokenForUser = (user: IUser | null): string => {
         case IRole.USER:
             return hostToken;
         case IRole.PARTNER:
-            return partnerToken;
+            return venuePartnerToken;
         default:
             return "";
     }

@@ -1,6 +1,5 @@
 "use client";
 
-import React, { useState } from "react";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -13,13 +12,14 @@ import { IRole } from "@/features/user/user.interface";
 import { getRoleRedirectPath } from "@/utils/roleRedirect";
 import {
   ChevronDown,
-  CreditCard,
   LayoutDashboard,
+  LogIn,
   LogOut,
   Sparkles,
-  User,
+  User
 } from "lucide-react";
 import Link from "next/link";
+import { useState } from "react";
 import { DemoUserSwitcher } from "./DemoUserSwitcher";
 
 export const Account = () => {
@@ -35,8 +35,15 @@ export const Account = () => {
     (currentUser?.referredBy || currentUser?.referredByHostId)
   );
 
+  const isPartner = currentUser?.role === IRole.PARTNER;
+  const partnerLabel = currentUser?.partnerType
+    ? `${currentUser.partnerType} Partner`
+    : "Partner";
+
   const roleName = isReferredHost
     ? "Referred Host"
+    : isPartner
+    ? partnerLabel
     : currentUser?.role || "USER";
 
   const initials = `${firstName[0] || "U"}${lastName !== "Account" ? lastName[0] || "" : ""
@@ -73,6 +80,10 @@ export const Account = () => {
                 <Sparkles className="size-2.5" />
                 Referred
               </span>
+            ) : isPartner ? (
+              <span className="text-[10px] font-semibold uppercase tracking-wider text-sky-400 bg-sky-500/15 border border-sky-500/30 px-1.5 py-0.5 rounded-full leading-none">
+                {roleName}
+              </span>
             ) : (
               <span className="text-[10px] font-semibold uppercase tracking-wider text-primary bg-primary/10 border border-primary/30 px-1.5 py-0.5 rounded-full leading-none">
                 {roleName}
@@ -94,6 +105,11 @@ export const Account = () => {
             <p className="text-sm font-semibold text-white truncate mt-0.5">
               {currentUser?.firstName} {currentUser?.lastName}
             </p>
+            {currentUser?.businessName && (
+              <p className="text-xs text-[#E5C170] truncate mt-0.5 font-medium">
+                {currentUser.businessName}
+              </p>
+            )}
             <p className="text-xs text-neutral-400 truncate mt-0.5">
               {currentUser?.email || ""}
             </p>
@@ -102,6 +118,10 @@ export const Account = () => {
                 <span className="text-[10px] font-semibold tracking-wider text-emerald-400 bg-emerald-500/15 border border-emerald-500/30 px-2 py-0.5 rounded-full flex items-center gap-1">
                   <Sparkles className="size-2.5" />
                   Referred Host
+                </span>
+              ) : isPartner ? (
+                <span className="text-[10px] font-semibold uppercase tracking-wider text-sky-300 bg-sky-500/15 border border-sky-500/30 px-2 py-0.5 rounded-full">
+                  {roleName}
                 </span>
               ) : (
                 <span className="text-[10px] font-semibold uppercase tracking-wider text-primary bg-primary/15 border border-primary/30 px-2 py-0.5 rounded-full">
@@ -145,12 +165,12 @@ export const Account = () => {
           {/* Billing / Pricing */}
           <DropdownMenuItem asChild>
             <Link
-              href="/#pricing"
+              href="/login"
               onClick={() => setIsOpen(false)}
               className="flex items-center gap-2.5 px-3 py-2 cursor-pointer rounded-lg text-sm text-neutral-200 hover:text-white hover:bg-neutral-800 transition-colors"
             >
-              <CreditCard className="size-4 text-neutral-400" />
-              <span>Pricing & Plans</span>
+              <LogIn className="size-4 text-neutral-400" />
+              <span>Login</span>
             </Link>
           </DropdownMenuItem>
 

@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
+import { useSearchParams } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Eye, EyeOff, Lock, Mail, User, ChevronDown } from "lucide-react";
@@ -19,13 +20,17 @@ const PARTNER_OPTIONS: TPartnerType[] = [
   "Catering",
   "Photography",
   "DJ / Entertainment",
-  "Decor & Floral",
-  "Planner / Coordinator",
+  "Doctor and Floral",
+  "Planner / coordinator",
   "Other",
 ];
 
 export default function RegisterForm() {
-  const [role, setRole] = useState<TAuthRole>("HOST");
+  const searchParams = useSearchParams();
+  const roleParam = searchParams.get("role")?.toUpperCase();
+  const [role, setRole] = useState<TAuthRole>(
+    roleParam === "PARTNER" ? "PARTNER" : "HOST"
+  );
   const [showPassword, setShowPassword] = useState(false);
   const { handleRegister, isLoading } = useAuth();
 
@@ -55,6 +60,24 @@ export default function RegisterForm() {
       password: "",
     },
   });
+
+  const handleRoleChange = (newRole: TAuthRole) => {
+    if (newRole === role) return;
+    setRole(newRole);
+    if (newRole === "PARTNER") {
+      const hostValues = hostForm.getValues();
+      if (hostValues.firstName) partnerForm.setValue("firstName", hostValues.firstName);
+      if (hostValues.lastName) partnerForm.setValue("lastName", hostValues.lastName);
+      if (hostValues.email) partnerForm.setValue("businessEmail", hostValues.email);
+      if (hostValues.password) partnerForm.setValue("password", hostValues.password);
+    } else {
+      const partnerValues = partnerForm.getValues();
+      if (partnerValues.firstName) hostForm.setValue("firstName", partnerValues.firstName);
+      if (partnerValues.lastName) hostForm.setValue("lastName", partnerValues.lastName);
+      if (partnerValues.businessEmail) hostForm.setValue("email", partnerValues.businessEmail);
+      if (partnerValues.password) hostForm.setValue("password", partnerValues.password);
+    }
+  };
 
   const onHostSubmit = async (values: HostRegisterFormValues) => {
     await handleRegister({
@@ -140,7 +163,7 @@ export default function RegisterForm() {
             <div className="relative">
               <select
                 value={role}
-                onChange={(e) => setRole(e.target.value as TAuthRole)}
+                onChange={(e) => handleRoleChange(e.target.value as TAuthRole)}
                 className="w-full h-10 sm:h-11 px-3.5 pr-10 rounded-xl border border-input bg-card text-foreground text-xs sm:text-sm transition-colors focus-visible:outline-none focus-visible:border-primary focus-visible:ring-1 focus-visible:ring-primary/40 shadow-2xs appearance-none cursor-pointer"
               >
                 <option value="HOST">I&apos;m a Host</option>
@@ -271,7 +294,7 @@ export default function RegisterForm() {
             <div className="relative">
               <select
                 value={role}
-                onChange={(e) => setRole(e.target.value as TAuthRole)}
+                onChange={(e) => handleRoleChange(e.target.value as TAuthRole)}
                 className="w-full h-10 sm:h-11 px-3.5 pr-10 rounded-xl border border-input bg-card text-foreground text-xs sm:text-sm transition-colors focus-visible:outline-none focus-visible:border-primary focus-visible:ring-1 focus-visible:ring-primary/40 shadow-2xs appearance-none cursor-pointer"
               >
                 <option value="HOST">I&apos;m a Host</option>
