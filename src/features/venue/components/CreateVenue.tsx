@@ -130,7 +130,6 @@ export const CreateVenue: React.FC = () => {
             "streetAddress",
             "city",
             "state",
-            "zipCode",
             "capacity",
         ]);
 
@@ -195,7 +194,10 @@ export const CreateVenue: React.FC = () => {
 
     // Final Form Submission
     const onFormSubmit: SubmitHandler<VenueFormValues> = (data) => {
-        const numericCapacity = Number(data.capacity);
+        const numericCapacity =
+            data.capacity !== undefined && !Number.isNaN(Number(data.capacity))
+                ? Number(data.capacity)
+                : undefined;
 
         if (drawerMode === "edit" && selectedVenue) {
             const updated: IVenue = {
@@ -204,7 +206,7 @@ export const CreateVenue: React.FC = () => {
                 streetAddress: data.streetAddress.trim(),
                 city: data.city.trim(),
                 state: data.state.trim(),
-                zipCode: data.zipCode.trim(),
+                zipCode: data.zipCode?.trim() || "",
                 capacity: numericCapacity,
                 parkingInfo: data.parkingInfo?.trim() || "",
                 hasParking: !!data.parkingInfo?.trim(),
@@ -221,7 +223,7 @@ export const CreateVenue: React.FC = () => {
                 streetAddress: data.streetAddress.trim(),
                 city: data.city.trim(),
                 state: data.state.trim(),
-                zipCode: data.zipCode.trim(),
+                zipCode: data.zipCode?.trim() || "",
                 capacity: numericCapacity,
                 parkingInfo: data.parkingInfo?.trim() || "",
                 hasParking: !!data.parkingInfo?.trim(),
@@ -420,49 +422,27 @@ export const CreateVenue: React.FC = () => {
                             </div>
                         </div>
 
-                        {/* ZIP / Postal Code & Capacity (Number) */}
-                        <div className="grid grid-cols-2 gap-3">
-                            <div>
-                                <label className="block text-xs sm:text-sm font-semibold text-neutral-800 mb-1.5">
-                                    ZIP / Postal Code <span className="text-red-500">*</span>
-                                </label>
-                                <input
-                                    type="text"
-                                    placeholder="10001"
-                                    {...register("zipCode")}
-                                    className={`w-full px-3.5 py-2.5 rounded-lg border text-xs sm:text-sm text-neutral-900 placeholder:text-neutral-400 focus:outline-none transition-all bg-white ${errors.zipCode
-                                        ? "border-red-400 focus:border-red-500 focus:ring-2 focus:ring-red-200"
-                                        : "border-neutral-200 focus:ring-2 focus:ring-[#C39B4C]/20 focus:border-[#C39B4C]"
-                                        }`}
-                                />
-                                {errors.zipCode && (
-                                    <p className="text-[11px] text-red-500 mt-1 font-medium">
-                                        {errors.zipCode.message}
-                                    </p>
-                                )}
-                            </div>
-
-                            <div>
-                                <label className="block text-xs sm:text-sm font-semibold text-neutral-800 mb-1.5">
-                                    Capacity (Number) <span className="text-red-500">*</span>
-                                </label>
-                                <input
-                                    type="number"
-                                    min="1"
-                                    step="1"
-                                    placeholder="e.g. 500"
-                                    {...register("capacity", { valueAsNumber: true })}
-                                    className={`w-full px-3.5 py-2.5 rounded-lg border text-xs sm:text-sm text-neutral-900 placeholder:text-neutral-400 focus:outline-none transition-all bg-white ${errors.capacity
-                                        ? "border-red-400 focus:border-red-500 focus:ring-2 focus:ring-red-200"
-                                        : "border-neutral-200 focus:ring-2 focus:ring-[#C39B4C]/20 focus:border-[#C39B4C]"
-                                        }`}
-                                />
-                                {errors.capacity && (
-                                    <p className="text-[11px] text-red-500 mt-1 font-medium">
-                                        {errors.capacity.message}
-                                    </p>
-                                )}
-                            </div>
+                        {/* Capacity (Number) */}
+                        <div>
+                            <label className="block text-xs sm:text-sm font-semibold text-neutral-800 mb-1.5">
+                                Capacity (Number) <span className="text-neutral-400 font-normal">(optional)</span>
+                            </label>
+                            <input
+                                type="number"
+                                min="1"
+                                step="1"
+                                placeholder="e.g. 500"
+                                {...register("capacity", { valueAsNumber: true })}
+                                className={`w-full px-3.5 py-2.5 rounded-lg border text-xs sm:text-sm text-neutral-900 placeholder:text-neutral-400 focus:outline-none transition-all bg-white ${errors.capacity
+                                    ? "border-red-400 focus:border-red-500 focus:ring-2 focus:ring-red-200"
+                                    : "border-neutral-200 focus:ring-2 focus:ring-[#C39B4C]/20 focus:border-[#C39B4C]"
+                                    }`}
+                            />
+                            {errors.capacity && (
+                                <p className="text-[11px] text-red-500 mt-1 font-medium">
+                                    {errors.capacity.message}
+                                </p>
+                            )}
                         </div>
                     </div>
 
@@ -669,7 +649,7 @@ export const CreateVenue: React.FC = () => {
                                     <span>
                                         {watchedValues.streetAddress
                                             ? `${watchedValues.streetAddress}, ${watchedValues.city || ""
-                                            } ${watchedValues.state || ""} ${watchedValues.zipCode || ""
+                                            } ${watchedValues.state || ""}${watchedValues.zipCode ? ` ${watchedValues.zipCode}` : ""
                                             }`
                                             : "No address specified"}
                                     </span>

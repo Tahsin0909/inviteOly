@@ -174,8 +174,8 @@ export const PartnerVenueList: React.FC = () => {
                   <div className="flex items-start gap-2 text-neutral-500 text-xs sm:text-sm mb-3 font-work-sans">
                     <MapPin className="size-4 text-neutral-400 shrink-0 mt-0.5" />
                     <span className="line-clamp-1">
-                      {venue.streetAddress}, {venue.city}, {venue.state}{" "}
-                      {venue.zipCode}
+                      {venue.streetAddress}, {venue.city}, {venue.state}
+                      {venue.zipCode ? ` ${venue.zipCode}` : ""}
                     </span>
                   </div>
 

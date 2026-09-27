@@ -11,7 +11,7 @@ export interface IVenue {
   streetAddress: string;
   city: string;
   state: string;
-  zipCode: string;
+  zipCode?: string;
   capacity?: number;
   spacesCount?: number;
   hasParking?: boolean;
@@ -26,7 +26,7 @@ export interface ICreateVenuePayload {
   streetAddress: string;
   city: string;
   state: string;
-  zipCode: string;
+  zipCode?: string;
   capacity?: number;
   parkingInfo?: string;
   spaces?: IVenueSpace[];

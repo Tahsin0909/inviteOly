@@ -76,8 +76,8 @@ export const VenueDetails: React.FC = () => {
                                     {selectedVenue.streetAddress}
                                 </p>
                                 <p className="text-neutral-500">
-                                    {selectedVenue.city}, {selectedVenue.state}{" "}
-                                    {selectedVenue.zipCode}
+                                    {selectedVenue.city}, {selectedVenue.state}
+                                    {selectedVenue.zipCode ? ` ${selectedVenue.zipCode}` : ""}
                                 </p>
                             </div>
                         </div>
