@@ -1,38 +1,46 @@
 "use client";
 
-import React, { useState, useMemo } from "react";
-import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/redux/store";
 import {
+  ArrowLeft,
+  Calendar,
+  CalendarDays,
+  Check,
+  CheckCircle2,
+  ChevronDown,
+  Clock,
+  Filter as FilterIcon,
+  Lock,
+  Mail,
+  Pencil,
+  Phone,
+  RefreshCw,
+  Search,
+  Send as SendIcon,
+  Ticket,
+  User,
+  UserPlus
+} from "lucide-react";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { useRouter } from "next/navigation";
+import React, { useMemo, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { toast } from "sonner";
+import { getTicketsForEvent } from "../../data/hostEvent.data";
+import {
+  sendReminderToTicket,
   setActiveFilter,
-  setSearchQuery,
   setIsAddGuestModalOpen,
   setIsScannerModalOpen,
-  sendReminderToTicket,
+  setSearchQuery,
 } from "../../store/event.slice";
-import {
-  Calendar,
-  Clock,
-  User,
-  Mail,
-  Phone,
-  Ticket,
-  Search,
-  Download,
-  UserPlus,
-  RefreshCw,
-  ChevronDown,
-  Filter as FilterIcon,
-  Send as SendIcon,
-  ArrowLeft,
-  Pencil,
-  Lock,
-  CheckCircle2,
-  CalendarDays,
-} from "lucide-react";
-import { toast } from "sonner";
-import { useRouter } from "next/navigation";
-import { getTicketsForEvent } from "../../data/hostEvent.data";
 import { AddGuestModal } from "./AddGuestModal";
 import { ScannerCodeModal } from "./ScannerCodeModal";
 
@@ -139,35 +147,35 @@ export const HostEventDetailsView: React.FC<HostEventDetailsViewProps> = ({
     toast.success(`Reminder sent to ${guestName !== "--" ? guestName : "guest"}!`);
   };
 
-  const handleExport = () => {
-    const isStandardTier = event.tier === "Standard";
-    const headerRow = isStandardTier
-      ? "Ticket,Table,Ticket Type,Check-in Time,Status"
-      : "Ticket,Guest Name,Table,RSVP Status,Ticket Type,Check-in Time,Status";
-    const csvContent =
-      "data:text/csv;charset=utf-8," +
-      [headerRow]
-        .concat(
-          tickets.map(
-            (t) =>
-              isStandardTier
-                ? `"${t.ticketId}","${t.table}","${t.ticketType}","${t.checkInTime || "--"}","${t.status}"`
-                : `"${t.ticketId}","${t.guestName}","${t.table}","${t.rsvpStatus}","${t.ticketType}","${t.checkInTime || "--"}","${t.status}"`
-          )
-        )
-        .join("\n");
-    const encodedUri = encodeURI(csvContent);
-    const link = document.createElement("a");
-    link.setAttribute("href", encodedUri);
-    link.setAttribute(
-      "download",
-      `attendees-${event.title.toLowerCase().replace(/\s+/g, "-")}.csv`
-    );
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-    toast.success("Guest ticket list exported as CSV!");
-  };
+  // const handleExport = () => {
+  //   const isStandardTier = event.tier === "Standard";
+  //   const headerRow = isStandardTier
+  //     ? "Ticket,Table,Ticket Type,Check-in Time,Status"
+  //     : "Ticket,Guest Name,Table,RSVP Status,Ticket Type,Check-in Time,Status";
+  //   const csvContent =
+  //     "data:text/csv;charset=utf-8," +
+  //     [headerRow]
+  //       .concat(
+  //         tickets.map(
+  //           (t) =>
+  //             isStandardTier
+  //               ? `"${t.ticketId}","${t.table}","${t.ticketType}","${t.checkInTime || "--"}","${t.status}"`
+  //               : `"${t.ticketId}","${t.guestName}","${t.table}","${t.rsvpStatus}","${t.ticketType}","${t.checkInTime || "--"}","${t.status}"`
+  //         )
+  //       )
+  //       .join("\n");
+  //   const encodedUri = encodeURI(csvContent);
+  //   const link = document.createElement("a");
+  //   link.setAttribute("href", encodedUri);
+  //   link.setAttribute(
+  //     "download",
+  //     `attendees-${event.title.toLowerCase().replace(/\s+/g, "-")}.csv`
+  //   );
+  //   document.body.appendChild(link);
+  //   link.click();
+  //   document.body.removeChild(link);
+  //   toast.success("Guest ticket list exported as CSV!");
+  // };
 
   const handleBulkSend = () => {
     toast.success("Invites sent to all unsent ticket holders!");
@@ -178,6 +186,24 @@ export const HostEventDetailsView: React.FC<HostEventDetailsViewProps> = ({
   const isScheduled = event.status === "Scheduled";
   const isStandard = isStandardTier && !isScheduled;
   const isPremium = !isScheduled && !isStandard;
+
+  const getFilterLabel = () => {
+    switch (activeFilter) {
+      case "editable":
+        return `Editable (${counts.editable})`;
+      case "locked":
+        return `Locked/ Ready (${counts.locked})`;
+      case "send":
+      case "sent":
+        return `Send (${counts.sent})`;
+      case "voided":
+        return `Voided (${counts.voided})`;
+      case "rsvp":
+        return "RSVP Deadline";
+      default:
+        return "Filter";
+    }
+  };
 
   return (
     <div className="space-y-6">
@@ -215,14 +241,14 @@ export const HostEventDetailsView: React.FC<HostEventDetailsViewProps> = ({
           </div>
 
           {/* Export Button */}
-          <button
+          {/* <button
             type="button"
             onClick={handleExport}
             className="inline-flex items-center gap-1.5 rounded-lg border border-gray-200 bg-white px-3.5 py-2 text-xs sm:text-sm font-medium text-gray-700 hover:bg-gray-50 transition-colors cursor-pointer font-work-sans shadow-2xs"
           >
             <Download className="h-4 w-4 text-gray-500" />
             Export
-          </button>
+          </button> */}
 
           {/* Add Guests Button (Premium only) */}
           {!isStandardTier && (
@@ -390,85 +416,174 @@ export const HostEventDetailsView: React.FC<HostEventDetailsViewProps> = ({
             All ticket {counts.all}
           </button>
 
-          {/* Editable (shown in Premium and Standard) */}
-          {!isScheduled && (
+          {activeFilter !== "all" && (
             <button
               type="button"
-              onClick={() => dispatch(setActiveFilter("editable"))}
-              className={`rounded-full px-3.5 py-1.5 text-xs font-medium transition-colors cursor-pointer font-work-sans border ${activeFilter === "editable"
-                ? "border-blue-500 bg-blue-100 text-blue-700 font-semibold"
-                : "border-blue-200 bg-blue-50/50 text-blue-600 hover:bg-blue-50"
-                }`}
+              onClick={() => dispatch(setActiveFilter("all"))}
+              className="inline-flex items-center gap-1.5 rounded-full border border-amber-300 bg-amber-50 px-3 py-1.5 text-xs font-medium text-amber-800 hover:bg-amber-100 transition-colors cursor-pointer font-work-sans"
             >
-              Editable {counts.editable}
-            </button>
-          )}
-
-          {/* Locked/ Ready */}
-          <button
-            type="button"
-            onClick={() => dispatch(setActiveFilter("locked"))}
-            className={`rounded-full px-3.5 py-1.5 text-xs font-medium transition-colors cursor-pointer font-work-sans border ${activeFilter === "locked"
-              ? "border-orange-500 bg-orange-100 text-orange-700 font-semibold"
-              : "border-orange-200 bg-orange-50/50 text-orange-600 hover:bg-orange-50"
-              }`}
-          >
-            Locked/ Ready {counts.locked}
-          </button>
-
-          {/* Send */}
-          <button
-            type="button"
-            onClick={() => dispatch(setActiveFilter("send"))}
-            className={`rounded-full px-3.5 py-1.5 text-xs font-medium transition-colors cursor-pointer font-work-sans border ${activeFilter === "send"
-              ? "border-emerald-500 bg-emerald-100 text-emerald-700 font-semibold"
-              : "border-emerald-200 bg-emerald-50/50 text-emerald-600 hover:bg-emerald-50"
-              }`}
-          >
-            Send {counts.sent}
-          </button>
-
-          {/* Voided (Premium active) */}
-          {isPremium && (
-            <button
-              type="button"
-              onClick={() => dispatch(setActiveFilter("voided"))}
-              className={`rounded-full px-3.5 py-1.5 text-xs font-medium transition-colors cursor-pointer font-work-sans border ${activeFilter === "voided"
-                ? "border-gray-400 bg-gray-200 text-gray-800 font-semibold"
-                : "border-gray-200 bg-gray-50/50 text-gray-500 hover:bg-gray-100"
-                }`}
-            >
-              Voided {counts.voided}
-            </button>
-          )}
-
-          {/* RSVP Deadline */}
-          {!isStandard && (
-            <button
-              type="button"
-              onClick={() => dispatch(setActiveFilter("rsvp"))}
-              className={`inline-flex items-center gap-1 rounded-full px-3.5 py-1.5 text-xs font-medium transition-colors cursor-pointer font-work-sans border ${activeFilter === "rsvp"
-                ? "border-amber-500 bg-amber-100 text-amber-900 font-semibold"
-                : "border-amber-200 bg-amber-50/50 text-amber-700 hover:bg-amber-100/60"
-                }`}
-            >
-              <span>RSVP Deadline</span>
-              <CalendarDays className="h-3.5 w-3.5" />
+              <span>{getFilterLabel()}</span>
+              <span className="text-amber-500 hover:text-amber-800 text-sm leading-none font-bold">&times;</span>
             </button>
           )}
         </div>
 
         {/* Right Actions: Filter, Bulk Actions, Send */}
         <div className="flex flex-wrap items-center gap-2.5">
-          <button
-            type="button"
-            onClick={() => toast.info("Filter options opened")}
-            className="inline-flex items-center gap-1.5 rounded-lg border border-gray-200 bg-white px-3.5 py-1.5 text-xs sm:text-sm font-medium text-gray-700 hover:bg-gray-50 transition-colors cursor-pointer font-work-sans shadow-2xs"
-          >
-            <FilterIcon className="h-3.5 w-3.5 text-gray-500" />
-            Filter
-            <ChevronDown className="h-3.5 w-3.5 text-gray-400" />
-          </button>
+          {/* Filter Dropdown */}
+          <DropdownMenu modal={false}>
+            <DropdownMenuTrigger asChild>
+              <button
+                type="button"
+                className={`inline-flex items-center gap-1.5 rounded-lg border px-3.5 py-1.5 text-xs sm:text-sm font-medium transition-colors cursor-pointer font-work-sans shadow-2xs ${activeFilter !== "all"
+                    ? "border-[#C39B4C] bg-amber-50/60 text-[#C39B4C] font-semibold"
+                    : "border-gray-200 bg-white text-gray-700 hover:bg-gray-50"
+                  }`}
+              >
+                <FilterIcon className={`h-3.5 w-3.5 ${activeFilter !== "all" ? "text-[#C39B4C]" : "text-gray-500"}`} />
+                <span>{activeFilter === "all" ? "Filter" : getFilterLabel()}</span>
+                <ChevronDown className={`h-3.5 w-3.5 ${activeFilter !== "all" ? "text-[#C39B4C]" : "text-gray-400"}`} />
+              </button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="end" className="w-56 bg-white border-neutral-200 shadow-lg rounded-xl p-1.5 z-50">
+              <DropdownMenuLabel className="text-xs font-semibold text-gray-500 px-2.5 py-1.5">
+                Filter by Status
+              </DropdownMenuLabel>
+              <DropdownMenuSeparator className="my-1" />
+
+              {/* All Ticket */}
+              <DropdownMenuItem
+                onClick={() => dispatch(setActiveFilter("all"))}
+                className={`flex items-center justify-between px-2.5 py-2 rounded-lg cursor-pointer text-xs sm:text-sm ${activeFilter === "all"
+                    ? "bg-gray-100 text-gray-900 font-semibold"
+                    : "text-gray-700 hover:bg-gray-50"
+                  }`}
+              >
+                <div className="flex items-center gap-2">
+                  {activeFilter === "all" ? (
+                    <Check className="h-3.5 w-3.5 text-gray-900 shrink-0" />
+                  ) : (
+                    <span className="w-3.5 shrink-0" />
+                  )}
+                  <span>All ticket</span>
+                </div>
+                <span className="rounded-full bg-gray-100 border border-gray-200 px-2 py-0.5 text-[11px] font-medium text-gray-600">
+                  {counts.all}
+                </span>
+              </DropdownMenuItem>
+
+              {/* Editable (shown in Premium and Standard) */}
+              {!isScheduled && (
+                <DropdownMenuItem
+                  onClick={() => dispatch(setActiveFilter("editable"))}
+                  className={`flex items-center justify-between px-2.5 py-2 rounded-lg cursor-pointer text-xs sm:text-sm ${activeFilter === "editable"
+                      ? "bg-blue-50 text-blue-700 font-semibold"
+                      : "text-gray-700 hover:bg-blue-50/50"
+                    }`}
+                >
+                  <div className="flex items-center gap-2">
+                    {activeFilter === "editable" ? (
+                      <Check className="h-3.5 w-3.5 text-blue-700 shrink-0" />
+                    ) : (
+                      <span className="w-3.5 shrink-0" />
+                    )}
+                    <span>Editable</span>
+                  </div>
+                  <span className="rounded-full bg-blue-100 text-blue-700 px-2 py-0.5 text-[11px] font-medium">
+                    {counts.editable}
+                  </span>
+                </DropdownMenuItem>
+              )}
+
+              {/* Locked/ Ready */}
+              <DropdownMenuItem
+                onClick={() => dispatch(setActiveFilter("locked"))}
+                className={`flex items-center justify-between px-2.5 py-2 rounded-lg cursor-pointer text-xs sm:text-sm ${activeFilter === "locked"
+                    ? "bg-orange-50 text-orange-700 font-semibold"
+                    : "text-gray-700 hover:bg-orange-50/50"
+                  }`}
+              >
+                <div className="flex items-center gap-2">
+                  {activeFilter === "locked" ? (
+                    <Check className="h-3.5 w-3.5 text-orange-700 shrink-0" />
+                  ) : (
+                    <span className="w-3.5 shrink-0" />
+                  )}
+                  <span>Locked/ Ready</span>
+                </div>
+                <span className="rounded-full bg-orange-100 text-orange-700 px-2 py-0.5 text-[11px] font-medium">
+                  {counts.locked}
+                </span>
+              </DropdownMenuItem>
+
+              {/* Send */}
+              <DropdownMenuItem
+                onClick={() => dispatch(setActiveFilter("send"))}
+                className={`flex items-center justify-between px-2.5 py-2 rounded-lg cursor-pointer text-xs sm:text-sm ${activeFilter === "send" || activeFilter === "sent"
+                    ? "bg-emerald-50 text-emerald-700 font-semibold"
+                    : "text-gray-700 hover:bg-emerald-50/50"
+                  }`}
+              >
+                <div className="flex items-center gap-2">
+                  {activeFilter === "send" || activeFilter === "sent" ? (
+                    <Check className="h-3.5 w-3.5 text-emerald-700 shrink-0" />
+                  ) : (
+                    <span className="w-3.5 shrink-0" />
+                  )}
+                  <span>Send</span>
+                </div>
+                <span className="rounded-full bg-emerald-100 text-emerald-700 px-2 py-0.5 text-[11px] font-medium">
+                  {counts.sent}
+                </span>
+              </DropdownMenuItem>
+
+              {/* Voided (Premium active) */}
+              {isPremium && (
+                <DropdownMenuItem
+                  onClick={() => dispatch(setActiveFilter("voided"))}
+                  className={`flex items-center justify-between px-2.5 py-2 rounded-lg cursor-pointer text-xs sm:text-sm ${activeFilter === "voided"
+                      ? "bg-gray-100 text-gray-800 font-semibold"
+                      : "text-gray-700 hover:bg-gray-50"
+                    }`}
+                >
+                  <div className="flex items-center gap-2">
+                    {activeFilter === "voided" ? (
+                      <Check className="h-3.5 w-3.5 text-gray-800 shrink-0" />
+                    ) : (
+                      <span className="w-3.5 shrink-0" />
+                    )}
+                    <span>Voided</span>
+                  </div>
+                  <span className="rounded-full bg-gray-200 text-gray-700 px-2 py-0.5 text-[11px] font-medium">
+                    {counts.voided}
+                  </span>
+                </DropdownMenuItem>
+              )}
+
+              {/* RSVP Deadline */}
+              {!isStandard && (
+                <DropdownMenuItem
+                  onClick={() => dispatch(setActiveFilter("rsvp"))}
+                  className={`flex items-center justify-between px-2.5 py-2 rounded-lg cursor-pointer text-xs sm:text-sm ${activeFilter === "rsvp"
+                      ? "bg-amber-50 text-amber-900 font-semibold"
+                      : "text-gray-700 hover:bg-amber-50/50"
+                    }`}
+                >
+                  <div className="flex items-center gap-2">
+                    {activeFilter === "rsvp" ? (
+                      <Check className="h-3.5 w-3.5 text-amber-900 shrink-0" />
+                    ) : (
+                      <span className="w-3.5 shrink-0" />
+                    )}
+                    <span className="flex items-center gap-1.5">
+                      <span>RSVP Deadline</span>
+                      <CalendarDays className="h-3.5 w-3.5 text-amber-600" />
+                    </span>
+                  </div>
+                </DropdownMenuItem>
+              )}
+            </DropdownMenuContent>
+          </DropdownMenu>
 
           <button
             type="button"
