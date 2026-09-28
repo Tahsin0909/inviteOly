@@ -126,6 +126,8 @@ export interface IAdminUserListItem {
   email: string;
   avatarUrl: string;
   role: "Host" | "Partner" | "Admin";
+  partnerType?: string;
+  isVerified?: boolean;
   joinDate: string;
   eventCount: {
     active: number;
