@@ -52,23 +52,23 @@ export const RevnueBar: React.FC<RevnueBarProps> = ({
     return (
         <div
             className={cn(
-                "bg-white rounded-2xl p-5 sm:p-6 border border-neutral-200/70 shadow-xs",
+                "bg-white dark:bg-neutral-900/60 rounded-2xl p-5 sm:p-6 border border-neutral-200/70 dark:border-neutral-800 shadow-xs",
                 className
             )}
         >
             {/* Top Header: Title & Total Revenue on Left, Timeframe Tabs on Right */}
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                 <div>
-                    <p className="text-xs sm:text-sm font-semibold text-neutral-800 font-work-sans">
+                    <p className="text-xs sm:text-sm font-semibold text-neutral-800 dark:text-neutral-200 font-work-sans">
                         Revenue Breakdown
                     </p>
-                    <p className="text-2xl sm:text-3xl font-bold font-space-grotesk text-neutral-900 tracking-tight mt-1">
+                    <p className="text-2xl sm:text-3xl font-bold font-space-grotesk text-neutral-900 dark:text-white tracking-tight mt-1">
                         {data.totalRevenue}
                     </p>
                 </div>
 
                 {/* Timeframe Selector Tabs */}
-                <div className="inline-flex items-center p-1 rounded-xl bg-[#F8F8F8] border border-neutral-200/70 self-start sm:self-auto">
+                <div className="inline-flex items-center p-1 rounded-xl bg-[#F8F8F8] dark:bg-neutral-950/60 border border-neutral-200/70 dark:border-neutral-800 self-start sm:self-auto">
                     {timeframes.map((tf) => {
                         const isActive = selectedTimeframe === tf;
                         return (
@@ -79,8 +79,8 @@ export const RevnueBar: React.FC<RevnueBarProps> = ({
                                 className={cn(
                                     "px-3 py-1.5 rounded-lg text-xs font-medium transition-all duration-150 cursor-pointer",
                                     isActive
-                                        ? "bg-white text-[#B89047] font-semibold shadow-xs"
-                                        : "text-neutral-500 hover:text-neutral-800"
+                                        ? "bg-white dark:bg-neutral-900 text-[#B89047] font-semibold shadow-xs"
+                                        : "text-neutral-500 dark:text-neutral-400 hover:text-neutral-800 dark:hover:text-neutral-200"
                                 )}
                             >
                                 {tf}
@@ -98,7 +98,7 @@ export const RevnueBar: React.FC<RevnueBarProps> = ({
                         {Y_AXIS_LABELS.map((label) => (
                             <span
                                 key={label}
-                                className="text-[11px] sm:text-xs font-medium text-neutral-600 font-work-sans leading-none"
+                                className="text-[11px] sm:text-xs font-medium text-neutral-500 dark:text-neutral-400 font-work-sans leading-none"
                             >
                                 {label}
                             </span>
@@ -112,7 +112,7 @@ export const RevnueBar: React.FC<RevnueBarProps> = ({
                             {Y_AXIS_LABELS.map((label) => (
                                 <div
                                     key={`line-${label}`}
-                                    className="w-full border-b border-neutral-100/90"
+                                    className="w-full border-b border-neutral-100/90 dark:border-neutral-800/60"
                                 />
                             ))}
                         </div>
@@ -139,21 +139,21 @@ export const RevnueBar: React.FC<RevnueBarProps> = ({
                                                     bottom: `calc(${barHeightPercent}% + 8px)`,
                                                 }}
                                             >
-                                                <div className="bg-[#F4F4F5] border border-neutral-200/90 text-neutral-700 text-[10.5px] sm:text-[11px] font-medium px-2 sm:px-2.5 py-0.5 sm:py-1 rounded-md shadow-xs whitespace-nowrap">
+                                                <div className="bg-[#F4F4F5] dark:bg-neutral-800 border border-neutral-200/90 dark:border-neutral-700 text-neutral-700 dark:text-neutral-200 text-[10.5px] sm:text-[11px] font-medium px-2 sm:px-2.5 py-0.5 sm:py-1 rounded-md shadow-xs whitespace-nowrap">
                                                     {item.tooltipText ||
                                                         (item.month === "Jun"
                                                             ? "This month: $8879.09"
                                                             : `${item.month}: ${item.formattedAmount || `$${item.amount.toLocaleString()}`}`)}
                                                 </div>
                                                 {/* Downward triangle indicator */}
-                                                <div className="w-0 h-0 border-x-[4px] border-x-transparent border-t-[5px] border-t-neutral-300" />
+                                                <div className="w-0 h-0 border-x-[4px] border-x-transparent border-t-[5px] border-t-neutral-300 dark:border-t-neutral-700" />
                                             </div>
                                         )}
 
                                         {/* Vertical Dashed Guideline for Active Month */}
                                         {isCurrentActive && (
                                             <div
-                                                className="absolute w-0 border-l border-dashed border-neutral-400/80 z-20 pointer-events-none"
+                                                className="absolute w-0 border-l border-dashed border-neutral-400/80 dark:border-neutral-600 z-20 pointer-events-none"
                                                 style={{
                                                     bottom: 0,
                                                     height: `calc(${barHeightPercent}% + 8px)`,
@@ -167,7 +167,7 @@ export const RevnueBar: React.FC<RevnueBarProps> = ({
                                                 "w-full max-w-[22px] sm:max-w-[28px] md:max-w-[32px] rounded-t-[2px] transition-all duration-200 relative z-10",
                                                 isCurrentActive
                                                     ? "bg-[#C39B4C] hover:bg-[#B89047]"
-                                                    : "bg-[#71717A] hover:bg-neutral-600"
+                                                    : "bg-[#71717A] dark:bg-neutral-700 hover:bg-neutral-600 dark:hover:bg-neutral-600"
                                             )}
                                             style={{
                                                 height: `${barHeightPercent}%`,
@@ -179,8 +179,8 @@ export const RevnueBar: React.FC<RevnueBarProps> = ({
                                             className={cn(
                                                 "absolute -bottom-6 text-[11px] sm:text-xs font-medium font-work-sans transition-colors duration-150 select-none",
                                                 isCurrentActive
-                                                    ? "text-neutral-900 font-semibold"
-                                                    : "text-neutral-600"
+                                                    ? "text-neutral-900 dark:text-white font-semibold"
+                                                    : "text-neutral-500 dark:text-neutral-400"
                                             )}
                                         >
                                             {item.month}
@@ -197,4 +197,3 @@ export const RevnueBar: React.FC<RevnueBarProps> = ({
 };
 
 export default RevnueBar;
-

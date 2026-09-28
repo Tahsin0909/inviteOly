@@ -10,7 +10,9 @@ export default function ResetPasswordPage() {
         </div>
       }
     >
-      <ResetPasswordForm />
+      <div className="w-full">
+        <ResetPasswordForm />
+      </div>
     </Suspense>
   );
 }

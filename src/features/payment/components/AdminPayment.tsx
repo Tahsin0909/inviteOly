@@ -304,8 +304,8 @@ export const AdminPayment: React.FC<AdminPaymentProps> = ({ className }) => {
 
         if (isPaid) {
             return (
-                <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-semibold bg-[#E8F8EE] text-[#0FA958] border border-[#0FA958]/20">
-                    <span className="size-1.5 rounded-full bg-[#0FA958]" />
+                <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-semibold bg-[#E8F8EE] dark:bg-emerald-950/40 text-[#0FA958] dark:text-emerald-400 border border-[#0FA958]/20 dark:border-emerald-800/40">
+                    <span className="size-1.5 rounded-full bg-[#0FA958] dark:bg-emerald-400" />
                     Paid
                 </span>
             );
@@ -313,8 +313,8 @@ export const AdminPayment: React.FC<AdminPaymentProps> = ({ className }) => {
 
         if (isFailed) {
             return (
-                <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-semibold bg-[#FEECEB] text-[#EA3829] border border-[#EA3829]/20">
-                    <span className="size-1.5 rounded-full bg-[#EA3829]" />
+                <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-semibold bg-[#FEECEB] dark:bg-red-950/40 text-[#EA3829] dark:text-red-400 border border-[#EA3829]/20 dark:border-red-800/40">
+                    <span className="size-1.5 rounded-full bg-[#EA3829] dark:bg-red-400" />
                     Payment Failed
                 </span>
             );
@@ -322,15 +322,15 @@ export const AdminPayment: React.FC<AdminPaymentProps> = ({ className }) => {
 
         if (isRefunded) {
             return (
-                <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-semibold bg-[#FEF3EB] text-[#D97706] border border-[#D97706]/20">
-                    <span className="size-1.5 rounded-full bg-[#D97706]" />
+                <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-semibold bg-[#FEF3EB] dark:bg-amber-950/40 text-[#D97706] dark:text-amber-400 border border-[#D97706]/20 dark:border-amber-800/40">
+                    <span className="size-1.5 rounded-full bg-[#D97706] dark:bg-amber-400" />
                     Refunded
                 </span>
             );
         }
 
         return (
-            <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-semibold bg-neutral-100 text-neutral-700">
+            <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-semibold bg-neutral-100 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300">
                 {status}
             </span>
         );
@@ -339,17 +339,17 @@ export const AdminPayment: React.FC<AdminPaymentProps> = ({ className }) => {
     return (
         <div
             className={cn(
-                "w-full space-y-6 font-work-sans text-neutral-800",
+                "w-full space-y-6 font-work-sans text-neutral-800 dark:text-neutral-200",
                 className
             )}
         >
             {/* Page Header */}
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                 <div>
-                    <h1 className="text-2xl sm:text-3xl font-bold font-space-grotesk text-neutral-900 tracking-tight">
+                    <h1 className="text-2xl sm:text-3xl font-bold font-space-grotesk text-neutral-900 dark:text-white tracking-tight">
                         Payments Management
                     </h1>
-                    <p className="text-xs sm:text-sm text-neutral-500 mt-1">
+                    <p className="text-xs sm:text-sm text-neutral-500 dark:text-neutral-400 mt-1">
                         Track and manage all customer payments, refunds, and manual transaction entries in one place.
                     </p>
                 </div>
@@ -368,63 +368,63 @@ export const AdminPayment: React.FC<AdminPaymentProps> = ({ className }) => {
             {/* 3 Improved Summary Cards */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                 {/* Card 1: Total Revenue */}
-                <div className="bg-white border border-neutral-200/80 rounded-2xl p-5 shadow-2xs flex flex-col justify-between hover:border-neutral-300 transition-colors">
+                <div className="bg-white dark:bg-neutral-900/60 border border-neutral-200/80 dark:border-neutral-800 rounded-2xl p-5 shadow-2xs flex flex-col justify-between hover:border-neutral-300 dark:hover:border-neutral-700 transition-colors">
                     <div className="flex items-center justify-between">
-                        <div className="size-11 rounded-xl bg-[#B89047]/10 flex items-center justify-center text-[#B89047]">
+                        <div className="size-11 rounded-xl bg-[#B89047]/10 dark:bg-[#B89047]/20 flex items-center justify-center text-[#B89047]">
                             <Banknote className="size-5" />
                         </div>
-                        <span className="bg-[#E8F8EE] text-[#0FA958] text-xs font-semibold px-2.5 py-1 rounded-md flex items-center gap-1">
+                        <span className="bg-[#E8F8EE] dark:bg-emerald-950/50 text-[#0FA958] dark:text-emerald-400 text-xs font-semibold px-2.5 py-1 rounded-md flex items-center gap-1">
                             <TrendingUp className="size-3" />
                             {metrics.totalRevenueTrend || "+8.5%"}
                         </span>
                     </div>
                     <div className="mt-4">
-                        <span className="text-3xl font-bold font-space-grotesk text-neutral-900">
+                        <span className="text-3xl font-bold font-space-grotesk text-neutral-900 dark:text-white">
                             {metrics.totalRevenue}
                         </span>
-                        <p className="text-xs text-neutral-500 font-medium mt-1">
+                        <p className="text-xs text-neutral-500 dark:text-neutral-400 font-medium mt-1">
                             Total Revenue
                         </p>
                     </div>
                 </div>
 
                 {/* Card 2: This Month’s Revenue */}
-                <div className="bg-white border border-neutral-200/80 rounded-2xl p-5 shadow-2xs flex flex-col justify-between hover:border-neutral-300 transition-colors">
+                <div className="bg-white dark:bg-neutral-900/60 border border-neutral-200/80 dark:border-neutral-800 rounded-2xl p-5 shadow-2xs flex flex-col justify-between hover:border-neutral-300 dark:hover:border-neutral-700 transition-colors">
                     <div className="flex items-center justify-between">
-                        <div className="size-11 rounded-xl bg-[#B89047]/10 flex items-center justify-center text-[#B89047]">
+                        <div className="size-11 rounded-xl bg-[#B89047]/10 dark:bg-[#B89047]/20 flex items-center justify-center text-[#B89047]">
                             <TrendingUp className="size-5" />
                         </div>
-                        <span className="bg-[#E8F8EE] text-[#0FA958] text-xs font-semibold px-2.5 py-1 rounded-md flex items-center gap-1">
+                        <span className="bg-[#E8F8EE] dark:bg-emerald-950/50 text-[#0FA958] dark:text-emerald-400 text-xs font-semibold px-2.5 py-1 rounded-md flex items-center gap-1">
                             <TrendingUp className="size-3" />
                             {metrics.thisMonthRevenueTrend || "+12.4%"}
                         </span>
                     </div>
                     <div className="mt-4">
-                        <span className="text-3xl font-bold font-space-grotesk text-neutral-900">
+                        <span className="text-3xl font-bold font-space-grotesk text-neutral-900 dark:text-white">
                             {metrics.thisMonthRevenue}
                         </span>
-                        <p className="text-xs text-neutral-500 font-medium mt-1">
+                        <p className="text-xs text-neutral-500 dark:text-neutral-400 font-medium mt-1">
                             This Month’s Revenue
                         </p>
                     </div>
                 </div>
 
                 {/* Card 3: Refunded or Failed Payments */}
-                <div className="bg-white border border-neutral-200/80 rounded-2xl p-5 shadow-2xs flex flex-col justify-between hover:border-neutral-300 transition-colors">
+                <div className="bg-white dark:bg-neutral-900/60 border border-neutral-200/80 dark:border-neutral-800 rounded-2xl p-5 shadow-2xs flex flex-col justify-between hover:border-neutral-300 dark:hover:border-neutral-700 transition-colors">
                     <div className="flex items-center justify-between">
-                        <div className="size-11 rounded-xl bg-red-50 flex items-center justify-center text-[#EA3829]">
+                        <div className="size-11 rounded-xl bg-red-50 dark:bg-red-950/40 flex items-center justify-center text-[#EA3829] dark:text-red-400">
                             <AlertCircle className="size-5" />
                         </div>
-                        <span className="bg-[#FEECEB] text-[#EA3829] text-xs font-semibold px-2.5 py-1 rounded-md flex items-center gap-1">
+                        <span className="bg-[#FEECEB] dark:bg-red-950/50 text-[#EA3829] dark:text-red-400 text-xs font-semibold px-2.5 py-1 rounded-md flex items-center gap-1">
                             <RotateCcw className="size-3" />
                             {metrics.refundedOrFailedTrend || "4 transactions"}
                         </span>
                     </div>
                     <div className="mt-4">
-                        <span className="text-3xl font-bold font-space-grotesk text-neutral-900">
+                        <span className="text-3xl font-bold font-space-grotesk text-neutral-900 dark:text-white">
                             {metrics.refundedOrFailed || "$796.00"}
                         </span>
-                        <p className="text-xs text-neutral-500 font-medium mt-1">
+                        <p className="text-xs text-neutral-500 dark:text-neutral-400 font-medium mt-1">
                             Refunded or Failed Payments
                         </p>
                     </div>
@@ -435,7 +435,7 @@ export const AdminPayment: React.FC<AdminPaymentProps> = ({ className }) => {
             <div className="grid grid-cols-1 sm:grid-cols-12 gap-3 items-center">
                 {/* Search Bar */}
                 <div className="sm:col-span-6 relative">
-                    <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 size-4 text-neutral-400 pointer-events-none" />
+                    <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 size-4 text-neutral-400 dark:text-neutral-500 pointer-events-none" />
                     <input
                         type="text"
                         value={searchTerm}
@@ -444,13 +444,13 @@ export const AdminPayment: React.FC<AdminPaymentProps> = ({ className }) => {
                             setCurrentPage(1);
                         }}
                         placeholder="Search by host, event, email, or transaction ID..."
-                        className="w-full h-10 pl-9.5 pr-8 rounded-xl border border-neutral-200 bg-white text-xs sm:text-sm text-neutral-800 placeholder:text-neutral-400 focus:outline-none focus:border-[#B89047] focus:ring-1 focus:ring-[#B89047]/20 shadow-2xs font-work-sans transition-all"
+                        className="w-full h-10 pl-9.5 pr-8 rounded-xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 text-xs sm:text-sm text-neutral-800 dark:text-neutral-100 placeholder:text-neutral-400 dark:placeholder:text-neutral-500 focus:outline-none focus:border-[#B89047] focus:ring-1 focus:ring-[#B89047]/20 shadow-2xs font-work-sans transition-all"
                     />
                     {searchTerm && (
                         <button
                             type="button"
                             onClick={() => setSearchTerm("")}
-                            className="absolute right-3 top-1/2 -translate-y-1/2 text-neutral-400 hover:text-neutral-600 cursor-pointer"
+                            className="absolute right-3 top-1/2 -translate-y-1/2 text-neutral-400 hover:text-neutral-600 dark:hover:text-neutral-300 cursor-pointer"
                         >
                             <X className="size-3.5" />
                         </button>
@@ -465,14 +465,14 @@ export const AdminPayment: React.FC<AdminPaymentProps> = ({ className }) => {
                             setStatusFilter(e.target.value);
                             setCurrentPage(1);
                         }}
-                        className="w-full h-10 px-3.5 pr-8 rounded-xl border border-neutral-200 bg-white text-xs sm:text-sm text-neutral-700 focus:outline-none focus:border-[#B89047] shadow-2xs appearance-none cursor-pointer"
+                        className="w-full h-10 px-3.5 pr-8 rounded-xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 text-xs sm:text-sm text-neutral-700 dark:text-neutral-300 focus:outline-none focus:border-[#B89047] shadow-2xs appearance-none cursor-pointer"
                     >
                         <option value="All Statuses">All Payment Statuses</option>
                         <option value="Paid">Paid</option>
                         <option value="Payment Failed">Payment Failed</option>
                         <option value="Refunded">Refunded</option>
                     </select>
-                    <div className="pointer-events-none absolute right-3.5 top-1/2 -translate-y-1/2 text-neutral-400 text-xs">
+                    <div className="pointer-events-none absolute right-3.5 top-1/2 -translate-y-1/2 text-neutral-400 dark:text-neutral-500 text-xs">
                         ▼
                     </div>
                 </div>
@@ -485,7 +485,7 @@ export const AdminPayment: React.FC<AdminPaymentProps> = ({ className }) => {
                             setDateRangeFilter(e.target.value);
                             setCurrentPage(1);
                         }}
-                        className="w-full h-10 px-3.5 pr-8 rounded-xl border border-neutral-200 bg-white text-xs sm:text-sm text-neutral-700 focus:outline-none focus:border-[#B89047] shadow-2xs appearance-none cursor-pointer"
+                        className="w-full h-10 px-3.5 pr-8 rounded-xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 text-xs sm:text-sm text-neutral-700 dark:text-neutral-300 focus:outline-none focus:border-[#B89047] shadow-2xs appearance-none cursor-pointer"
                     >
                         <option value="All Time">All Time</option>
                         <option value="Today">Today</option>
@@ -493,82 +493,82 @@ export const AdminPayment: React.FC<AdminPaymentProps> = ({ className }) => {
                         <option value="This Month">This Month</option>
                         <option value="Last 30 Days">Last 30 Days</option>
                     </select>
-                    <div className="pointer-events-none absolute right-3.5 top-1/2 -translate-y-1/2 text-neutral-400 text-xs">
+                    <div className="pointer-events-none absolute right-3.5 top-1/2 -translate-y-1/2 text-neutral-400 dark:text-neutral-500 text-xs">
                         ▼
                     </div>
                 </div>
             </div>
 
             {/* Transactions Table Card */}
-            <div className="bg-white border border-neutral-200/80 rounded-2xl overflow-hidden shadow-2xs">
+            <div className="bg-white dark:bg-neutral-900/40 border border-neutral-200/80 dark:border-neutral-800 rounded-2xl overflow-hidden shadow-2xs">
                 <div className="overflow-x-auto">
                     <table className="w-full text-left border-collapse min-w-[900px]">
                         <thead>
-                            <tr className="border-b border-neutral-100 bg-neutral-50/70">
-                                <th className="py-3.5 px-5 text-[11px] font-bold uppercase tracking-wider text-neutral-500 font-space-grotesk">
+                            <tr className="border-b border-neutral-100 dark:border-neutral-800 bg-neutral-50/70 dark:bg-neutral-900/60">
+                                <th className="py-3.5 px-5 text-[11px] font-bold uppercase tracking-wider text-neutral-500 dark:text-neutral-400 font-space-grotesk">
                                     Transaction ID
                                 </th>
-                                <th className="py-3.5 px-5 text-[11px] font-bold uppercase tracking-wider text-neutral-500 font-space-grotesk">
+                                <th className="py-3.5 px-5 text-[11px] font-bold uppercase tracking-wider text-neutral-500 dark:text-neutral-400 font-space-grotesk">
                                     Host Name
                                 </th>
-                                <th className="py-3.5 px-5 text-[11px] font-bold uppercase tracking-wider text-neutral-500 font-space-grotesk">
+                                <th className="py-3.5 px-5 text-[11px] font-bold uppercase tracking-wider text-neutral-500 dark:text-neutral-400 font-space-grotesk">
                                     Event Name
                                 </th>
-                                <th className="py-3.5 px-5 text-[11px] font-bold uppercase tracking-wider text-neutral-500 font-space-grotesk">
+                                <th className="py-3.5 px-5 text-[11px] font-bold uppercase tracking-wider text-neutral-500 dark:text-neutral-400 font-space-grotesk">
                                     Package Purchased
                                 </th>
-                                <th className="py-3.5 px-5 text-[11px] font-bold uppercase tracking-wider text-neutral-500 font-space-grotesk">
+                                <th className="py-3.5 px-5 text-[11px] font-bold uppercase tracking-wider text-neutral-500 dark:text-neutral-400 font-space-grotesk">
                                     Amount
                                 </th>
-                                <th className="py-3.5 px-5 text-[11px] font-bold uppercase tracking-wider text-neutral-500 font-space-grotesk">
+                                <th className="py-3.5 px-5 text-[11px] font-bold uppercase tracking-wider text-neutral-500 dark:text-neutral-400 font-space-grotesk">
                                     Payment Status
                                 </th>
-                                <th className="py-3.5 px-5 text-[11px] font-bold uppercase tracking-wider text-neutral-500 font-space-grotesk">
+                                <th className="py-3.5 px-5 text-[11px] font-bold uppercase tracking-wider text-neutral-500 dark:text-neutral-400 font-space-grotesk">
                                     Payment Date
                                 </th>
-                                <th className="py-3.5 px-5 text-[11px] font-bold uppercase tracking-wider text-neutral-500 font-space-grotesk text-right">
+                                <th className="py-3.5 px-5 text-[11px] font-bold uppercase tracking-wider text-neutral-500 dark:text-neutral-400 font-space-grotesk text-right">
                                     Action
                                 </th>
                             </tr>
                         </thead>
-                        <tbody className="divide-y divide-neutral-100">
+                        <tbody className="divide-y divide-neutral-100 dark:divide-neutral-800">
                             {paginatedTransactions.length > 0 ? (
                                 paginatedTransactions.map((tx: IAdminTransaction) => (
                                     <tr
                                         key={tx.id}
-                                        className="hover:bg-neutral-50/70 transition-colors group"
+                                        className="hover:bg-neutral-50/70 dark:hover:bg-neutral-800/40 transition-colors group"
                                     >
                                         {/* Transaction ID */}
-                                        <td className="py-4 px-5 font-semibold text-xs sm:text-sm text-neutral-900 font-mono">
+                                        <td className="py-4 px-5 font-semibold text-xs sm:text-sm text-neutral-900 dark:text-white font-mono">
                                             {tx.transactionId}
                                         </td>
 
                                         {/* Host Name & Email */}
                                         <td className="py-4 px-5 text-xs sm:text-sm">
-                                            <p className="font-semibold text-neutral-900">
+                                            <p className="font-semibold text-neutral-900 dark:text-white">
                                                 {tx.hostName || tx.customerName}
                                             </p>
                                             {tx.customerEmail && (
-                                                <p className="text-[11px] text-neutral-400 font-normal mt-0.5">
+                                                <p className="text-[11px] text-neutral-400 dark:text-neutral-500 font-normal mt-0.5">
                                                     {tx.customerEmail}
                                                 </p>
                                             )}
                                         </td>
 
                                         {/* Event Name */}
-                                        <td className="py-4 px-5 text-xs sm:text-sm text-neutral-800 font-medium max-w-[220px] truncate">
+                                        <td className="py-4 px-5 text-xs sm:text-sm text-neutral-800 dark:text-neutral-200 font-medium max-w-[220px] truncate">
                                             <span title={tx.eventName}>{tx.eventName}</span>
                                         </td>
 
                                         {/* Package Purchased */}
-                                        <td className="py-4 px-5 text-xs sm:text-sm text-neutral-700">
-                                            <span className="inline-block px-2.5 py-0.5 rounded-md bg-neutral-100 font-medium text-neutral-800">
+                                        <td className="py-4 px-5 text-xs sm:text-sm text-neutral-700 dark:text-neutral-300">
+                                            <span className="inline-block px-2.5 py-0.5 rounded-md bg-neutral-100 dark:bg-neutral-800 font-medium text-neutral-800 dark:text-neutral-200">
                                                 {tx.packageName || tx.paymentType || "Signature Tier"}
                                             </span>
                                         </td>
 
                                         {/* Amount */}
-                                        <td className="py-4 px-5 text-xs sm:text-sm font-bold text-neutral-900 font-space-grotesk">
+                                        <td className="py-4 px-5 text-xs sm:text-sm font-bold text-neutral-900 dark:text-white font-space-grotesk">
                                             {tx.amount}
                                         </td>
 
@@ -578,7 +578,7 @@ export const AdminPayment: React.FC<AdminPaymentProps> = ({ className }) => {
                                         </td>
 
                                         {/* Payment Date */}
-                                        <td className="py-4 px-5 text-xs sm:text-sm text-neutral-600 font-medium">
+                                        <td className="py-4 px-5 text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 font-medium">
                                             {tx.paymentDate}
                                         </td>
 
@@ -587,9 +587,9 @@ export const AdminPayment: React.FC<AdminPaymentProps> = ({ className }) => {
                                             <button
                                                 type="button"
                                                 onClick={() => handleOpenDetails(tx)}
-                                                className="px-3 py-1.5 rounded-lg border border-neutral-200 bg-white hover:bg-neutral-50 text-neutral-700 hover:text-neutral-900 text-xs font-semibold inline-flex items-center gap-1.5 transition-colors cursor-pointer shadow-2xs"
+                                                className="px-3 py-1.5 rounded-lg border border-neutral-200 dark:border-neutral-700 bg-white dark:bg-neutral-800 hover:bg-neutral-50 dark:hover:bg-neutral-700 text-neutral-700 dark:text-neutral-300 hover:text-neutral-900 dark:hover:text-white text-xs font-semibold inline-flex items-center gap-1.5 transition-colors cursor-pointer shadow-2xs"
                                             >
-                                                <Eye className="size-3.5 text-neutral-500" />
+                                                <Eye className="size-3.5 text-neutral-500 dark:text-neutral-400" />
                                                 <span>View Details</span>
                                             </button>
                                         </td>
@@ -599,7 +599,7 @@ export const AdminPayment: React.FC<AdminPaymentProps> = ({ className }) => {
                                 <tr>
                                     <td
                                         colSpan={8}
-                                        className="py-12 text-center text-sm text-neutral-400 font-medium"
+                                        className="py-12 text-center text-sm text-neutral-400 dark:text-neutral-500 font-medium"
                                     >
                                         No transactions found matching your criteria.
                                     </td>
@@ -610,21 +610,21 @@ export const AdminPayment: React.FC<AdminPaymentProps> = ({ className }) => {
                 </div>
 
                 {/* Pagination & Count */}
-                <div className="flex flex-col sm:flex-row items-center justify-between gap-3 py-4 px-5 border-t border-neutral-100 bg-white text-xs text-neutral-500">
+                <div className="flex flex-col sm:flex-row items-center justify-between gap-3 py-4 px-5 border-t border-neutral-100 dark:border-neutral-800 bg-white dark:bg-neutral-900/60 text-xs text-neutral-500 dark:text-neutral-400">
                     <p>
                         Showing{" "}
-                        <strong className="text-neutral-900">
+                        <strong className="text-neutral-900 dark:text-white">
                             {totalItems === 0 ? 0 : (currentPage - 1) * pageSize + 1}-
                             {Math.min(currentPage * pageSize, totalItems)}
                         </strong>{" "}
-                        of <strong className="text-neutral-900">{totalItems}</strong> transactions
+                        of <strong className="text-neutral-900 dark:text-white">{totalItems}</strong> transactions
                     </p>
 
                     <div className="flex items-center gap-1.5">
                         <button
                             type="button"
                             onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
-                            className="size-8 rounded-lg border border-neutral-200/80 flex items-center justify-center text-neutral-500 hover:bg-neutral-50 transition-colors disabled:opacity-40 cursor-pointer"
+                            className="size-8 rounded-lg border border-neutral-200/80 dark:border-neutral-800 flex items-center justify-center text-neutral-500 dark:text-neutral-400 hover:bg-neutral-50 dark:hover:bg-neutral-800 transition-colors disabled:opacity-40 cursor-pointer"
                             disabled={currentPage <= 1}
                         >
                             <ChevronLeft className="size-4" />
@@ -641,7 +641,7 @@ export const AdminPayment: React.FC<AdminPaymentProps> = ({ className }) => {
                                         "size-8 rounded-lg font-bold text-xs transition-colors flex items-center justify-center cursor-pointer",
                                         currentPage === page
                                             ? "bg-[#B89047] text-white"
-                                            : "border border-neutral-200 text-neutral-600 hover:bg-neutral-50"
+                                            : "border border-neutral-200 dark:border-neutral-800 text-neutral-600 dark:text-neutral-400 hover:bg-neutral-50 dark:hover:bg-neutral-800"
                                     )}
                                 >
                                     {page}
@@ -652,7 +652,7 @@ export const AdminPayment: React.FC<AdminPaymentProps> = ({ className }) => {
                         <button
                             type="button"
                             onClick={() => setCurrentPage((prev) => Math.min(prev + 1, totalPages))}
-                            className="size-8 rounded-lg border border-neutral-200/80 flex items-center justify-center text-neutral-500 hover:bg-neutral-50 transition-colors disabled:opacity-40 cursor-pointer"
+                            className="size-8 rounded-lg border border-neutral-200/80 dark:border-neutral-800 flex items-center justify-center text-neutral-500 dark:text-neutral-400 hover:bg-neutral-50 dark:hover:bg-neutral-800 transition-colors disabled:opacity-40 cursor-pointer"
                             disabled={currentPage >= totalPages}
                         >
                             <ChevronRight className="size-4" />
@@ -680,10 +680,10 @@ export const AdminPayment: React.FC<AdminPaymentProps> = ({ className }) => {
                         e.preventDefault();
                         document.body.style.pointerEvents = "";
                     }}
-                    className="max-w-lg bg-white border border-neutral-200 p-0 overflow-hidden font-work-sans text-neutral-900"
+                    className="max-w-lg bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 p-0 overflow-hidden font-work-sans text-neutral-900 dark:text-neutral-100"
                 >
                     {/* Header Banner */}
-                    <div className="bg-gradient-to-r from-neutral-900 to-neutral-800 text-white p-6 relative">
+                    <div className="bg-gradient-to-r from-neutral-900 to-neutral-800 dark:from-neutral-950 dark:to-neutral-900 text-white p-6 relative border-b border-neutral-800">
                         <div className="flex items-center justify-between">
                             <span className="text-[11px] font-semibold uppercase tracking-widest text-[#E5C170] flex items-center gap-1.5">
                                 <FileText className="size-3.5" />
@@ -706,78 +706,78 @@ export const AdminPayment: React.FC<AdminPaymentProps> = ({ className }) => {
                         {/* Grid of Key Properties */}
                         <div className="grid grid-cols-2 gap-3">
                             {/* Customer Name & Email */}
-                            <div className="p-3.5 rounded-xl bg-neutral-50 border border-neutral-100 col-span-2 sm:col-span-1">
-                                <p className="text-neutral-400 font-medium">Customer Name & Email</p>
-                                <p className="font-bold text-neutral-900 mt-1">
+                            <div className="p-3.5 rounded-xl bg-neutral-50 dark:bg-neutral-950/60 border border-neutral-100 dark:border-neutral-800 col-span-2 sm:col-span-1">
+                                <p className="text-neutral-400 dark:text-neutral-500 font-medium">Customer Name & Email</p>
+                                <p className="font-bold text-neutral-900 dark:text-white mt-1">
                                     {selectedTx?.customerName}
                                 </p>
-                                <p className="text-neutral-500 font-normal">
+                                <p className="text-neutral-500 dark:text-neutral-400 font-normal">
                                     {selectedTx?.customerEmail}
                                 </p>
                             </div>
 
                             {/* Event Name */}
-                            <div className="p-3.5 rounded-xl bg-neutral-50 border border-neutral-100 col-span-2 sm:col-span-1">
-                                <p className="text-neutral-400 font-medium">Event</p>
-                                <p className="font-bold text-neutral-900 mt-1">
+                            <div className="p-3.5 rounded-xl bg-neutral-50 dark:bg-neutral-950/60 border border-neutral-100 dark:border-neutral-800 col-span-2 sm:col-span-1">
+                                <p className="text-neutral-400 dark:text-neutral-500 font-medium">Event</p>
+                                <p className="font-bold text-neutral-900 dark:text-white mt-1">
                                     {selectedTx?.eventName}
                                 </p>
-                                <p className="text-neutral-500">Host: {selectedTx?.hostName || selectedTx?.customerName}</p>
+                                <p className="text-neutral-500 dark:text-neutral-400">Host: {selectedTx?.hostName || selectedTx?.customerName}</p>
                             </div>
 
                             {/* Package */}
-                            <div className="p-3.5 rounded-xl bg-neutral-50 border border-neutral-100">
-                                <p className="text-neutral-400 font-medium">Package Purchased</p>
-                                <p className="font-bold text-neutral-900 mt-1">
+                            <div className="p-3.5 rounded-xl bg-neutral-50 dark:bg-neutral-950/60 border border-neutral-100 dark:border-neutral-800">
+                                <p className="text-neutral-400 dark:text-neutral-500 font-medium">Package Purchased</p>
+                                <p className="font-bold text-neutral-900 dark:text-white mt-1">
                                     {selectedTx?.packageName || selectedTx?.paymentType || "Signature Tier"}
                                 </p>
                             </div>
 
                             {/* Amount Paid */}
-                            <div className="p-3.5 rounded-xl bg-neutral-50 border border-neutral-100">
-                                <p className="text-neutral-400 font-medium">Amount Paid</p>
-                                <p className="font-bold text-neutral-900 mt-1 font-space-grotesk text-sm">
+                            <div className="p-3.5 rounded-xl bg-neutral-50 dark:bg-neutral-950/60 border border-neutral-100 dark:border-neutral-800">
+                                <p className="text-neutral-400 dark:text-neutral-500 font-medium">Amount Paid</p>
+                                <p className="font-bold text-neutral-900 dark:text-white mt-1 font-space-grotesk text-sm">
                                     {selectedTx?.amount}
                                 </p>
                             </div>
 
                             {/* Promo Code or Discount */}
-                            <div className="p-3.5 rounded-xl bg-neutral-50 border border-neutral-100">
-                                <p className="text-neutral-400 font-medium flex items-center gap-1">
+                            <div className="p-3.5 rounded-xl bg-neutral-50 dark:bg-neutral-950/60 border border-neutral-100 dark:border-neutral-800">
+                                <p className="text-neutral-400 dark:text-neutral-500 font-medium flex items-center gap-1">
                                     <Tag className="size-3" />
                                     Promo Code / Discount
                                 </p>
-                                <p className="font-semibold text-neutral-900 mt-1">
+                                <p className="font-semibold text-neutral-900 dark:text-white mt-1">
                                     {selectedTx?.promoCode || selectedTx?.discount || "None"}
                                 </p>
                             </div>
 
                             {/* Payment Method */}
-                            <div className="p-3.5 rounded-xl bg-neutral-50 border border-neutral-100">
-                                <p className="text-neutral-400 font-medium flex items-center gap-1">
+                            <div className="p-3.5 rounded-xl bg-neutral-50 dark:bg-neutral-950/60 border border-neutral-100 dark:border-neutral-800">
+                                <p className="text-neutral-400 dark:text-neutral-500 font-medium flex items-center gap-1">
                                     <CreditCard className="size-3" />
                                     Payment Method
                                 </p>
-                                <p className="font-semibold text-neutral-900 mt-1">
+                                <p className="font-semibold text-neutral-900 dark:text-white mt-1">
                                     {selectedTx?.paymentMethod || "Visa ending in 4242"}
                                 </p>
                             </div>
 
                             {/* Transaction ID */}
-                            <div className="p-3.5 rounded-xl bg-neutral-50 border border-neutral-100">
-                                <p className="text-neutral-400 font-medium">Transaction ID</p>
-                                <p className="font-mono font-bold text-neutral-900 mt-1">
+                            <div className="p-3.5 rounded-xl bg-neutral-50 dark:bg-neutral-950/60 border border-neutral-100 dark:border-neutral-800">
+                                <p className="text-neutral-400 dark:text-neutral-500 font-medium">Transaction ID</p>
+                                <p className="font-mono font-bold text-neutral-900 dark:text-white mt-1">
                                     {selectedTx?.transactionId}
                                 </p>
                             </div>
 
                             {/* Payment Date */}
-                            <div className="p-3.5 rounded-xl bg-neutral-50 border border-neutral-100">
-                                <p className="text-neutral-400 font-medium flex items-center gap-1">
+                            <div className="p-3.5 rounded-xl bg-neutral-50 dark:bg-neutral-950/60 border border-neutral-100 dark:border-neutral-800">
+                                <p className="text-neutral-400 dark:text-neutral-500 font-medium flex items-center gap-1">
                                     <Calendar className="size-3" />
                                     Payment Date
                                 </p>
-                                <p className="font-semibold text-neutral-900 mt-1">
+                                <p className="font-semibold text-neutral-900 dark:text-white mt-1">
                                     {selectedTx?.paymentDate}
                                 </p>
                             </div>
@@ -788,8 +788,8 @@ export const AdminPayment: React.FC<AdminPaymentProps> = ({ className }) => {
                             selectedTx?.refundInfo?.isRefunded ||
                             selectedTx?.status === "Payment Failed" ||
                             selectedTx?.status === "Payment Field") && (
-                                <div className="p-4 rounded-xl border border-red-200/80 bg-red-50/50 space-y-2">
-                                    <div className="flex items-center gap-2 text-red-700 font-semibold">
+                                <div className="p-4 rounded-xl border border-red-200/80 dark:border-red-900/50 bg-red-50/50 dark:bg-red-950/30 space-y-2">
+                                    <div className="flex items-center gap-2 text-red-700 dark:text-red-400 font-semibold">
                                         <AlertCircle className="size-4" />
                                         <span>
                                             {selectedTx.status === "Refunded" || selectedTx.refundInfo?.isRefunded
@@ -798,16 +798,16 @@ export const AdminPayment: React.FC<AdminPaymentProps> = ({ className }) => {
                                         </span>
                                     </div>
                                     {selectedTx.refundInfo?.refundAmount && (
-                                        <p className="text-neutral-700">
+                                        <p className="text-neutral-700 dark:text-neutral-300">
                                             <strong>Refund Amount:</strong> {selectedTx.refundInfo.refundAmount}
                                         </p>
                                     )}
                                     {selectedTx.refundInfo?.refundDate && (
-                                        <p className="text-neutral-700">
+                                        <p className="text-neutral-700 dark:text-neutral-300">
                                             <strong>Refund Date:</strong> {selectedTx.refundInfo.refundDate}
                                         </p>
                                     )}
-                                    <p className="text-neutral-700">
+                                    <p className="text-neutral-700 dark:text-neutral-300">
                                         <strong>Reason:</strong>{" "}
                                         {selectedTx.refundInfo?.reason ||
                                             "Payment was declined by issuing financial institution during authentication."}
@@ -817,19 +817,19 @@ export const AdminPayment: React.FC<AdminPaymentProps> = ({ className }) => {
 
                         {/* If Paid and no refund */}
                         {selectedTx?.status === "Paid" && !selectedTx.refundInfo?.isRefunded && (
-                            <div className="p-3.5 rounded-xl border border-neutral-200/80 bg-neutral-50/50 flex items-center justify-between text-neutral-600">
+                            <div className="p-3.5 rounded-xl border border-neutral-200/80 dark:border-neutral-800 bg-neutral-50/50 dark:bg-neutral-950/40 flex items-center justify-between text-neutral-600 dark:text-neutral-400">
                                 <span className="font-medium">Refund Information:</span>
-                                <span className="text-neutral-500">N/A - Payment successful, no refund requested</span>
+                                <span className="text-neutral-500 dark:text-neutral-500">N/A - Payment successful, no refund requested</span>
                             </div>
                         )}
 
                         {/* Note / Audit Trail */}
                         {selectedTx?.note && (
-                            <div className="p-3.5 rounded-xl border border-neutral-200 bg-neutral-50/70">
-                                <p className="text-[11px] font-semibold text-neutral-500 uppercase tracking-wider">
+                            <div className="p-3.5 rounded-xl border border-neutral-200 dark:border-neutral-800 bg-neutral-50/70 dark:bg-neutral-950/60">
+                                <p className="text-[11px] font-semibold text-neutral-500 dark:text-neutral-400 uppercase tracking-wider">
                                     Internal / Auditor Note
                                 </p>
-                                <p className="text-neutral-700 mt-1 font-normal">
+                                <p className="text-neutral-700 dark:text-neutral-300 mt-1 font-normal">
                                     {selectedTx.note}
                                 </p>
                             </div>
@@ -850,7 +850,7 @@ export const AdminPayment: React.FC<AdminPaymentProps> = ({ className }) => {
                             <button
                                 type="button"
                                 onClick={() => setDetailsModalOpen(false)}
-                                className="py-2 px-5 rounded-xl border border-neutral-200 text-xs font-semibold text-neutral-700 hover:bg-neutral-50 transition-colors cursor-pointer"
+                                className="py-2 px-5 rounded-xl border border-neutral-200 dark:border-neutral-700 text-xs font-semibold text-neutral-700 dark:text-neutral-300 hover:bg-neutral-50 dark:hover:bg-neutral-800 transition-colors cursor-pointer"
                             >
                                 Close
                             </button>
@@ -878,14 +878,14 @@ export const AdminPayment: React.FC<AdminPaymentProps> = ({ className }) => {
                         e.preventDefault();
                         document.body.style.pointerEvents = "";
                     }}
-                    className="max-w-md bg-white border border-neutral-200 p-6 font-work-sans text-neutral-900"
+                    className="max-w-md bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 p-6 font-work-sans text-neutral-900 dark:text-neutral-100"
                 >
                     <DialogHeader>
-                        <DialogTitle className="text-lg font-bold font-space-grotesk text-neutral-900 flex items-center gap-2">
+                        <DialogTitle className="text-lg font-bold font-space-grotesk text-neutral-900 dark:text-white flex items-center gap-2">
                             <Sparkles className="size-4.5 text-[#B89047]" />
                             Record Manual Payment
                         </DialogTitle>
-                        <DialogDescription className="text-xs text-neutral-500">
+                        <DialogDescription className="text-xs text-neutral-500 dark:text-neutral-400">
                             Record an offline bank wire, cash settlement, or manual payment connected to a customer and event.
                         </DialogDescription>
                     </DialogHeader>
@@ -893,7 +893,7 @@ export const AdminPayment: React.FC<AdminPaymentProps> = ({ className }) => {
                     <form onSubmit={handleRecordManualPayment} className="space-y-4 pt-2 text-xs">
                         {/* Customer Name */}
                         <div className="space-y-1">
-                            <label className="font-medium text-neutral-700">
+                            <label className="font-medium text-neutral-700 dark:text-neutral-300">
                                 Customer Name <span className="text-red-500">*</span>
                             </label>
                             <input
@@ -904,13 +904,13 @@ export const AdminPayment: React.FC<AdminPaymentProps> = ({ className }) => {
                                     setManualForm((prev) => ({ ...prev, customerName: e.target.value }))
                                 }
                                 placeholder="e.g. Marcus Thorne"
-                                className="w-full h-9 px-3 rounded-lg border border-neutral-200 text-xs text-neutral-900 focus:outline-none focus:border-[#B89047]"
+                                className="w-full h-9 px-3 rounded-lg border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-950 text-xs text-neutral-900 dark:text-white focus:outline-none focus:border-[#B89047]"
                             />
                         </div>
 
                         {/* Customer Email */}
                         <div className="space-y-1">
-                            <label className="font-medium text-neutral-700">
+                            <label className="font-medium text-neutral-700 dark:text-neutral-300">
                                 Customer Email <span className="text-red-500">*</span>
                             </label>
                             <input
@@ -921,13 +921,13 @@ export const AdminPayment: React.FC<AdminPaymentProps> = ({ className }) => {
                                     setManualForm((prev) => ({ ...prev, customerEmail: e.target.value }))
                                 }
                                 placeholder="m.thorne@example.com"
-                                className="w-full h-9 px-3 rounded-lg border border-neutral-200 text-xs text-neutral-900 focus:outline-none focus:border-[#B89047]"
+                                className="w-full h-9 px-3 rounded-lg border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-950 text-xs text-neutral-900 dark:text-white focus:outline-none focus:border-[#B89047]"
                             />
                         </div>
 
                         {/* Event Name */}
                         <div className="space-y-1">
-                            <label className="font-medium text-neutral-700">
+                            <label className="font-medium text-neutral-700 dark:text-neutral-300">
                                 Event Name <span className="text-red-500">*</span>
                             </label>
                             <input
@@ -938,14 +938,14 @@ export const AdminPayment: React.FC<AdminPaymentProps> = ({ className }) => {
                                     setManualForm((prev) => ({ ...prev, eventName: e.target.value }))
                                 }
                                 placeholder="e.g. Apex Annual Tech Gala 2024"
-                                className="w-full h-9 px-3 rounded-lg border border-neutral-200 text-xs text-neutral-900 focus:outline-none focus:border-[#B89047]"
+                                className="w-full h-9 px-3 rounded-lg border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-950 text-xs text-neutral-900 dark:text-white focus:outline-none focus:border-[#B89047]"
                             />
                         </div>
 
                         {/* Package & Amount Row */}
                         <div className="grid grid-cols-2 gap-3">
                             <div className="space-y-1">
-                                <label className="font-medium text-neutral-700">
+                                <label className="font-medium text-neutral-700 dark:text-neutral-300">
                                     Package <span className="text-red-500">*</span>
                                 </label>
                                 <select
@@ -953,7 +953,7 @@ export const AdminPayment: React.FC<AdminPaymentProps> = ({ className }) => {
                                     onChange={(e) =>
                                         setManualForm((prev) => ({ ...prev, packageName: e.target.value }))
                                     }
-                                    className="w-full h-9 px-3 rounded-lg border border-neutral-200 text-xs text-neutral-900 focus:outline-none focus:border-[#B89047]"
+                                    className="w-full h-9 px-3 rounded-lg border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-950 text-xs text-neutral-900 dark:text-white focus:outline-none focus:border-[#B89047]"
                                 >
                                     <option value="Signature Tier">Signature Tier</option>
                                     <option value="Grand Gala">Grand Gala</option>
@@ -966,7 +966,7 @@ export const AdminPayment: React.FC<AdminPaymentProps> = ({ className }) => {
                             </div>
 
                             <div className="space-y-1">
-                                <label className="font-medium text-neutral-700">
+                                <label className="font-medium text-neutral-700 dark:text-neutral-300">
                                     Amount ($) <span className="text-red-500">*</span>
                                 </label>
                                 <input
@@ -977,7 +977,7 @@ export const AdminPayment: React.FC<AdminPaymentProps> = ({ className }) => {
                                         setManualForm((prev) => ({ ...prev, amount: e.target.value }))
                                     }
                                     placeholder="e.g. 500.00"
-                                    className="w-full h-9 px-3 rounded-lg border border-neutral-200 text-xs text-neutral-900 focus:outline-none focus:border-[#B89047]"
+                                    className="w-full h-9 px-3 rounded-lg border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-950 text-xs text-neutral-900 dark:text-white focus:outline-none focus:border-[#B89047]"
                                 />
                             </div>
                         </div>
@@ -985,7 +985,7 @@ export const AdminPayment: React.FC<AdminPaymentProps> = ({ className }) => {
                         {/* Payment Method & Date Row */}
                         <div className="grid grid-cols-2 gap-3">
                             <div className="space-y-1">
-                                <label className="font-medium text-neutral-700">
+                                <label className="font-medium text-neutral-700 dark:text-neutral-300">
                                     Payment Method <span className="text-red-500">*</span>
                                 </label>
                                 <select
@@ -996,7 +996,7 @@ export const AdminPayment: React.FC<AdminPaymentProps> = ({ className }) => {
                                             paymentMethod: e.target.value,
                                         }))
                                     }
-                                    className="w-full h-9 px-3 rounded-lg border border-neutral-200 text-xs text-neutral-900 focus:outline-none focus:border-[#B89047]"
+                                    className="w-full h-9 px-3 rounded-lg border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-950 text-xs text-neutral-900 dark:text-white focus:outline-none focus:border-[#B89047]"
                                 >
                                     <option value="Bank Wire">Bank Wire</option>
                                     <option value="Bank Transfer (ACH)">Bank Transfer (ACH)</option>
@@ -1008,7 +1008,7 @@ export const AdminPayment: React.FC<AdminPaymentProps> = ({ className }) => {
                             </div>
 
                             <div className="space-y-1">
-                                <label className="font-medium text-neutral-700">
+                                <label className="font-medium text-neutral-700 dark:text-neutral-300">
                                     Payment Date <span className="text-red-500">*</span>
                                 </label>
                                 <input
@@ -1019,18 +1019,18 @@ export const AdminPayment: React.FC<AdminPaymentProps> = ({ className }) => {
                                         setManualForm((prev) => ({ ...prev, paymentDate: e.target.value }))
                                     }
                                     placeholder="e.g. Oct 24, 2024"
-                                    className="w-full h-9 px-3 rounded-lg border border-neutral-200 text-xs text-neutral-900 focus:outline-none focus:border-[#B89047]"
+                                    className="w-full h-9 px-3 rounded-lg border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-950 text-xs text-neutral-900 dark:text-white focus:outline-none focus:border-[#B89047]"
                                 />
                             </div>
                         </div>
 
                         {/* Note Explaining Why Entered (Required) */}
                         <div className="space-y-1">
-                            <label className="font-medium text-neutral-700 flex items-center justify-between">
+                            <label className="font-medium text-neutral-700 dark:text-neutral-300 flex items-center justify-between">
                                 <span>
                                     Note Explaining Why Entered <span className="text-red-500">*</span>
                                 </span>
-                                <span className="text-[10px] text-neutral-400">Required</span>
+                                <span className="text-[10px] text-neutral-400 dark:text-neutral-500">Required</span>
                             </label>
                             <textarea
                                 required
@@ -1040,7 +1040,7 @@ export const AdminPayment: React.FC<AdminPaymentProps> = ({ className }) => {
                                     setManualForm((prev) => ({ ...prev, note: e.target.value }))
                                 }
                                 placeholder="Explain why this payment was entered manually (e.g. Wire reference #WIRE-9821 verified with accounting, client paid cash directly at venue)..."
-                                className="w-full p-2.5 rounded-lg border border-neutral-200 text-xs text-neutral-900 focus:outline-none focus:border-[#B89047] resize-none"
+                                className="w-full p-2.5 rounded-lg border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-950 text-xs text-neutral-900 dark:text-white focus:outline-none focus:border-[#B89047] resize-none"
                             />
                         </div>
 
@@ -1048,7 +1048,7 @@ export const AdminPayment: React.FC<AdminPaymentProps> = ({ className }) => {
                             <button
                                 type="button"
                                 onClick={() => setManualPaymentModalOpen(false)}
-                                className="px-4 py-2 rounded-lg border border-neutral-200 text-xs font-semibold text-neutral-700 hover:bg-neutral-50 cursor-pointer"
+                                className="px-4 py-2 rounded-lg border border-neutral-200 dark:border-neutral-700 text-xs font-semibold text-neutral-700 dark:text-neutral-300 hover:bg-neutral-50 dark:hover:bg-neutral-800 cursor-pointer"
                             >
                                 Cancel
                             </button>

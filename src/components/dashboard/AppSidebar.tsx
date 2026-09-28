@@ -25,6 +25,7 @@ import { ChevronsUpDown } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import React from "react";
+import Logo from "../logo/Logo";
 
 export function AppSidebar() {
   const pathname = usePathname();
@@ -83,21 +84,16 @@ export function AppSidebar() {
   };
 
   return (
-    <Sidebar className="border-r border-neutral-200/80 bg-white font-work-sans">
+    <Sidebar className="border-r border-neutral-200/80 dark:border-neutral-800 bg-white dark:bg-[#141414] font-work-sans transition-colors duration-200">
       {/* Sidebar Header with Brand Logo */}
-      <SidebarHeader className="p-3 sm:p-4 border-b border-neutral-100">
+      <SidebarHeader className="p-3 sm:p-4 border-b border-neutral-100 dark:border-neutral-800/80">
         <Link
           href="/"
-          className="flex items-center justify-between gap-2 p-1.5 rounded-xl hover:bg-neutral-50 transition-colors group/brand cursor-pointer"
+          className="flex items-center justify-between gap-2 p-1.5 rounded-xl hover:bg-neutral-50 dark:hover:bg-neutral-900 transition-colors group/brand cursor-pointer"
         >
-          <div className="flex items-center gap-2.5">
-            {/* Brand Name */}
-            <span className="font-space-grotesk font-bold text-3xl text-neutral-900 tracking-tight leading-none">
-              Invite<span className="text-primary">O</span>ly
-            </span>
-          </div>
+          <Logo />
 
-          <ChevronsUpDown className="size-4 text-neutral-400 group-hover/brand:text-neutral-600 transition-colors shrink-0" />
+          <ChevronsUpDown className="size-4 text-neutral-400 dark:text-neutral-500 group-hover/brand:text-neutral-600 dark:group-hover/brand:text-neutral-300 transition-colors shrink-0" />
         </Link>
       </SidebarHeader>
 
@@ -105,7 +101,7 @@ export function AppSidebar() {
       <SidebarContent className="px-2 sm:px-3 py-3 flex-1 flex flex-col">
         {/* GENERAL SECTION */}
         <SidebarGroup className="p-0">
-          <SidebarGroupLabel className="px-3 text-[11px] font-semibold text-neutral-400 uppercase tracking-wider mb-1.5">
+          <SidebarGroupLabel className="px-3 text-[11px] font-semibold text-neutral-400 dark:text-neutral-500 uppercase tracking-wider mb-1.5">
             GENERAL
           </SidebarGroupLabel>
 
@@ -124,8 +120,8 @@ export function AppSidebar() {
                       className={cn(
                         "group/menu-btn h-10 px-3.5 rounded-xl text-sm font-medium transition-all duration-150 flex items-center gap-3 cursor-pointer",
                         isActive
-                          ? "bg-[#FAF5EB] text-primary hover:bg-[#FAF5EB] hover:text-primary font-semibold shadow-xs"
-                          : "text-neutral-700 hover:bg-[#FAF5EB]/50 hover:text-primary"
+                          ? "bg-[#FAF5EB] dark:bg-primary/10 text-primary hover:bg-[#FAF5EB] dark:hover:bg-primary/15 hover:text-primary font-semibold shadow-xs"
+                          : "text-neutral-700 dark:text-neutral-300 hover:bg-[#FAF5EB]/50 dark:hover:bg-neutral-800/60 hover:text-primary dark:hover:text-primary"
                       )}
                     >
                       {isExternal ? (
@@ -137,7 +133,7 @@ export function AppSidebar() {
                           className="flex items-center gap-3 w-full"
                         >
                           <IconComponent
-                            className="size-[18px] shrink-0 text-neutral-500 group-hover/menu-btn:text-primary stroke-[1.8]"
+                            className="size-[18px] shrink-0 text-neutral-500 dark:text-neutral-400 group-hover/menu-btn:text-primary stroke-[1.8]"
                           />
                           <span className="truncate">{item.title}</span>
                         </a>
@@ -148,7 +144,7 @@ export function AppSidebar() {
                               "size-[18px] shrink-0 transition-colors",
                               isActive
                                 ? "text-primary stroke-[2.2]"
-                                : "text-neutral-500 group-hover/menu-btn:text-primary stroke-[1.8]"
+                                : "text-neutral-500 dark:text-neutral-400 group-hover/menu-btn:text-primary stroke-[1.8]"
                             )}
                           />
                           <span className="truncate">{item.title}</span>
@@ -164,7 +160,7 @@ export function AppSidebar() {
 
         {/* ACCOUNT SECTION - Positioned at the bottom side */}
         <SidebarGroup className="p-0 pt-6 mt-auto">
-          <SidebarGroupLabel className="px-3 text-[11px] font-semibold text-neutral-400 uppercase tracking-wider mb-1.5">
+          <SidebarGroupLabel className="px-3 text-[11px] font-semibold text-neutral-400 dark:text-neutral-500 uppercase tracking-wider mb-1.5">
             ACCOUNT
           </SidebarGroupLabel>
 
@@ -183,9 +179,9 @@ export function AppSidebar() {
                           closeSidebarOnMobile();
                           handleLogout();
                         }}
-                        className="group/menu-btn h-10 px-3.5 rounded-xl text-sm font-medium transition-all duration-150 flex items-center gap-3 text-neutral-700 hover:bg-red-50 hover:text-red-600 cursor-pointer w-full text-left"
+                        className="group/menu-btn h-10 px-3.5 rounded-xl text-sm font-medium transition-all duration-150 flex items-center gap-3 text-neutral-700 dark:text-neutral-300 hover:bg-red-50 dark:hover:bg-red-950/30 hover:text-red-600 dark:hover:text-red-400 cursor-pointer w-full text-left"
                       >
-                        <IconComponent className="size-[18px] shrink-0 text-neutral-500 group-hover/menu-btn:text-red-600 transition-colors stroke-[1.8]" />
+                        <IconComponent className="size-[18px] shrink-0 text-neutral-500 dark:text-neutral-400 group-hover/menu-btn:text-red-600 dark:group-hover/menu-btn:text-red-400 transition-colors stroke-[1.8]" />
                         <span className="truncate">{item.title}</span>
                       </SidebarMenuButton>
                     </SidebarMenuItem>
@@ -200,8 +196,8 @@ export function AppSidebar() {
                       className={cn(
                         "group/menu-btn h-10 px-3.5 rounded-xl text-sm font-medium transition-all duration-150 flex items-center gap-3 cursor-pointer",
                         isActive
-                          ? "bg-[#FAF5EB] text-primary hover:bg-[#FAF5EB] hover:text-primary font-semibold shadow-xs"
-                          : "text-neutral-700 hover:bg-[#FAF5EB]/50 hover:text-primary"
+                          ? "bg-[#FAF5EB] dark:bg-primary/10 text-primary hover:bg-[#FAF5EB] dark:hover:bg-primary/15 hover:text-primary font-semibold shadow-xs"
+                          : "text-neutral-700 dark:text-neutral-300 hover:bg-[#FAF5EB]/50 dark:hover:bg-neutral-800/60 hover:text-primary dark:hover:text-primary"
                       )}
                     >
                       {isExternal ? (
@@ -213,7 +209,7 @@ export function AppSidebar() {
                           className="flex items-center gap-3 w-full"
                         >
                           <IconComponent
-                            className="size-[18px] shrink-0 text-neutral-500 group-hover/menu-btn:text-primary stroke-[1.8]"
+                            className="size-[18px] shrink-0 text-neutral-500 dark:text-neutral-400 group-hover/menu-btn:text-primary stroke-[1.8]"
                           />
                           <span className="truncate">{item.title}</span>
                         </a>
@@ -224,7 +220,7 @@ export function AppSidebar() {
                               "size-[18px] shrink-0 transition-colors",
                               isActive
                                 ? "text-primary stroke-[2.2]"
-                                : "text-neutral-500 group-hover/menu-btn:text-primary stroke-[1.8]"
+                                : "text-neutral-500 dark:text-neutral-400 group-hover/menu-btn:text-primary stroke-[1.8]"
                             )}
                           />
                           <span className="truncate">{item.title}</span>
@@ -240,9 +236,9 @@ export function AppSidebar() {
       </SidebarContent>
 
       {/* Sidebar Footer with User Profile */}
-      <SidebarFooter className="p-3 sm:p-4 border-t border-neutral-100">
-        <div className="flex items-center gap-3 p-2 rounded-xl hover:bg-neutral-50 transition-colors group/footer cursor-pointer">
-          <Avatar className="size-9 rounded-lg border border-neutral-200">
+      <SidebarFooter className="p-3 sm:p-4 border-t border-neutral-100 dark:border-neutral-800/80">
+        <div className="flex items-center gap-3 p-2 rounded-xl hover:bg-neutral-50 dark:hover:bg-neutral-900 transition-colors group/footer cursor-pointer">
+          <Avatar className="size-9 rounded-lg border border-neutral-200 dark:border-neutral-800">
             <AvatarImage
               src={currentUser?.profileImage || "https://i.pravatar.cc/150?img=5"}
               alt={displayName}
@@ -254,15 +250,15 @@ export function AppSidebar() {
           </Avatar>
 
           <div className="flex flex-col min-w-0 flex-1">
-            <span className="text-sm font-semibold font-space-grotesk text-neutral-900 truncate leading-snug">
+            <span className="text-sm font-semibold font-space-grotesk text-neutral-900 dark:text-white truncate leading-snug">
               {displayName}
             </span>
-            <span className="text-xs text-neutral-400 font-work-sans truncate">
+            <span className="text-xs text-neutral-400 dark:text-neutral-500 font-work-sans truncate">
               {displayEmail}
             </span>
           </div>
 
-          <ChevronsUpDown className="size-4 text-neutral-400 group-hover/footer:text-neutral-600 transition-colors shrink-0" />
+          <ChevronsUpDown className="size-4 text-neutral-400 dark:text-neutral-500 group-hover/footer:text-neutral-600 dark:group-hover/footer:text-neutral-300 transition-colors shrink-0" />
         </div>
       </SidebarFooter>
     </Sidebar>

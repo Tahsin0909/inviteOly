@@ -140,7 +140,7 @@ export const HostMetrics: React.FC<HostMetricsProps> = ({
     return (
         <section className={cn("w-full", className)}>
             {/* Outer Banner Container with Wedding Reception Background */}
-            <div className="relative w-full rounded-3xl overflow-hidden shadow-xs border border-neutral-200/50 bg-[#160E05] min-h-[220px] sm:min-h-[250px] md:min-h-[270px] p-6 sm:p-8 md:p-9 pb-20 sm:pb-24">
+            <div className="relative w-full rounded-3xl overflow-hidden shadow-xs border border-neutral-200/50 dark:border-neutral-800 bg-[#160E05] min-h-[220px] sm:min-h-[250px] md:min-h-[270px] p-6 sm:p-8 md:p-9 pb-20 sm:pb-24">
                 {/* Background Image */}
                 <Image
                     src="/hostMetricsBg.png"
@@ -172,7 +172,7 @@ export const HostMetrics: React.FC<HostMetricsProps> = ({
                     {data.cards.map((card: IHostMetricCard) => (
                         <div
                             key={card.id}
-                            className="bg-white/95 backdrop-blur-md rounded-2xl sm:rounded-3xl p-4 sm:p-5 border border-neutral-200/70 shadow-sm hover:shadow-md transition-all duration-200 flex flex-col justify-between min-h-[140px] sm:min-h-[155px]"
+                            className="bg-white/95 dark:bg-neutral-900/90 backdrop-blur-md rounded-2xl sm:rounded-3xl p-4 sm:p-5 border border-neutral-200/70 dark:border-neutral-800 shadow-sm hover:shadow-md transition-all duration-200 flex flex-col justify-between min-h-[140px] sm:min-h-[155px]"
                         >
                             {/* Badge Icon */}
                             <div className="size-10 sm:size-11 rounded-xl bg-[#C39B4C] flex items-center justify-center shadow-xs shrink-0">
@@ -181,23 +181,23 @@ export const HostMetrics: React.FC<HostMetricsProps> = ({
 
                             {/* Card Title & Value */}
                             <div className="mt-3.5 sm:mt-4">
-                                <p className="text-xs sm:text-sm font-medium text-neutral-500 font-work-sans truncate">
+                                <p className="text-xs sm:text-sm font-medium text-neutral-500 dark:text-neutral-400 font-work-sans truncate">
                                     {card.title}
                                 </p>
 
                                 <div className="flex items-baseline gap-1 mt-1">
-                                    <span className="text-2xl sm:text-3xl lg:text-4xl font-bold font-space-grotesk text-neutral-900 tracking-tight">
+                                    <span className="text-2xl sm:text-3xl lg:text-4xl font-bold font-space-grotesk text-neutral-900 dark:text-white tracking-tight">
                                         {card.value}
                                     </span>
                                     {card.totalValue && (
-                                        <span className="text-xs sm:text-sm font-normal text-neutral-400 font-work-sans">
+                                        <span className="text-xs sm:text-sm font-normal text-neutral-400 dark:text-neutral-500 font-work-sans">
                                             / {card.totalValue}
                                         </span>
                                     )}
                                 </div>
 
                                 {card.subText && (
-                                    <p className="text-xs sm:text-[13px] font-semibold text-neutral-700 font-work-sans mt-0.5 truncate">
+                                    <p className="text-xs sm:text-[13px] font-semibold text-neutral-700 dark:text-neutral-300 font-work-sans mt-0.5 truncate">
                                         {card.subText}
                                     </p>
                                 )}

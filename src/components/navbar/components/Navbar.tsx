@@ -7,6 +7,7 @@ import { DesktopMenu } from "./DesktopMenu";
 import { Logo } from "./Logo";
 import { MobileMenu } from "./MobileMenu";
 import { NavbarAuthButtons } from "./SignUpButton";
+import Switcher from "@/components/switcher/Switcher";
 
 export const Navbar = () => {
   const { isAuthenticated, token } = useAuth();
@@ -29,6 +30,7 @@ export const Navbar = () => {
 
           {/* Right Action Buttons */}
           <div className="flex items-center gap-2 sm:gap-3">
+            <Switcher />
             {isAuthenticated && token ? (
               <Account />
             ) : (

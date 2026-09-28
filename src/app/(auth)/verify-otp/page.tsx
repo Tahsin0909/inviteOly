@@ -10,7 +10,9 @@ export default function VerifyOtpPage() {
         </div>
       }
     >
-      <OtpStep />
+      <div className="w-full">
+        <OtpStep />
+      </div>
     </Suspense>
   );
 }

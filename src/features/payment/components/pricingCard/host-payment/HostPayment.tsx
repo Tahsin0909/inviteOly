@@ -33,10 +33,10 @@ export const HostPayment: React.FC = () => {
             {/* Header with Title, Subtitle, and Create New Event button matching media_1789203657029.png */}
             <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-4">
                 <div>
-                    <h1 className="text-2xl sm:text-3xl font-bold font-space-grotesk text-neutral-900 tracking-tight">
+                    <h1 className="text-2xl sm:text-3xl font-bold font-space-grotesk text-neutral-900 dark:text-white tracking-tight">
                         Payment Pending
                     </h1>
-                    <p className="text-xs sm:text-sm text-neutral-500 font-work-sans mt-1">
+                    <p className="text-xs sm:text-sm text-neutral-500 dark:text-neutral-400 font-work-sans mt-1">
                         Your payment is currently being processed. We&apos;ll update your
                         payment status once it&apos;s confirmed.
                     </p>

@@ -68,7 +68,7 @@ export const UserEvent: React.FC<UserEventProps> = ({
                         <Link
                             key={event.id}
                             href={`/admin/events/${event.id}`}
-                            className="bg-white rounded-2xl p-5 sm:p-6 border border-neutral-200/70 shadow-xs hover:shadow-md hover:border-[#C39B4C]/60 transition-all duration-200 flex flex-col justify-between cursor-pointer group"
+                            className="bg-white dark:bg-neutral-900/60 rounded-2xl p-5 sm:p-6 border border-neutral-200/70 dark:border-neutral-800 shadow-xs hover:shadow-md hover:border-[#C39B4C]/60 dark:hover:border-[#C39B4C]/60 transition-all duration-200 flex flex-col justify-between cursor-pointer group"
                         >
                             <div>
                                 {/* Tier Badge */}
@@ -77,8 +77,8 @@ export const UserEvent: React.FC<UserEventProps> = ({
                                         className={cn(
                                             "px-3 py-1 rounded-full text-xs font-medium inline-block",
                                             isPremium
-                                                ? "bg-[#FEF7EC] text-[#B89047]"
-                                                : "bg-[#EBF5FF] text-[#2563EB]"
+                                                ? "bg-[#FEF7EC] dark:bg-amber-950/40 text-[#B89047] dark:text-amber-400"
+                                                : "bg-[#EBF5FF] dark:bg-blue-950/40 text-[#2563EB] dark:text-blue-400"
                                         )}
                                     >
                                         {event.tier}
@@ -86,41 +86,41 @@ export const UserEvent: React.FC<UserEventProps> = ({
                                 </div>
 
                                 {/* Event Title */}
-                                <h3 className="text-base sm:text-lg font-bold font-space-grotesk text-neutral-900 group-hover:text-[#B89047] transition-colors mt-3 sm:mt-3.5 leading-snug">
+                                <h3 className="text-base sm:text-lg font-bold font-space-grotesk text-neutral-900 dark:text-white group-hover:text-[#B89047] transition-colors mt-3 sm:mt-3.5 leading-snug">
                                     {event.title}
                                 </h3>
 
                                 {/* Event Meta: Date & Time */}
-                                <div className="flex flex-wrap items-center gap-x-4 gap-y-1.5 text-xs text-neutral-600 font-work-sans mt-3 sm:mt-3.5">
+                                <div className="flex flex-wrap items-center gap-x-4 gap-y-1.5 text-xs text-neutral-600 dark:text-neutral-400 font-work-sans mt-3 sm:mt-3.5">
                                     <div className="flex items-center gap-1.5">
-                                        <Calendar className="size-3.5 sm:size-4 text-neutral-400 shrink-0" />
+                                        <Calendar className="size-3.5 sm:size-4 text-neutral-400 dark:text-neutral-500 shrink-0" />
                                         <span>{event.date}</span>
                                     </div>
                                     <div className="flex items-center gap-1.5">
-                                        <Clock className="size-3.5 sm:size-4 text-neutral-400 shrink-0" />
+                                        <Clock className="size-3.5 sm:size-4 text-neutral-400 dark:text-neutral-500 shrink-0" />
                                         <span>{event.time}</span>
                                     </div>
                                 </div>
 
                                 {/* Host */}
-                                <div className="flex items-center gap-2 text-xs text-neutral-800 font-medium font-work-sans mt-3">
+                                <div className="flex items-center gap-2 text-xs text-neutral-800 dark:text-neutral-200 font-medium font-work-sans mt-3">
                                     <HostUserIcon />
                                     <span className="truncate">{event.hostName}</span>
                                 </div>
 
                                 {/* Venue */}
-                                <div className="flex items-center gap-2 text-xs text-neutral-800 font-medium font-work-sans mt-3">
+                                <div className="flex items-center gap-2 text-xs text-neutral-800 dark:text-neutral-200 font-medium font-work-sans mt-3">
                                     <VenuePavilionIcon />
                                     <span className="truncate">{event.venue}</span>
                                 </div>
                             </div>
 
                             {/* Total Guests Section */}
-                            <div className="mt-5 pt-4 border-t border-neutral-100/80">
-                                <p className="text-xs text-neutral-500 font-medium font-work-sans">
+                            <div className="mt-5 pt-4 border-t border-neutral-100/80 dark:border-neutral-800">
+                                <p className="text-xs text-neutral-500 dark:text-neutral-400 font-medium font-work-sans">
                                     Total Guest
                                 </p>
-                                <p className="text-2xl sm:text-[26px] font-bold font-space-grotesk text-neutral-900 tracking-tight mt-0.5">
+                                <p className="text-2xl sm:text-[26px] font-bold font-space-grotesk text-neutral-900 dark:text-white tracking-tight mt-0.5">
                                     {event.totalGuests}
                                 </p>
                             </div>
@@ -130,14 +130,14 @@ export const UserEvent: React.FC<UserEventProps> = ({
             </div>
 
             {/* Bottom Bar: Rows per page on left & Pagination on right */}
-            <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-4 text-xs sm:text-sm text-neutral-500 font-work-sans select-none">
+            <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-4 text-xs sm:text-sm text-neutral-500 dark:text-neutral-400 font-work-sans select-none">
                 <div>Rows per page 10</div>
 
                 <div className="flex items-center gap-1.5">
                     <button
                         type="button"
                         onClick={() => setCurrentPage((p) => Math.max(1, p - 1))}
-                        className="size-8 rounded-lg flex items-center justify-center text-neutral-400 hover:text-neutral-700 hover:bg-neutral-100 transition-colors cursor-pointer"
+                        className="size-8 rounded-lg flex items-center justify-center text-neutral-400 dark:text-neutral-500 hover:text-neutral-700 dark:hover:text-neutral-200 hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors cursor-pointer"
                     >
                         <ChevronLeft className="size-4" />
                     </button>
@@ -153,7 +153,7 @@ export const UserEvent: React.FC<UserEventProps> = ({
                                     "size-8 rounded-lg text-xs sm:text-sm font-medium flex items-center justify-center transition-all cursor-pointer",
                                     isActive
                                         ? "bg-[#B89047] text-white font-semibold shadow-xs"
-                                        : "text-neutral-600 hover:bg-neutral-100"
+                                        : "text-neutral-600 dark:text-neutral-400 hover:bg-neutral-100 dark:hover:bg-neutral-800"
                                 )}
                             >
                                 {page}
@@ -164,7 +164,7 @@ export const UserEvent: React.FC<UserEventProps> = ({
                     <button
                         type="button"
                         onClick={() => setCurrentPage((p) => Math.min(4, p + 1))}
-                        className="size-8 rounded-lg flex items-center justify-center text-neutral-400 hover:text-neutral-700 hover:bg-neutral-100 transition-colors cursor-pointer"
+                        className="size-8 rounded-lg flex items-center justify-center text-neutral-400 dark:text-neutral-500 hover:text-neutral-700 dark:hover:text-neutral-200 hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors cursor-pointer"
                     >
                         <ChevronRight className="size-4" />
                     </button>

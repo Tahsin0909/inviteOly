@@ -41,7 +41,7 @@ const TicketIcon = () => (
 
 // Upload icon matching the circular arrow in reference screenshot
 const UploadArrowIcon = () => (
-  <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[#FDF3E7] text-[#C39B4C] mb-3 shadow-2xs">
+  <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[#FDF3E7] dark:bg-amber-950/50 text-[#C39B4C] mb-3 shadow-2xs">
     <svg
       className="h-5 w-5"
       viewBox="0 0 24 24"
@@ -189,7 +189,7 @@ export const HostUploadReceiptView: React.FC<HostUploadReceiptViewProps> = ({
       <button
         type="button"
         onClick={handleBack}
-        className="inline-flex items-center gap-2 text-xs font-medium text-neutral-500 hover:text-neutral-900 transition-colors cursor-pointer group"
+        className="inline-flex items-center gap-2 text-xs font-medium text-neutral-500 hover:text-neutral-900 dark:hover:text-white transition-colors cursor-pointer group"
       >
         <ArrowLeft className="h-3.5 w-3.5 group-hover:-translate-x-0.5 transition-transform" />
         <span>Back to Payment Pending</span>
@@ -197,24 +197,24 @@ export const HostUploadReceiptView: React.FC<HostUploadReceiptViewProps> = ({
 
       {/* Page Header: Title and Subtitle matching media_1789205148981.png */}
       <div>
-        <h1 className="text-2xl sm:text-3xl font-bold font-space-grotesk text-neutral-900 tracking-tight">
+        <h1 className="text-2xl sm:text-3xl font-bold font-space-grotesk text-neutral-900 dark:text-white tracking-tight">
           Payment Pending
         </h1>
-        <p className="text-xs sm:text-sm text-neutral-500 font-work-sans mt-1">
+        <p className="text-xs sm:text-sm text-neutral-500 dark:text-neutral-400 font-work-sans mt-1">
           Your payment is currently being processed. We&apos;ll update your payment status once it&apos;s confirmed.
         </p>
       </div>
 
       {/* Event Details Card matching media_1789205148981.png */}
-      <div className="bg-white rounded-2xl sm:rounded-3xl border border-neutral-100 p-6 sm:p-7 shadow-[0_1px_4px_rgba(0,0,0,0.02)] space-y-4">
+      <div className="bg-white dark:bg-neutral-900/60 rounded-2xl sm:rounded-3xl border border-neutral-100 dark:border-neutral-800 p-6 sm:p-7 shadow-[0_1px_4px_rgba(0,0,0,0.02)] space-y-4">
         {/* Pending Badge */}
         <div>
           <span
             className={`inline-block px-3 py-0.5 rounded-md text-xs font-medium ${currentEvent.status === "Pending"
-              ? "bg-[#FFF4E5] text-[#D97706]"
+              ? "bg-[#FFF4E5] text-[#D97706] dark:bg-amber-950/40 dark:text-amber-400"
               : currentEvent.status === "Under Review"
-                ? "bg-blue-50 text-blue-700 border border-blue-200"
-                : "bg-emerald-50 text-emerald-700 border border-emerald-200"
+                ? "bg-blue-50 text-blue-700 border border-blue-200 dark:bg-blue-950/40 dark:text-blue-400 dark:border-blue-800/60"
+                : "bg-emerald-50 text-emerald-700 border border-emerald-200 dark:bg-emerald-950/40 dark:text-emerald-400 dark:border-emerald-800/60"
               }`}
           >
             {currentEvent.status}
@@ -222,19 +222,19 @@ export const HostUploadReceiptView: React.FC<HostUploadReceiptViewProps> = ({
         </div>
 
         {/* Event Title */}
-        <h2 className="text-xl sm:text-2xl font-bold font-space-grotesk text-neutral-900 tracking-tight">
+        <h2 className="text-xl sm:text-2xl font-bold font-space-grotesk text-neutral-900 dark:text-white tracking-tight">
           {currentEvent.eventName}
         </h2>
 
         {/* Meta Row 1: Calendar, Clock, Event Type */}
-        <div className="flex flex-wrap items-center gap-6 text-xs sm:text-sm text-neutral-600">
+        <div className="flex flex-wrap items-center gap-6 text-xs sm:text-sm text-neutral-600 dark:text-neutral-300">
           <div className="flex items-center gap-2">
-            <Calendar className="h-4 w-4 text-neutral-400 shrink-0" />
+            <Calendar className="h-4 w-4 text-neutral-400 dark:text-neutral-500 shrink-0" />
             <span>{currentEvent.eventDate}</span>
           </div>
 
           <div className="flex items-center gap-2">
-            <Clock className="h-4 w-4 text-neutral-400 shrink-0" />
+            <Clock className="h-4 w-4 text-neutral-400 dark:text-neutral-500 shrink-0" />
             <span>{currentEvent.eventTime}</span>
           </div>
 
@@ -245,25 +245,25 @@ export const HostUploadReceiptView: React.FC<HostUploadReceiptViewProps> = ({
         </div>
 
         {/* Meta Row 2: Host, Email, Phone, Venue Contact */}
-        <div className="flex flex-wrap items-center gap-6 text-xs sm:text-sm text-neutral-600 pt-0.5">
+        <div className="flex flex-wrap items-center gap-6 text-xs sm:text-sm text-neutral-600 dark:text-neutral-300 pt-0.5">
           <div className="flex items-center gap-2">
-            <User className="h-4 w-4 text-neutral-400 shrink-0" />
+            <User className="h-4 w-4 text-neutral-400 dark:text-neutral-500 shrink-0" />
             <span>{currentEvent.hostName}</span>
           </div>
 
           <div className="flex items-center gap-2">
-            <Mail className="h-4 w-4 text-neutral-400 shrink-0" />
+            <Mail className="h-4 w-4 text-neutral-400 dark:text-neutral-500 shrink-0" />
             <span>{currentEvent.hostEmail || "example@gmail.com"}</span>
           </div>
 
           <div className="flex items-center gap-2">
-            <Phone className="h-4 w-4 text-neutral-400 shrink-0" />
+            <Phone className="h-4 w-4 text-neutral-400 dark:text-neutral-500 shrink-0" />
             <span>{currentEvent.hostPhone || "+1234567890"}</span>
           </div>
 
-          <div className="text-neutral-500">
+          <div className="text-neutral-500 dark:text-neutral-400">
             Venue Contact:{" "}
-            <span className="text-neutral-700 font-medium">
+            <span className="text-neutral-700 dark:text-neutral-200 font-medium">
               {currentEvent.venueContact || "+1234567890"}
             </span>
           </div>
@@ -272,20 +272,20 @@ export const HostUploadReceiptView: React.FC<HostUploadReceiptViewProps> = ({
 
       {/* Under Review Notice if submitted */}
       {currentEvent.status === "Under Review" && (
-        <div className="flex items-center justify-between rounded-xl bg-blue-50/80 border border-blue-200/80 p-4 text-xs sm:text-sm text-blue-900 animate-in fade-in">
+        <div className="flex items-center justify-between rounded-xl bg-blue-50/80 dark:bg-blue-950/30 border border-blue-200/80 dark:border-blue-900/50 p-4 text-xs sm:text-sm text-blue-900 dark:text-blue-200 animate-in fade-in">
           <div className="flex items-center gap-2.5">
-            <CheckCircle2 className="h-5 w-5 text-blue-600 shrink-0" />
+            <CheckCircle2 className="h-5 w-5 text-blue-600 dark:text-blue-400 shrink-0" />
             <span>
               <strong>Payment receipt submitted.</strong> Our administrative team is currently verifying the wire transfer.
             </span>
           </div>
-          <span className="text-xs font-semibold text-blue-700">Under Review</span>
+          <span className="text-xs font-semibold text-blue-700 dark:text-blue-300">Under Review</span>
         </div>
       )}
 
       {/* Upload Payment Receipt Section matching media_1789205148981.png */}
       <form onSubmit={handleSubmitProof} className="space-y-4 pt-1">
-        <h3 className="text-sm sm:text-base font-bold text-neutral-900 font-work-sans">
+        <h3 className="text-sm sm:text-base font-bold text-neutral-900 dark:text-white font-work-sans">
           Upload Payment Receipt
         </h3>
 
@@ -298,11 +298,11 @@ export const HostUploadReceiptView: React.FC<HostUploadReceiptViewProps> = ({
           onDragLeave={() => setIsDragging(false)}
           onDrop={handleFileDrop}
           onClick={() => fileInputRef.current?.click()}
-          className={`w-full min-h-[220px] rounded-2xl border-2 border-dashed flex flex-col items-center justify-center p-8 text-center cursor-pointer transition-all bg-[#FCFBF8] ${isDragging
-            ? "border-[#C39B4C] bg-[#FAF5EB]/70 scale-[0.99]"
+          className={`w-full min-h-[220px] rounded-2xl border-2 border-dashed flex flex-col items-center justify-center p-8 text-center cursor-pointer transition-all bg-[#FCFBF8] dark:bg-neutral-900/40 ${isDragging
+            ? "border-[#C39B4C] bg-[#FAF5EB]/70 dark:bg-amber-950/30 scale-[0.99]"
             : selectedFile
-              ? "border-emerald-400 bg-emerald-50/30"
-              : "border-neutral-200 hover:border-[#C39B4C]/60 hover:bg-neutral-50/60"
+              ? "border-emerald-400 bg-emerald-50/30 dark:bg-emerald-950/20"
+              : "border-neutral-200 dark:border-neutral-800 hover:border-[#C39B4C]/60 hover:bg-neutral-50/60 dark:hover:bg-neutral-800/40"
             }`}
         >
           <input
@@ -320,18 +320,18 @@ export const HostUploadReceiptView: React.FC<HostUploadReceiptViewProps> = ({
                 <img
                   src={filePreview}
                   alt="Receipt Preview"
-                  className="h-20 w-auto max-w-[200px] object-contain rounded-lg border border-neutral-200 shadow-xs mb-1"
+                  className="h-20 w-auto max-w-[200px] object-contain rounded-lg border border-neutral-200 dark:border-neutral-700 shadow-xs mb-1"
                 />
               ) : (
-                <div className="h-12 w-12 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center shadow-2xs">
+                <div className="h-12 w-12 rounded-full bg-emerald-100 dark:bg-emerald-950/60 text-emerald-600 dark:text-emerald-400 flex items-center justify-center shadow-2xs">
                   <FileCheck className="h-6 w-6" />
                 </div>
               )}
               <div className="text-center">
-                <p className="text-sm font-semibold text-neutral-900">
+                <p className="text-sm font-semibold text-neutral-900 dark:text-white">
                   {selectedFile.name}
                 </p>
-                <p className="text-xs text-neutral-400">
+                <p className="text-xs text-neutral-400 dark:text-neutral-500">
                   {(selectedFile.size / 1024 / 1024).toFixed(2)} MB
                 </p>
               </div>
@@ -351,13 +351,13 @@ export const HostUploadReceiptView: React.FC<HostUploadReceiptViewProps> = ({
           ) : (
             <div className="flex flex-col items-center">
               <UploadArrowIcon />
-              <p className="text-sm font-bold text-neutral-800 font-work-sans">
+              <p className="text-sm font-bold text-neutral-800 dark:text-neutral-200 font-work-sans">
                 Drag &amp; drop the receipt file here
               </p>
-              <p className="text-xs text-neutral-400 mt-1 font-work-sans">
+              <p className="text-xs text-neutral-400 dark:text-neutral-500 mt-1 font-work-sans">
                 or browse file
               </p>
-              <p className="text-xs text-neutral-400 mt-1 font-work-sans">
+              <p className="text-xs text-neutral-400 dark:text-neutral-500 mt-1 font-work-sans">
                 Acceptable formats: PDF, Image, CSV...
               </p>
             </div>

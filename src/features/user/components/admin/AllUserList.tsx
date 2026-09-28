@@ -111,13 +111,13 @@ export const AllUserList: React.FC<AllUserListProps> = ({ className }) => {
             <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3">
                 {/* Search Bar */}
                 <div className="relative w-full max-w-md">
-                    <Search className="absolute left-4 top-1/2 -translate-y-1/2 size-4 text-neutral-400 pointer-events-none" />
+                    <Search className="absolute left-4 top-1/2 -translate-y-1/2 size-4 text-neutral-400 dark:text-neutral-500 pointer-events-none" />
                     <input
                         type="text"
                         value={searchTerm}
                         onChange={(e) => setSearchTerm(e.target.value)}
                         placeholder="Name, email, ID or partner type..."
-                        className="w-full h-11 pl-11 pr-4 rounded-full border border-neutral-200/80 bg-white text-xs sm:text-sm text-neutral-800 placeholder:text-neutral-400 focus:outline-none focus:border-[#C39B4C] focus:ring-1 focus:ring-[#C39B4C]/20 shadow-2xs font-work-sans transition-colors"
+                        className="w-full h-11 pl-11 pr-4 rounded-full border border-neutral-200/80 dark:border-neutral-800 bg-white dark:bg-neutral-900 text-xs sm:text-sm text-neutral-800 dark:text-neutral-100 placeholder:text-neutral-400 dark:placeholder:text-neutral-500 focus:outline-none focus:border-[#C39B4C] focus:ring-1 focus:ring-[#C39B4C]/20 shadow-2xs font-work-sans transition-colors"
                     />
                 </div>
 
@@ -126,14 +126,14 @@ export const AllUserList: React.FC<AllUserListProps> = ({ className }) => {
                     <button
                         type="button"
                         onClick={() => setIsRoleDropdownOpen((prev) => !prev)}
-                        className="h-11 px-4 rounded-xl border border-neutral-200/80 bg-white text-xs sm:text-sm text-neutral-700 flex items-center gap-2 cursor-pointer shadow-2xs hover:border-neutral-300 font-work-sans transition-colors select-none"
+                        className="h-11 px-4 rounded-xl border border-neutral-200/80 dark:border-neutral-800 bg-white dark:bg-neutral-900 text-xs sm:text-sm text-neutral-700 dark:text-neutral-200 flex items-center gap-2 cursor-pointer shadow-2xs hover:border-neutral-300 dark:hover:border-neutral-700 font-work-sans transition-colors select-none"
                     >
                         <span>{selectedRole}</span>
-                        <ChevronDown className="size-4 text-neutral-400" />
+                        <ChevronDown className="size-4 text-neutral-400 dark:text-neutral-500" />
                     </button>
 
                     {isRoleDropdownOpen && (
-                        <div className="absolute right-0 mt-1.5 w-40 rounded-xl border border-neutral-200 bg-white py-1 shadow-lg z-30 font-work-sans text-xs sm:text-sm animate-in fade-in zoom-in-95">
+                        <div className="absolute right-0 mt-1.5 w-40 rounded-xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 py-1 shadow-lg z-30 font-work-sans text-xs sm:text-sm animate-in fade-in zoom-in-95">
                             {["All role", "Host", "Partner", "Venue Partner"].map((role) => (
                                 <button
                                     key={role}
@@ -143,10 +143,10 @@ export const AllUserList: React.FC<AllUserListProps> = ({ className }) => {
                                         setIsRoleDropdownOpen(false);
                                     }}
                                     className={cn(
-                                        "w-full text-left px-4 py-2 hover:bg-neutral-50 transition-colors cursor-pointer",
+                                        "w-full text-left px-4 py-2 hover:bg-neutral-50 dark:hover:bg-neutral-800 transition-colors cursor-pointer",
                                         selectedRole === role
-                                            ? "text-[#B89047] font-semibold bg-[#FDFBF7]"
-                                            : "text-neutral-700"
+                                            ? "text-[#B89047] font-semibold bg-[#FDFBF7] dark:bg-neutral-800/60"
+                                            : "text-neutral-700 dark:text-neutral-300"
                                     )}
                                 >
                                     {role}
@@ -158,32 +158,32 @@ export const AllUserList: React.FC<AllUserListProps> = ({ className }) => {
             </div>
 
             {/* Users Table */}
-            <div className="border border-neutral-200/70 rounded-2xl bg-white shadow-xs overflow-hidden">
+            <div className="border border-neutral-200/70 dark:border-neutral-800 rounded-2xl bg-white dark:bg-neutral-900/40 shadow-xs overflow-hidden">
                 <div className="overflow-x-auto">
                     <table className="w-full text-left border-collapse">
                         <thead>
-                            <tr className="border-b border-neutral-200/70 bg-white">
-                                <th className="py-4 px-6 text-xs sm:text-sm font-semibold text-neutral-900 font-work-sans">
+                            <tr className="border-b border-neutral-200/70 dark:border-neutral-800 bg-white dark:bg-neutral-900/60">
+                                <th className="py-4 px-6 text-xs sm:text-sm font-semibold text-neutral-900 dark:text-neutral-100 font-work-sans">
                                     Name
                                 </th>
-                                <th className="py-4 px-6 text-xs sm:text-sm font-semibold text-neutral-900 font-work-sans">
+                                <th className="py-4 px-6 text-xs sm:text-sm font-semibold text-neutral-900 dark:text-neutral-100 font-work-sans">
                                     User Role
                                 </th>
-                                <th className="py-4 px-6 text-xs sm:text-sm font-semibold text-neutral-900 font-work-sans">
+                                <th className="py-4 px-6 text-xs sm:text-sm font-semibold text-neutral-900 dark:text-neutral-100 font-work-sans">
                                     Join Dates
                                 </th>
-                                <th className="py-4 px-6 text-xs sm:text-sm font-semibold text-neutral-900 font-work-sans">
+                                <th className="py-4 px-6 text-xs sm:text-sm font-semibold text-neutral-900 dark:text-neutral-100 font-work-sans">
                                     Event Count
                                 </th>
-                                <th className="py-4 px-6 text-xs sm:text-sm font-semibold text-neutral-900 font-work-sans text-right">
+                                <th className="py-4 px-6 text-xs sm:text-sm font-semibold text-neutral-900 dark:text-neutral-100 font-work-sans text-right">
                                     Actions
                                 </th>
                             </tr>
                         </thead>
-                        <tbody className="divide-y divide-neutral-100">
+                        <tbody className="divide-y divide-neutral-100 dark:divide-neutral-800">
                             {filteredUsers.length === 0 ? (
                                 <tr>
-                                    <td colSpan={5} className="py-12 text-center text-sm text-neutral-500 font-work-sans">
+                                    <td colSpan={5} className="py-12 text-center text-sm text-neutral-500 dark:text-neutral-400 font-work-sans">
                                         No users found matching your search.
                                     </td>
                                 </tr>
@@ -198,12 +198,12 @@ export const AllUserList: React.FC<AllUserListProps> = ({ className }) => {
                                         <tr
                                             key={user.id}
                                             onClick={() => router.push(`/admin/users/${user.id}`)}
-                                            className="hover:bg-neutral-50/60 transition-colors duration-150 cursor-pointer group"
+                                            className="hover:bg-neutral-50/60 dark:hover:bg-neutral-800/40 transition-colors duration-150 cursor-pointer group"
                                         >
                                             {/* Name & Avatar Column */}
                                             <td className="py-4 px-6 whitespace-nowrap">
                                                 <div className="flex items-center gap-3">
-                                                    <div className="size-10 rounded-full overflow-hidden bg-neutral-100 shrink-0 relative border border-neutral-200/60">
+                                                    <div className="size-10 rounded-full overflow-hidden bg-neutral-100 dark:bg-neutral-800 shrink-0 relative border border-neutral-200/60 dark:border-neutral-700">
                                                         <Image
                                                             src={user.avatarUrl}
                                                             alt={user.name}
@@ -213,10 +213,10 @@ export const AllUserList: React.FC<AllUserListProps> = ({ className }) => {
                                                         />
                                                     </div>
                                                     <div>
-                                                        <p className="text-sm font-semibold text-neutral-900 font-work-sans group-hover:text-[#B89047] transition-colors">
+                                                        <p className="text-sm font-semibold text-neutral-900 dark:text-white font-work-sans group-hover:text-[#B89047] transition-colors">
                                                             {user.name}
                                                         </p>
-                                                        <p className="text-xs text-neutral-400 font-work-sans">
+                                                        <p className="text-xs text-neutral-400 dark:text-neutral-500 font-work-sans">
                                                             {user.email}
                                                         </p>
                                                     </div>
@@ -224,31 +224,31 @@ export const AllUserList: React.FC<AllUserListProps> = ({ className }) => {
                                             </td>
 
                                             {/* Role & Partner Type & Verification Badge */}
-                                            <td className="py-4 px-6 text-sm text-neutral-700 font-work-sans whitespace-nowrap">
+                                            <td className="py-4 px-6 text-sm text-neutral-700 dark:text-neutral-300 font-work-sans whitespace-nowrap">
                                                 <div className="flex items-center gap-2">
-                                                    <span className="font-medium text-neutral-900">
+                                                    <span className="font-medium text-neutral-900 dark:text-white">
                                                         {user.role}
                                                     </span>
                                                     {user.partnerType && (
-                                                        <span className="px-2 py-0.5 rounded-full text-[11px] font-medium bg-[#FFF9EE] text-[#B58500] border border-[#FDE68A]/60">
+                                                        <span className="px-2 py-0.5 rounded-full text-[11px] font-medium bg-[#FFF9EE] dark:bg-amber-950/40 text-[#B58500] dark:text-amber-400 border border-[#FDE68A]/60 dark:border-amber-800/40">
                                                             {user.partnerType}
                                                         </span>
                                                     )}
                                                     {isVenuePartner && (
                                                         isVerified ? (
                                                             <span
-                                                                className="inline-flex items-center gap-1 text-[11px] font-medium text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-200"
+                                                                className="inline-flex items-center gap-1 text-[11px] font-medium text-emerald-700 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/40 px-2 py-0.5 rounded-full border border-emerald-200 dark:border-emerald-800/40"
                                                                 title="Verified Venue Partner"
                                                             >
-                                                                <CheckCircle2 className="size-3 text-emerald-600" />
+                                                                <CheckCircle2 className="size-3 text-emerald-600 dark:text-emerald-400" />
                                                                 Verified
                                                             </span>
                                                         ) : (
                                                             <span
-                                                                className="inline-flex items-center gap-1 text-[11px] font-medium text-amber-700 bg-amber-50 px-2 py-0.5 rounded-full border border-amber-200"
+                                                                className="inline-flex items-center gap-1 text-[11px] font-medium text-amber-700 dark:text-amber-400 bg-amber-50 dark:bg-amber-950/40 px-2 py-0.5 rounded-full border border-amber-200 dark:border-amber-800/40"
                                                                 title="Pending Admin Verification"
                                                             >
-                                                                <Clock className="size-3 text-amber-600" />
+                                                                <Clock className="size-3 text-amber-600 dark:text-amber-400" />
                                                                 Pending
                                                             </span>
                                                         )
@@ -257,16 +257,16 @@ export const AllUserList: React.FC<AllUserListProps> = ({ className }) => {
                                             </td>
 
                                             {/* Join Dates */}
-                                            <td className="py-4 px-6 text-sm text-neutral-700 font-work-sans whitespace-nowrap">
+                                            <td className="py-4 px-6 text-sm text-neutral-700 dark:text-neutral-300 font-work-sans whitespace-nowrap">
                                                 {user.joinDate}
                                             </td>
 
                                             {/* Event Count (e.g. 02/05) */}
                                             <td className="py-4 px-6 text-sm font-work-sans whitespace-nowrap">
-                                                <span className="font-bold text-neutral-900">
+                                                <span className="font-bold text-neutral-900 dark:text-white">
                                                     {String(user.eventCount.active).padStart(2, "0")}
                                                 </span>
-                                                <span className="text-neutral-500">
+                                                <span className="text-neutral-500 dark:text-neutral-400">
                                                     /{String(user.eventCount.total).padStart(2, "0")}
                                                 </span>
                                             </td>
@@ -282,7 +282,7 @@ export const AllUserList: React.FC<AllUserListProps> = ({ className }) => {
                                                             className={cn(
                                                                 "inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold transition-all cursor-pointer shadow-2xs font-work-sans",
                                                                 isVerified
-                                                                    ? "bg-emerald-50 text-emerald-700 border border-emerald-300 hover:bg-emerald-100"
+                                                                    ? "bg-emerald-50 dark:bg-emerald-950/40 text-emerald-700 dark:text-emerald-400 border border-emerald-300 dark:border-emerald-800 hover:bg-emerald-100 dark:hover:bg-emerald-900/40"
                                                                     : "bg-[#C39B4C] text-white hover:bg-[#B38A3B] border border-[#C39B4C]"
                                                             )}
                                                             title={
@@ -293,7 +293,7 @@ export const AllUserList: React.FC<AllUserListProps> = ({ className }) => {
                                                         >
                                                             {isVerified ? (
                                                                 <>
-                                                                    <CheckCircle2 className="size-3.5 text-emerald-600" />
+                                                                    <CheckCircle2 className="size-3.5 text-emerald-600 dark:text-emerald-400" />
                                                                     <span>Verified</span>
                                                                 </>
                                                             ) : (
@@ -309,7 +309,7 @@ export const AllUserList: React.FC<AllUserListProps> = ({ className }) => {
                                                     <Link
                                                         href={`/admin/users/${user.id}`}
                                                         onClick={(e) => e.stopPropagation()}
-                                                        className="p-1.5 text-neutral-400 hover:text-neutral-800 hover:bg-neutral-100 rounded-lg transition-colors cursor-pointer"
+                                                        className="p-1.5 text-neutral-400 dark:text-neutral-500 hover:text-neutral-800 dark:hover:text-neutral-200 hover:bg-neutral-100 dark:hover:bg-neutral-800 rounded-lg transition-colors cursor-pointer"
                                                         title="View user details"
                                                     >
                                                         <Eye className="size-4" />
@@ -319,7 +319,7 @@ export const AllUserList: React.FC<AllUserListProps> = ({ className }) => {
                                                     <button
                                                         type="button"
                                                         onClick={(e) => handleDeleteUser(e, user)}
-                                                        className="p-1.5 text-neutral-400 hover:text-red-600 hover:bg-red-50 rounded-lg transition-colors cursor-pointer"
+                                                        className="p-1.5 text-neutral-400 dark:text-neutral-500 hover:text-red-600 dark:hover:text-red-400 hover:bg-red-50 dark:hover:bg-red-950/40 rounded-lg transition-colors cursor-pointer"
                                                         title="Delete user"
                                                     >
                                                         <Trash2 className="size-4" />
@@ -329,7 +329,7 @@ export const AllUserList: React.FC<AllUserListProps> = ({ className }) => {
                                                     <button
                                                         type="button"
                                                         onClick={(e) => handleSuspendUser(e, user)}
-                                                        className="p-1.5 text-neutral-400 hover:text-amber-600 hover:bg-amber-50 rounded-lg transition-colors cursor-pointer"
+                                                        className="p-1.5 text-neutral-400 dark:text-neutral-500 hover:text-amber-600 dark:hover:text-amber-400 hover:bg-amber-50 dark:hover:bg-amber-950/40 rounded-lg transition-colors cursor-pointer"
                                                         title="Suspend user"
                                                     >
                                                         <Ban className="size-4" />
@@ -345,11 +345,11 @@ export const AllUserList: React.FC<AllUserListProps> = ({ className }) => {
                 </div>
 
                 {/* Pagination Footer */}
-                <div className="py-6 flex items-center justify-center gap-1.5 border-t border-neutral-100 font-work-sans select-none">
+                <div className="py-6 flex items-center justify-center gap-1.5 border-t border-neutral-100 dark:border-neutral-800 bg-white dark:bg-neutral-900/60 font-work-sans select-none">
                     <button
                         type="button"
                         onClick={() => setCurrentPage((p) => Math.max(1, p - 1))}
-                        className="size-8 rounded-lg flex items-center justify-center text-neutral-400 hover:text-neutral-700 hover:bg-neutral-100 transition-colors cursor-pointer"
+                        className="size-8 rounded-lg flex items-center justify-center text-neutral-400 dark:text-neutral-500 hover:text-neutral-700 dark:hover:text-neutral-300 hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors cursor-pointer"
                     >
                         <ChevronLeft className="size-4" />
                     </button>
@@ -365,7 +365,7 @@ export const AllUserList: React.FC<AllUserListProps> = ({ className }) => {
                                     "size-8 rounded-lg text-xs sm:text-sm font-medium flex items-center justify-center transition-all cursor-pointer",
                                     isActive
                                         ? "bg-[#B89047] text-white font-semibold shadow-xs"
-                                        : "text-neutral-600 hover:bg-neutral-100"
+                                        : "text-neutral-600 dark:text-neutral-400 hover:bg-neutral-100 dark:hover:bg-neutral-800"
                                 )}
                             >
                                 {page}
@@ -376,7 +376,7 @@ export const AllUserList: React.FC<AllUserListProps> = ({ className }) => {
                     <button
                         type="button"
                         onClick={() => setCurrentPage((p) => Math.min(5, p + 1))}
-                        className="size-8 rounded-lg flex items-center justify-center text-neutral-400 hover:text-neutral-700 hover:bg-neutral-100 transition-colors cursor-pointer"
+                        className="size-8 rounded-lg flex items-center justify-center text-neutral-400 dark:text-neutral-500 hover:text-neutral-700 dark:hover:text-neutral-300 hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors cursor-pointer"
                     >
                         <ChevronRight className="size-4" />
                     </button>

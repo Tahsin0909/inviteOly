@@ -63,7 +63,7 @@ export const MarketingDrawer: React.FC = () => {
 
       {/* Slide-over Panel from Right */}
       <div className="fixed inset-y-0 right-0 max-w-full flex pl-10">
-        <div className="w-screen max-w-xl bg-white shadow-2xl animate-in slide-in-from-right duration-300 flex flex-col">
+        <div className="w-screen max-w-xl bg-white dark:bg-neutral-900 border-l border-neutral-200 dark:border-neutral-800 shadow-2xl animate-in slide-in-from-right duration-300 flex flex-col">
           {drawerMode === "details" && selectedMaterial ? (
             <MarketingDetails
               material={selectedMaterial}

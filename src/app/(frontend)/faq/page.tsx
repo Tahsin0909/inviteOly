@@ -33,7 +33,7 @@ export default function FaqPage() {
   };
 
   return (
-    <main className="min-h-screen bg-[#0F0F0F] text-white pt-24 pb-20 font-work-sans">
+    <main className="min-h-screen bg-neutral-50/60 dark:bg-[#0F0F0F] text-neutral-900 dark:text-white pt-24 pb-20 font-work-sans transition-colors duration-200">
       {/* JSON-LD Structured Data for Search Engines */}
       <script
         type="application/ld+json"

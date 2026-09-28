@@ -58,7 +58,7 @@ const CompletedCheckIcon = () => (
         strokeLinejoin="round"
     >
         <circle cx="12" cy="12" r="9" />
-        <polyline points="8.5 12.5 11 15 15.5 9.5" />
+        <polyline points="9 11.5 11.5 14 15.5 9.5" />
     </svg>
 );
 
@@ -114,45 +114,45 @@ export const AllEvents: React.FC<AllEventsProps> = ({ className }) => {
             {/* 3 Metric Cards */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-5">
                 {/* Total Events */}
-                <div className="bg-white rounded-2xl p-5 border border-neutral-200/70 shadow-xs hover:shadow-md transition-all duration-200 flex flex-col justify-between">
+                <div className="bg-white dark:bg-neutral-900/60 rounded-2xl p-5 border border-neutral-200/70 dark:border-neutral-800 shadow-xs hover:shadow-md dark:hover:border-neutral-700 transition-all duration-200 flex flex-col justify-between">
                     <div className="size-10 rounded-xl bg-[#B89047] flex items-center justify-center shadow-xs shrink-0">
                         <TicketStubIcon />
                     </div>
                     <div className="mt-4">
-                        <p className="text-2xl sm:text-[28px] font-bold font-space-grotesk text-neutral-900 tracking-tight">
+                        <p className="text-2xl sm:text-[28px] font-bold font-space-grotesk text-neutral-900 dark:text-white tracking-tight">
                             {metrics.totalEvents.toLocaleString()}
                         </p>
-                        <p className="text-xs sm:text-sm font-medium text-neutral-500 font-work-sans mt-1">
+                        <p className="text-xs sm:text-sm font-medium text-neutral-500 dark:text-neutral-400 font-work-sans mt-1">
                             Total Events
                         </p>
                     </div>
                 </div>
 
                 {/* Active Events */}
-                <div className="bg-white rounded-2xl p-5 border border-neutral-200/70 shadow-xs hover:shadow-md transition-all duration-200 flex flex-col justify-between">
+                <div className="bg-white dark:bg-neutral-900/60 rounded-2xl p-5 border border-neutral-200/70 dark:border-neutral-800 shadow-xs hover:shadow-md dark:hover:border-neutral-700 transition-all duration-200 flex flex-col justify-between">
                     <div className="size-10 rounded-xl bg-[#B89047] flex items-center justify-center shadow-xs shrink-0">
                         <BroadcastIcon />
                     </div>
                     <div className="mt-4">
-                        <p className="text-2xl sm:text-[28px] font-bold font-space-grotesk text-neutral-900 tracking-tight">
+                        <p className="text-2xl sm:text-[28px] font-bold font-space-grotesk text-neutral-900 dark:text-white tracking-tight">
                             {metrics.activeEvents.toLocaleString()}
                         </p>
-                        <p className="text-xs sm:text-sm font-medium text-neutral-500 font-work-sans mt-1">
+                        <p className="text-xs sm:text-sm font-medium text-neutral-500 dark:text-neutral-400 font-work-sans mt-1">
                             Active Events
                         </p>
                     </div>
                 </div>
 
                 {/* Completed Events */}
-                <div className="bg-white rounded-2xl p-5 border border-neutral-200/70 shadow-xs hover:shadow-md transition-all duration-200 flex flex-col justify-between">
+                <div className="bg-white dark:bg-neutral-900/60 rounded-2xl p-5 border border-neutral-200/70 dark:border-neutral-800 shadow-xs hover:shadow-md dark:hover:border-neutral-700 transition-all duration-200 flex flex-col justify-between">
                     <div className="size-10 rounded-xl bg-[#B89047] flex items-center justify-center shadow-xs shrink-0">
                         <CompletedCheckIcon />
                     </div>
                     <div className="mt-4">
-                        <p className="text-2xl sm:text-[28px] font-bold font-space-grotesk text-neutral-900 tracking-tight">
+                        <p className="text-2xl sm:text-[28px] font-bold font-space-grotesk text-neutral-900 dark:text-white tracking-tight">
                             {metrics.completedEvents.toLocaleString()}
                         </p>
-                        <p className="text-xs sm:text-sm font-medium text-neutral-500 font-work-sans mt-1">
+                        <p className="text-xs sm:text-sm font-medium text-neutral-500 dark:text-neutral-400 font-work-sans mt-1">
                             Completed Events
                         </p>
                     </div>
@@ -168,7 +168,7 @@ export const AllEvents: React.FC<AllEventsProps> = ({ className }) => {
                         <Link
                             key={event.id}
                             href={`/admin/events/${event.id}`}
-                            className="bg-white rounded-2xl p-5 sm:p-6 border border-neutral-200/70 shadow-xs hover:shadow-md hover:border-[#C39B4C]/60 transition-all duration-200 flex flex-col justify-between cursor-pointer group"
+                            className="bg-white dark:bg-neutral-900/60 rounded-2xl p-5 sm:p-6 border border-neutral-200/70 dark:border-neutral-800 shadow-xs hover:shadow-md hover:border-[#C39B4C]/60 dark:hover:border-[#C39B4C]/60 transition-all duration-200 flex flex-col justify-between cursor-pointer group"
                         >
                             <div>
                                 {/* Tier Badge */}
@@ -177,8 +177,8 @@ export const AllEvents: React.FC<AllEventsProps> = ({ className }) => {
                                         className={cn(
                                             "px-3 py-1 rounded-full text-xs font-medium inline-block",
                                             isPremium
-                                                ? "bg-[#FEF7EC] text-[#B89047]"
-                                                : "bg-[#EBF5FF] text-[#2563EB]"
+                                                ? "bg-[#FEF7EC] dark:bg-amber-950/40 text-[#B89047] dark:text-[#E5C170]"
+                                                : "bg-[#EBF5FF] dark:bg-blue-950/40 text-[#2563EB] dark:text-blue-400"
                                         )}
                                     >
                                         {event.tier}
@@ -186,12 +186,12 @@ export const AllEvents: React.FC<AllEventsProps> = ({ className }) => {
                                 </div>
 
                                 {/* Event Title */}
-                                <h3 className="text-base sm:text-lg font-bold font-space-grotesk text-neutral-900 group-hover:text-[#B89047] transition-colors mt-3 sm:mt-3.5 leading-snug">
+                                <h3 className="text-base sm:text-lg font-bold font-space-grotesk text-neutral-900 dark:text-white group-hover:text-[#B89047] dark:group-hover:text-[#B89047] transition-colors mt-3 sm:mt-3.5 leading-snug">
                                     {event.title}
                                 </h3>
 
                                 {/* Event Meta: Date & Time */}
-                                <div className="flex flex-wrap items-center gap-x-4 gap-y-1.5 text-xs text-neutral-600 font-work-sans mt-3 sm:mt-3.5">
+                                <div className="flex flex-wrap items-center gap-x-4 gap-y-1.5 text-xs text-neutral-600 dark:text-neutral-400 font-work-sans mt-3 sm:mt-3.5">
                                     <div className="flex items-center gap-1.5">
                                         <Calendar className="size-3.5 sm:size-4 text-neutral-400 shrink-0" />
                                         <span>{event.date}</span>
@@ -203,24 +203,24 @@ export const AllEvents: React.FC<AllEventsProps> = ({ className }) => {
                                 </div>
 
                                 {/* Host */}
-                                <div className="flex items-center gap-2 text-xs text-neutral-800 font-medium font-work-sans mt-3">
+                                <div className="flex items-center gap-2 text-xs text-neutral-800 dark:text-neutral-200 font-medium font-work-sans mt-3">
                                     <HostUserIcon />
                                     <span className="truncate">{event.hostName}</span>
                                 </div>
 
                                 {/* Venue */}
-                                <div className="flex items-center gap-2 text-xs text-neutral-800 font-medium font-work-sans mt-3">
+                                <div className="flex items-center gap-2 text-xs text-neutral-800 dark:text-neutral-200 font-medium font-work-sans mt-3">
                                     <VenuePavilionIcon />
                                     <span className="truncate">{event.venue}</span>
                                 </div>
                             </div>
 
                             {/* Total Guests Section */}
-                            <div className="mt-5 pt-4 border-t border-neutral-100/80">
-                                <p className="text-xs text-neutral-500 font-medium font-work-sans">
+                            <div className="mt-5 pt-4 border-t border-neutral-100/80 dark:border-neutral-800/80">
+                                <p className="text-xs text-neutral-500 dark:text-neutral-400 font-medium font-work-sans">
                                     Total Guest{event.totalGuests !== 1 ? "s" : ""}
                                 </p>
-                                <p className="text-2xl sm:text-[26px] font-bold font-space-grotesk text-neutral-900 tracking-tight mt-0.5">
+                                <p className="text-2xl sm:text-[26px] font-bold font-space-grotesk text-neutral-900 dark:text-white tracking-tight mt-0.5">
                                     {event.totalGuests}
                                 </p>
                             </div>
@@ -233,4 +233,3 @@ export const AllEvents: React.FC<AllEventsProps> = ({ className }) => {
 };
 
 export default AllEvents;
-

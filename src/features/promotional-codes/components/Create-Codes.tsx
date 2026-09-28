@@ -126,19 +126,19 @@ export const CreateCodes: React.FC<CreateCodesProps> = ({
             <div className="fixed inset-y-0 right-0 max-w-full flex pl-6 sm:pl-10">
                 <div
                     className={cn(
-                        "w-screen max-w-xl bg-white shadow-2xl animate-in slide-in-from-right duration-300 flex flex-col h-full font-work-sans text-neutral-800",
+                        "w-screen max-w-xl bg-white dark:bg-neutral-900 shadow-2xl animate-in slide-in-from-right duration-300 flex flex-col h-full font-work-sans text-neutral-800 dark:text-neutral-200 border-l border-neutral-100 dark:border-neutral-800",
                         className
                     )}
                 >
                     {/* Header */}
-                    <div className="flex items-center justify-between p-6 sm:p-7 border-b border-neutral-100">
-                        <h2 className="text-lg sm:text-xl font-bold font-space-grotesk text-neutral-900 tracking-tight">
+                    <div className="flex items-center justify-between p-6 sm:p-7 border-b border-neutral-100 dark:border-neutral-800">
+                        <h2 className="text-lg sm:text-xl font-bold font-space-grotesk text-neutral-900 dark:text-white tracking-tight">
                             Create New Promotional Codes
                         </h2>
                         <button
                             type="button"
                             onClick={onClose}
-                            className="size-8 rounded-lg border border-neutral-200/80 hover:bg-neutral-50 flex items-center justify-center text-neutral-400 hover:text-neutral-700 transition-colors"
+                            className="size-8 rounded-lg border border-neutral-200/80 dark:border-neutral-800 hover:bg-neutral-50 dark:hover:bg-neutral-800 flex items-center justify-center text-neutral-400 dark:text-neutral-500 hover:text-neutral-700 dark:hover:text-white transition-colors cursor-pointer"
                             aria-label="Close drawer"
                         >
                             <X className="size-4" />
@@ -152,7 +152,7 @@ export const CreateCodes: React.FC<CreateCodesProps> = ({
                     >
                         {/* Promotional Codes */}
                         <div>
-                            <label className="block text-xs font-semibold text-neutral-700 mb-1.5 font-work-sans">
+                            <label className="block text-xs font-semibold text-neutral-700 dark:text-neutral-300 mb-1.5 font-work-sans">
                                 Promotional Codes
                             </label>
                             <input
@@ -162,13 +162,13 @@ export const CreateCodes: React.FC<CreateCodesProps> = ({
                                 onChange={handleChange}
                                 placeholder="e.g., SAVE25"
                                 required
-                                className="w-full h-11 px-3.5 rounded-xl border border-neutral-200 bg-white text-xs sm:text-sm text-neutral-800 placeholder:text-neutral-400 focus:outline-none focus:border-[#B89047] focus:ring-1 focus:ring-[#B89047]/20 transition-all uppercase"
+                                className="w-full h-11 px-3.5 rounded-xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-950 text-xs sm:text-sm text-neutral-800 dark:text-neutral-100 placeholder:text-neutral-400 dark:placeholder:text-neutral-500 focus:outline-none focus:border-[#B89047] focus:ring-1 focus:ring-[#B89047]/20 transition-all uppercase"
                             />
                         </div>
 
                         {/* Discount Type */}
                         <div>
-                            <label className="block text-xs font-semibold text-neutral-700 mb-1.5 font-work-sans">
+                            <label className="block text-xs font-semibold text-neutral-700 dark:text-neutral-300 mb-1.5 font-work-sans">
                                 Discount Type
                             </label>
                             <div className="relative">
@@ -176,18 +176,18 @@ export const CreateCodes: React.FC<CreateCodesProps> = ({
                                     name="discountType"
                                     value={formData.discountType}
                                     onChange={handleChange}
-                                    className="w-full h-11 pl-3.5 pr-10 rounded-xl border border-neutral-200 bg-white text-xs sm:text-sm text-neutral-800 focus:outline-none focus:border-[#B89047] focus:ring-1 focus:ring-[#B89047]/20 appearance-none transition-all cursor-pointer"
+                                    className="w-full h-11 pl-3.5 pr-10 rounded-xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-950 text-xs sm:text-sm text-neutral-800 dark:text-neutral-100 focus:outline-none focus:border-[#B89047] focus:ring-1 focus:ring-[#B89047]/20 appearance-none transition-all cursor-pointer"
                                 >
                                     <option value="Percentage">Percentage</option>
                                     <option value="Fixed">Fixed</option>
                                 </select>
-                                <ChevronDown className="absolute right-3.5 top-1/2 -translate-y-1/2 size-4 text-neutral-400 pointer-events-none" />
+                                <ChevronDown className="absolute right-3.5 top-1/2 -translate-y-1/2 size-4 text-neutral-400 dark:text-neutral-500 pointer-events-none" />
                             </div>
                         </div>
 
                         {/* Discount Value */}
                         <div>
-                            <label className="block text-xs font-semibold text-neutral-700 mb-1.5 font-work-sans">
+                            <label className="block text-xs font-semibold text-neutral-700 dark:text-neutral-300 mb-1.5 font-work-sans">
                                 Discount Value
                             </label>
                             <input
@@ -201,13 +201,13 @@ export const CreateCodes: React.FC<CreateCodesProps> = ({
                                         : "e.g. $20"
                                 }
                                 required
-                                className="w-full h-11 px-3.5 rounded-xl border border-neutral-200 bg-white text-xs sm:text-sm text-neutral-800 placeholder:text-neutral-400 focus:outline-none focus:border-[#B89047] focus:ring-1 focus:ring-[#B89047]/20 transition-all"
+                                className="w-full h-11 px-3.5 rounded-xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-950 text-xs sm:text-sm text-neutral-800 dark:text-neutral-100 placeholder:text-neutral-400 dark:placeholder:text-neutral-500 focus:outline-none focus:border-[#B89047] focus:ring-1 focus:ring-[#B89047]/20 transition-all"
                             />
                         </div>
 
                         {/* Valid From */}
                         <div>
-                            <label className="block text-xs font-semibold text-neutral-700 mb-1.5 font-work-sans">
+                            <label className="block text-xs font-semibold text-neutral-700 dark:text-neutral-300 mb-1.5 font-work-sans">
                                 Valid From
                             </label>
                             <div className="relative">
@@ -217,15 +217,15 @@ export const CreateCodes: React.FC<CreateCodesProps> = ({
                                     value={formData.validFrom}
                                     onChange={handleChange}
                                     required
-                                    className="w-full h-11 pl-3.5 pr-10 rounded-xl border border-neutral-200 bg-white text-xs sm:text-sm text-neutral-800 placeholder:text-neutral-400 focus:outline-none focus:border-[#B89047] focus:ring-1 focus:ring-[#B89047]/20 transition-all"
+                                    className="w-full h-11 pl-3.5 pr-10 rounded-xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-950 text-xs sm:text-sm text-neutral-800 dark:text-neutral-100 placeholder:text-neutral-400 dark:placeholder:text-neutral-500 focus:outline-none focus:border-[#B89047] focus:ring-1 focus:ring-[#B89047]/20 transition-all"
                                 />
-                                <Calendar className="absolute right-3.5 top-1/2 -translate-y-1/2 size-4 text-neutral-400 pointer-events-none" />
+                                <Calendar className="absolute right-3.5 top-1/2 -translate-y-1/2 size-4 text-neutral-400 dark:text-neutral-500 pointer-events-none" />
                             </div>
                         </div>
 
                         {/* Valid To */}
                         <div>
-                            <label className="block text-xs font-semibold text-neutral-700 mb-1.5 font-work-sans">
+                            <label className="block text-xs font-semibold text-neutral-700 dark:text-neutral-300 mb-1.5 font-work-sans">
                                 Valid To
                             </label>
                             <div className="relative">
@@ -235,9 +235,9 @@ export const CreateCodes: React.FC<CreateCodesProps> = ({
                                     value={formData.validTo}
                                     onChange={handleChange}
                                     required
-                                    className="w-full h-11 pl-3.5 pr-10 rounded-xl border border-neutral-200 bg-white text-xs sm:text-sm text-neutral-800 placeholder:text-neutral-400 focus:outline-none focus:border-[#B89047] focus:ring-1 focus:ring-[#B89047]/20 transition-all"
+                                    className="w-full h-11 pl-3.5 pr-10 rounded-xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-950 text-xs sm:text-sm text-neutral-800 dark:text-neutral-100 placeholder:text-neutral-400 dark:placeholder:text-neutral-500 focus:outline-none focus:border-[#B89047] focus:ring-1 focus:ring-[#B89047]/20 transition-all"
                                 />
-                                <Calendar className="absolute right-3.5 top-1/2 -translate-y-1/2 size-4 text-neutral-400 pointer-events-none" />
+                                <Calendar className="absolute right-3.5 top-1/2 -translate-y-1/2 size-4 text-neutral-400 dark:text-neutral-500 pointer-events-none" />
                             </div>
                         </div>
 

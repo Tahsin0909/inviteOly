@@ -26,10 +26,10 @@ export const AdminOverviewHeader: React.FC<AdminOverviewHeaderProps> = ({
 
   return (
     <div className={cn("space-y-1", className)}>
-      <h1 className="text-2xl sm:text-3xl lg:text-[32px] font-bold font-space-grotesk text-neutral-900 tracking-tight">
+      <h1 className="text-2xl sm:text-3xl lg:text-[32px] font-bold font-space-grotesk text-neutral-900 dark:text-white tracking-tight">
         Welcome Back, {displayName}
       </h1>
-      <p className="text-xs sm:text-sm text-neutral-500 font-work-sans leading-relaxed">
+      <p className="text-xs sm:text-sm text-neutral-500 dark:text-neutral-400 font-work-sans leading-relaxed">
         {displaySubtitle}
       </p>
     </div>
@@ -37,4 +37,3 @@ export const AdminOverviewHeader: React.FC<AdminOverviewHeaderProps> = ({
 };
 
 export default AdminOverviewHeader;
-

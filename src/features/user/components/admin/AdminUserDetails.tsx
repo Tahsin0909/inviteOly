@@ -44,19 +44,19 @@ export const AdminUserDetails: React.FC<AdminUserDetailsProps> = ({
       <div className="flex items-center justify-between gap-4">
         <Link
           href="/admin/users"
-          className="inline-flex items-center gap-2 text-xs sm:text-sm font-medium text-neutral-600 hover:text-neutral-900 transition-colors font-work-sans group"
+          className="inline-flex items-center gap-2 text-xs sm:text-sm font-medium text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white transition-colors font-work-sans group"
         >
           <ArrowLeft className="size-4 transition-transform group-hover:-translate-x-1" />
           <span>Back to Users</span>
         </Link>
       </div>
 
-      <h1 className="text-xl sm:text-2xl font-bold font-space-grotesk text-neutral-900">
+      <h1 className="text-xl sm:text-2xl font-bold font-space-grotesk text-neutral-900 dark:text-white">
         User Profile
       </h1>
 
       {/* Hero Profile Card */}
-      <div className="bg-white rounded-2xl border border-neutral-200/70 overflow-hidden shadow-xs">
+      <div className="bg-white dark:bg-neutral-900/60 rounded-2xl border border-neutral-200/70 dark:border-neutral-800 overflow-hidden shadow-xs">
         {/* Banner with blurry green / nature overlay */}
         <div className="relative w-full h-32 sm:h-40 bg-gradient-to-r from-emerald-800 via-teal-700 to-emerald-900 overflow-hidden">
           <Image
@@ -74,7 +74,7 @@ export const AdminUserDetails: React.FC<AdminUserDetailsProps> = ({
           <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
             {/* Left: Avatar & Text */}
             <div className="flex flex-col sm:flex-row sm:items-end gap-4">
-              <div className="relative size-20 sm:size-24 rounded-full overflow-hidden border-4 border-white shadow-md -mt-10 sm:-mt-12 shrink-0 bg-neutral-100">
+              <div className="relative size-20 sm:size-24 rounded-full overflow-hidden border-4 border-white dark:border-neutral-900 shadow-md -mt-10 sm:-mt-12 shrink-0 bg-neutral-100 dark:bg-neutral-800">
                 <Image
                   src={user.avatarUrl}
                   alt={user.name}
@@ -84,10 +84,10 @@ export const AdminUserDetails: React.FC<AdminUserDetailsProps> = ({
               </div>
 
               <div>
-                <h2 className="text-xl sm:text-2xl font-bold font-space-grotesk text-neutral-900">
+                <h2 className="text-xl sm:text-2xl font-bold font-space-grotesk text-neutral-900 dark:text-white">
                   {user.name}
                 </h2>
-                <div className="text-xs sm:text-sm text-neutral-500 font-work-sans space-y-0.5 mt-1">
+                <div className="text-xs sm:text-sm text-neutral-500 dark:text-neutral-400 font-work-sans space-y-0.5 mt-1">
                   <p>Email: {user.email}</p>
                   <p>Address: {user.address}</p>
                   <p>Current Plan: {user.currentPlan}</p>
@@ -108,32 +108,32 @@ export const AdminUserDetails: React.FC<AdminUserDetailsProps> = ({
       </div>
 
       {/* Subscription Details Card */}
-      <div className="bg-white rounded-2xl border border-neutral-200/70 overflow-hidden shadow-xs">
-        <div className="px-6 py-4 border-b border-neutral-100 bg-[#FAFAFA]/60">
-          <h3 className="text-sm sm:text-base font-bold font-space-grotesk text-neutral-900">
+      <div className="bg-white dark:bg-neutral-900/60 rounded-2xl border border-neutral-200/70 dark:border-neutral-800 overflow-hidden shadow-xs">
+        <div className="px-6 py-4 border-b border-neutral-100 dark:border-neutral-800 bg-[#FAFAFA]/60 dark:bg-neutral-900/80">
+          <h3 className="text-sm sm:text-base font-bold font-space-grotesk text-neutral-900 dark:text-white">
             Subscription Details
           </h3>
         </div>
 
-        <div className="divide-y divide-neutral-100">
+        <div className="divide-y divide-neutral-100 dark:divide-neutral-800">
           <div className="flex items-center justify-between px-6 py-3.5 text-xs sm:text-sm font-work-sans">
-            <span className="text-neutral-500">Plan</span>
-            <span className="font-semibold text-neutral-900">{user.subscription.plan}</span>
+            <span className="text-neutral-500 dark:text-neutral-400">Plan</span>
+            <span className="font-semibold text-neutral-900 dark:text-white">{user.subscription.plan}</span>
           </div>
 
           <div className="flex items-center justify-between px-6 py-3.5 text-xs sm:text-sm font-work-sans">
-            <span className="text-neutral-500">Price</span>
-            <span className="font-semibold text-neutral-900">{user.subscription.price}</span>
+            <span className="text-neutral-500 dark:text-neutral-400">Price</span>
+            <span className="font-semibold text-neutral-900 dark:text-white">{user.subscription.price}</span>
           </div>
 
           <div className="flex items-center justify-between px-6 py-3.5 text-xs sm:text-sm font-work-sans">
-            <span className="text-neutral-500">Last Event Date</span>
-            <span className="font-semibold text-neutral-900">{user.subscription.lastEventDate}</span>
+            <span className="text-neutral-500 dark:text-neutral-400">Last Event Date</span>
+            <span className="font-semibold text-neutral-900 dark:text-white">{user.subscription.lastEventDate}</span>
           </div>
 
           <div className="flex items-center justify-between px-6 py-3.5 text-xs sm:text-sm font-work-sans">
-            <span className="text-neutral-500">Total Event</span>
-            <span className="font-semibold text-neutral-900">{user.subscription.totalEvent}</span>
+            <span className="text-neutral-500 dark:text-neutral-400">Total Event</span>
+            <span className="font-semibold text-neutral-900 dark:text-white">{user.subscription.totalEvent}</span>
           </div>
         </div>
       </div>

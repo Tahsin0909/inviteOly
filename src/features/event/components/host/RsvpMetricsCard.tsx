@@ -53,13 +53,13 @@ export const RsvpMetricsCard: React.FC<RsvpMetricsCardProps> = ({
   return (
     <div
       className={cn(
-        "bg-white rounded-2xl sm:rounded-3xl border border-neutral-100 shadow-xs p-6 sm:p-7 flex flex-col justify-between transition-all",
+        "bg-white dark:bg-neutral-900/60 rounded-2xl sm:rounded-3xl border border-neutral-100 dark:border-neutral-800 shadow-xs p-6 sm:p-7 flex flex-col justify-between transition-all",
         className
       )}
     >
       <div>
         {/* Card Header */}
-        <h3 className="text-xl font-bold font-space-grotesk text-neutral-900 tracking-tight">
+        <h3 className="text-xl font-bold font-space-grotesk text-neutral-900 dark:text-white tracking-tight">
           RSVP Metrics
         </h3>
 
@@ -76,7 +76,8 @@ export const RsvpMetricsCard: React.FC<RsvpMetricsCardProps> = ({
               cy="100"
               r={radius}
               fill="none"
-              stroke="#F5F5F5"
+              stroke="currentColor"
+              className="text-neutral-100 dark:text-neutral-800"
               strokeWidth={strokeWidth}
             />
 
@@ -122,7 +123,7 @@ export const RsvpMetricsCard: React.FC<RsvpMetricsCardProps> = ({
 
           {/* Center Percentage Display */}
           <div className="absolute inset-0 flex items-center justify-center flex-col pointer-events-none">
-            <span className="text-3xl sm:text-4xl font-bold font-space-grotesk text-neutral-900 tracking-tight">
+            <span className="text-3xl sm:text-4xl font-bold font-space-grotesk text-neutral-900 dark:text-white tracking-tight">
               {confirmationRate}
             </span>
           </div>
@@ -134,9 +135,9 @@ export const RsvpMetricsCard: React.FC<RsvpMetricsCardProps> = ({
           <div className="flex items-center justify-between text-sm">
             <div className="flex items-center gap-2.5">
               <span className="size-3 rounded-full bg-[#0FA958] shrink-0" />
-              <span className="font-semibold text-neutral-900">Confirmed</span>
+              <span className="font-semibold text-neutral-900 dark:text-white">Confirmed</span>
             </div>
-            <span className="font-semibold text-neutral-900 font-space-grotesk">
+            <span className="font-semibold text-neutral-900 dark:text-white font-space-grotesk">
               {confirmed}
             </span>
           </div>
@@ -145,9 +146,9 @@ export const RsvpMetricsCard: React.FC<RsvpMetricsCardProps> = ({
           <div className="flex items-center justify-between text-sm">
             <div className="flex items-center gap-2.5">
               <span className="size-3 rounded-full bg-[#E5A000] shrink-0" />
-              <span className="font-semibold text-neutral-900">Pending</span>
+              <span className="font-semibold text-neutral-900 dark:text-white">Pending</span>
             </div>
-            <span className="font-semibold text-neutral-900 font-space-grotesk">
+            <span className="font-semibold text-neutral-900 dark:text-white font-space-grotesk">
               {pending}
             </span>
           </div>
@@ -156,9 +157,9 @@ export const RsvpMetricsCard: React.FC<RsvpMetricsCardProps> = ({
           <div className="flex items-center justify-between text-sm">
             <div className="flex items-center gap-2.5">
               <span className="size-3 rounded-full bg-[#B91C1C] shrink-0" />
-              <span className="font-semibold text-neutral-900">Declined</span>
+              <span className="font-semibold text-neutral-900 dark:text-white">Declined</span>
             </div>
-            <span className="font-semibold text-neutral-900 font-space-grotesk">
+            <span className="font-semibold text-neutral-900 dark:text-white font-space-grotesk">
               {declined}
             </span>
           </div>
@@ -166,18 +167,18 @@ export const RsvpMetricsCard: React.FC<RsvpMetricsCardProps> = ({
       </div>
 
       {/* Footer Summary Info */}
-      <div className="border-t border-neutral-100 pt-5 mt-6">
-        <p className="text-xs sm:text-[13px] text-neutral-600 font-work-sans leading-relaxed">
+      <div className="border-t border-neutral-100 dark:border-neutral-800 pt-5 mt-6">
+        <p className="text-xs sm:text-[13px] text-neutral-600 dark:text-neutral-400 font-work-sans leading-relaxed">
           {summaryText ? (
             summaryText
           ) : (
             <>
               Total invited{" "}
-              <strong className="text-neutral-900 font-semibold">
+              <strong className="text-neutral-900 dark:text-white font-semibold">
                 {totalInvited}
               </strong>
               . Current confirmation rate is{" "}
-              <strong className="text-neutral-900 font-semibold">
+              <strong className="text-neutral-900 dark:text-white font-semibold">
                 {confirmationRate}
               </strong>
               , up from last week&apos;s projection.

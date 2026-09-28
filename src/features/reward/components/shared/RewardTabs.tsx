@@ -12,13 +12,13 @@ export const RewardTabs: React.FC<RewardTabsProps> = ({
   onTabChange,
 }) => {
   return (
-    <div className="flex items-center gap-6 border-b border-neutral-200/80 font-work-sans">
+    <div className="flex items-center gap-6 border-b border-neutral-200/80 dark:border-neutral-800 font-work-sans">
       <button
         type="button"
         onClick={() => onTabChange("pending")}
         className={`pb-3 text-xs sm:text-sm transition-all relative cursor-pointer ${activeTab === "pending"
           ? "text-[#C39B4C] font-semibold"
-          : "text-neutral-500 hover:text-neutral-800 font-medium"
+          : "text-neutral-500 dark:text-neutral-400 hover:text-neutral-800 dark:hover:text-white font-medium"
           }`}
       >
         Pending Reward
@@ -32,7 +32,7 @@ export const RewardTabs: React.FC<RewardTabsProps> = ({
         onClick={() => onTabChange("history")}
         className={`pb-3 text-xs sm:text-sm transition-all relative cursor-pointer ${activeTab === "history"
           ? "text-[#C39B4C] font-semibold"
-          : "text-neutral-500 hover:text-neutral-800 font-medium"
+          : "text-neutral-500 dark:text-neutral-400 hover:text-neutral-800 dark:hover:text-white font-medium"
           }`}
       >
         Payout History

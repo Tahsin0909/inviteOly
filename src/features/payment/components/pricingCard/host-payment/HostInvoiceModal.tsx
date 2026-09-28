@@ -108,18 +108,18 @@ export const HostInvoiceModal: React.FC<HostInvoiceModalProps> = ({
         onClick={onClose}
       />
 
-      <div className="relative w-full max-w-lg bg-white rounded-2xl shadow-2xl border border-neutral-100 p-6 sm:p-7 z-10 animate-in fade-in zoom-in-95 duration-200 max-h-[90vh] overflow-y-auto">
+      <div className="relative w-full max-w-lg bg-white dark:bg-neutral-900 rounded-2xl shadow-2xl border border-neutral-100 dark:border-neutral-800 p-6 sm:p-7 z-10 animate-in fade-in zoom-in-95 duration-200 max-h-[90vh] overflow-y-auto">
         {/* Header */}
-        <div className="flex items-center justify-between pb-4 border-b border-neutral-100">
+        <div className="flex items-center justify-between pb-4 border-b border-neutral-100 dark:border-neutral-800">
           <div className="flex items-center gap-2.5">
             <div className="size-9 rounded-lg bg-[#C39B4C]/10 text-[#C39B4C] flex items-center justify-center">
               {isSubmitMode ? <Send className="size-5" /> : <FileText className="size-5" />}
             </div>
             <div>
-              <h3 className="text-lg font-bold font-space-grotesk text-neutral-900">
+              <h3 className="text-lg font-bold font-space-grotesk text-neutral-900 dark:text-white">
                 {isSubmitMode ? "Submit Payment Invoice" : "Payment Invoice"}
               </h3>
-              <p className="text-xs text-neutral-500">
+              <p className="text-xs text-neutral-500 dark:text-neutral-400">
                 Invoice ID: {invoice.invoiceId}
               </p>
             </div>
@@ -128,7 +128,7 @@ export const HostInvoiceModal: React.FC<HostInvoiceModalProps> = ({
           <button
             type="button"
             onClick={onClose}
-            className="text-neutral-400 hover:text-neutral-600 p-1.5 rounded-lg hover:bg-neutral-100 cursor-pointer transition-colors"
+            className="text-neutral-400 hover:text-neutral-600 dark:hover:text-neutral-200 p-1.5 rounded-lg hover:bg-neutral-100 dark:hover:bg-neutral-800 cursor-pointer transition-colors"
           >
             <X className="size-5" />
           </button>
@@ -140,20 +140,20 @@ export const HostInvoiceModal: React.FC<HostInvoiceModalProps> = ({
           /* SUBMIT INVOICE FORM */
           /* ========================================================================= */
           <form onSubmit={handleSubmitInvoice} className="space-y-4 pt-4 text-xs">
-            <div className="p-3 bg-neutral-50 rounded-xl flex justify-between items-center text-xs">
+            <div className="p-3 bg-neutral-50 dark:bg-neutral-950 border border-neutral-100 dark:border-neutral-800 rounded-xl flex justify-between items-center text-xs">
               <div>
-                <span className="text-neutral-400 block text-[11px]">Event</span>
-                <span className="font-semibold text-neutral-900">{invoice.eventName}</span>
+                <span className="text-neutral-400 dark:text-neutral-500 block text-[11px]">Event</span>
+                <span className="font-semibold text-neutral-900 dark:text-white">{invoice.eventName}</span>
               </div>
               <div className="text-right">
-                <span className="text-neutral-400 block text-[11px]">Amount</span>
+                <span className="text-neutral-400 dark:text-neutral-500 block text-[11px]">Amount</span>
                 <span className="font-bold text-[#C39B4C] text-sm">${invoice.amount}.00</span>
               </div>
             </div>
 
             {/* Payment Method */}
             <div>
-              <label className="block text-xs font-semibold text-neutral-800 mb-2">
+              <label className="block text-xs font-semibold text-neutral-800 dark:text-neutral-200 mb-2">
                 Payment Method Used
               </label>
               <div className="grid grid-cols-2 gap-3">
@@ -161,8 +161,8 @@ export const HostInvoiceModal: React.FC<HostInvoiceModalProps> = ({
                   type="button"
                   onClick={() => setPaymentMethod("Bank Transfer")}
                   className={`flex items-center justify-center gap-2 p-3 rounded-xl border text-xs font-medium transition-all cursor-pointer ${paymentMethod === "Bank Transfer"
-                    ? "border-[#C39B4C] bg-[#FFFBF0] text-[#C39B4C] font-semibold shadow-2xs"
-                    : "border-neutral-200 text-neutral-600 hover:bg-neutral-50"
+                    ? "border-[#C39B4C] bg-[#FFFBF0] dark:bg-amber-950/30 text-[#C39B4C] font-semibold shadow-2xs"
+                    : "border-neutral-200 dark:border-neutral-800 text-neutral-600 dark:text-neutral-400 hover:bg-neutral-50 dark:hover:bg-neutral-800"
                     }`}
                 >
                   <Landmark className="size-4" />
@@ -173,8 +173,8 @@ export const HostInvoiceModal: React.FC<HostInvoiceModalProps> = ({
                   type="button"
                   onClick={() => setPaymentMethod("Stripe")}
                   className={`flex items-center justify-center gap-2 p-3 rounded-xl border text-xs font-medium transition-all cursor-pointer ${paymentMethod === "Stripe"
-                    ? "border-[#C39B4C] bg-[#FFFBF0] text-[#C39B4C] font-semibold shadow-2xs"
-                    : "border-neutral-200 text-neutral-600 hover:bg-neutral-50"
+                    ? "border-[#C39B4C] bg-[#FFFBF0] dark:bg-amber-950/30 text-[#C39B4C] font-semibold shadow-2xs"
+                    : "border-neutral-200 dark:border-neutral-800 text-neutral-600 dark:text-neutral-400 hover:bg-neutral-50 dark:hover:bg-neutral-800"
                     }`}
                 >
                   <CreditCard className="size-4" />
@@ -185,7 +185,7 @@ export const HostInvoiceModal: React.FC<HostInvoiceModalProps> = ({
 
             {/* Transaction Reference */}
             <div>
-              <label className="block text-xs font-semibold text-neutral-800 mb-1.5">
+              <label className="block text-xs font-semibold text-neutral-800 dark:text-neutral-200 mb-1.5">
                 Transaction / Wire Reference #
               </label>
               <input
@@ -193,18 +193,18 @@ export const HostInvoiceModal: React.FC<HostInvoiceModalProps> = ({
                 value={transactionRef}
                 onChange={(e) => setTransactionRef(e.target.value)}
                 placeholder="e.g. REF-SG26-8821 or Wire Ref #"
-                className="w-full px-3.5 py-2.5 rounded-lg border border-neutral-200 text-xs sm:text-sm text-neutral-900 focus:outline-none focus:ring-2 focus:ring-[#C39B4C]/20 focus:border-[#C39B4C] bg-white font-mono"
+                className="w-full px-3.5 py-2.5 rounded-lg border border-neutral-200 dark:border-neutral-800 text-xs sm:text-sm text-neutral-900 dark:text-white placeholder:text-neutral-400 dark:placeholder:text-neutral-500 focus:outline-none focus:ring-2 focus:ring-[#C39B4C]/20 focus:border-[#C39B4C] bg-white dark:bg-neutral-950 font-mono"
               />
             </div>
 
             {/* Receipt File Upload */}
             <div>
-              <label className="block text-xs font-semibold text-neutral-800 mb-1.5">
+              <label className="block text-xs font-semibold text-neutral-800 dark:text-neutral-200 mb-1.5">
                 Attach Payment Receipt / Slip
               </label>
               <div
                 onClick={() => fileInputRef.current?.click()}
-                className="border-2 border-dashed border-neutral-200 hover:border-[#C39B4C]/60 rounded-xl p-4 text-center cursor-pointer transition-colors bg-neutral-50/50 hover:bg-neutral-50"
+                className="border-2 border-dashed border-neutral-200 dark:border-neutral-800 hover:border-[#C39B4C]/60 rounded-xl p-4 text-center cursor-pointer transition-colors bg-neutral-50/50 dark:bg-neutral-950/40 hover:bg-neutral-50 dark:hover:bg-neutral-900/60"
               >
                 <input
                   ref={fileInputRef}
@@ -214,18 +214,18 @@ export const HostInvoiceModal: React.FC<HostInvoiceModalProps> = ({
                   onChange={handleFileChange}
                 />
                 {receiptFile ? (
-                  <div className="flex items-center justify-center gap-2 text-emerald-600">
+                  <div className="flex items-center justify-center gap-2 text-emerald-600 dark:text-emerald-400">
                     <FileCheck className="size-5" />
-                    <span className="font-semibold text-neutral-800">{receiptFile.name}</span>
-                    <span className="text-[11px] text-neutral-400">
+                    <span className="font-semibold text-neutral-800 dark:text-neutral-200">{receiptFile.name}</span>
+                    <span className="text-[11px] text-neutral-400 dark:text-neutral-500">
                       ({(receiptFile.size / 1024).toFixed(0)} KB)
                     </span>
                   </div>
                 ) : (
-                  <div className="flex flex-col items-center gap-1.5 text-neutral-500">
+                  <div className="flex flex-col items-center gap-1.5 text-neutral-500 dark:text-neutral-400">
                     <Upload className="size-5 text-[#C39B4C]" />
-                    <span className="font-medium text-neutral-700">Click to upload transfer receipt</span>
-                    <span className="text-[11px] text-neutral-400">PDF, JPG, PNG (Max 5MB)</span>
+                    <span className="font-medium text-neutral-700 dark:text-neutral-300">Click to upload transfer receipt</span>
+                    <span className="text-[11px] text-neutral-400 dark:text-neutral-500">PDF, JPG, PNG (Max 5MB)</span>
                   </div>
                 )}
               </div>
@@ -233,7 +233,7 @@ export const HostInvoiceModal: React.FC<HostInvoiceModalProps> = ({
 
             {/* Notes */}
             <div>
-              <label className="block text-xs font-semibold text-neutral-800 mb-1.5">
+              <label className="block text-xs font-semibold text-neutral-800 dark:text-neutral-200 mb-1.5">
                 Notes or Remarks (Optional)
               </label>
               <textarea
@@ -241,16 +241,16 @@ export const HostInvoiceModal: React.FC<HostInvoiceModalProps> = ({
                 value={notes}
                 onChange={(e) => setNotes(e.target.value)}
                 placeholder="Additional details about your payment..."
-                className="w-full px-3.5 py-2 rounded-lg border border-neutral-200 text-xs text-neutral-900 focus:outline-none focus:ring-2 focus:ring-[#C39B4C]/20 focus:border-[#C39B4C] bg-white resize-none"
+                className="w-full px-3.5 py-2 rounded-lg border border-neutral-200 dark:border-neutral-800 text-xs text-neutral-900 dark:text-white placeholder:text-neutral-400 dark:placeholder:text-neutral-500 focus:outline-none focus:ring-2 focus:ring-[#C39B4C]/20 focus:border-[#C39B4C] bg-white dark:bg-neutral-950 resize-none"
               />
             </div>
 
             {/* Submit Action Buttons */}
-            <div className="flex items-center justify-between pt-4 border-t border-neutral-100">
+            <div className="flex items-center justify-between pt-4 border-t border-neutral-100 dark:border-neutral-800">
               <button
                 type="button"
                 onClick={() => setIsSubmitMode(false)}
-                className="inline-flex items-center gap-1.5 px-3.5 py-2 text-xs font-medium text-neutral-600 hover:bg-neutral-100 rounded-lg cursor-pointer transition-colors"
+                className="inline-flex items-center gap-1.5 px-3.5 py-2 text-xs font-medium text-neutral-600 dark:text-neutral-400 hover:bg-neutral-100 dark:hover:bg-neutral-800 rounded-lg cursor-pointer transition-colors"
               >
                 <ArrowLeft className="size-3.5" />
                 <span>Back to Invoice</span>
@@ -271,84 +271,84 @@ export const HostInvoiceModal: React.FC<HostInvoiceModalProps> = ({
           /* INVOICE DETAILS VIEW */
           /* ========================================================================= */
           <>
-            <div className="space-y-4 pt-4 text-xs text-neutral-600">
+            <div className="space-y-4 pt-4 text-xs text-neutral-600 dark:text-neutral-400">
               {/* Status & Date */}
-              <div className="flex justify-between items-center bg-neutral-50 p-3 rounded-xl">
+              <div className="flex justify-between items-center bg-neutral-50 dark:bg-neutral-950 border border-neutral-100 dark:border-neutral-800 p-3 rounded-xl">
                 <div>
-                  <span className="text-neutral-400 block text-[11px]">Date</span>
-                  <span className="font-semibold text-neutral-800">
+                  <span className="text-neutral-400 dark:text-neutral-500 block text-[11px]">Date</span>
+                  <span className="font-semibold text-neutral-800 dark:text-neutral-200">
                     {invoice.date}
                   </span>
                 </div>
                 <div className="text-right">
-                  <span className="text-neutral-400 block text-[11px]">Status</span>
-                  <span className="inline-block px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-[#FEF3C7] text-[#D97706]">
+                  <span className="text-neutral-400 dark:text-neutral-500 block text-[11px]">Status</span>
+                  <span className="inline-block px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-[#FEF3C7] dark:bg-amber-950/50 text-[#D97706] dark:text-amber-400">
                     {invoice.status}
                   </span>
                 </div>
               </div>
 
               {/* Event & Host Info */}
-              <div className="grid grid-cols-2 gap-3 p-3 bg-neutral-50 rounded-xl">
+              <div className="grid grid-cols-2 gap-3 p-3 bg-neutral-50 dark:bg-neutral-950 border border-neutral-100 dark:border-neutral-800 rounded-xl">
                 <div>
-                  <span className="text-neutral-400 block text-[11px]">Event</span>
-                  <span className="font-semibold text-neutral-900 text-sm">
+                  <span className="text-neutral-400 dark:text-neutral-500 block text-[11px]">Event</span>
+                  <span className="font-semibold text-neutral-900 dark:text-white text-sm">
                     {invoice.eventName}
                   </span>
-                  <span className="text-[11px] text-neutral-500 block mt-0.5">
+                  <span className="text-[11px] text-neutral-500 dark:text-neutral-400 block mt-0.5">
                     {invoice.packageType}
                   </span>
                 </div>
                 <div>
-                  <span className="text-neutral-400 block text-[11px]">Host</span>
-                  <span className="font-semibold text-neutral-900 text-sm">
+                  <span className="text-neutral-400 dark:text-neutral-500 block text-[11px]">Host</span>
+                  <span className="font-semibold text-neutral-900 dark:text-white text-sm">
                     {invoice.hostName}
                   </span>
-                  <span className="text-[11px] text-neutral-500 block mt-0.5">
+                  <span className="text-[11px] text-neutral-500 dark:text-neutral-400 block mt-0.5">
                     {invoice.hostEmail}
                   </span>
                 </div>
               </div>
 
               {/* Bank Transfer Details */}
-              <div className="p-4 bg-amber-50/60 border border-[#C39B4C]/20 rounded-xl space-y-2">
+              <div className="p-4 bg-amber-50/60 dark:bg-amber-950/20 border border-[#C39B4C]/20 dark:border-amber-800/40 rounded-xl space-y-2">
                 <div className="flex items-center gap-2 text-[#C39B4C] font-semibold text-xs mb-1">
                   <Landmark className="size-4" />
                   <span>Official Bank Transfer Instructions</span>
                 </div>
                 <div className="grid grid-cols-2 gap-2 text-[11px]">
                   <div>
-                    <span className="text-neutral-400 block">Bank Name:</span>
-                    <span className="font-medium text-neutral-800">
+                    <span className="text-neutral-400 dark:text-neutral-500 block">Bank Name:</span>
+                    <span className="font-medium text-neutral-800 dark:text-neutral-200">
                       {invoice.bankDetails.bankName}
                     </span>
                   </div>
                   <div>
-                    <span className="text-neutral-400 block">Account Name:</span>
-                    <span className="font-medium text-neutral-800">
+                    <span className="text-neutral-400 dark:text-neutral-500 block">Account Name:</span>
+                    <span className="font-medium text-neutral-800 dark:text-neutral-200">
                       {invoice.bankDetails.accountName}
                     </span>
                   </div>
                   <div>
-                    <span className="text-neutral-400 block">Account Number:</span>
-                    <span className="font-mono font-medium text-neutral-800">
+                    <span className="text-neutral-400 dark:text-neutral-500 block">Account Number:</span>
+                    <span className="font-mono font-medium text-neutral-800 dark:text-neutral-200">
                       {invoice.bankDetails.accountNumber}
                     </span>
                   </div>
                   <div>
-                    <span className="text-neutral-400 block">Routing Number:</span>
-                    <span className="font-mono font-medium text-neutral-800">
+                    <span className="text-neutral-400 dark:text-neutral-500 block">Routing Number:</span>
+                    <span className="font-mono font-medium text-neutral-800 dark:text-neutral-200">
                       {invoice.bankDetails.routingNumber}
                     </span>
                   </div>
                   <div>
-                    <span className="text-neutral-400 block">SWIFT / BIC:</span>
-                    <span className="font-mono font-medium text-neutral-800">
+                    <span className="text-neutral-400 dark:text-neutral-500 block">SWIFT / BIC:</span>
+                    <span className="font-mono font-medium text-neutral-800 dark:text-neutral-200">
                       {invoice.bankDetails.swiftCode}
                     </span>
                   </div>
                   <div>
-                    <span className="text-neutral-400 block">Reference ID:</span>
+                    <span className="text-neutral-400 dark:text-neutral-500 block">Reference ID:</span>
                     <span className="font-mono font-bold text-[#C39B4C]">
                       {invoice.bankDetails.referenceNumber}
                     </span>
@@ -357,7 +357,7 @@ export const HostInvoiceModal: React.FC<HostInvoiceModalProps> = ({
               </div>
 
               {/* Amount Due */}
-              <div className="flex justify-between items-center p-3 bg-neutral-900 text-white rounded-xl">
+              <div className="flex justify-between items-center p-3 bg-neutral-900 dark:bg-black border border-transparent dark:border-neutral-800 text-white rounded-xl">
                 <div>
                   <span className="text-neutral-400 text-xs">Total Amount Due</span>
                   <p className="text-xs text-neutral-400">
@@ -371,11 +371,11 @@ export const HostInvoiceModal: React.FC<HostInvoiceModalProps> = ({
             </div>
 
             {/* Modal Actions */}
-            <div className="flex items-center justify-between gap-3 pt-5 border-t border-neutral-100 mt-4">
+            <div className="flex items-center justify-between gap-3 pt-5 border-t border-neutral-100 dark:border-neutral-800 mt-4">
               <button
                 type="button"
                 onClick={onClose}
-                className="px-4 py-2 text-xs font-medium text-neutral-600 hover:bg-neutral-100 rounded-lg cursor-pointer transition-colors"
+                className="px-4 py-2 text-xs font-medium text-neutral-600 dark:text-neutral-400 hover:bg-neutral-100 dark:hover:bg-neutral-800 rounded-lg cursor-pointer transition-colors"
               >
                 Close
               </button>
@@ -384,7 +384,7 @@ export const HostInvoiceModal: React.FC<HostInvoiceModalProps> = ({
                 <button
                   type="button"
                   onClick={handleDownload}
-                  className="inline-flex items-center gap-1.5 px-3.5 py-2 border border-neutral-200 hover:bg-neutral-50 text-neutral-700 text-xs font-semibold rounded-lg shadow-2xs cursor-pointer transition-all"
+                  className="inline-flex items-center gap-1.5 px-3.5 py-2 border border-neutral-200 dark:border-neutral-700 hover:bg-neutral-50 dark:hover:bg-neutral-800 text-neutral-700 dark:text-neutral-200 text-xs font-semibold rounded-lg shadow-2xs cursor-pointer transition-all"
                 >
                   <Download className="size-3.5" />
                   <span>Download</span>
@@ -396,7 +396,7 @@ export const HostInvoiceModal: React.FC<HostInvoiceModalProps> = ({
                     onClose();
                     router.push(`/host/payment-pending/${event.id}`);
                   }}
-                  className="inline-flex items-center gap-1.5 px-3 py-2 border border-[#C39B4C]/60 text-[#C39B4C] hover:bg-[#FFFBF0] text-xs font-semibold rounded-lg shadow-2xs cursor-pointer transition-all"
+                  className="inline-flex items-center gap-1.5 px-3 py-2 border border-[#C39B4C]/60 text-[#C39B4C] hover:bg-[#FFFBF0] dark:hover:bg-amber-950/30 text-xs font-semibold rounded-lg shadow-2xs cursor-pointer transition-all"
                 >
                   <Upload className="size-3.5" />
                   <span>Upload Receipt</span>

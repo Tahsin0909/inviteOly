@@ -84,7 +84,7 @@ export const AdminMatrics: React.FC<AdminMatricsProps> = ({
             {data.cards.map((card: IAdminMetricCard) => (
                 <div
                     key={card.id}
-                    className="bg-white rounded-2xl p-5 border border-neutral-200/70 shadow-xs hover:shadow-md transition-all duration-200 flex flex-col justify-between"
+                    className="bg-white dark:bg-neutral-900/60 rounded-2xl p-5 border border-neutral-200/70 dark:border-neutral-800 shadow-xs hover:shadow-md dark:hover:border-neutral-700 transition-all duration-200 flex flex-col justify-between"
                 >
                     {/* Top Gold Badge Icon */}
                     <div className="size-10 rounded-xl bg-[#B89047] flex items-center justify-center shadow-xs shrink-0">
@@ -93,15 +93,15 @@ export const AdminMatrics: React.FC<AdminMatricsProps> = ({
 
                     {/* Value and Label / Growth Row */}
                     <div className="mt-4">
-                        <p className="text-2xl sm:text-[28px] font-bold font-space-grotesk text-neutral-900 tracking-tight">
+                        <p className="text-2xl sm:text-[28px] font-bold font-space-grotesk text-neutral-900 dark:text-white tracking-tight">
                             {card.value}
                         </p>
 
                         <div className="flex items-center justify-between mt-1.5 gap-2">
-                            <span className="text-xs sm:text-sm font-medium text-neutral-500 font-work-sans truncate">
+                            <span className="text-xs sm:text-sm font-medium text-neutral-500 dark:text-neutral-400 font-work-sans truncate">
                                 {card.title}
                             </span>
-                            <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-semibold bg-[#E8F8EE] text-[#0FA958] shrink-0">
+                            <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-semibold bg-[#E8F8EE] dark:bg-emerald-950/40 text-[#0FA958] dark:text-emerald-400 shrink-0">
                                 {card.growthRate}
                             </span>
                         </div>
@@ -113,4 +113,3 @@ export const AdminMatrics: React.FC<AdminMatricsProps> = ({
 };
 
 export default AdminMatrics;
-

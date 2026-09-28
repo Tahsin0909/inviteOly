@@ -73,7 +73,7 @@ export const DemoUserSwitcher: React.FC<DemoUserSwitcherProps> = ({ onSelectUser
   const getRoleBadge = (user: IUser) => {
     if (user.role === IRole.ADMIN) {
       return (
-        <span className="inline-flex items-center gap-1 text-[10px] font-semibold text-indigo-300 bg-indigo-500/15 border border-indigo-500/30 px-1.5 py-0.5 rounded-full">
+        <span className="inline-flex items-center gap-1 text-[10px] font-semibold text-indigo-700 dark:text-indigo-300 bg-indigo-500/10 dark:bg-indigo-500/15 border border-indigo-500/20 dark:border-indigo-500/30 px-1.5 py-0.5 rounded-full">
           <Shield className="size-2.5" />
           Admin
         </span>
@@ -84,7 +84,7 @@ export const DemoUserSwitcher: React.FC<DemoUserSwitcherProps> = ({ onSelectUser
         ? `${user.partnerType} Partner`
         : "Partner";
       return (
-        <span className="inline-flex items-center gap-1 text-[10px] font-semibold text-sky-300 bg-sky-500/15 border border-sky-500/30 px-1.5 py-0.5 rounded-full">
+        <span className="inline-flex items-center gap-1 text-[10px] font-semibold text-sky-700 dark:text-sky-300 bg-sky-500/10 dark:bg-sky-500/15 border border-sky-500/20 dark:border-sky-500/30 px-1.5 py-0.5 rounded-full">
           <Building2 className="size-2.5" />
           {partnerLabel}
         </span>
@@ -92,14 +92,14 @@ export const DemoUserSwitcher: React.FC<DemoUserSwitcherProps> = ({ onSelectUser
     }
     if (user.referredBy || user.referredByHostId) {
       return (
-        <span className="inline-flex items-center gap-1 text-[10px] font-semibold text-emerald-300 bg-emerald-500/15 border border-emerald-500/30 px-1.5 py-0.5 rounded-full">
+        <span className="inline-flex items-center gap-1 text-[10px] font-semibold text-emerald-700 dark:text-emerald-300 bg-emerald-500/10 dark:bg-emerald-500/15 border border-emerald-500/20 dark:border-emerald-500/30 px-1.5 py-0.5 rounded-full">
           <Sparkles className="size-2.5" />
           Referred Host
         </span>
       );
     }
     return (
-      <span className="inline-flex items-center gap-1 text-[10px] font-semibold text-[#E5C170] bg-[#C39B4C]/15 border border-[#C39B4C]/30 px-1.5 py-0.5 rounded-full">
+      <span className="inline-flex items-center gap-1 text-[10px] font-semibold text-[#8C6B28] dark:text-[#E5C170] bg-[#C39B4C]/10 dark:bg-[#C39B4C]/15 border border-[#C39B4C]/25 dark:border-[#C39B4C]/30 px-1.5 py-0.5 rounded-full">
         <User className="size-2.5" />
         Host
       </span>
@@ -110,10 +110,10 @@ export const DemoUserSwitcher: React.FC<DemoUserSwitcherProps> = ({ onSelectUser
     <div className="py-1 px-1 font-work-sans">
       {/* Header */}
       <div className="flex items-center justify-between px-2 py-1 mb-1 text-xs">
-        <span className="font-semibold text-neutral-300 text-[11px] tracking-wide uppercase">
+        <span className="font-semibold text-neutral-600 dark:text-neutral-300 text-[11px] tracking-wide uppercase">
           Demo Switcher
         </span>
-        <span className="text-[10px] font-medium text-neutral-400 bg-neutral-800 px-1.5 py-0.2 rounded border border-neutral-700/60">
+        <span className="text-[10px] font-medium text-neutral-600 dark:text-neutral-400 bg-neutral-100 dark:bg-neutral-800 px-1.5 py-0.5 rounded border border-neutral-200 dark:border-neutral-700/60">
           Click to switch
         </span>
       </div>
@@ -130,16 +130,16 @@ export const DemoUserSwitcher: React.FC<DemoUserSwitcherProps> = ({ onSelectUser
               type="button"
               onClick={() => handleSwitchUser(user)}
               className={`w-full text-left p-2 rounded-xl transition-all cursor-pointer flex items-center justify-between group ${isSelected
-                ? "bg-neutral-800 border border-[#C39B4C]/40 shadow-xs"
-                : "hover:bg-neutral-800/60 border border-transparent"
+                  ? "bg-[#C39B4C]/10 dark:bg-neutral-800 border border-[#C39B4C]/50 shadow-xs"
+                  : "hover:bg-neutral-100 dark:hover:bg-neutral-800/60 border border-transparent"
                 }`}
             >
               <div className="flex items-center gap-2.5 min-w-0">
                 {/* User Avatar Circle */}
                 <div
                   className={`size-7 rounded-full flex items-center justify-center text-xs font-bold shrink-0 ${isSelected
-                    ? "bg-[#C39B4C]/25 text-[#E5C170] border border-[#C39B4C]/50"
-                    : "bg-neutral-700/80 text-neutral-300 group-hover:bg-neutral-700"
+                      ? "bg-[#C39B4C]/20 dark:bg-[#C39B4C]/25 text-[#8C6B28] dark:text-[#E5C170] border border-[#C39B4C]/50"
+                      : "bg-neutral-200/80 dark:bg-neutral-700/80 text-neutral-700 dark:text-neutral-300 group-hover:bg-neutral-300/80 dark:group-hover:bg-neutral-700"
                     }`}
                 >
                   {user.firstName[0]}
@@ -149,19 +149,19 @@ export const DemoUserSwitcher: React.FC<DemoUserSwitcherProps> = ({ onSelectUser
                 {/* User Info */}
                 <div className="min-w-0">
                   <div className="flex items-center gap-1.5 flex-wrap">
-                    <p className="text-xs font-semibold text-white truncate group-hover:text-[#E5C170] transition-colors">
+                    <p className="text-xs font-semibold text-neutral-900 dark:text-white truncate group-hover:text-primary transition-colors">
                       {user.firstName} {user.lastName}
                     </p>
                     {getRoleBadge(user)}
                   </div>
                   {user.businessName && (
-                    <p className="text-[10px] text-neutral-400 truncate">
+                    <p className="text-[10px] text-neutral-500 dark:text-neutral-400 truncate">
                       {user.businessName}
                     </p>
                   )}
-                  <p className="text-[10px] text-neutral-400 truncate flex items-center gap-1 mt-0.5">
+                  <p className="text-[10px] text-neutral-500 dark:text-neutral-400 truncate flex items-center gap-1 mt-0.5">
                     <span>Redirects:</span>
-                    <span className="font-mono text-neutral-300 font-medium">
+                    <span className="font-mono text-neutral-700 dark:text-neutral-300 font-medium">
                       {targetRoute}
                     </span>
                   </p>
@@ -171,11 +171,11 @@ export const DemoUserSwitcher: React.FC<DemoUserSwitcherProps> = ({ onSelectUser
               {/* Status / Selection Indicator */}
               <div className="shrink-0 ml-2">
                 {isSelected ? (
-                  <div className="size-5 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center border border-emerald-500/40">
+                  <div className="size-5 rounded-full bg-emerald-500/20 text-emerald-600 dark:text-emerald-400 flex items-center justify-center border border-emerald-500/40">
                     <Check className="size-3 stroke-[3]" />
                   </div>
                 ) : (
-                  <ArrowRight className="size-3.5 text-neutral-500 group-hover:text-neutral-300 group-hover:translate-x-0.5 transition-all" />
+                  <ArrowRight className="size-3.5 text-neutral-400 dark:text-neutral-500 group-hover:text-neutral-700 dark:group-hover:text-neutral-300 group-hover:translate-x-0.5 transition-all" />
                 )}
               </div>
             </button>

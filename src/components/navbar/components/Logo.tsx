@@ -40,9 +40,9 @@ export const Logo: React.FC<LogoProps> = ({
       {showText && (
         <span
           className={cn(
-            "font-space-grotesk font-bold tracking-tight text-white leading-none",
+            "font-space-grotesk font-bold tracking-tight leading-none",
             sizeClasses[size],
-            textClassName
+            textClassName || "text-white"
           )}
         >
           Invite<span className="text-primary">O</span>ly

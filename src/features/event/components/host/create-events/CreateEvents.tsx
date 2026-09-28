@@ -115,10 +115,10 @@ export const CreateEvents: React.FC = () => {
         <div className="w-full space-y-8 font-work-sans pb-16">
             {/* Page Title */}
             <div>
-                <h1 className="text-2xl sm:text-3xl font-bold font-space-grotesk text-neutral-900 tracking-tight">
+                <h1 className="text-2xl sm:text-3xl font-bold font-space-grotesk text-neutral-900 dark:text-white tracking-tight">
                     Create Event
                 </h1>
-                <p className="text-xs sm:text-sm text-neutral-500 font-work-sans mt-1">
+                <p className="text-xs sm:text-sm text-neutral-500 dark:text-neutral-400 font-work-sans mt-1">
                     Follow the steps below to configure your packages, details, ticket
                     design, and guest list.
                 </p>
@@ -128,7 +128,7 @@ export const CreateEvents: React.FC = () => {
             <div className="w-full max-w-4xl mx-auto py-6 px-4">
                 <div className="relative flex items-center justify-between">
                     {/* Connecting Line behind the circles */}
-                    <div className="absolute left-6 right-6 top-4 h-[1.5px] bg-neutral-300 -translate-y-1/2 z-0" />
+                    <div className="absolute left-6 right-6 top-4 h-[1.5px] bg-neutral-300 dark:bg-neutral-700 -translate-y-1/2 z-0" />
 
                     {steps.map((step) => {
                         const maxStep = isStandard ? 5 : 6;
@@ -146,8 +146,8 @@ export const CreateEvents: React.FC = () => {
                                     className={`flex h-8 w-8 sm:h-9 sm:w-9 items-center justify-center rounded-full transition-all ${isCompleted
                                         ? "bg-[#0FA958] text-white shadow-2xs"
                                         : isActive
-                                            ? "bg-white border-2 border-[#0FA958] text-[#0FA958] font-semibold ring-4 ring-[#0FA958]/10"
-                                            : "bg-white border border-neutral-400 text-neutral-600 font-medium group-hover:border-neutral-700"
+                                            ? "bg-white dark:bg-neutral-900 border-2 border-[#0FA958] text-[#0FA958] font-semibold ring-4 ring-[#0FA958]/10"
+                                            : "bg-white dark:bg-neutral-900 border border-neutral-400 dark:border-neutral-600 text-neutral-600 dark:text-neutral-400 group-hover:border-neutral-700 dark:group-hover:border-neutral-300"
                                         }`}
                                 >
                                     {isCompleted ? (
@@ -162,10 +162,10 @@ export const CreateEvents: React.FC = () => {
                                 {/* Step Title Label */}
                                 <span
                                     className={`mt-2.5 text-xs sm:text-[13px] font-work-sans text-center whitespace-nowrap transition-colors ${isActive
-                                        ? "font-semibold text-neutral-900"
+                                        ? "font-semibold text-neutral-900 dark:text-white"
                                         : isCompleted
-                                            ? "font-medium text-neutral-800"
-                                            : "text-neutral-500 group-hover:text-neutral-900"
+                                            ? "font-medium text-neutral-800 dark:text-neutral-200"
+                                            : "text-neutral-500 dark:text-neutral-400 group-hover:text-neutral-900 dark:group-hover:text-white"
                                         }`}
                                 >
                                     {step.title}

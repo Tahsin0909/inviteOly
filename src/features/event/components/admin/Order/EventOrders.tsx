@@ -72,11 +72,10 @@ export const EventOrders: React.FC<EventOrdersProps> = ({ className }) => {
 
     const handleApproveOrder = async (orderId: string) => {
         try {
-            await approveMutation(orderId);
+            await approveMutation(orderId).unwrap();
         } catch {
-            // Offline fallback
+            // Local fallback
         }
-
         setOrderList((prev) =>
             prev.map((o) => (o.id === orderId ? { ...o, status: "Approved" } : o))
         );
@@ -86,13 +85,13 @@ export const EventOrders: React.FC<EventOrdersProps> = ({ className }) => {
         switch (status) {
             case "Waiting Approval":
             case "Awaiting Approval":
-                return "bg-[#FEF7EC] text-[#D97706] border border-[#FDE68A]/60";
+                return "bg-[#FEF7EC] dark:bg-amber-950/40 text-[#D97706] dark:text-amber-400 border border-[#FDE68A]/60 dark:border-amber-800/60";
             case "Upload Invoice":
-                return "bg-[#FFFBEB] text-[#B45309] border border-[#FDE68A]/70";
+                return "bg-[#FFFBEB] dark:bg-yellow-950/40 text-[#B45309] dark:text-yellow-400 border border-[#FDE68A]/70 dark:border-yellow-800/60";
             case "Approved":
-                return "bg-[#ECFDF3] text-[#027A48] border border-[#ABEFC6]/60";
+                return "bg-[#ECFDF3] dark:bg-emerald-950/40 text-[#027A48] dark:text-emerald-400 border border-[#ABEFC6]/60 dark:border-emerald-800/60";
             default:
-                return "bg-neutral-100 text-neutral-700";
+                return "bg-neutral-100 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300";
         }
     };
 
@@ -103,7 +102,7 @@ export const EventOrders: React.FC<EventOrdersProps> = ({ className }) => {
                 {orders.map((order) => (
                     <div
                         key={order.id}
-                        className="bg-white rounded-2xl p-5 sm:p-6 border border-neutral-200/70 shadow-xs hover:shadow-md transition-all duration-200 flex flex-col justify-between"
+                        className="bg-white dark:bg-neutral-900/60 rounded-2xl p-5 sm:p-6 border border-neutral-200/70 dark:border-neutral-800 shadow-xs hover:shadow-md dark:hover:border-neutral-700 transition-all duration-200 flex flex-col justify-between"
                     >
                         <div>
                             {/* Status Badge */}
@@ -119,12 +118,12 @@ export const EventOrders: React.FC<EventOrdersProps> = ({ className }) => {
                             </div>
 
                             {/* Event Title */}
-                            <h3 className="text-base sm:text-lg font-bold font-space-grotesk text-neutral-900 mt-3 sm:mt-3.5 leading-snug">
+                            <h3 className="text-base sm:text-lg font-bold font-space-grotesk text-neutral-900 dark:text-white mt-3 sm:mt-3.5 leading-snug">
                                 {order.title}
                             </h3>
 
                             {/* Date & Time */}
-                            <div className="flex flex-wrap items-center gap-x-4 gap-y-1.5 text-xs text-neutral-600 font-work-sans mt-3 sm:mt-3.5">
+                            <div className="flex flex-wrap items-center gap-x-4 gap-y-1.5 text-xs text-neutral-600 dark:text-neutral-400 font-work-sans mt-3 sm:mt-3.5">
                                 <div className="flex items-center gap-1.5">
                                     <Calendar className="size-3.5 sm:size-4 text-neutral-400 shrink-0" />
                                     <span>{order.date}</span>
@@ -136,23 +135,23 @@ export const EventOrders: React.FC<EventOrdersProps> = ({ className }) => {
                             </div>
 
                             {/* Host */}
-                            <div className="flex items-center gap-2 text-xs text-neutral-800 font-medium font-work-sans mt-3">
+                            <div className="flex items-center gap-2 text-xs text-neutral-800 dark:text-neutral-200 font-medium font-work-sans mt-3">
                                 <HostUserIcon />
                                 <span className="truncate">{order.hostName}</span>
                             </div>
 
                             {/* Venue */}
-                            <div className="flex items-center gap-2 text-xs text-neutral-800 font-medium font-work-sans mt-3">
+                            <div className="flex items-center gap-2 text-xs text-neutral-800 dark:text-neutral-200 font-medium font-work-sans mt-3">
                                 <VenuePavilionIcon />
                                 <span className="truncate">{order.venue}</span>
                             </div>
 
                             {/* Total Guest */}
                             <div className="mt-4">
-                                <p className="text-xs text-neutral-500 font-medium font-work-sans">
+                                <p className="text-xs text-neutral-500 dark:text-neutral-400 font-medium font-work-sans">
                                     Total Guest
                                 </p>
-                                <p className="text-2xl sm:text-[26px] font-bold font-space-grotesk text-neutral-900 tracking-tight mt-0.5">
+                                <p className="text-2xl sm:text-[26px] font-bold font-space-grotesk text-neutral-900 dark:text-white tracking-tight mt-0.5">
                                     {order.totalGuests}
                                 </p>
                             </div>
@@ -161,7 +160,7 @@ export const EventOrders: React.FC<EventOrdersProps> = ({ className }) => {
                         {/* Action Button */}
                         <div className="mt-5">
                             {order.status === "Approved" ? (
-                                <div className="w-full rounded-xl bg-emerald-50 text-emerald-700 py-2.5 text-xs sm:text-sm font-medium font-work-sans text-center border border-emerald-200/60">
+                                <div className="w-full rounded-xl bg-emerald-50 dark:bg-emerald-950/40 text-emerald-700 dark:text-emerald-300 py-2.5 text-xs sm:text-sm font-medium font-work-sans text-center border border-emerald-200/60 dark:border-emerald-800/60">
                                     Approved
                                 </div>
                             ) : (
@@ -183,7 +182,7 @@ export const EventOrders: React.FC<EventOrdersProps> = ({ className }) => {
                 <button
                     type="button"
                     onClick={() => setCurrentPage((p) => Math.max(1, p - 1))}
-                    className="size-8 rounded-lg flex items-center justify-center text-neutral-400 hover:text-neutral-700 hover:bg-neutral-100 transition-colors cursor-pointer"
+                    className="size-8 rounded-lg flex items-center justify-center text-neutral-400 dark:text-neutral-500 hover:text-neutral-700 dark:hover:text-neutral-200 hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors cursor-pointer"
                 >
                     <ChevronLeft className="size-4" />
                 </button>
@@ -198,8 +197,8 @@ export const EventOrders: React.FC<EventOrdersProps> = ({ className }) => {
                             className={cn(
                                 "size-8 rounded-lg text-xs sm:text-sm font-medium flex items-center justify-center transition-all cursor-pointer",
                                 isActive
-                                    ? "bg-[#B89047] text-white font-semibold shadow-xs"
-                                    : "text-neutral-600 hover:bg-neutral-100"
+                                    ? "bg-[#B89047] text-white shadow-xs font-semibold"
+                                    : "text-neutral-600 dark:text-neutral-400 hover:bg-neutral-100 dark:hover:bg-neutral-800 hover:text-neutral-900 dark:hover:text-white"
                             )}
                         >
                             {page}
@@ -210,13 +209,13 @@ export const EventOrders: React.FC<EventOrdersProps> = ({ className }) => {
                 <button
                     type="button"
                     onClick={() => setCurrentPage((p) => Math.min(5, p + 1))}
-                    className="size-8 rounded-lg flex items-center justify-center text-neutral-400 hover:text-neutral-700 hover:bg-neutral-100 transition-colors cursor-pointer"
+                    className="size-8 rounded-lg flex items-center justify-center text-neutral-400 dark:text-neutral-500 hover:text-neutral-700 dark:hover:text-neutral-200 hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors cursor-pointer"
                 >
                     <ChevronRight className="size-4" />
                 </button>
             </div>
 
-            {/* Payment Proof Modal Dialog */}
+            {/* Payment Proof Modal */}
             <PaymentProofModal
                 order={selectedOrder}
                 isOpen={isModalOpen}
@@ -228,4 +227,3 @@ export const EventOrders: React.FC<EventOrdersProps> = ({ className }) => {
 };
 
 export default EventOrders;
-

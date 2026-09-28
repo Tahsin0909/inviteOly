@@ -7,6 +7,7 @@ export interface LogoProps {
   size?: "sm" | "md" | "lg";
   showText?: boolean;
   textClassName?: string;
+  theme?: "Dark" | "Light";
 }
 
 export const Logo: React.FC<LogoProps> = ({
@@ -14,6 +15,7 @@ export const Logo: React.FC<LogoProps> = ({
   size = "md",
   showText = true,
   textClassName,
+  theme
 }) => {
   const sizeClasses = {
     sm: "text-xl sm:text-2xl",
@@ -26,6 +28,13 @@ export const Logo: React.FC<LogoProps> = ({
     md: { width: 40, height: 40, className: "size-9 sm:size-10" },
     lg: { width: 48, height: 48, className: "size-11 sm:size-12" },
   };
+
+  const textColor =
+    theme === "Dark"
+      ? "text-black"
+      : theme === "Light"
+        ? "text-white"
+        : "text-neutral-900 dark:text-white";
 
   return (
     <div className={cn("inline-flex items-center gap-2.5 select-none", className)}>
@@ -45,7 +54,9 @@ export const Logo: React.FC<LogoProps> = ({
             textClassName
           )}
         >
-          Invite<span className="text-primary">O</span>ly
+          <span className={textColor}>Invite</span>
+          <span className="text-primary">O</span>
+          <span className={textColor}>ly</span>
         </span>
       )}
     </div>

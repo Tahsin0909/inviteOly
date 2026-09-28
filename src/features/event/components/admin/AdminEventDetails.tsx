@@ -365,12 +365,12 @@ export const AdminEventDetails: React.FC<AdminEventDetailsProps> = ({
   };
 
   return (
-    <div className={cn("w-full space-y-6 pb-16 font-work-sans text-neutral-900", className)}>
+    <div className={cn("w-full space-y-6 pb-16 font-work-sans text-neutral-900 dark:text-white", className)}>
       {/* Top Header: Back to Events */}
       <div>
         <Link
           href="/admin/events"
-          className="inline-flex items-center gap-1.5 text-xs text-neutral-500 hover:text-neutral-900 transition-colors font-medium mb-3"
+          className="inline-flex items-center gap-1.5 text-xs text-neutral-500 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white transition-colors font-medium mb-3"
         >
           <ArrowLeft className="size-3.5" />
           <span>Back to Events</span>
@@ -379,15 +379,15 @@ export const AdminEventDetails: React.FC<AdminEventDetailsProps> = ({
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
           <div>
             <div className="flex items-center gap-3">
-              <h1 className="text-xl sm:text-2xl lg:text-3xl font-bold font-space-grotesk text-neutral-900 tracking-tight">
+              <h1 className="text-xl sm:text-2xl lg:text-3xl font-bold font-space-grotesk text-neutral-900 dark:text-white tracking-tight">
                 {event.eventName || "Amina & Zayd Wedding Reception"}
               </h1>
-              <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-medium bg-emerald-50 text-emerald-700 border border-emerald-200/80">
+              <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-medium bg-emerald-50 dark:bg-emerald-950/40 text-emerald-700 dark:text-emerald-300 border border-emerald-200/80 dark:border-emerald-800/80">
                 <span className="size-1.5 rounded-full bg-emerald-500" />
                 Active Event
               </span>
             </div>
-            <p className="text-xs sm:text-sm text-neutral-500 mt-1">
+            <p className="text-xs sm:text-sm text-neutral-500 dark:text-neutral-400 mt-1">
               Event ID: {event.id || "EVT-29451"} · {event.eventDate || "Saturday, October 18, 2026"} ·{" "}
               {event.startTime || "5:00 PM"}–{event.endTime || "11:00 PM"}
             </p>
@@ -398,51 +398,51 @@ export const AdminEventDetails: React.FC<AdminEventDetailsProps> = ({
       {/* Top 4 Stat Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         {/* Card 1: Assigned Partner */}
-        <div className="p-4 sm:p-5 rounded-xl bg-white border border-neutral-200/80 shadow-xs">
-          <p className="text-[11px] font-semibold text-neutral-400 uppercase tracking-wider">
+        <div className="p-4 sm:p-5 rounded-xl bg-white dark:bg-neutral-900/60 border border-neutral-200/80 dark:border-neutral-800 shadow-xs">
+          <p className="text-[11px] font-semibold text-neutral-400 dark:text-neutral-500 uppercase tracking-wider">
             ASSIGNED PARTNER
           </p>
-          <p className="text-sm sm:text-base font-bold text-neutral-900 mt-1 truncate">
+          <p className="text-sm sm:text-base font-bold text-neutral-900 dark:text-white mt-1 truncate">
             {event.partnerName || "Golden Bay Event Center"}
           </p>
-          <p className="text-xs text-neutral-500 mt-0.5">
+          <p className="text-xs text-neutral-500 dark:text-neutral-400 mt-0.5">
             Partner ID: {event.partnerId || "PRT-1004"}
           </p>
         </div>
 
         {/* Card 2: Package */}
-        <div className="p-4 sm:p-5 rounded-xl bg-white border border-neutral-200/80 shadow-xs">
-          <p className="text-[11px] font-semibold text-neutral-400 uppercase tracking-wider">
+        <div className="p-4 sm:p-5 rounded-xl bg-white dark:bg-neutral-900/60 border border-neutral-200/80 dark:border-neutral-800 shadow-xs">
+          <p className="text-[11px] font-semibold text-neutral-400 dark:text-neutral-500 uppercase tracking-wider">
             PACKAGE
           </p>
-          <p className="text-sm sm:text-base font-bold text-neutral-900 mt-1 truncate">
+          <p className="text-sm sm:text-base font-bold text-neutral-900 dark:text-white mt-1 truncate">
             {event.packageTitle || "Premium Signature"}
           </p>
-          <p className="text-xs text-neutral-500 mt-0.5">
+          <p className="text-xs text-neutral-500 dark:text-neutral-400 mt-0.5">
             {event.packageCapacity || "Up to 400 guests"}
           </p>
         </div>
 
         {/* Card 3: Guest Progress */}
-        <div className="p-4 sm:p-5 rounded-xl bg-white border border-neutral-200/80 shadow-xs">
-          <p className="text-[11px] font-semibold text-neutral-400 uppercase tracking-wider">
+        <div className="p-4 sm:p-5 rounded-xl bg-white dark:bg-neutral-900/60 border border-neutral-200/80 dark:border-neutral-800 shadow-xs">
+          <p className="text-[11px] font-semibold text-neutral-400 dark:text-neutral-500 uppercase tracking-wider">
             GUEST PROGRESS
           </p>
-          <p className="text-lg sm:text-xl font-bold font-space-grotesk text-neutral-900 mt-0.5">
+          <p className="text-lg sm:text-xl font-bold font-space-grotesk text-neutral-900 dark:text-white mt-0.5">
             {event.assignedGuestsCount || 175} / {event.totalCapacity || 400}
           </p>
-          <p className="text-xs text-neutral-500 mt-0.5">tickets assigned</p>
+          <p className="text-xs text-neutral-500 dark:text-neutral-400 mt-0.5">tickets assigned</p>
         </div>
 
         {/* Card 4: Checked In */}
-        <div className="p-4 sm:p-5 rounded-xl bg-white border border-neutral-200/80 shadow-xs">
-          <p className="text-[11px] font-semibold text-neutral-400 uppercase tracking-wider">
+        <div className="p-4 sm:p-5 rounded-xl bg-white dark:bg-neutral-900/60 border border-neutral-200/80 dark:border-neutral-800 shadow-xs">
+          <p className="text-[11px] font-semibold text-neutral-400 dark:text-neutral-500 uppercase tracking-wider">
             CHECKED IN
           </p>
-          <p className="text-lg sm:text-xl font-bold font-space-grotesk text-neutral-900 mt-0.5">
+          <p className="text-lg sm:text-xl font-bold font-space-grotesk text-neutral-900 dark:text-white mt-0.5">
             {event.checkedInCount || 82}
           </p>
-          <p className="text-xs text-neutral-500 mt-0.5">
+          <p className="text-xs text-neutral-500 dark:text-neutral-400 mt-0.5">
             {Math.round(
               ((event.checkedInCount || 82) / (event.assignedGuestsCount || 175)) * 100
             )}
@@ -452,15 +452,15 @@ export const AdminEventDetails: React.FC<AdminEventDetailsProps> = ({
       </div>
 
       {/* Tabs */}
-      <div className="border-b border-neutral-200 flex items-center gap-8">
+      <div className="border-b border-neutral-200 dark:border-neutral-800 flex items-center gap-8">
         <button
           type="button"
           onClick={() => setActiveTab("overview")}
           className={cn(
             "pb-3 text-sm font-semibold transition-all cursor-pointer relative",
             activeTab === "overview"
-              ? "text-neutral-900 after:absolute after:bottom-0 after:left-0 after:right-0 after:h-0.5 after:bg-[#C39B4C]"
-              : "text-neutral-500 hover:text-neutral-800"
+              ? "text-neutral-900 dark:text-white after:absolute after:bottom-0 after:left-0 after:right-0 after:h-0.5 after:bg-[#C39B4C]"
+              : "text-neutral-500 dark:text-neutral-400 hover:text-neutral-800 dark:hover:text-neutral-200"
           )}
         >
           Event Overview
@@ -472,7 +472,7 @@ export const AdminEventDetails: React.FC<AdminEventDetailsProps> = ({
             "pb-3 text-sm font-semibold transition-all cursor-pointer relative",
             activeTab === "guests"
               ? "text-[#C39B4C] after:absolute after:bottom-0 after:left-0 after:right-0 after:h-0.5 after:bg-[#C39B4C]"
-              : "text-neutral-500 hover:text-neutral-800"
+              : "text-neutral-500 dark:text-neutral-400 hover:text-neutral-800 dark:hover:text-neutral-200"
           )}
         >
           Guests & Tickets ({guestTickets.length})
@@ -485,10 +485,10 @@ export const AdminEventDetails: React.FC<AdminEventDetailsProps> = ({
           {/* Section Header & Top Actions */}
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
             <div>
-              <h2 className="text-base sm:text-lg font-bold font-space-grotesk text-neutral-900">
+              <h2 className="text-base sm:text-lg font-bold font-space-grotesk text-neutral-900 dark:text-white">
                 {isStandard ? "Ticket Management" : "Guest & Ticket Management"}
               </h2>
-              <p className="text-xs sm:text-sm text-neutral-500">
+              <p className="text-xs sm:text-sm text-neutral-500 dark:text-neutral-400">
                 {isStandard
                   ? "View numbered ticket assignments, delivery links, and entry records."
                   : "View ticket assignments, delivery activity, RSVP responses and entry records."}
@@ -499,9 +499,9 @@ export const AdminEventDetails: React.FC<AdminEventDetailsProps> = ({
               <button
                 type="button"
                 onClick={handleExportCsv}
-                className="px-3.5 py-2 rounded-lg bg-white border border-neutral-200 text-xs font-semibold text-neutral-700 hover:bg-neutral-50 transition-colors inline-flex items-center gap-1.5 cursor-pointer shadow-2xs"
+                className="px-3.5 py-2 rounded-lg bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 text-xs font-semibold text-neutral-700 dark:text-neutral-300 hover:bg-neutral-50 dark:hover:bg-neutral-800 transition-colors inline-flex items-center gap-1.5 cursor-pointer shadow-2xs"
               >
-                <Download className="size-3.5 text-neutral-500" />
+                <Download className="size-3.5 text-neutral-500 dark:text-neutral-400" />
                 <span>{isStandard ? "Export Tickets" : "Export Guest List"}</span>
               </button>
 
@@ -531,13 +531,13 @@ export const AdminEventDetails: React.FC<AdminEventDetailsProps> = ({
                   setCurrentPage(1);
                 }}
                 placeholder={isStandard ? "Search ticket number (e.g. Guest 001)..." : "Search guest, email or ticket number"}
-                className="w-full h-10 pl-9 pr-3 rounded-lg bg-white border border-neutral-200 text-xs text-neutral-800 placeholder:text-neutral-400 focus:outline-none focus:border-[#C39B4C] transition-colors"
+                className="w-full h-10 pl-9 pr-3 rounded-lg bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 text-xs text-neutral-800 dark:text-neutral-200 placeholder:text-neutral-400 dark:placeholder:text-neutral-500 focus:outline-none focus:border-[#C39B4C] transition-colors"
               />
               {searchQuery && (
                 <button
                   type="button"
                   onClick={() => setSearchQuery("")}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 text-neutral-400 hover:text-neutral-600 cursor-pointer"
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-neutral-400 hover:text-neutral-600 dark:hover:text-neutral-300 cursor-pointer"
                 >
                   <X className="size-3.5" />
                 </button>
@@ -552,7 +552,7 @@ export const AdminEventDetails: React.FC<AdminEventDetailsProps> = ({
                   setTicketTypeFilter(e.target.value);
                   setCurrentPage(1);
                 }}
-                className="w-full h-10 px-3 pr-8 rounded-lg bg-white border border-neutral-200 text-xs text-neutral-700 focus:outline-none focus:border-[#C39B4C] appearance-none cursor-pointer"
+                className="w-full h-10 px-3 pr-8 rounded-lg bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 text-xs text-neutral-700 dark:text-neutral-300 focus:outline-none focus:border-[#C39B4C] appearance-none cursor-pointer"
               >
                 <option value="All Ticket Types">All Ticket Types</option>
                 <option value="General Admission">General Admission</option>
@@ -573,7 +573,7 @@ export const AdminEventDetails: React.FC<AdminEventDetailsProps> = ({
                   setStatusFilter(e.target.value);
                   setCurrentPage(1);
                 }}
-                className="w-full h-10 px-3 pr-8 rounded-lg bg-white border border-neutral-200 text-xs text-neutral-700 focus:outline-none focus:border-[#C39B4C] appearance-none cursor-pointer"
+                className="w-full h-10 px-3 pr-8 rounded-lg bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 text-xs text-neutral-700 dark:text-neutral-300 focus:outline-none focus:border-[#C39B4C] appearance-none cursor-pointer"
               >
                 <option value="All Statuses">All Statuses</option>
                 <option value="Scanned">Scanned</option>
@@ -594,7 +594,7 @@ export const AdminEventDetails: React.FC<AdminEventDetailsProps> = ({
                   setDeliveryFilter(e.target.value);
                   setCurrentPage(1);
                 }}
-                className="w-full h-10 px-3 pr-8 rounded-lg bg-white border border-neutral-200 text-xs text-neutral-700 focus:outline-none focus:border-[#C39B4C] appearance-none cursor-pointer"
+                className="w-full h-10 px-3 pr-8 rounded-lg bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 text-xs text-neutral-700 dark:text-neutral-300 focus:outline-none focus:border-[#C39B4C] appearance-none cursor-pointer"
               >
                 <option value="All Delivery Methods">Delivery Method</option>
                 <option value="Email">Email</option>
@@ -606,55 +606,55 @@ export const AdminEventDetails: React.FC<AdminEventDetailsProps> = ({
           </div>
 
           {/* Table Container */}
-          <div className="border border-neutral-200/90 rounded-xl overflow-hidden bg-white shadow-xs">
+          <div className="border border-neutral-200/90 dark:border-neutral-800 rounded-xl overflow-hidden bg-white dark:bg-neutral-900/40 shadow-xs">
             <div className="overflow-x-auto">
               <table className="w-full text-left border-collapse">
                 <thead>
-                  <tr className="border-b border-neutral-200/80 bg-neutral-50/50">
-                    <th className="py-3 px-4 text-[11px] font-semibold text-neutral-500 uppercase tracking-wider">
+                  <tr className="border-b border-neutral-200/80 dark:border-neutral-800 bg-neutral-50/50 dark:bg-neutral-900/60">
+                    <th className="py-3 px-4 text-[11px] font-semibold text-neutral-500 dark:text-neutral-400 uppercase tracking-wider">
                       {isStandard ? "GUEST #" : "GUEST"}
                     </th>
-                    <th className="py-3 px-4 text-[11px] font-semibold text-neutral-500 uppercase tracking-wider">
+                    <th className="py-3 px-4 text-[11px] font-semibold text-neutral-500 dark:text-neutral-400 uppercase tracking-wider">
                       {isStandard ? "TICKET TYPE" : "TICKET"}
                     </th>
-                    <th className="py-3 px-4 text-[11px] font-semibold text-neutral-500 uppercase tracking-wider">
+                    <th className="py-3 px-4 text-[11px] font-semibold text-neutral-500 dark:text-neutral-400 uppercase tracking-wider">
                       DELIVERY
                     </th>
-                    <th className="py-3 px-4 text-[11px] font-semibold text-neutral-500 uppercase tracking-wider">
+                    <th className="py-3 px-4 text-[11px] font-semibold text-neutral-500 dark:text-neutral-400 uppercase tracking-wider">
                       RSVP ACTIVITY
                     </th>
-                    <th className="py-3 px-4 text-[11px] font-semibold text-neutral-500 uppercase tracking-wider">
+                    <th className="py-3 px-4 text-[11px] font-semibold text-neutral-500 dark:text-neutral-400 uppercase tracking-wider">
                       CHECK-IN
                     </th>
-                    <th className="py-3 px-4 text-[11px] font-semibold text-neutral-500 uppercase tracking-wider">
+                    <th className="py-3 px-4 text-[11px] font-semibold text-neutral-500 dark:text-neutral-400 uppercase tracking-wider">
                       STATUS
                     </th>
-                    <th className="py-3 px-4 text-[11px] font-semibold text-neutral-500 uppercase tracking-wider text-right sm:text-left">
+                    <th className="py-3 px-4 text-[11px] font-semibold text-neutral-500 dark:text-neutral-400 uppercase tracking-wider text-right sm:text-left">
                       TICKET ACTIONS
                     </th>
                   </tr>
                 </thead>
 
-                <tbody className="divide-y divide-neutral-100 text-xs">
+                <tbody className="divide-y divide-neutral-100 dark:divide-neutral-800 text-xs">
                   {paginatedTickets.length > 0 ? (
                     paginatedTickets.map((ticket) => (
                       <tr
                         key={ticket.id}
-                        className="hover:bg-neutral-50/70 transition-colors duration-150"
+                        className="hover:bg-neutral-50/70 dark:hover:bg-neutral-800/40 transition-colors duration-150"
                       >
                         {/* 1. GUEST */}
                         <td className="py-3.5 px-4 whitespace-nowrap">
                           {isStandard ? (
                             <>
-                              <p className="font-bold text-neutral-900">{ticket.ticketNumber}</p>
-                              <p className="text-[11px] text-neutral-400">
+                              <p className="font-bold text-neutral-900 dark:text-white">{ticket.ticketNumber}</p>
+                              <p className="text-[11px] text-neutral-400 dark:text-neutral-500">
                                 Standard Package (No name)
                               </p>
                             </>
                           ) : (
                             <>
-                              <p className="font-bold text-neutral-900">{ticket.name}</p>
-                              <p className="text-[11px] text-neutral-500">
+                              <p className="font-bold text-neutral-900 dark:text-white">{ticket.name}</p>
+                              <p className="text-[11px] text-neutral-500 dark:text-neutral-400">
                                 {ticket.email || "No email provided"}
                               </p>
                             </>
@@ -665,15 +665,15 @@ export const AdminEventDetails: React.FC<AdminEventDetailsProps> = ({
                         <td className="py-3.5 px-4 whitespace-nowrap">
                           {isStandard ? (
                             <>
-                              <p className="font-bold text-neutral-900">{ticket.ticketType}</p>
-                              <p className="text-[11px] text-neutral-500">
+                              <p className="font-bold text-neutral-900 dark:text-white">{ticket.ticketType}</p>
+                              <p className="text-[11px] text-neutral-500 dark:text-neutral-400">
                                 {ticket.table ? ticket.table : "Open Seating"}
                               </p>
                             </>
                           ) : (
                             <>
-                              <p className="font-bold text-neutral-900">{ticket.ticketNumber}</p>
-                              <p className="text-[11px] text-neutral-500">
+                              <p className="font-bold text-neutral-900 dark:text-white">{ticket.ticketNumber}</p>
+                              <p className="text-[11px] text-neutral-500 dark:text-neutral-400">
                                 {ticket.ticketType}
                                 {ticket.table ? ` • ${ticket.table}` : ""}
                               </p>
@@ -683,27 +683,27 @@ export const AdminEventDetails: React.FC<AdminEventDetailsProps> = ({
 
                         {/* 3. DELIVERY */}
                         <td className="py-3.5 px-4 whitespace-nowrap">
-                          <p className="font-bold text-neutral-900">{ticket.deliveryMethod}</p>
-                          <p className="text-[11px] text-neutral-500">
+                          <p className="font-bold text-neutral-900 dark:text-white">{ticket.deliveryMethod}</p>
+                          <p className="text-[11px] text-neutral-500 dark:text-neutral-400">
                             {ticket.deliveryDate || "---"}
                           </p>
                         </td>
 
                         {/* 4. RSVP ACTIVITY */}
                         <td className="py-3.5 px-4 whitespace-nowrap">
-                          <p className="font-bold text-neutral-900">{ticket.rsvpStatus}</p>
-                          <p className="text-[11px] text-neutral-500">
+                          <p className="font-bold text-neutral-900 dark:text-white">{ticket.rsvpStatus}</p>
+                          <p className="text-[11px] text-neutral-500 dark:text-neutral-400">
                             {ticket.rsvpDate || "---"}
                           </p>
                         </td>
 
                         {/* 5. CHECK-IN */}
                         <td className="py-3.5 px-4 whitespace-nowrap">
-                          <p className="font-bold text-neutral-900">
+                          <p className="font-bold text-neutral-900 dark:text-white">
                             {ticket.checkInStatus}
                           </p>
                           {ticket.checkInGate && (
-                            <p className="text-[11px] text-neutral-500">
+                            <p className="text-[11px] text-neutral-500 dark:text-neutral-400">
                               {ticket.checkInGate}
                             </p>
                           )}
@@ -721,7 +721,7 @@ export const AdminEventDetails: React.FC<AdminEventDetailsProps> = ({
                             <button
                               type="button"
                               onClick={() => handleOpenViewTicket(ticket)}
-                              className="px-2.5 py-1 rounded-md border border-neutral-200 text-[11px] font-medium text-neutral-700 hover:bg-neutral-50 hover:text-neutral-900 transition-colors cursor-pointer shadow-2xs"
+                              className="px-2.5 py-1 rounded-md border border-neutral-200 dark:border-neutral-700 bg-white dark:bg-neutral-800 text-[11px] font-medium text-neutral-700 dark:text-neutral-300 hover:bg-neutral-50 dark:hover:bg-neutral-700 hover:text-neutral-900 dark:hover:text-white transition-colors cursor-pointer shadow-2xs"
                             >
                               View Ticket
                             </button>
@@ -730,7 +730,7 @@ export const AdminEventDetails: React.FC<AdminEventDetailsProps> = ({
                             <button
                               type="button"
                               onClick={() => handleCopyLink(ticket)}
-                              className="px-2.5 py-1 rounded-md border border-neutral-200 text-[11px] font-medium text-neutral-700 hover:bg-neutral-50 hover:text-neutral-900 transition-colors cursor-pointer shadow-2xs"
+                              className="px-2.5 py-1 rounded-md border border-neutral-200 dark:border-neutral-700 bg-white dark:bg-neutral-800 text-[11px] font-medium text-neutral-700 dark:text-neutral-300 hover:bg-neutral-50 dark:hover:bg-neutral-700 hover:text-neutral-900 dark:hover:text-white transition-colors cursor-pointer shadow-2xs"
                             >
                               Copy Link
                             </button>
@@ -743,8 +743,8 @@ export const AdminEventDetails: React.FC<AdminEventDetailsProps> = ({
                               className={cn(
                                 "px-2.5 py-1 rounded-md border text-[11px] font-medium transition-colors shadow-2xs",
                                 ticket.canResendEmail
-                                  ? "border-neutral-200 text-neutral-700 hover:bg-neutral-50 hover:text-neutral-900 cursor-pointer"
-                                  : "border-neutral-100 bg-neutral-50 text-neutral-300 cursor-not-allowed"
+                                  ? "border-neutral-200 dark:border-neutral-700 bg-white dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 hover:bg-neutral-50 dark:hover:bg-neutral-700 hover:text-neutral-900 dark:hover:text-white cursor-pointer"
+                                  : "border-neutral-100 dark:border-neutral-800 bg-neutral-50 dark:bg-neutral-900 text-neutral-300 dark:text-neutral-600 cursor-not-allowed"
                               )}
                               title={
                                 !ticket.canResendEmail
@@ -760,44 +760,44 @@ export const AdminEventDetails: React.FC<AdminEventDetailsProps> = ({
                               <DropdownMenuTrigger asChild>
                                 <button
                                   type="button"
-                                  className="size-6.5 rounded-md border border-neutral-200 text-neutral-500 hover:bg-neutral-50 hover:text-neutral-800 flex items-center justify-center transition-colors cursor-pointer"
+                                  className="size-6.5 rounded-md border border-neutral-200 dark:border-neutral-700 bg-white dark:bg-neutral-800 text-neutral-500 dark:text-neutral-400 hover:bg-neutral-50 dark:hover:bg-neutral-700 hover:text-neutral-800 dark:hover:text-neutral-200 flex items-center justify-center transition-colors cursor-pointer"
                                   aria-label="More actions"
                                 >
                                   <MoreVertical className="size-3.5" />
                                 </button>
                               </DropdownMenuTrigger>
-                              <DropdownMenuContent align="end" className="w-48 bg-white border-neutral-200 shadow-md">
+                              <DropdownMenuContent align="end" className="w-48 bg-white dark:bg-neutral-900 border-neutral-200 dark:border-neutral-800 text-neutral-800 dark:text-neutral-200 shadow-md">
                                 <DropdownMenuItem
                                   onSelect={() => {
                                     setTimeout(() => handleOpenEdit(ticket), 50);
                                   }}
-                                  className="text-xs cursor-pointer flex items-center gap-2"
+                                  className="text-xs cursor-pointer flex items-center gap-2 hover:bg-neutral-100 dark:hover:bg-neutral-800"
                                 >
-                                  <Edit2 className="size-3.5 text-neutral-500" />
+                                  <Edit2 className="size-3.5 text-neutral-500 dark:text-neutral-400" />
                                   <span>Edit Ticket Details</span>
                                 </DropdownMenuItem>
                                 <DropdownMenuItem
                                   onSelect={() => {
                                     setTimeout(() => handleOpenActivity(ticket), 50);
                                   }}
-                                  className="text-xs cursor-pointer flex items-center gap-2"
+                                  className="text-xs cursor-pointer flex items-center gap-2 hover:bg-neutral-100 dark:hover:bg-neutral-800"
                                 >
-                                  <History className="size-3.5 text-neutral-500" />
+                                  <History className="size-3.5 text-neutral-500 dark:text-neutral-400" />
                                   <span>View Activity</span>
                                 </DropdownMenuItem>
                                 <DropdownMenuItem
                                   onSelect={() => handleRegenerateLink(ticket)}
-                                  className="text-xs cursor-pointer flex items-center gap-2"
+                                  className="text-xs cursor-pointer flex items-center gap-2 hover:bg-neutral-100 dark:hover:bg-neutral-800"
                                 >
-                                  <RefreshCw className="size-3.5 text-neutral-500" />
+                                  <RefreshCw className="size-3.5 text-neutral-500 dark:text-neutral-400" />
                                   <span>Regenerate Secure Link</span>
                                 </DropdownMenuItem>
-                                <DropdownMenuSeparator />
+                                <DropdownMenuSeparator className="bg-neutral-100 dark:bg-neutral-800" />
                                 <DropdownMenuItem
                                   onSelect={() => handleVoidTicket(ticket)}
-                                  className="text-xs text-red-600 hover:text-red-700 focus:text-red-700 cursor-pointer flex items-center gap-2"
+                                  className="text-xs text-red-600 dark:text-red-400 hover:text-red-700 dark:hover:text-red-300 focus:text-red-700 cursor-pointer flex items-center gap-2 hover:bg-red-50 dark:hover:bg-red-950/30"
                                 >
-                                  <Ban className="size-3.5 text-red-500" />
+                                  <Ban className="size-3.5 text-red-500 dark:text-red-400" />
                                   <span>Void Ticket</span>
                                 </DropdownMenuItem>
                               </DropdownMenuContent>
@@ -808,7 +808,7 @@ export const AdminEventDetails: React.FC<AdminEventDetailsProps> = ({
                     ))
                   ) : (
                     <tr>
-                      <td colSpan={7} className="py-12 text-center text-neutral-400">
+                      <td colSpan={7} className="py-12 text-center text-neutral-400 dark:text-neutral-500">
                         No guests found matching your search and filter criteria.
                       </td>
                     </tr>
@@ -818,14 +818,14 @@ export const AdminEventDetails: React.FC<AdminEventDetailsProps> = ({
             </div>
 
             {/* Pagination Controls */}
-            <div className="py-3 px-4 border-t border-neutral-200/80 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-neutral-500 bg-white">
+            <div className="py-3 px-4 border-t border-neutral-200/80 dark:border-neutral-800 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-neutral-500 dark:text-neutral-400 bg-white dark:bg-neutral-900/60">
               <p>
                 Showing{" "}
-                <strong className="text-neutral-900">
+                <strong className="text-neutral-900 dark:text-white">
                   {totalItems === 0 ? 0 : (currentPage - 1) * pageSize + 1}-
                   {Math.min(currentPage * pageSize, totalItems)}
                 </strong>{" "}
-                of <strong className="text-neutral-900">{totalItems}</strong> guests
+                of <strong className="text-neutral-900 dark:text-white">{totalItems}</strong> guests
               </p>
 
               <div className="flex items-center gap-1">
@@ -833,7 +833,7 @@ export const AdminEventDetails: React.FC<AdminEventDetailsProps> = ({
                   type="button"
                   disabled={currentPage <= 1}
                   onClick={() => setCurrentPage((p) => Math.max(p - 1, 1))}
-                  className="size-7 rounded-md border border-neutral-200 flex items-center justify-center disabled:opacity-30 disabled:cursor-not-allowed hover:bg-neutral-50 cursor-pointer"
+                  className="size-7 rounded-md border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 text-neutral-700 dark:text-neutral-300 flex items-center justify-center disabled:opacity-30 disabled:cursor-not-allowed hover:bg-neutral-50 dark:hover:bg-neutral-800 cursor-pointer"
                 >
                   &lt;
                 </button>
@@ -850,7 +850,7 @@ export const AdminEventDetails: React.FC<AdminEventDetailsProps> = ({
                         "size-7 rounded-md text-xs font-semibold cursor-pointer transition-colors",
                         isCurrent
                           ? "bg-[#C39B4C] text-white shadow-2xs"
-                          : "border border-neutral-200 text-neutral-700 hover:bg-neutral-50"
+                          : "border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 text-neutral-700 dark:text-neutral-300 hover:bg-neutral-50 dark:hover:bg-neutral-800"
                       )}
                     >
                       {pageNum}
@@ -860,7 +860,7 @@ export const AdminEventDetails: React.FC<AdminEventDetailsProps> = ({
 
                 {totalPages > 5 && (
                   <>
-                    <span className="px-1 text-neutral-400">...</span>
+                    <span className="px-1 text-neutral-400 dark:text-neutral-500">...</span>
                     <button
                       type="button"
                       onClick={() => setCurrentPage(totalPages)}
@@ -868,7 +868,7 @@ export const AdminEventDetails: React.FC<AdminEventDetailsProps> = ({
                         "size-7 rounded-md text-xs font-semibold cursor-pointer transition-colors",
                         currentPage === totalPages
                           ? "bg-[#C39B4C] text-white shadow-2xs"
-                          : "border border-neutral-200 text-neutral-700 hover:bg-neutral-50"
+                          : "border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 text-neutral-700 dark:text-neutral-300 hover:bg-neutral-50 dark:hover:bg-neutral-800"
                       )}
                     >
                       {totalPages}
@@ -880,7 +880,7 @@ export const AdminEventDetails: React.FC<AdminEventDetailsProps> = ({
                   type="button"
                   disabled={currentPage >= totalPages}
                   onClick={() => setCurrentPage((p) => Math.min(p + 1, totalPages))}
-                  className="size-7 rounded-md border border-neutral-200 flex items-center justify-center disabled:opacity-30 disabled:cursor-not-allowed hover:bg-neutral-50 cursor-pointer"
+                  className="size-7 rounded-md border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 text-neutral-700 dark:text-neutral-300 flex items-center justify-center disabled:opacity-30 disabled:cursor-not-allowed hover:bg-neutral-50 dark:hover:bg-neutral-800 cursor-pointer"
                 >
                   &gt;
                 </button>
@@ -894,81 +894,81 @@ export const AdminEventDetails: React.FC<AdminEventDetailsProps> = ({
       {activeTab === "overview" && (
         <div className="space-y-6 pt-2">
           {/* Section 1: Host / Client Information */}
-          <div className="p-6 rounded-2xl bg-white border border-neutral-200/80 shadow-xs space-y-4">
-            <h3 className="text-sm sm:text-base font-bold font-space-grotesk text-neutral-900">
+          <div className="p-6 rounded-2xl bg-white dark:bg-neutral-900/60 border border-neutral-200/80 dark:border-neutral-800 shadow-xs space-y-4">
+            <h3 className="text-sm sm:text-base font-bold font-space-grotesk text-neutral-900 dark:text-white">
               Host or Client Information
             </h3>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 text-xs">
               <div>
-                <p className="text-neutral-400 font-medium">Host Name</p>
-                <p className="font-semibold text-neutral-900 mt-1">{event.hostName}</p>
+                <p className="text-neutral-400 dark:text-neutral-500 font-medium">Host Name</p>
+                <p className="font-semibold text-neutral-900 dark:text-white mt-1">{event.hostName}</p>
               </div>
               <div>
-                <p className="text-neutral-400 font-medium">Host Type</p>
-                <p className="font-semibold text-neutral-900 mt-1">{event.hostType}</p>
+                <p className="text-neutral-400 dark:text-neutral-500 font-medium">Host Type</p>
+                <p className="font-semibold text-neutral-900 dark:text-white mt-1">{event.hostType}</p>
               </div>
               <div>
-                <p className="text-neutral-400 font-medium">Email Address</p>
-                <p className="font-semibold text-neutral-900 mt-1">{event.email}</p>
+                <p className="text-neutral-400 dark:text-neutral-500 font-medium">Email Address</p>
+                <p className="font-semibold text-neutral-900 dark:text-white mt-1">{event.email}</p>
               </div>
               <div>
-                <p className="text-neutral-400 font-medium">Phone Number</p>
-                <p className="font-semibold text-neutral-900 mt-1">{event.phone}</p>
+                <p className="text-neutral-400 dark:text-neutral-500 font-medium">Phone Number</p>
+                <p className="font-semibold text-neutral-900 dark:text-white mt-1">{event.phone}</p>
               </div>
             </div>
           </div>
 
           {/* Section 2: Event Details & Description */}
-          <div className="p-6 rounded-2xl bg-white border border-neutral-200/80 shadow-xs space-y-4">
-            <h3 className="text-sm sm:text-base font-bold font-space-grotesk text-neutral-900">
+          <div className="p-6 rounded-2xl bg-white dark:bg-neutral-900/60 border border-neutral-200/80 dark:border-neutral-800 shadow-xs space-y-4">
+            <h3 className="text-sm sm:text-base font-bold font-space-grotesk text-neutral-900 dark:text-white">
               Basic Event Information
             </h3>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs">
               <div>
-                <p className="text-neutral-400 font-medium">Event Name</p>
-                <p className="font-semibold text-neutral-900 mt-1">{event.eventName}</p>
+                <p className="text-neutral-400 dark:text-neutral-500 font-medium">Event Name</p>
+                <p className="font-semibold text-neutral-900 dark:text-white mt-1">{event.eventName}</p>
               </div>
               <div>
-                <p className="text-neutral-400 font-medium">Event Type</p>
-                <p className="font-semibold text-neutral-900 mt-1">{event.eventType}</p>
+                <p className="text-neutral-400 dark:text-neutral-500 font-medium">Event Type</p>
+                <p className="font-semibold text-neutral-900 dark:text-white mt-1">{event.eventType}</p>
               </div>
               <div>
-                <p className="text-neutral-400 font-medium">Tier</p>
-                <span className="inline-block mt-1 px-2.5 py-0.5 rounded-full text-xs font-semibold bg-[#FEF7EC] text-[#B89047]">
+                <p className="text-neutral-400 dark:text-neutral-500 font-medium">Tier</p>
+                <span className="inline-block mt-1 px-2.5 py-0.5 rounded-full text-xs font-semibold bg-[#FEF7EC] dark:bg-amber-950/40 text-[#B89047] dark:text-amber-400 border border-amber-200/50 dark:border-amber-800/40">
                   {event.tier}
                 </span>
               </div>
             </div>
 
             <div className="pt-2 text-xs">
-              <p className="text-neutral-400 font-medium mb-1">Event Description</p>
-              <div className="p-3.5 rounded-xl bg-neutral-50 border border-neutral-200/60 text-neutral-700 leading-relaxed">
+              <p className="text-neutral-400 dark:text-neutral-500 font-medium mb-1">Event Description</p>
+              <div className="p-3.5 rounded-xl bg-neutral-50 dark:bg-neutral-900 border border-neutral-200/60 dark:border-neutral-800 text-neutral-700 dark:text-neutral-300 leading-relaxed">
                 {event.eventDescription}
               </div>
             </div>
           </div>
 
           {/* Section 3: Venue, Capacity & Timing */}
-          <div className="p-6 rounded-2xl bg-white border border-neutral-200/80 shadow-xs space-y-4">
-            <h3 className="text-sm sm:text-base font-bold font-space-grotesk text-neutral-900">
+          <div className="p-6 rounded-2xl bg-white dark:bg-neutral-900/60 border border-neutral-200/80 dark:border-neutral-800 shadow-xs space-y-4">
+            <h3 className="text-sm sm:text-base font-bold font-space-grotesk text-neutral-900 dark:text-white">
               Venue & Capacity
             </h3>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 text-xs">
               <div>
-                <p className="text-neutral-400 font-medium">Venue</p>
-                <p className="font-semibold text-neutral-900 mt-1">{event.venue}</p>
+                <p className="text-neutral-400 dark:text-neutral-500 font-medium">Venue</p>
+                <p className="font-semibold text-neutral-900 dark:text-white mt-1">{event.venue}</p>
               </div>
               <div>
-                <p className="text-neutral-400 font-medium">Ballroom / Hall</p>
-                <p className="font-semibold text-neutral-900 mt-1">{event.room}</p>
+                <p className="text-neutral-400 dark:text-neutral-500 font-medium">Ballroom / Hall</p>
+                <p className="font-semibold text-neutral-900 dark:text-white mt-1">{event.room}</p>
               </div>
               <div>
-                <p className="text-neutral-400 font-medium">Max Capacity</p>
-                <p className="font-semibold text-neutral-900 mt-1">{event.venueGuestCapacity} guests</p>
+                <p className="text-neutral-400 dark:text-neutral-500 font-medium">Max Capacity</p>
+                <p className="font-semibold text-neutral-900 dark:text-white mt-1">{event.venueGuestCapacity} guests</p>
               </div>
               <div>
-                <p className="text-neutral-400 font-medium">Assigned Tickets</p>
-                <p className="font-semibold text-neutral-900 mt-1">{event.assignedGuestsCount || 175} tickets</p>
+                <p className="text-neutral-400 dark:text-neutral-500 font-medium">Assigned Tickets</p>
+                <p className="font-semibold text-neutral-900 dark:text-white mt-1">{event.assignedGuestsCount || 175} tickets</p>
               </div>
             </div>
           </div>
@@ -994,7 +994,7 @@ export const AdminEventDetails: React.FC<AdminEventDetailsProps> = ({
             e.preventDefault();
             document.body.style.pointerEvents = "";
           }}
-          className="max-w-md bg-white border border-neutral-200 p-0 overflow-hidden font-work-sans text-neutral-900"
+          className="max-w-md bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 p-0 overflow-hidden font-work-sans text-neutral-900 dark:text-neutral-100"
         >
           <div className="bg-gradient-to-r from-neutral-900 to-neutral-800 text-white p-6 relative">
             <div className="flex items-center justify-between">
@@ -1015,37 +1015,37 @@ export const AdminEventDetails: React.FC<AdminEventDetailsProps> = ({
 
           <div className="p-6 space-y-6">
             {/* QR Code Container */}
-            <div className="p-4 rounded-2xl bg-neutral-50 border border-neutral-200 text-center space-y-3">
-              <div className="size-40 mx-auto bg-white p-2.5 rounded-xl border border-neutral-300 shadow-xs flex items-center justify-center">
+            <div className="p-4 rounded-2xl bg-neutral-50 dark:bg-neutral-800/40 border border-neutral-200 dark:border-neutral-800 text-center space-y-3">
+              <div className="size-40 mx-auto bg-white p-2.5 rounded-xl border border-neutral-300 dark:border-neutral-700 shadow-xs flex items-center justify-center">
                 <QrCode className="size-36 text-neutral-900" />
               </div>
               <div>
-                <p className="font-mono text-sm font-bold text-neutral-900">
+                <p className="font-mono text-sm font-bold text-neutral-900 dark:text-white">
                   {selectedTicket?.ticketNumber}
                 </p>
-                <p className="text-xs text-neutral-500">Single-scan entry verification</p>
+                <p className="text-xs text-neutral-500 dark:text-neutral-400">Single-scan entry verification</p>
               </div>
             </div>
 
             {/* Ticket Details */}
             <div className="grid grid-cols-2 gap-3 text-xs">
-              <div className="p-3 rounded-xl bg-neutral-50 border border-neutral-100">
-                <p className="text-neutral-400">{isStandard ? "Ticket / Guest #" : "Guest Name"}</p>
-                <p className="font-bold text-neutral-900 mt-0.5">
+              <div className="p-3 rounded-xl bg-neutral-50 dark:bg-neutral-850/60 border border-neutral-100 dark:border-neutral-800">
+                <p className="text-neutral-400 dark:text-neutral-500">{isStandard ? "Ticket / Guest #" : "Guest Name"}</p>
+                <p className="font-bold text-neutral-900 dark:text-white mt-0.5">
                   {isStandard ? selectedTicket?.ticketNumber : selectedTicket?.name}
                 </p>
               </div>
-              <div className="p-3 rounded-xl bg-neutral-50 border border-neutral-100">
-                <p className="text-neutral-400">Ticket Type</p>
-                <p className="font-bold text-neutral-900 mt-0.5">{selectedTicket?.ticketType}</p>
+              <div className="p-3 rounded-xl bg-neutral-50 dark:bg-neutral-850/60 border border-neutral-100 dark:border-neutral-800">
+                <p className="text-neutral-400 dark:text-neutral-500">Ticket Type</p>
+                <p className="font-bold text-neutral-900 dark:text-white mt-0.5">{selectedTicket?.ticketType}</p>
               </div>
-              <div className="p-3 rounded-xl bg-neutral-50 border border-neutral-100">
-                <p className="text-neutral-400">Table / Seating</p>
-                <p className="font-bold text-neutral-900 mt-0.5">{selectedTicket?.table || "Open Seating"}</p>
+              <div className="p-3 rounded-xl bg-neutral-50 dark:bg-neutral-850/60 border border-neutral-100 dark:border-neutral-800">
+                <p className="text-neutral-400 dark:text-neutral-500">Table / Seating</p>
+                <p className="font-bold text-neutral-900 dark:text-white mt-0.5">{selectedTicket?.table || "Open Seating"}</p>
               </div>
-              <div className="p-3 rounded-xl bg-neutral-50 border border-neutral-100">
-                <p className="text-neutral-400">Check-in Status</p>
-                <p className="font-bold text-neutral-900 mt-0.5">{selectedTicket?.checkInStatus}</p>
+              <div className="p-3 rounded-xl bg-neutral-50 dark:bg-neutral-850/60 border border-neutral-100 dark:border-neutral-800">
+                <p className="text-neutral-400 dark:text-neutral-500">Check-in Status</p>
+                <p className="font-bold text-neutral-900 dark:text-white mt-0.5">{selectedTicket?.checkInStatus}</p>
               </div>
             </div>
 
@@ -1064,7 +1064,7 @@ export const AdminEventDetails: React.FC<AdminEventDetailsProps> = ({
               <button
                 type="button"
                 onClick={() => setViewTicketOpen(false)}
-                className="py-2 px-4 rounded-xl border border-neutral-200 text-xs font-semibold text-neutral-700 hover:bg-neutral-50 transition-colors cursor-pointer"
+                className="py-2 px-4 rounded-xl border border-neutral-200 dark:border-neutral-700 bg-white dark:bg-neutral-800 text-xs font-semibold text-neutral-700 dark:text-neutral-300 hover:bg-neutral-50 dark:hover:bg-neutral-700 transition-colors cursor-pointer"
               >
                 Close
               </button>
@@ -1092,13 +1092,13 @@ export const AdminEventDetails: React.FC<AdminEventDetailsProps> = ({
             e.preventDefault();
             document.body.style.pointerEvents = "";
           }}
-          className="max-w-md bg-white border border-neutral-200 p-6 font-work-sans text-neutral-900"
+          className="max-w-md bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 p-6 font-work-sans text-neutral-900 dark:text-neutral-100"
         >
           <DialogHeader>
-            <DialogTitle className="text-base font-bold font-space-grotesk">
+            <DialogTitle className="text-base font-bold font-space-grotesk text-neutral-900 dark:text-white">
               Edit Ticket Details ({selectedTicket?.ticketNumber})
             </DialogTitle>
-            <DialogDescription className="text-xs text-neutral-500">
+            <DialogDescription className="text-xs text-neutral-500 dark:text-neutral-400">
               {isStandard
                 ? "Update ticket category and table seating for this numbered ticket."
                 : "Update guest details for customer support or seat reassignments."}
@@ -1109,24 +1109,24 @@ export const AdminEventDetails: React.FC<AdminEventDetailsProps> = ({
             {!isStandard && (
               <>
                 <div className="space-y-1">
-                  <label className="font-medium text-neutral-700">Guest Name</label>
+                  <label className="font-medium text-neutral-700 dark:text-neutral-300">Guest Name</label>
                   <input
                     type="text"
                     required
                     value={editForm.name}
                     onChange={(e) => setEditForm((prev) => ({ ...prev, name: e.target.value }))}
-                    className="w-full h-9 px-3 rounded-lg border border-neutral-200 text-xs text-neutral-900 focus:outline-none focus:border-[#C39B4C]"
+                    className="w-full h-9 px-3 rounded-lg border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-950 text-xs text-neutral-900 dark:text-white focus:outline-none focus:border-[#C39B4C]"
                   />
                 </div>
 
                 <div className="space-y-1">
-                  <label className="font-medium text-neutral-700">Guest Email</label>
+                  <label className="font-medium text-neutral-700 dark:text-neutral-300">Guest Email</label>
                   <input
                     type="email"
                     value={editForm.email}
                     onChange={(e) => setEditForm((prev) => ({ ...prev, email: e.target.value }))}
                     placeholder="guest@example.com"
-                    className="w-full h-9 px-3 rounded-lg border border-neutral-200 text-xs text-neutral-900 focus:outline-none focus:border-[#C39B4C]"
+                    className="w-full h-9 px-3 rounded-lg border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-950 text-xs text-neutral-900 dark:text-white placeholder:text-neutral-400 dark:placeholder:text-neutral-600 focus:outline-none focus:border-[#C39B4C]"
                   />
                 </div>
               </>
@@ -1134,11 +1134,11 @@ export const AdminEventDetails: React.FC<AdminEventDetailsProps> = ({
 
             <div className="grid grid-cols-2 gap-3">
               <div className="space-y-1">
-                <label className="font-medium text-neutral-700">Ticket Type</label>
+                <label className="font-medium text-neutral-700 dark:text-neutral-300">Ticket Type</label>
                 <select
                   value={editForm.ticketType}
                   onChange={(e) => setEditForm((prev) => ({ ...prev, ticketType: e.target.value }))}
-                  className="w-full h-9 px-3 rounded-lg border border-neutral-200 text-xs text-neutral-900 focus:outline-none focus:border-[#C39B4C]"
+                  className="w-full h-9 px-3 rounded-lg border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-950 text-xs text-neutral-900 dark:text-white focus:outline-none focus:border-[#C39B4C]"
                 >
                   <option value="General Admission">General Admission</option>
                   <option value="Adult">Adult</option>
@@ -1150,13 +1150,13 @@ export const AdminEventDetails: React.FC<AdminEventDetailsProps> = ({
               </div>
 
               <div className="space-y-1">
-                <label className="font-medium text-neutral-700">Table / Seating</label>
+                <label className="font-medium text-neutral-700 dark:text-neutral-300">Table / Seating</label>
                 <input
                   type="text"
                   value={editForm.table}
                   onChange={(e) => setEditForm((prev) => ({ ...prev, table: e.target.value }))}
                   placeholder="e.g. Table 8"
-                  className="w-full h-9 px-3 rounded-lg border border-neutral-200 text-xs text-neutral-900 focus:outline-none focus:border-[#C39B4C]"
+                  className="w-full h-9 px-3 rounded-lg border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-950 text-xs text-neutral-900 dark:text-white placeholder:text-neutral-400 dark:placeholder:text-neutral-600 focus:outline-none focus:border-[#C39B4C]"
                 />
               </div>
             </div>
@@ -1165,7 +1165,7 @@ export const AdminEventDetails: React.FC<AdminEventDetailsProps> = ({
               <button
                 type="button"
                 onClick={() => setEditTicketOpen(false)}
-                className="px-4 py-2 rounded-lg border border-neutral-200 text-xs font-semibold text-neutral-700 hover:bg-neutral-50 cursor-pointer"
+                className="px-4 py-2 rounded-lg border border-neutral-200 dark:border-neutral-700 bg-white dark:bg-neutral-800 text-xs font-semibold text-neutral-700 dark:text-neutral-300 hover:bg-neutral-50 dark:hover:bg-neutral-700 cursor-pointer"
               >
                 Cancel
               </button>
@@ -1199,13 +1199,13 @@ export const AdminEventDetails: React.FC<AdminEventDetailsProps> = ({
             e.preventDefault();
             document.body.style.pointerEvents = "";
           }}
-          className="max-w-md bg-white border border-neutral-200 p-6 font-work-sans text-neutral-900"
+          className="max-w-md bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 p-6 font-work-sans text-neutral-900 dark:text-neutral-100"
         >
           <DialogHeader>
-            <DialogTitle className="text-base font-bold font-space-grotesk">
+            <DialogTitle className="text-base font-bold font-space-grotesk text-neutral-900 dark:text-white">
               Ticket Activity: {selectedTicket?.name}
             </DialogTitle>
-            <DialogDescription className="text-xs text-neutral-500">
+            <DialogDescription className="text-xs text-neutral-500 dark:text-neutral-400">
               Audit timeline for {selectedTicket?.ticketNumber} ({selectedTicket?.status})
             </DialogDescription>
           </DialogHeader>
@@ -1213,19 +1213,19 @@ export const AdminEventDetails: React.FC<AdminEventDetailsProps> = ({
           <div className="space-y-3.5 pt-3">
             {selectedTicket?.activityHistory && selectedTicket.activityHistory.length > 0 ? (
               selectedTicket.activityHistory.map((act, i) => (
-                <div key={i} className="flex items-start gap-3 p-3 rounded-xl bg-neutral-50 border border-neutral-100 text-xs">
+                <div key={i} className="flex items-start gap-3 p-3 rounded-xl bg-neutral-50 dark:bg-neutral-800/40 border border-neutral-100 dark:border-neutral-800 text-xs">
                   <div className="size-2 rounded-full bg-[#C39B4C] mt-1.5 shrink-0" />
                   <div>
                     <div className="flex items-center justify-between gap-2">
-                      <p className="font-semibold text-neutral-900">{act.title}</p>
-                      <span className="text-[10px] text-neutral-400 font-mono">{act.timestamp}</span>
+                      <p className="font-semibold text-neutral-900 dark:text-white">{act.title}</p>
+                      <span className="text-[10px] text-neutral-400 dark:text-neutral-500 font-mono">{act.timestamp}</span>
                     </div>
-                    <p className="text-neutral-600 mt-0.5">{act.description}</p>
+                    <p className="text-neutral-600 dark:text-neutral-300 mt-0.5">{act.description}</p>
                   </div>
                 </div>
               ))
             ) : (
-              <p className="text-xs text-neutral-400 text-center py-6">
+              <p className="text-xs text-neutral-400 dark:text-neutral-500 text-center py-6">
                 No detailed activity history logged yet.
               </p>
             )}
@@ -1235,7 +1235,7 @@ export const AdminEventDetails: React.FC<AdminEventDetailsProps> = ({
             <button
               type="button"
               onClick={() => setActivityModalOpen(false)}
-              className="px-4 py-2 rounded-lg bg-neutral-900 text-white text-xs font-semibold hover:bg-neutral-800 cursor-pointer"
+              className="px-4 py-2 rounded-lg bg-neutral-900 dark:bg-white text-white dark:text-neutral-900 text-xs font-semibold hover:bg-neutral-800 dark:hover:bg-neutral-200 cursor-pointer"
             >
               Done
             </button>
@@ -1262,48 +1262,48 @@ export const AdminEventDetails: React.FC<AdminEventDetailsProps> = ({
             e.preventDefault();
             document.body.style.pointerEvents = "";
           }}
-          className="max-w-md bg-white border border-neutral-200 p-6 font-work-sans text-neutral-900"
+          className="max-w-md bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 p-6 font-work-sans text-neutral-900 dark:text-neutral-100"
         >
           <DialogHeader>
-            <DialogTitle className="text-base font-bold font-space-grotesk">
+            <DialogTitle className="text-base font-bold font-space-grotesk text-neutral-900 dark:text-white">
               Add New Guest to Event
             </DialogTitle>
-            <DialogDescription className="text-xs text-neutral-500">
+            <DialogDescription className="text-xs text-neutral-500 dark:text-neutral-400">
               Issue a secure ticket with custom seating and delivery preference.
             </DialogDescription>
           </DialogHeader>
 
           <form onSubmit={handleAddGuest} className="space-y-4 pt-2 text-xs">
             <div className="space-y-1">
-              <label className="font-medium text-neutral-700">Full Name</label>
+              <label className="font-medium text-neutral-700 dark:text-neutral-300">Full Name</label>
               <input
                 type="text"
                 required
                 value={addForm.name}
                 onChange={(e) => setAddForm((prev) => ({ ...prev, name: e.target.value }))}
                 placeholder="e.g. Eleanor Vance"
-                className="w-full h-9 px-3 rounded-lg border border-neutral-200 text-xs text-neutral-900 focus:outline-none focus:border-[#C39B4C]"
+                className="w-full h-9 px-3 rounded-lg border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-950 text-xs text-neutral-900 dark:text-white placeholder:text-neutral-400 dark:placeholder:text-neutral-600 focus:outline-none focus:border-[#C39B4C]"
               />
             </div>
 
             <div className="space-y-1">
-              <label className="font-medium text-neutral-700">Email Address (Optional)</label>
+              <label className="font-medium text-neutral-700 dark:text-neutral-300">Email Address (Optional)</label>
               <input
                 type="email"
                 value={addForm.email}
                 onChange={(e) => setAddForm((prev) => ({ ...prev, email: e.target.value }))}
                 placeholder="guest@example.com"
-                className="w-full h-9 px-3 rounded-lg border border-neutral-200 text-xs text-neutral-900 focus:outline-none focus:border-[#C39B4C]"
+                className="w-full h-9 px-3 rounded-lg border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-950 text-xs text-neutral-900 dark:text-white placeholder:text-neutral-400 dark:placeholder:text-neutral-600 focus:outline-none focus:border-[#C39B4C]"
               />
             </div>
 
             <div className="grid grid-cols-2 gap-3">
               <div className="space-y-1">
-                <label className="font-medium text-neutral-700">Ticket Type</label>
+                <label className="font-medium text-neutral-700 dark:text-neutral-300">Ticket Type</label>
                 <select
                   value={addForm.ticketType}
                   onChange={(e) => setAddForm((prev) => ({ ...prev, ticketType: e.target.value }))}
-                  className="w-full h-9 px-3 rounded-lg border border-neutral-200 text-xs text-neutral-900 focus:outline-none focus:border-[#C39B4C]"
+                  className="w-full h-9 px-3 rounded-lg border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-950 text-xs text-neutral-900 dark:text-white focus:outline-none focus:border-[#C39B4C]"
                 >
                   <option value="General Admission">General Admission</option>
                   <option value="Adult">Adult</option>
@@ -1315,19 +1315,19 @@ export const AdminEventDetails: React.FC<AdminEventDetailsProps> = ({
               </div>
 
               <div className="space-y-1">
-                <label className="font-medium text-neutral-700">Table / Seating</label>
+                <label className="font-medium text-neutral-700 dark:text-neutral-300">Table / Seating</label>
                 <input
                   type="text"
                   value={addForm.table}
                   onChange={(e) => setAddForm((prev) => ({ ...prev, table: e.target.value }))}
                   placeholder="e.g. Table 4"
-                  className="w-full h-9 px-3 rounded-lg border border-neutral-200 text-xs text-neutral-900 focus:outline-none focus:border-[#C39B4C]"
+                  className="w-full h-9 px-3 rounded-lg border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-950 text-xs text-neutral-900 dark:text-white placeholder:text-neutral-400 dark:placeholder:text-neutral-600 focus:outline-none focus:border-[#C39B4C]"
                 />
               </div>
             </div>
 
             <div className="space-y-1">
-              <label className="font-medium text-neutral-700">Delivery Method</label>
+              <label className="font-medium text-neutral-700 dark:text-neutral-300">Delivery Method</label>
               <select
                 value={addForm.deliveryMethod}
                 onChange={(e) =>
@@ -1339,7 +1339,7 @@ export const AdminEventDetails: React.FC<AdminEventDetailsProps> = ({
                       | "Not delivered",
                   }))
                 }
-                className="w-full h-9 px-3 rounded-lg border border-neutral-200 text-xs text-neutral-900 focus:outline-none focus:border-[#C39B4C]"
+                className="w-full h-9 px-3 rounded-lg border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-950 text-xs text-neutral-900 dark:text-white focus:outline-none focus:border-[#C39B4C]"
               >
                 <option value="Email">Email (Automatic Dispatch)</option>
                 <option value="Copied by Host">Copied by Host (Direct Link)</option>
@@ -1351,7 +1351,7 @@ export const AdminEventDetails: React.FC<AdminEventDetailsProps> = ({
               <button
                 type="button"
                 onClick={() => setAddGuestOpen(false)}
-                className="px-4 py-2 rounded-lg border border-neutral-200 text-xs font-semibold text-neutral-700 hover:bg-neutral-50 cursor-pointer"
+                className="px-4 py-2 rounded-lg border border-neutral-200 dark:border-neutral-700 bg-white dark:bg-neutral-800 text-xs font-semibold text-neutral-700 dark:text-neutral-300 hover:bg-neutral-50 dark:hover:bg-neutral-700 cursor-pointer"
               >
                 Cancel
               </button>

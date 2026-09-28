@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import React from "react";
 import { IPayoutHistoryItem } from "../../reward.interface";
@@ -12,8 +12,8 @@ export const AdminPayoutLedgerTable: React.FC<AdminPayoutLedgerTableProps> = ({
 }) => {
   return (
     <div className="font-work-sans">
-      <div className="px-6 py-4 border-b border-neutral-100">
-        <h2 className="text-base font-bold font-space-grotesk text-neutral-900">
+      <div className="px-6 py-4 border-b border-neutral-100 dark:border-neutral-800">
+        <h2 className="text-base font-bold font-space-grotesk text-neutral-900 dark:text-white">
           Payout Ledger
         </h2>
       </div>
@@ -21,7 +21,7 @@ export const AdminPayoutLedgerTable: React.FC<AdminPayoutLedgerTableProps> = ({
       <div className="overflow-x-auto">
         <table className="w-full text-left border-collapse text-xs sm:text-sm">
           <thead>
-            <tr className="border-b border-neutral-100 text-neutral-400 font-semibold text-[11px] uppercase tracking-wider bg-neutral-50/50">
+            <tr className="border-b border-neutral-100 dark:border-neutral-800 text-neutral-400 dark:text-neutral-500 font-semibold text-[11px] uppercase tracking-wider bg-neutral-50/50 dark:bg-neutral-900/60">
               <th className="py-3.5 px-6">Payout ID</th>
               <th className="py-3.5 px-4">Partner</th>
               <th className="py-3.5 px-4">Date</th>
@@ -31,12 +31,12 @@ export const AdminPayoutLedgerTable: React.FC<AdminPayoutLedgerTableProps> = ({
               <th className="py-3.5 px-6 text-center">Status</th>
             </tr>
           </thead>
-          <tbody className="divide-y divide-neutral-100 text-neutral-700">
+          <tbody className="divide-y divide-neutral-100 dark:divide-neutral-800 text-neutral-700 dark:text-neutral-300">
             {items.length === 0 ? (
               <tr>
                 <td
                   colSpan={7}
-                  className="py-12 text-center text-neutral-400 text-sm"
+                  className="py-12 text-center text-neutral-400 dark:text-neutral-500 text-sm"
                 >
                   No payout ledger records found
                 </td>
@@ -45,31 +45,31 @@ export const AdminPayoutLedgerTable: React.FC<AdminPayoutLedgerTableProps> = ({
               items.map((item) => (
                 <tr
                   key={item.id}
-                  className="hover:bg-neutral-50/60 transition-colors"
+                  className="hover:bg-neutral-50/60 dark:hover:bg-neutral-800/40 transition-colors"
                 >
-                  <td className="py-4 px-6 font-mono text-xs text-neutral-600">
+                  <td className="py-4 px-6 font-mono text-xs text-neutral-600 dark:text-neutral-400">
                     {item.payoutId}
                   </td>
                   <td className="py-4 px-4">
-                    <div className="font-semibold text-neutral-900">
+                    <div className="font-semibold text-neutral-900 dark:text-white">
                       {item.partnerName || "Partner"}
                     </div>
-                    <div className="text-[11px] text-neutral-400">
+                    <div className="text-[11px] text-neutral-400 dark:text-neutral-500">
                       {item.partnerEmail || "partner@example.com"}
                     </div>
                   </td>
-                  <td className="py-4 px-4 text-neutral-500">{item.date}</td>
-                  <td className="py-4 px-4 font-mono text-xs text-neutral-500">
+                  <td className="py-4 px-4 text-neutral-500 dark:text-neutral-400">{item.date}</td>
+                  <td className="py-4 px-4 font-mono text-xs text-neutral-500 dark:text-neutral-400">
                     {item.referenceId}
                   </td>
-                  <td className="py-4 px-4 text-neutral-700 font-medium">
+                  <td className="py-4 px-4 text-neutral-700 dark:text-neutral-300 font-medium">
                     {item.method}
                   </td>
-                  <td className="py-4 px-4 font-semibold text-neutral-900">
+                  <td className="py-4 px-4 font-semibold text-neutral-900 dark:text-white">
                     {item.reward}
                   </td>
                   <td className="py-4 px-6 text-center">
-                    <span className="inline-block px-3 py-1 rounded-full text-[11px] font-semibold bg-[#E0F2FE] text-[#0284C7]">
+                    <span className="inline-block px-3 py-1 rounded-full text-[11px] font-semibold bg-[#E0F2FE] dark:bg-sky-950/40 text-[#0284C7] dark:text-sky-400 border border-sky-200/60 dark:border-sky-800/40">
                       {item.status}
                     </span>
                   </td>

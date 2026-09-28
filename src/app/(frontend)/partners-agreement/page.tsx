@@ -9,54 +9,54 @@ export const metadata = {
 
 export default function PartnerAgreementPage() {
     return (
-        <main className="min-h-screen bg-[#0F0F0F] text-white pt-24 pb-20 font-work-sans">
+        <main className="min-h-screen bg-neutral-50/60 dark:bg-[#0F0F0F] text-neutral-900 dark:text-white pt-24 pb-20 font-work-sans transition-colors duration-200">
             <div className="container mx-auto">
                 {/* Back Link */}
                 <Link
                     href="/"
-                    className="inline-flex items-center gap-1.5 text-xs text-neutral-400 hover:text-[#B89047] transition-colors mb-8 group"
+                    className="inline-flex items-center gap-1.5 text-xs text-neutral-500 dark:text-neutral-400 hover:text-[#B89047] dark:hover:text-[#B89047] transition-colors mb-8 group"
                 >
                     <ArrowLeft className="size-3.5 group-hover:-translate-x-0.5 transition-transform" /> Back to Home
                 </Link>
 
                 {/* Header */}
-                <div className="border-b border-neutral-800 pb-8 mb-10">
+                <div className="border-b border-neutral-200/80 dark:border-neutral-800 pb-8 mb-10">
                     <span className="text-xs font-semibold tracking-[0.2em] text-[#B89047] uppercase font-space-grotesk">
                         PARTNER PROGRAM
                     </span>
-                    <h1 className="text-3xl sm:text-5xl font-bold font-space-grotesk text-white mt-2 tracking-tight">
+                    <h1 className="text-3xl sm:text-5xl font-bold font-space-grotesk text-neutral-900 dark:text-white mt-2 tracking-tight">
                         InviteOly Partner Agreement
                     </h1>
-                    <p className="text-xs sm:text-sm text-neutral-400 mt-2">
+                    <p className="text-xs sm:text-sm text-neutral-500 dark:text-neutral-400 mt-2">
                         Effective Date: October 10, 2026 · Last Updated: October 10, 2026
                     </p>
                 </div>
 
                 {/* Introduction Banner */}
-                <div className="bg-neutral-900/60 border border-neutral-800 rounded-2xl p-6 sm:p-8 mb-10 space-y-4">
+                <div className="bg-white dark:bg-neutral-900/60 border border-neutral-200/80 dark:border-neutral-800 rounded-2xl p-6 sm:p-8 mb-10 space-y-4 shadow-xs dark:shadow-none">
                     <div className="flex items-center gap-3">
                         <div className="size-10 rounded-xl bg-[#B89047]/10 text-[#B89047] flex items-center justify-center shrink-0">
                             <Handshake className="size-5" />
                         </div>
                         <div>
-                            <h2 className="text-lg font-bold font-space-grotesk text-white">
+                            <h2 className="text-lg font-bold font-space-grotesk text-neutral-900 dark:text-white">
                                 Program Participation
                             </h2>
-                            <p className="text-xs text-neutral-400">
+                            <p className="text-xs text-neutral-500 dark:text-neutral-400">
                                 Partner network standards, benefits, and operational guidelines.
                             </p>
                         </div>
                     </div>
-                    <p className="text-sm text-neutral-300 leading-relaxed">
+                    <p className="text-sm text-neutral-700 dark:text-neutral-300 leading-relaxed">
                         This Partner Agreement governs participation in the InviteOly Partner Program. By enrolling as an InviteOly Partner or accessing Partner features, you agree to these terms.
                     </p>
                 </div>
 
                 {/* Content Sections */}
-                <div className="text-neutral-300 text-sm sm:text-base leading-relaxed space-y-10">
+                <div className="text-neutral-700 dark:text-neutral-300 text-sm sm:text-base leading-relaxed space-y-10">
                     {/* 1. Partner Relationship */}
                     <section className="space-y-3">
-                        <h2 className="text-xl font-bold font-space-grotesk text-white flex items-center gap-2">
+                        <h2 className="text-xl font-bold font-space-grotesk text-neutral-900 dark:text-white flex items-center gap-2">
                             <span className="text-[#B89047]">1.</span> Partner Relationship
                         </h2>
                         <p>
@@ -65,11 +65,11 @@ export default function PartnerAgreementPage() {
                     </section>
 
                     {/* 2. Partner Benefits */}
-                    <section className="bg-neutral-900/40 border border-neutral-800 rounded-2xl p-6 sm:p-8 space-y-4">
-                        <h2 className="text-xl font-bold font-space-grotesk text-white flex items-center gap-2">
+                    <section className="bg-white dark:bg-neutral-900/40 border border-neutral-200/80 dark:border-neutral-800 rounded-2xl p-6 sm:p-8 space-y-4 shadow-xs dark:shadow-none">
+                        <h2 className="text-xl font-bold font-space-grotesk text-neutral-900 dark:text-white flex items-center gap-2">
                             <span className="text-[#B89047]">2.</span> Partner Benefits
                         </h2>
-                        <p className="text-neutral-400 text-sm">
+                        <p className="text-neutral-600 dark:text-neutral-400 text-sm">
                             Participating partners in good standing receive access to:
                         </p>
                         <ul className="space-y-2.5 pt-1">
@@ -81,7 +81,7 @@ export default function PartnerAgreementPage() {
                                 "Comprehensive door assistant training and client marketing materials.",
                                 "Opportunities for InviteOly website and social-media exposure.",
                             ].map((benefit, idx) => (
-                                <li key={idx} className="flex items-start gap-2.5 text-neutral-300">
+                                <li key={idx} className="flex items-start gap-2.5 text-neutral-700 dark:text-neutral-300">
                                     <CheckCircle2 className="size-4 text-[#B89047] shrink-0 mt-1" />
                                     <span>{benefit}</span>
                                 </li>
@@ -91,7 +91,7 @@ export default function PartnerAgreementPage() {
 
                     {/* 3. Partner Rewards */}
                     <section className="space-y-3">
-                        <h2 className="text-xl font-bold font-space-grotesk text-white flex items-center gap-2">
+                        <h2 className="text-xl font-bold font-space-grotesk text-neutral-900 dark:text-white flex items-center gap-2">
                             <span className="text-[#B89047]">3.</span> Partner Rewards
                         </h2>
                         <p>
@@ -101,7 +101,7 @@ export default function PartnerAgreementPage() {
 
                     {/* 4. Partner Pricing */}
                     <section className="space-y-3">
-                        <h2 className="text-xl font-bold font-space-grotesk text-white flex items-center gap-2">
+                        <h2 className="text-xl font-bold font-space-grotesk text-neutral-900 dark:text-white flex items-center gap-2">
                             <span className="text-[#B89047]">4.</span> Partner Pricing
                         </h2>
                         <p>
@@ -111,7 +111,7 @@ export default function PartnerAgreementPage() {
 
                     {/* 5. Client Relationships */}
                     <section className="space-y-3">
-                        <h2 className="text-xl font-bold font-space-grotesk text-white flex items-center gap-2">
+                        <h2 className="text-xl font-bold font-space-grotesk text-neutral-900 dark:text-white flex items-center gap-2">
                             <span className="text-[#B89047]">5.</span> Client Relationships
                         </h2>
                         <p>
@@ -120,11 +120,11 @@ export default function PartnerAgreementPage() {
                     </section>
 
                     {/* 6. Event-Day Responsibilities */}
-                    <section className="bg-neutral-900/40 border border-neutral-800 rounded-2xl p-6 sm:p-8 space-y-4">
-                        <h2 className="text-xl font-bold font-space-grotesk text-white flex items-center gap-2">
+                    <section className="bg-white dark:bg-neutral-900/40 border border-neutral-200/80 dark:border-neutral-800 rounded-2xl p-6 sm:p-8 space-y-4 shadow-xs dark:shadow-none">
+                        <h2 className="text-xl font-bold font-space-grotesk text-neutral-900 dark:text-white flex items-center gap-2">
                             <span className="text-[#B89047]">6.</span> Event-Day Responsibilities
                         </h2>
-                        <p className="text-neutral-400 text-sm">
+                        <p className="text-neutral-600 dark:text-neutral-400 text-sm">
                             Partners and their designated entry attendants must fulfill the following duties:
                         </p>
                         <ul className="space-y-2.5 pt-1">
@@ -138,7 +138,7 @@ export default function PartnerAgreementPage() {
                                 "Monitor Guest check-ins and capacity where applicable.",
                                 "Handle ordinary entry issues at the event.",
                             ].map((resp, idx) => (
-                                <li key={idx} className="flex items-start gap-2.5 text-neutral-300">
+                                <li key={idx} className="flex items-start gap-2.5 text-neutral-700 dark:text-neutral-300">
                                     <ShieldCheck className="size-4 text-[#B89047] shrink-0 mt-1" />
                                     <span>{resp}</span>
                                 </li>
@@ -148,7 +148,7 @@ export default function PartnerAgreementPage() {
 
                     {/* 7. Guest Information */}
                     <section className="space-y-3">
-                        <h2 className="text-xl font-bold font-space-grotesk text-white flex items-center gap-2">
+                        <h2 className="text-xl font-bold font-space-grotesk text-neutral-900 dark:text-white flex items-center gap-2">
                             <span className="text-[#B89047]">7.</span> Guest Information
                         </h2>
                         <p>
@@ -158,7 +158,7 @@ export default function PartnerAgreementPage() {
 
                     {/* 8. Marketing */}
                     <section className="space-y-3">
-                        <h2 className="text-xl font-bold font-space-grotesk text-white flex items-center gap-2">
+                        <h2 className="text-xl font-bold font-space-grotesk text-neutral-900 dark:text-white flex items-center gap-2">
                             <span className="text-[#B89047]">8.</span> Marketing
                         </h2>
                         <p>
@@ -168,7 +168,7 @@ export default function PartnerAgreementPage() {
 
                     {/* 9. Partner Status */}
                     <section className="space-y-3">
-                        <h2 className="text-xl font-bold font-space-grotesk text-white flex items-center gap-2">
+                        <h2 className="text-xl font-bold font-space-grotesk text-neutral-900 dark:text-white flex items-center gap-2">
                             <span className="text-[#B89047]">9.</span> Partner Status
                         </h2>
                         <p>
@@ -178,7 +178,7 @@ export default function PartnerAgreementPage() {
 
                     {/* 10. No Exclusivity */}
                     <section className="space-y-3">
-                        <h2 className="text-xl font-bold font-space-grotesk text-white flex items-center gap-2">
+                        <h2 className="text-xl font-bold font-space-grotesk text-neutral-900 dark:text-white flex items-center gap-2">
                             <span className="text-[#B89047]">10.</span> No Exclusivity
                         </h2>
                         <p>
@@ -188,7 +188,7 @@ export default function PartnerAgreementPage() {
 
                     {/* 11. Partner Conduct */}
                     <section className="space-y-3">
-                        <h2 className="text-xl font-bold font-space-grotesk text-white flex items-center gap-2">
+                        <h2 className="text-xl font-bold font-space-grotesk text-neutral-900 dark:text-white flex items-center gap-2">
                             <span className="text-[#B89047]">11.</span> Partner Conduct
                         </h2>
                         <p>
@@ -198,7 +198,7 @@ export default function PartnerAgreementPage() {
 
                     {/* 12. Independent Businesses */}
                     <section className="space-y-3">
-                        <h2 className="text-xl font-bold font-space-grotesk text-white flex items-center gap-2">
+                        <h2 className="text-xl font-bold font-space-grotesk text-neutral-900 dark:text-white flex items-center gap-2">
                             <span className="text-[#B89047]">12.</span> Independent Businesses
                         </h2>
                         <p>
@@ -208,7 +208,7 @@ export default function PartnerAgreementPage() {
 
                     {/* 13. Termination */}
                     <section className="space-y-3">
-                        <h2 className="text-xl font-bold font-space-grotesk text-white flex items-center gap-2">
+                        <h2 className="text-xl font-bold font-space-grotesk text-neutral-900 dark:text-white flex items-center gap-2">
                             <span className="text-[#B89047]">13.</span> Termination
                         </h2>
                         <p>
@@ -217,45 +217,45 @@ export default function PartnerAgreementPage() {
                     </section>
 
                     {/* 14. Company Information */}
-                    <section className="bg-neutral-900/60 border border-neutral-800 rounded-2xl p-6 sm:p-8 space-y-4">
-                        <h2 className="text-xl font-bold font-space-grotesk text-white flex items-center gap-2">
+                    <section className="bg-white dark:bg-neutral-900/60 border border-neutral-200/80 dark:border-neutral-800 rounded-2xl p-6 sm:p-8 space-y-4 shadow-xs dark:shadow-none">
+                        <h2 className="text-xl font-bold font-space-grotesk text-neutral-900 dark:text-white flex items-center gap-2">
                             <span className="text-[#B89047]">14.</span> Company &amp; Partner Support Information
                         </h2>
-                        <p className="text-sm text-neutral-400">
+                        <p className="text-sm text-neutral-600 dark:text-neutral-400">
                             For inquiries regarding the Partner Program or to submit notices under this agreement, please reach out to:
                         </p>
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
-                            <div className="flex items-start gap-3 p-3.5 rounded-xl bg-neutral-950/60 border border-neutral-800/80">
+                            <div className="flex items-start gap-3 p-3.5 rounded-xl bg-neutral-50/80 dark:bg-neutral-950/60 border border-neutral-200/80 dark:border-neutral-800/80">
                                 <Building2 className="size-5 text-[#B89047] shrink-0 mt-0.5" />
                                 <div>
-                                    <span className="text-xs text-neutral-400 block font-medium">Legal Business Name</span>
-                                    <span className="text-sm font-semibold text-white">InviteOly Inc.</span>
+                                    <span className="text-xs text-neutral-500 dark:text-neutral-400 block font-medium">Legal Business Name</span>
+                                    <span className="text-sm font-semibold text-neutral-900 dark:text-white">InviteOly Inc.</span>
                                 </div>
                             </div>
 
-                            <div className="flex items-start gap-3 p-3.5 rounded-xl bg-neutral-950/60 border border-neutral-800/80">
+                            <div className="flex items-start gap-3 p-3.5 rounded-xl bg-neutral-50/80 dark:bg-neutral-950/60 border border-neutral-200/80 dark:border-neutral-800/80">
                                 <Mail className="size-5 text-[#B89047] shrink-0 mt-0.5" />
                                 <div>
-                                    <span className="text-xs text-neutral-400 block font-medium">Partner Contact Email</span>
-                                    <a href="mailto:partners@inviteoly.com" className="text-sm font-semibold text-white hover:text-[#B89047] transition-colors">
+                                    <span className="text-xs text-neutral-500 dark:text-neutral-400 block font-medium">Partner Contact Email</span>
+                                    <a href="mailto:partners@inviteoly.com" className="text-sm font-semibold text-neutral-900 dark:text-white hover:text-[#B89047] transition-colors">
                                         partners@inviteoly.com
                                     </a>
                                 </div>
                             </div>
 
-                            <div className="flex items-start gap-3 p-3.5 rounded-xl bg-neutral-950/60 border border-neutral-800/80">
+                            <div className="flex items-start gap-3 p-3.5 rounded-xl bg-neutral-50/80 dark:bg-neutral-950/60 border border-neutral-200/80 dark:border-neutral-800/80">
                                 <MapPin className="size-5 text-[#B89047] shrink-0 mt-0.5" />
                                 <div>
-                                    <span className="text-xs text-neutral-400 block font-medium">Business Address</span>
-                                    <span className="text-sm font-semibold text-white">San Francisco, California</span>
+                                    <span className="text-xs text-neutral-500 dark:text-neutral-400 block font-medium">Business Address</span>
+                                    <span className="text-sm font-semibold text-neutral-900 dark:text-white">San Francisco, California</span>
                                 </div>
                             </div>
 
-                            <div className="flex items-start gap-3 p-3.5 rounded-xl bg-neutral-950/60 border border-neutral-800/80">
+                            <div className="flex items-start gap-3 p-3.5 rounded-xl bg-neutral-50/80 dark:bg-neutral-950/60 border border-neutral-200/80 dark:border-neutral-800/80">
                                 <Globe className="size-5 text-[#B89047] shrink-0 mt-0.5" />
                                 <div>
-                                    <span className="text-xs text-neutral-400 block font-medium">Official Website</span>
-                                    <Link href="https://www.inviteoly.com" className="text-sm font-semibold text-white hover:text-[#B89047] transition-colors">
+                                    <span className="text-xs text-neutral-500 dark:text-neutral-400 block font-medium">Official Website</span>
+                                    <Link href="https://www.inviteoly.com" className="text-sm font-semibold text-neutral-900 dark:text-white hover:text-[#B89047] transition-colors">
                                         www.inviteoly.com
                                     </Link>
                                 </div>

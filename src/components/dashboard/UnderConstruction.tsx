@@ -20,15 +20,15 @@ export function UnderConstruction({
 
   return (
     <div className="flex flex-col items-center justify-center min-h-[60vh] px-4 text-center">
-      <div className="max-w-md w-full p-8 rounded-3xl bg-white border border-neutral-200/80 shadow-xs flex flex-col items-center">
+      <div className="max-w-md w-full p-8 rounded-3xl bg-white dark:bg-neutral-900/60 border border-neutral-200/80 dark:border-neutral-800 shadow-xs flex flex-col items-center">
         {/* Construction Icon */}
-        <div className="size-16 rounded-2xl bg-[#FAF5EB] border border-primary/20 flex items-center justify-center text-primary mb-5 shadow-xs">
+        <div className="size-16 rounded-2xl bg-[#FAF5EB] dark:bg-amber-950/30 border border-primary/20 dark:border-amber-800/40 flex items-center justify-center text-primary dark:text-amber-400 mb-5 shadow-xs">
           <Construction className="size-8 stroke-[1.8]" />
         </div>
 
         {/* Role & Title */}
         {role && (
-          <span className="text-[11px] uppercase tracking-wider font-semibold text-primary bg-[#FAF5EB] px-3 py-1 rounded-full border border-primary/20 mb-3">
+          <span className="text-[11px] uppercase tracking-wider font-semibold text-primary dark:text-amber-400 bg-[#FAF5EB] dark:bg-amber-950/30 px-3 py-1 rounded-full border border-primary/20 dark:border-amber-800/40 mb-3">
             {role} Module
           </span>
         )}
@@ -46,7 +46,7 @@ export function UnderConstruction({
           <Button
             variant="outline"
             onClick={() => router.back()}
-            className="rounded-full cursor-pointer text-sm font-medium border-neutral-300 hover:bg-neutral-100"
+            className="rounded-full cursor-pointer text-sm font-medium border-neutral-300 dark:border-neutral-700 text-neutral-800 dark:text-neutral-200 hover:bg-neutral-100 dark:hover:bg-neutral-800"
           >
             <ArrowLeft className="size-4 mr-1.5" />
             Go Back

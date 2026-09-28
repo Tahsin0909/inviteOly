@@ -166,8 +166,8 @@ export default function RegisterForm() {
                 onChange={(e) => handleRoleChange(e.target.value as TAuthRole)}
                 className="w-full h-10 sm:h-11 px-3.5 pr-10 rounded-xl border border-input bg-card text-foreground text-xs sm:text-sm transition-colors focus-visible:outline-none focus-visible:border-primary focus-visible:ring-1 focus-visible:ring-primary/40 shadow-2xs appearance-none cursor-pointer"
               >
-                <option value="HOST">I&apos;m a Host</option>
-                <option value="PARTNER">I&apos;m a Partner</option>
+                <option value="HOST" className="bg-card text-foreground">I&apos;m a Host</option>
+                <option value="PARTNER" className="bg-card text-foreground">I&apos;m a Partner</option>
               </select>
               <ChevronDown className="absolute right-3.5 top-1/2 -translate-y-1/2 size-4 text-muted-foreground/70 pointer-events-none" />
             </div>
@@ -297,8 +297,8 @@ export default function RegisterForm() {
                 onChange={(e) => handleRoleChange(e.target.value as TAuthRole)}
                 className="w-full h-10 sm:h-11 px-3.5 pr-10 rounded-xl border border-input bg-card text-foreground text-xs sm:text-sm transition-colors focus-visible:outline-none focus-visible:border-primary focus-visible:ring-1 focus-visible:ring-primary/40 shadow-2xs appearance-none cursor-pointer"
               >
-                <option value="HOST">I&apos;m a Host</option>
-                <option value="PARTNER">I&apos;m a Partner</option>
+                <option value="HOST" className="bg-card text-foreground">I&apos;m a Host</option>
+                <option value="PARTNER" className="bg-card text-foreground">I&apos;m a Partner</option>
               </select>
               <ChevronDown className="absolute right-3.5 top-1/2 -translate-y-1/2 size-4 text-muted-foreground/70 pointer-events-none" />
             </div>
@@ -315,7 +315,7 @@ export default function RegisterForm() {
                 className="w-full h-10 sm:h-11 px-3.5 pr-10 rounded-xl border border-input bg-card text-foreground text-xs sm:text-sm transition-colors focus-visible:outline-none focus-visible:border-primary focus-visible:ring-1 focus-visible:ring-primary/40 shadow-2xs appearance-none cursor-pointer"
               >
                 {PARTNER_OPTIONS.map((item) => (
-                  <option key={item} value={item}>
+                  <option key={item} value={item} className="bg-card text-foreground">
                     {item}
                   </option>
                 ))}

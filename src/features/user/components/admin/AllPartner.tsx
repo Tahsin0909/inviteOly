@@ -225,10 +225,10 @@ export const AllPartner: React.FC<AllPartnerProps> = ({ className }) => {
             {/* Top Header Row */}
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                 <div>
-                    <h1 className="text-2xl sm:text-3xl font-bold font-space-grotesk text-neutral-900 tracking-tight">
+                    <h1 className="text-2xl sm:text-3xl font-bold font-space-grotesk text-neutral-900 dark:text-white tracking-tight">
                         Partners Management
                     </h1>
-                    <p className="text-xs sm:text-sm text-neutral-500 mt-1">
+                    <p className="text-xs sm:text-sm text-neutral-500 dark:text-neutral-400 mt-1">
                         Manage partner accounts, venue relationships, referrals, activity,
                         and partner status.
                     </p>
@@ -247,74 +247,74 @@ export const AllPartner: React.FC<AllPartnerProps> = ({ className }) => {
             {/* 4 Metric Cards */}
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
                 {/* Card 1: Total Partners */}
-                <div className="bg-white border border-neutral-200/80 rounded-2xl p-5 shadow-2xs flex flex-col justify-between">
-                    <div className="size-11 rounded-xl bg-[#B89047]/10 flex items-center justify-center text-[#B89047]">
+                <div className="bg-white dark:bg-neutral-900/60 border border-neutral-200/80 dark:border-neutral-800 rounded-2xl p-5 shadow-2xs flex flex-col justify-between">
+                    <div className="size-11 rounded-xl bg-[#B89047]/10 dark:bg-amber-950/30 flex items-center justify-center text-[#B89047] dark:text-amber-400">
                         <Users className="size-5" />
                     </div>
                     <div className="mt-4">
                         <div className="flex items-center justify-between">
-                            <span className="text-3xl font-bold font-space-grotesk text-neutral-900">
+                            <span className="text-3xl font-bold font-space-grotesk text-neutral-900 dark:text-white">
                                 {staticAdminPartnerStats.totalPartners}
                             </span>
-                            <span className="bg-[#E8F8EE] text-[#0FA958] text-xs font-semibold px-2 py-0.5 rounded-md flex items-center">
+                            <span className="bg-[#E8F8EE] dark:bg-emerald-950/30 text-[#0FA958] dark:text-emerald-400 text-xs font-semibold px-2 py-0.5 rounded-md flex items-center">
                                 {staticAdminPartnerStats.totalPartnersTrend}
                             </span>
                         </div>
-                        <p className="text-xs text-neutral-500 font-medium mt-1">
+                        <p className="text-xs text-neutral-500 dark:text-neutral-400 font-medium mt-1">
                             Total Partners
                         </p>
                     </div>
                 </div>
 
                 {/* Card 2: Active Partners */}
-                <div className="bg-white border border-neutral-200/80 rounded-2xl p-5 shadow-2xs flex flex-col justify-between">
-                    <div className="size-11 rounded-xl bg-[#B89047]/10 flex items-center justify-center text-[#B89047]">
+                <div className="bg-white dark:bg-neutral-900/60 border border-neutral-200/80 dark:border-neutral-800 rounded-2xl p-5 shadow-2xs flex flex-col justify-between">
+                    <div className="size-11 rounded-xl bg-[#B89047]/10 dark:bg-amber-950/30 flex items-center justify-center text-[#B89047] dark:text-amber-400">
                         <CheckCircle2 className="size-5" />
                     </div>
                     <div className="mt-4">
                         <div className="flex items-center justify-between">
-                            <span className="text-3xl font-bold font-space-grotesk text-neutral-900">
+                            <span className="text-3xl font-bold font-space-grotesk text-neutral-900 dark:text-white">
                                 {staticAdminPartnerStats.activePartners}
                             </span>
-                            <span className="bg-[#E8F8EE] text-[#0FA958] text-xs font-semibold px-2 py-0.5 rounded-md flex items-center">
+                            <span className="bg-[#E8F8EE] dark:bg-emerald-950/30 text-[#0FA958] dark:text-emerald-400 text-xs font-semibold px-2 py-0.5 rounded-md flex items-center">
                                 {staticAdminPartnerStats.activePartnersTrend}
                             </span>
                         </div>
-                        <p className="text-xs text-neutral-500 font-medium mt-1">
+                        <p className="text-xs text-neutral-500 dark:text-neutral-400 font-medium mt-1">
                             Active Partners
                         </p>
                     </div>
                 </div>
 
                 {/* Card 3: Preferred Partners */}
-                <div className="bg-white border border-neutral-200/80 rounded-2xl p-5 shadow-2xs flex flex-col justify-between">
-                    <div className="size-11 rounded-xl bg-[#B89047]/10 flex items-center justify-center text-[#B89047]">
+                <div className="bg-white dark:bg-neutral-900/60 border border-neutral-200/80 dark:border-neutral-800 rounded-2xl p-5 shadow-2xs flex flex-col justify-between">
+                    <div className="size-11 rounded-xl bg-[#B89047]/10 dark:bg-amber-950/30 flex items-center justify-center text-[#B89047] dark:text-amber-400">
                         <Award className="size-5" />
                     </div>
                     <div className="mt-4">
                         <div className="flex items-center justify-between">
-                            <span className="text-3xl font-bold font-space-grotesk text-neutral-900">
+                            <span className="text-3xl font-bold font-space-grotesk text-neutral-900 dark:text-white">
                                 {staticAdminPartnerStats.preferredPartners}
                             </span>
                         </div>
-                        <p className="text-xs text-neutral-500 font-medium mt-1">
+                        <p className="text-xs text-neutral-500 dark:text-neutral-400 font-medium mt-1">
                             Preferred Partners
                         </p>
                     </div>
                 </div>
 
                 {/* Card 4: Referred Events */}
-                <div className="bg-white border border-neutral-200/80 rounded-2xl p-5 shadow-2xs flex flex-col justify-between">
-                    <div className="size-11 rounded-xl bg-[#B89047]/10 flex items-center justify-center text-[#B89047]">
+                <div className="bg-white dark:bg-neutral-900/60 border border-neutral-200/80 dark:border-neutral-800 rounded-2xl p-5 shadow-2xs flex flex-col justify-between">
+                    <div className="size-11 rounded-xl bg-[#B89047]/10 dark:bg-amber-950/30 flex items-center justify-center text-[#B89047] dark:text-amber-400">
                         <Tag className="size-5" />
                     </div>
                     <div className="mt-4">
                         <div className="flex items-center justify-between">
-                            <span className="text-3xl font-bold font-space-grotesk text-neutral-900">
+                            <span className="text-3xl font-bold font-space-grotesk text-neutral-900 dark:text-white">
                                 {staticAdminPartnerStats.referredEvents}
                             </span>
                         </div>
-                        <p className="text-xs text-neutral-500 font-medium mt-1">
+                        <p className="text-xs text-neutral-500 dark:text-neutral-400 font-medium mt-1">
                             Referred Events
                         </p>
                     </div>
@@ -325,13 +325,13 @@ export const AllPartner: React.FC<AllPartnerProps> = ({ className }) => {
             <div className="flex flex-col md:flex-row items-stretch md:items-center justify-between gap-3">
                 {/* Search Bar */}
                 <div className="relative w-full max-w-md">
-                    <Search className="absolute left-4 top-1/2 -translate-y-1/2 size-4 text-neutral-400 pointer-events-none" />
+                    <Search className="absolute left-4 top-1/2 -translate-y-1/2 size-4 text-neutral-400 dark:text-neutral-500 pointer-events-none" />
                     <input
                         type="text"
                         value={searchTerm}
                         onChange={(e) => setSearchTerm(e.target.value)}
                         placeholder="Search partner, business, or email..."
-                        className="w-full h-11 pl-11 pr-4 rounded-full border border-neutral-200 bg-white text-xs sm:text-sm text-neutral-800 placeholder:text-neutral-400 focus:outline-none focus:border-[#B89047] focus:ring-1 focus:ring-[#B89047]/20 shadow-2xs font-work-sans transition-all"
+                        className="w-full h-11 pl-11 pr-4 rounded-full border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 text-xs sm:text-sm text-neutral-800 dark:text-neutral-200 placeholder:text-neutral-400 dark:placeholder:text-neutral-500 focus:outline-none focus:border-[#B89047] focus:ring-1 focus:ring-[#B89047]/20 shadow-2xs font-work-sans transition-all"
                     />
                 </div>
 
@@ -346,7 +346,7 @@ export const AllPartner: React.FC<AllPartnerProps> = ({ className }) => {
                             "px-4 py-2 rounded-xl text-xs font-semibold transition-all cursor-pointer whitespace-nowrap border shadow-2xs",
                             statusFilter === "Active"
                                 ? "bg-[#B89047] text-white border-[#B89047]"
-                                : "bg-white text-neutral-600 border-neutral-200/80 hover:bg-neutral-50"
+                                : "bg-white dark:bg-neutral-900 text-neutral-600 dark:text-neutral-300 border-neutral-200/80 dark:border-neutral-800 hover:bg-neutral-50 dark:hover:bg-neutral-800"
                         )}
                     >
                         Active Partner
@@ -363,7 +363,7 @@ export const AllPartner: React.FC<AllPartnerProps> = ({ className }) => {
                             "px-4 py-2 rounded-xl text-xs font-semibold transition-all cursor-pointer whitespace-nowrap border shadow-2xs",
                             statusFilter === "Deactivate"
                                 ? "bg-[#B89047] text-white border-[#B89047]"
-                                : "bg-white text-neutral-600 border-neutral-200/80 hover:bg-neutral-50"
+                                : "bg-white dark:bg-neutral-900 text-neutral-600 dark:text-neutral-300 border-neutral-200/80 dark:border-neutral-800 hover:bg-neutral-50 dark:hover:bg-neutral-800"
                         )}
                     >
                         Deactivate Partner
@@ -380,7 +380,7 @@ export const AllPartner: React.FC<AllPartnerProps> = ({ className }) => {
                             "px-4 py-2 rounded-xl text-xs font-semibold transition-all cursor-pointer whitespace-nowrap border shadow-2xs",
                             statusFilter === "Suspended"
                                 ? "bg-[#B89047] text-white border-[#B89047]"
-                                : "bg-white text-neutral-600 border-neutral-200/80 hover:bg-neutral-50"
+                                : "bg-white dark:bg-neutral-900 text-neutral-600 dark:text-neutral-300 border-neutral-200/80 dark:border-neutral-800 hover:bg-neutral-50 dark:hover:bg-neutral-800"
                         )}
                     >
                         Suspended Partner
@@ -389,47 +389,47 @@ export const AllPartner: React.FC<AllPartnerProps> = ({ className }) => {
             </div>
 
             {/* Table Card */}
-            <div className="bg-white border border-neutral-200/80 rounded-2xl overflow-hidden shadow-2xs">
+            <div className="bg-white dark:bg-neutral-900/40 border border-neutral-200/80 dark:border-neutral-800 rounded-2xl overflow-hidden shadow-2xs">
                 <div className="overflow-x-auto">
                     <table className="w-full text-left border-collapse min-w-[850px]">
                         <thead>
-                            <tr className="border-b border-neutral-100 bg-neutral-50/50">
-                                <th className="py-3.5 px-5 text-[11px] font-bold uppercase tracking-wider text-neutral-500 font-space-grotesk">
+                            <tr className="border-b border-neutral-100 dark:border-neutral-800 bg-neutral-50/50 dark:bg-neutral-900/60">
+                                <th className="py-3.5 px-5 text-[11px] font-bold uppercase tracking-wider text-neutral-500 dark:text-neutral-400 font-space-grotesk">
                                     Partner
                                 </th>
-                                <th className="py-3.5 px-5 text-[11px] font-bold uppercase tracking-wider text-neutral-500 font-space-grotesk">
+                                <th className="py-3.5 px-5 text-[11px] font-bold uppercase tracking-wider text-neutral-500 dark:text-neutral-400 font-space-grotesk">
                                     Business / Venue
                                 </th>
-                                <th className="py-3.5 px-5 text-[11px] font-bold uppercase tracking-wider text-neutral-500 font-space-grotesk">
+                                <th className="py-3.5 px-5 text-[11px] font-bold uppercase tracking-wider text-neutral-500 dark:text-neutral-400 font-space-grotesk">
                                     Status
                                 </th>
-                                <th className="py-3.5 px-5 text-[11px] font-bold uppercase tracking-wider text-neutral-500 font-space-grotesk">
+                                <th className="py-3.5 px-5 text-[11px] font-bold uppercase tracking-wider text-neutral-500 dark:text-neutral-400 font-space-grotesk">
                                     Event Count
                                 </th>
-                                <th className="py-3.5 px-5 text-[11px] font-bold uppercase tracking-wider text-neutral-500 font-space-grotesk">
+                                <th className="py-3.5 px-5 text-[11px] font-bold uppercase tracking-wider text-neutral-500 dark:text-neutral-400 font-space-grotesk">
                                     Preferred
                                 </th>
-                                <th className="py-3.5 px-5 text-[11px] font-bold uppercase tracking-wider text-neutral-500 font-space-grotesk">
+                                <th className="py-3.5 px-5 text-[11px] font-bold uppercase tracking-wider text-neutral-500 dark:text-neutral-400 font-space-grotesk">
                                     Join Dates
                                 </th>
-                                <th className="py-3.5 px-5 text-[11px] font-bold uppercase tracking-wider text-neutral-500 font-space-grotesk text-right">
+                                <th className="py-3.5 px-5 text-[11px] font-bold uppercase tracking-wider text-neutral-500 dark:text-neutral-400 font-space-grotesk text-right">
                                     Actions
                                 </th>
                             </tr>
                         </thead>
-                        <tbody className="divide-y divide-neutral-100">
+                        <tbody className="divide-y divide-neutral-100 dark:divide-neutral-800">
                             {filteredPartners.length > 0 ? (
                                 filteredPartners.map((partner) => (
                                     <tr
                                         key={partner.id}
                                         onClick={() => handleOpenDetails(partner)}
-                                        className="hover:bg-neutral-50/70 transition-colors cursor-pointer group"
+                                        className="hover:bg-neutral-50/70 dark:hover:bg-neutral-800/40 transition-colors cursor-pointer group"
                                     >
                                         {/* Partner: Avatar + Name + Email */}
                                         <td className="py-4 px-5">
                                             <div className="flex items-center gap-3">
                                                 {partner.avatarUrl ? (
-                                                    <div className="relative size-9 rounded-full overflow-hidden shrink-0 border border-neutral-200">
+                                                    <div className="relative size-9 rounded-full overflow-hidden shrink-0 border border-neutral-200 dark:border-neutral-700">
                                                         <Image
                                                             src={partner.avatarUrl}
                                                             alt={partner.name}
@@ -438,15 +438,15 @@ export const AllPartner: React.FC<AllPartnerProps> = ({ className }) => {
                                                         />
                                                     </div>
                                                 ) : (
-                                                    <div className="size-9 rounded-full bg-[#FDF6E2] text-[#B89047] font-semibold text-xs flex items-center justify-center shrink-0 border border-[#FDE68A]/60 font-space-grotesk">
+                                                    <div className="size-9 rounded-full bg-[#FDF6E2] dark:bg-amber-950/40 text-[#B89047] dark:text-amber-400 font-semibold text-xs flex items-center justify-center shrink-0 border border-[#FDE68A]/60 dark:border-amber-800/40 font-space-grotesk">
                                                         {partner.initials || "PT"}
                                                     </div>
                                                 )}
                                                 <div>
-                                                    <p className="font-semibold text-sm text-neutral-900 group-hover:text-[#B89047] transition-colors">
+                                                    <p className="font-semibold text-sm text-neutral-900 dark:text-white group-hover:text-[#B89047] transition-colors">
                                                         {partner.name}
                                                     </p>
-                                                    <p className="text-xs text-neutral-400 font-work-sans">
+                                                    <p className="text-xs text-neutral-400 dark:text-neutral-500 font-work-sans">
                                                         {partner.email}
                                                     </p>
                                                 </div>
@@ -455,10 +455,10 @@ export const AllPartner: React.FC<AllPartnerProps> = ({ className }) => {
 
                                         {/* Business / Venue */}
                                         <td className="py-4 px-5">
-                                            <p className="font-semibold text-sm text-neutral-800">
+                                            <p className="font-semibold text-sm text-neutral-800 dark:text-neutral-200">
                                                 {partner.businessName}
                                             </p>
-                                            <p className="text-xs text-neutral-400 font-work-sans">
+                                            <p className="text-xs text-neutral-400 dark:text-neutral-500 font-work-sans">
                                                 {partner.venueName}
                                             </p>
                                         </td>
@@ -469,10 +469,10 @@ export const AllPartner: React.FC<AllPartnerProps> = ({ className }) => {
                                                 className={cn(
                                                     "inline-block px-3 py-1 rounded-full text-xs font-semibold",
                                                     partner.status === "Active"
-                                                        ? "bg-[#E8F8EE] text-[#0FA958]"
+                                                        ? "bg-[#E8F8EE] dark:bg-emerald-950/30 text-[#0FA958] dark:text-emerald-400"
                                                         : partner.status === "Deactivate"
-                                                            ? "bg-neutral-100 text-neutral-500"
-                                                            : "bg-red-50 text-red-500"
+                                                            ? "bg-neutral-100 dark:bg-neutral-800 text-neutral-500 dark:text-neutral-400"
+                                                            : "bg-red-50 dark:bg-red-950/30 text-red-500 dark:text-red-400"
                                                 )}
                                             >
                                                 {partner.status}
@@ -480,25 +480,25 @@ export const AllPartner: React.FC<AllPartnerProps> = ({ className }) => {
                                         </td>
 
                                         {/* Event Count */}
-                                        <td className="py-4 px-5 text-sm font-medium text-neutral-800">
+                                        <td className="py-4 px-5 text-sm font-medium text-neutral-800 dark:text-neutral-200">
                                             {String(partner.eventCount).padStart(2, "0")}
                                         </td>
 
                                         {/* Preferred */}
                                         <td className="py-4 px-5">
                                             {partner.isPreferred ? (
-                                                <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-medium bg-[#FEF7EC] text-[#B89047] border border-[#FDE68A]/60">
+                                                <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-medium bg-[#FEF7EC] dark:bg-amber-950/30 text-[#B89047] dark:text-amber-400 border border-[#FDE68A]/60 dark:border-amber-800/40">
                                                     Preferred
                                                 </span>
                                             ) : (
-                                                <span className="text-neutral-400 text-sm font-medium">
+                                                <span className="text-neutral-400 dark:text-neutral-500 text-sm font-medium">
                                                     --
                                                 </span>
                                             )}
                                         </td>
 
                                         {/* Join Dates */}
-                                        <td className="py-4 px-5 text-xs font-medium text-neutral-600">
+                                        <td className="py-4 px-5 text-xs font-medium text-neutral-600 dark:text-neutral-400">
                                             {partner.joinDate}
                                         </td>
 
@@ -511,7 +511,7 @@ export const AllPartner: React.FC<AllPartnerProps> = ({ className }) => {
                                                 <button
                                                     type="button"
                                                     onClick={() => handleOpenDetails(partner)}
-                                                    className="size-8 rounded-lg hover:bg-neutral-100 flex items-center justify-center text-neutral-400 hover:text-neutral-700 transition-colors"
+                                                    className="size-8 rounded-lg hover:bg-neutral-100 dark:hover:bg-neutral-800 flex items-center justify-center text-neutral-400 hover:text-neutral-700 dark:hover:text-neutral-200 transition-colors"
                                                     title="View Details"
                                                 >
                                                     <Eye className="size-4" />
@@ -525,7 +525,7 @@ export const AllPartner: React.FC<AllPartnerProps> = ({ className }) => {
                                                                 prev === partner.id ? null : partner.id
                                                             )
                                                         }
-                                                        className="size-8 rounded-lg hover:bg-neutral-100 flex items-center justify-center text-neutral-400 hover:text-neutral-700 transition-colors"
+                                                        className="size-8 rounded-lg hover:bg-neutral-100 dark:hover:bg-neutral-800 flex items-center justify-center text-neutral-400 hover:text-neutral-700 dark:hover:text-neutral-200 transition-colors"
                                                         title="Actions"
                                                     >
                                                         <MoreVertical className="size-4" />
@@ -533,13 +533,13 @@ export const AllPartner: React.FC<AllPartnerProps> = ({ className }) => {
 
                                                     {/* Action Dropdown Menu */}
                                                     {activeMenuId === partner.id && (
-                                                        <div className="absolute right-0 top-9 w-48 bg-white rounded-xl shadow-lg border border-neutral-100 py-1.5 z-30 animate-in fade-in zoom-in-95 duration-150">
+                                                        <div className="absolute right-0 top-9 w-48 bg-white dark:bg-neutral-900 rounded-xl shadow-lg border border-neutral-100 dark:border-neutral-800 py-1.5 z-30 animate-in fade-in zoom-in-95 duration-150">
                                                             <button
                                                                 type="button"
                                                                 onClick={() => handleOpenDetails(partner)}
-                                                                className="w-full px-3.5 py-2 text-left text-xs font-medium text-neutral-700 hover:bg-neutral-50 flex items-center gap-2"
+                                                                className="w-full px-3.5 py-2 text-left text-xs font-medium text-neutral-700 dark:text-neutral-200 hover:bg-neutral-50 dark:hover:bg-neutral-800 flex items-center gap-2"
                                                             >
-                                                                <Eye className="size-3.5 text-neutral-400" />
+                                                                <Eye className="size-3.5 text-neutral-400 dark:text-neutral-500" />
                                                                 View Full Profile
                                                             </button>
 
@@ -548,15 +548,15 @@ export const AllPartner: React.FC<AllPartnerProps> = ({ className }) => {
                                                                 onClick={(e) =>
                                                                     handleTogglePreferred(e, partner)
                                                                 }
-                                                                className="w-full px-3.5 py-2 text-left text-xs font-medium text-neutral-700 hover:bg-neutral-50 flex items-center gap-2"
+                                                                className="w-full px-3.5 py-2 text-left text-xs font-medium text-neutral-700 dark:text-neutral-200 hover:bg-neutral-50 dark:hover:bg-neutral-800 flex items-center gap-2"
                                                             >
-                                                                <Award className="size-3.5 text-[#B89047]" />
+                                                                <Award className="size-3.5 text-[#B89047] dark:text-amber-400" />
                                                                 {partner.isPreferred
                                                                     ? "Remove Preferred"
                                                                     : "Make Preferred"}
                                                             </button>
 
-                                                            <div className="border-t border-neutral-100 my-1" />
+                                                            <div className="border-t border-neutral-100 dark:border-neutral-800 my-1" />
 
                                                             {partner.status !== "Active" && (
                                                                 <button
@@ -564,7 +564,7 @@ export const AllPartner: React.FC<AllPartnerProps> = ({ className }) => {
                                                                     onClick={(e) =>
                                                                         handleChangeStatus(e, partner, "Active")
                                                                     }
-                                                                    className="w-full px-3.5 py-2 text-left text-xs font-medium text-green-600 hover:bg-green-50 flex items-center gap-2"
+                                                                    className="w-full px-3.5 py-2 text-left text-xs font-medium text-green-600 dark:text-green-400 hover:bg-green-50 dark:hover:bg-green-950/30 flex items-center gap-2"
                                                                 >
                                                                     <UserCheck className="size-3.5" />
                                                                     Mark as Active
@@ -577,7 +577,7 @@ export const AllPartner: React.FC<AllPartnerProps> = ({ className }) => {
                                                                     onClick={(e) =>
                                                                         handleChangeStatus(e, partner, "Deactivate")
                                                                     }
-                                                                    className="w-full px-3.5 py-2 text-left text-xs font-medium text-neutral-600 hover:bg-neutral-50 flex items-center gap-2"
+                                                                    className="w-full px-3.5 py-2 text-left text-xs font-medium text-neutral-600 dark:text-neutral-300 hover:bg-neutral-50 dark:hover:bg-neutral-800 flex items-center gap-2"
                                                                 >
                                                                     <UserX className="size-3.5" />
                                                                     Mark as Deactivated
@@ -590,7 +590,7 @@ export const AllPartner: React.FC<AllPartnerProps> = ({ className }) => {
                                                                     onClick={(e) =>
                                                                         handleChangeStatus(e, partner, "Suspended")
                                                                     }
-                                                                    className="w-full px-3.5 py-2 text-left text-xs font-medium text-red-600 hover:bg-red-50 flex items-center gap-2"
+                                                                    className="w-full px-3.5 py-2 text-left text-xs font-medium text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-950/30 flex items-center gap-2"
                                                                 >
                                                                     <ShieldAlert className="size-3.5" />
                                                                     Mark as Suspended
@@ -607,7 +607,7 @@ export const AllPartner: React.FC<AllPartnerProps> = ({ className }) => {
                                 <tr>
                                     <td
                                         colSpan={7}
-                                        className="py-12 text-center text-sm text-neutral-400 font-medium"
+                                        className="py-12 text-center text-sm text-neutral-400 dark:text-neutral-500 font-medium"
                                     >
                                         No partners found matching your search.
                                     </td>
@@ -618,11 +618,11 @@ export const AllPartner: React.FC<AllPartnerProps> = ({ className }) => {
                 </div>
 
                 {/* Pagination */}
-                <div className="flex items-center justify-center gap-1.5 py-4 px-5 border-t border-neutral-100 bg-white">
+                <div className="flex items-center justify-center gap-1.5 py-4 px-5 border-t border-neutral-100 dark:border-neutral-800 bg-white dark:bg-neutral-900/60">
                     <button
                         type="button"
                         onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
-                        className="size-8 rounded-lg border border-neutral-200/80 flex items-center justify-center text-neutral-500 hover:bg-neutral-50 transition-colors disabled:opacity-40"
+                        className="size-8 rounded-lg border border-neutral-200/80 dark:border-neutral-800 flex items-center justify-center text-neutral-500 dark:text-neutral-400 hover:bg-neutral-50 dark:hover:bg-neutral-800 transition-colors disabled:opacity-40"
                         disabled={currentPage === 1}
                     >
                         <ChevronLeft className="size-4" />
@@ -637,7 +637,7 @@ export const AllPartner: React.FC<AllPartnerProps> = ({ className }) => {
                                 "size-8 rounded-lg font-bold text-xs transition-colors flex items-center justify-center cursor-pointer",
                                 currentPage === page
                                     ? "bg-[#B89047] text-white"
-                                    : "text-neutral-600 hover:bg-neutral-50"
+                                    : "text-neutral-600 dark:text-neutral-400 hover:bg-neutral-50 dark:hover:bg-neutral-800"
                             )}
                         >
                             {page}
@@ -647,7 +647,7 @@ export const AllPartner: React.FC<AllPartnerProps> = ({ className }) => {
                     <button
                         type="button"
                         onClick={() => setCurrentPage((prev) => Math.min(prev + 1, 5))}
-                        className="size-8 rounded-lg border border-neutral-200/80 flex items-center justify-center text-neutral-500 hover:bg-neutral-50 transition-colors disabled:opacity-40"
+                        className="size-8 rounded-lg border border-neutral-200/80 dark:border-neutral-800 flex items-center justify-center text-neutral-500 dark:text-neutral-400 hover:bg-neutral-50 dark:hover:bg-neutral-800 transition-colors disabled:opacity-40"
                         disabled={currentPage === 5}
                     >
                         <ChevronRight className="size-4" />

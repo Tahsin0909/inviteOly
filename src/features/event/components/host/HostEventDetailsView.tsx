@@ -251,11 +251,11 @@ export const HostEventDetailsView: React.FC<HostEventDetailsViewProps> = ({
                   <ChevronDown className="h-3 w-3 text-amber-700" />
                 </button>
               </DropdownMenuTrigger>
-              <DropdownMenuContent align="start" className="w-72 bg-white border-neutral-200 shadow-xl rounded-xl p-1.5 z-50">
-                <DropdownMenuLabel className="text-[11px] font-bold text-gray-400 uppercase tracking-wider px-2.5 py-1">
+              <DropdownMenuContent align="start" className="w-72 bg-white dark:bg-neutral-900 border-neutral-200 dark:border-neutral-800 shadow-xl rounded-xl p-1.5 z-50">
+                <DropdownMenuLabel className="text-[11px] font-bold text-gray-400 dark:text-neutral-500 uppercase tracking-wider px-2.5 py-1">
                   Demonstration Modes
                 </DropdownMenuLabel>
-                <DropdownMenuSeparator className="my-1" />
+                <DropdownMenuSeparator className="my-1 border-neutral-100 dark:border-neutral-800" />
                 {hostEvents.map((evt) => (
                   <DropdownMenuItem
                     key={evt.id}
@@ -264,13 +264,13 @@ export const HostEventDetailsView: React.FC<HostEventDetailsViewProps> = ({
                       router.push(`/host/events/${evt.id}`);
                     }}
                     className={`flex items-center justify-between px-2.5 py-2 rounded-lg cursor-pointer text-xs ${evt.id === event.id
-                      ? "bg-amber-50 text-amber-900 font-semibold"
-                      : "text-gray-700 hover:bg-gray-50"
+                      ? "bg-amber-50 dark:bg-amber-950/40 text-amber-900 dark:text-amber-300 font-semibold"
+                      : "text-gray-700 dark:text-neutral-300 hover:bg-gray-50 dark:hover:bg-neutral-800"
                       }`}
                   >
                     <div className="flex items-center gap-2">
                       {evt.id === event.id ? (
-                        <Check className="h-3.5 w-3.5 text-amber-600 shrink-0" />
+                        <Check className="h-3.5 w-3.5 text-amber-600 dark:text-amber-400 shrink-0" />
                       ) : (
                         <span className="w-3.5 shrink-0" />
                       )}
@@ -279,18 +279,18 @@ export const HostEventDetailsView: React.FC<HostEventDetailsViewProps> = ({
                     <div className="flex items-center gap-1 shrink-0">
                       <span
                         className={`px-1.5 py-0.5 rounded text-[10px] font-semibold ${evt.tier === "Premium"
-                          ? "bg-amber-100 text-amber-800"
-                          : "bg-blue-100 text-blue-800"
+                          ? "bg-amber-100 text-amber-800 dark:bg-amber-950/50 dark:text-amber-400"
+                          : "bg-blue-100 text-blue-800 dark:bg-blue-950/50 dark:text-blue-400"
                           }`}
                       >
                         {evt.tier}
                       </span>
                       <span
                         className={`px-1.5 py-0.5 rounded text-[10px] font-semibold ${evt.status === "Live"
-                          ? "bg-emerald-100 text-emerald-800"
+                          ? "bg-emerald-100 text-emerald-800 dark:bg-emerald-950/50 dark:text-emerald-400"
                           : evt.status === "Active"
-                            ? "bg-green-100 text-green-800"
-                            : "bg-sky-100 text-sky-800"
+                            ? "bg-green-100 text-green-800 dark:bg-green-950/50 dark:text-green-400"
+                            : "bg-sky-100 text-sky-800 dark:bg-sky-950/50 dark:text-sky-400"
                           }`}
                       >
                         {evt.status}
@@ -302,10 +302,10 @@ export const HostEventDetailsView: React.FC<HostEventDetailsViewProps> = ({
             </DropdownMenu>
           </div>
 
-          <h1 className="text-2xl font-bold text-gray-900 font-space-grotesk tracking-tight">
+          <h1 className="text-2xl font-bold text-gray-900 dark:text-white font-space-grotesk tracking-tight">
             Events Management
           </h1>
-          <p className="mt-1 text-sm text-gray-500">
+          <p className="mt-1 text-sm text-gray-500 dark:text-neutral-400">
             Manage and monitor live access for your upcoming scheduled events.
           </p>
         </div>
@@ -314,7 +314,7 @@ export const HostEventDetailsView: React.FC<HostEventDetailsViewProps> = ({
         <div className="flex flex-wrap items-center gap-3">
           {/* Search Bar */}
           <div className="relative min-w-[240px] sm:min-w-[280px]">
-            <Search className="pointer-events-none absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-400" />
+            <Search className="pointer-events-none absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-400 dark:text-neutral-500" />
             <input
               type="text"
               value={searchQuery}
@@ -324,7 +324,7 @@ export const HostEventDetailsView: React.FC<HostEventDetailsViewProps> = ({
                   ? "Search ticket (e.g. Guest 001) or name..."
                   : "Search guest name, email or phone..."
               }
-              className="w-full rounded-lg border border-gray-200 bg-white py-2 pl-9 pr-3.5 text-xs sm:text-sm text-gray-900 placeholder:text-gray-400 focus:border-[#C39B4C] focus:outline-none focus:ring-1 focus:ring-[#C39B4C] transition-all"
+              className="w-full rounded-lg border border-gray-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 py-2 pl-9 pr-3.5 text-xs sm:text-sm text-gray-900 dark:text-white placeholder:text-gray-400 dark:placeholder:text-neutral-500 focus:border-[#C39B4C] focus:outline-none focus:ring-1 focus:ring-[#C39B4C] transition-all"
             />
           </div>
 
@@ -343,7 +343,7 @@ export const HostEventDetailsView: React.FC<HostEventDetailsViewProps> = ({
       </div>
 
       {/* Event Details Card (Banner) */}
-      <div className="rounded-2xl border border-gray-100 bg-white p-5 sm:p-6 shadow-xs">
+      <div className="rounded-2xl border border-gray-100 dark:border-neutral-800 bg-white dark:bg-neutral-900/60 p-5 sm:p-6 shadow-xs">
         <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
           {/* Left info */}
           <div className="space-y-3">
@@ -352,8 +352,8 @@ export const HostEventDetailsView: React.FC<HostEventDetailsViewProps> = ({
               {event.tier && (
                 <span
                   className={`inline-flex items-center rounded-md px-2.5 py-0.5 text-xs font-medium ${event.tier === "Premium"
-                    ? "bg-[#FFF9EE] text-[#B58500] border border-[#FDE68A]/60"
-                    : "bg-[#EFF8FF] text-[#175CD3] border border-[#B2DDFF]/50"
+                    ? "bg-[#FFF9EE] text-[#B58500] border border-[#FDE68A]/60 dark:bg-amber-950/30 dark:text-amber-400 dark:border-amber-800/60"
+                    : "bg-[#EFF8FF] text-[#175CD3] border border-[#B2DDFF]/50 dark:bg-blue-950/30 dark:text-blue-400 dark:border-blue-800/50"
                     }`}
                 >
                   {event.tier}
@@ -362,7 +362,7 @@ export const HostEventDetailsView: React.FC<HostEventDetailsViewProps> = ({
 
               {/* Status Badge with Live Pulse Indicator */}
               {isLive ? (
-                <span className="inline-flex items-center gap-1.5 rounded-md px-2.5 py-0.5 text-xs font-semibold bg-[#ECFDF3] text-[#027A48] border border-[#ABEFC6]/60">
+                <span className="inline-flex items-center gap-1.5 rounded-md px-2.5 py-0.5 text-xs font-semibold bg-[#ECFDF3] text-[#027A48] border border-[#ABEFC6]/60 dark:bg-emerald-950/30 dark:text-emerald-400 dark:border-emerald-800/60">
                   <span className="relative flex h-2 w-2">
                     <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#12B76A] opacity-75"></span>
                     <span className="relative inline-flex rounded-full h-2 w-2 bg-[#12B76A]"></span>
@@ -370,57 +370,57 @@ export const HostEventDetailsView: React.FC<HostEventDetailsViewProps> = ({
                   Live
                 </span>
               ) : event.status === "Active" ? (
-                <span className="inline-flex items-center rounded-md px-2.5 py-0.5 text-xs font-medium bg-[#ECFDF3] text-[#027A48] border border-[#ABEFC6]/50">
+                <span className="inline-flex items-center rounded-md px-2.5 py-0.5 text-xs font-medium bg-[#ECFDF3] text-[#027A48] border border-[#ABEFC6]/50 dark:bg-emerald-950/30 dark:text-emerald-400 dark:border-emerald-800/50">
                   Active
                 </span>
               ) : (
-                <span className="inline-flex items-center rounded-md px-2.5 py-0.5 text-xs font-medium bg-[#EFF8FF] text-[#175CD3] border border-[#B2DDFF]/50">
+                <span className="inline-flex items-center rounded-md px-2.5 py-0.5 text-xs font-medium bg-[#EFF8FF] text-[#175CD3] border border-[#B2DDFF]/50 dark:bg-sky-950/30 dark:text-sky-400 dark:border-sky-800/50">
                   Scheduled
                 </span>
               )}
             </div>
 
             {/* Title */}
-            <h2 className="text-xl font-bold text-gray-900 font-space-grotesk">
+            <h2 className="text-xl font-bold text-gray-900 dark:text-white font-space-grotesk">
               {event.title}
             </h2>
 
             {/* Event Meta Row 1 */}
-            <div className="flex flex-wrap items-center gap-x-5 gap-y-1.5 text-xs text-gray-500">
+            <div className="flex flex-wrap items-center gap-x-5 gap-y-1.5 text-xs text-gray-500 dark:text-neutral-400">
               <div className="flex items-center gap-1.5">
-                <Calendar className="h-3.5 w-3.5 text-gray-400" />
+                <Calendar className="h-3.5 w-3.5 text-gray-400 dark:text-neutral-500" />
                 <span>{event.date}</span>
               </div>
               <div className="flex items-center gap-1.5">
-                <Clock className="h-3.5 w-3.5 text-gray-400" />
+                <Clock className="h-3.5 w-3.5 text-gray-400 dark:text-neutral-500" />
                 <span>{event.time}</span>
               </div>
               <div className="flex items-center gap-1.5">
-                <Ticket className="h-3.5 w-3.5 text-gray-400" />
+                <Ticket className="h-3.5 w-3.5 text-gray-400 dark:text-neutral-500" />
                 <span>{event.eventType}</span>
               </div>
             </div>
 
             {/* Event Meta Row 2 */}
-            <div className="flex flex-wrap items-center gap-x-5 gap-y-1.5 text-xs text-gray-600">
+            <div className="flex flex-wrap items-center gap-x-5 gap-y-1.5 text-xs text-gray-600 dark:text-neutral-300">
               <div className="flex items-center gap-1.5">
-                <User className="h-3.5 w-3.5 text-gray-400" />
+                <User className="h-3.5 w-3.5 text-gray-400 dark:text-neutral-500" />
                 <span>{event.hostName}</span>
               </div>
               <div className="flex items-center gap-1.5">
-                <Mail className="h-3.5 w-3.5 text-gray-400" />
+                <Mail className="h-3.5 w-3.5 text-gray-400 dark:text-neutral-500" />
                 <span>{event.hostEmail}</span>
               </div>
               <div className="flex items-center gap-1.5">
-                <Phone className="h-3.5 w-3.5 text-gray-400" />
+                <Phone className="h-3.5 w-3.5 text-gray-400 dark:text-neutral-500" />
                 <span>{event.hostPhone}</span>
               </div>
             </div>
           </div>
 
           {/* Middle: Scanner App Login Code */}
-          <div className="flex flex-col justify-center border-t border-gray-100 pt-4 lg:border-t-0 lg:border-l lg:border-gray-100 lg:pl-8 lg:pt-0">
-            <span className="text-xs font-medium text-gray-700">
+          <div className="flex flex-col justify-center border-t border-gray-100 dark:border-neutral-800 pt-4 lg:border-t-0 lg:border-l lg:border-gray-100 dark:lg:border-neutral-800 lg:pl-8 lg:pt-0">
+            <span className="text-xs font-medium text-gray-700 dark:text-neutral-300">
               Scanner App Login Code :
             </span>
             <div className="mt-1 flex items-center gap-2">
@@ -434,7 +434,7 @@ export const HostEventDetailsView: React.FC<HostEventDetailsViewProps> = ({
               <button
                 type="button"
                 onClick={() => dispatch(setIsScannerModalOpen(true))}
-                className="text-gray-400 hover:text-gray-600 transition-colors cursor-pointer"
+                className="text-gray-400 dark:text-neutral-500 hover:text-gray-600 dark:hover:text-neutral-300 transition-colors cursor-pointer"
                 title="View scanner code"
               >
                 <RefreshCw className="h-3.5 w-3.5" />
@@ -443,25 +443,25 @@ export const HostEventDetailsView: React.FC<HostEventDetailsViewProps> = ({
           </div>
 
           {/* Right: Stats & Progress Bar */}
-          <div className="flex flex-col justify-center border-t border-gray-100 pt-4 lg:border-t-0 lg:border-l lg:border-gray-100 lg:pl-8 lg:pt-0 min-w-[260px]">
+          <div className="flex flex-col justify-center border-t border-gray-100 dark:border-neutral-800 pt-4 lg:border-t-0 lg:border-l lg:border-gray-100 dark:lg:border-neutral-800 lg:pl-8 lg:pt-0 min-w-[260px]">
             <div className="grid grid-cols-3 text-center">
               <div>
-                <p className="text-xs text-gray-500">Total Guest</p>
-                <p className="mt-1 text-xl font-bold text-gray-900 font-space-grotesk">
+                <p className="text-xs text-gray-500 dark:text-neutral-400">Total Guest</p>
+                <p className="mt-1 text-xl font-bold text-gray-900 dark:text-white font-space-grotesk">
                   {event.totalGuests}
                 </p>
               </div>
               <div>
-                <p className="text-xs text-gray-500">
+                <p className="text-xs text-gray-500 dark:text-neutral-400">
                   {isScheduled ? "Check in" : "Check-in"}
                 </p>
-                <p className="mt-1 text-xl font-bold text-gray-900 font-space-grotesk">
+                <p className="mt-1 text-xl font-bold text-gray-900 dark:text-white font-space-grotesk">
                   {event.checkedIn}
                 </p>
               </div>
               <div>
-                <p className="text-xs text-gray-500">Remaining</p>
-                <p className="mt-1 text-xl font-bold text-gray-900 font-space-grotesk">
+                <p className="text-xs text-gray-500 dark:text-neutral-400">Remaining</p>
+                <p className="mt-1 text-xl font-bold text-gray-900 dark:text-white font-space-grotesk">
                   {event.remaining}
                 </p>
               </div>
@@ -469,13 +469,13 @@ export const HostEventDetailsView: React.FC<HostEventDetailsViewProps> = ({
 
             {/* Progress bar */}
             <div className="mt-4 flex items-center gap-3">
-              <div className="relative h-2 flex-1 overflow-hidden rounded-full bg-gray-100">
+              <div className="relative h-2 flex-1 overflow-hidden rounded-full bg-gray-100 dark:bg-neutral-800">
                 <div
                   className="h-full rounded-full bg-[#12B76A] transition-all duration-500"
                   style={{ width: `${progressPercentage}%` }}
                 />
               </div>
-              <span className="text-xs font-semibold text-gray-500 font-space-grotesk min-w-[36px] text-right">
+              <span className="text-xs font-semibold text-gray-500 dark:text-neutral-400 font-space-grotesk min-w-[36px] text-right">
                 {progressPercentage}%
               </span>
             </div>
@@ -492,8 +492,8 @@ export const HostEventDetailsView: React.FC<HostEventDetailsViewProps> = ({
             type="button"
             onClick={() => dispatch(setActiveFilter("all"))}
             className={`rounded-full px-3.5 py-1.5 text-xs font-medium transition-colors cursor-pointer ${activeFilter === "all"
-              ? "border border-gray-300 bg-gray-100 text-gray-900 font-semibold"
-              : "border border-gray-200 bg-white text-gray-700 hover:bg-gray-50"
+              ? "border border-gray-300 dark:border-neutral-700 bg-gray-100 dark:bg-neutral-800 text-gray-900 dark:text-white font-semibold"
+              : "border border-gray-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 text-gray-700 dark:text-neutral-300 hover:bg-gray-50 dark:hover:bg-neutral-800"
               }`}
           >
             All ticket {counts.all}
@@ -503,7 +503,7 @@ export const HostEventDetailsView: React.FC<HostEventDetailsViewProps> = ({
             <button
               type="button"
               onClick={() => dispatch(setActiveFilter("all"))}
-              className="inline-flex items-center gap-1.5 rounded-full border border-amber-300 bg-amber-50 px-3 py-1.5 text-xs font-medium text-amber-800 hover:bg-amber-100 transition-colors cursor-pointer"
+              className="inline-flex items-center gap-1.5 rounded-full border border-amber-300 dark:border-amber-800 bg-amber-50 dark:bg-amber-950/40 px-3 py-1.5 text-xs font-medium text-amber-800 dark:text-amber-300 hover:bg-amber-100 dark:hover:bg-amber-900/50 transition-colors cursor-pointer"
             >
               <span>{getFilterLabel()}</span>
               <span className="text-amber-500 hover:text-amber-800 text-sm leading-none font-bold">
@@ -521,49 +521,49 @@ export const HostEventDetailsView: React.FC<HostEventDetailsViewProps> = ({
               <button
                 type="button"
                 className={`inline-flex items-center gap-1.5 rounded-lg border px-3.5 py-1.5 text-xs sm:text-sm font-medium transition-colors cursor-pointer shadow-2xs ${activeFilter !== "all"
-                  ? "border-[#C39B4C] bg-amber-50/60 text-[#C39B4C] font-semibold"
-                  : "border-gray-200 bg-white text-gray-700 hover:bg-gray-50"
+                  ? "border-[#C39B4C] bg-amber-50/60 dark:bg-amber-950/30 text-[#C39B4C] font-semibold"
+                  : "border-gray-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 text-gray-700 dark:text-neutral-300 hover:bg-gray-50 dark:hover:bg-neutral-800"
                   }`}
               >
                 <FilterIcon
-                  className={`h-3.5 w-3.5 ${activeFilter !== "all" ? "text-[#C39B4C]" : "text-gray-500"
+                  className={`h-3.5 w-3.5 ${activeFilter !== "all" ? "text-[#C39B4C]" : "text-gray-500 dark:text-neutral-400"
                     }`}
                 />
                 <span>
                   {activeFilter === "all" ? "Filter" : getFilterLabel()}
                 </span>
                 <ChevronDown
-                  className={`h-3.5 w-3.5 ${activeFilter !== "all" ? "text-[#C39B4C]" : "text-gray-400"
+                  className={`h-3.5 w-3.5 ${activeFilter !== "all" ? "text-[#C39B4C]" : "text-gray-400 dark:text-neutral-500"
                     }`}
                 />
               </button>
             </DropdownMenuTrigger>
             <DropdownMenuContent
               align="end"
-              className="w-56 bg-white border-neutral-200 shadow-lg rounded-xl p-1.5 z-50"
+              className="w-56 bg-white dark:bg-neutral-900 border-neutral-200 dark:border-neutral-800 shadow-lg rounded-xl p-1.5 z-50"
             >
-              <DropdownMenuLabel className="text-xs font-semibold text-gray-500 px-2.5 py-1.5">
+              <DropdownMenuLabel className="text-xs font-semibold text-gray-500 dark:text-neutral-400 px-2.5 py-1.5">
                 Filter by Status
               </DropdownMenuLabel>
-              <DropdownMenuSeparator className="my-1" />
+              <DropdownMenuSeparator className="my-1 border-neutral-100 dark:border-neutral-800" />
 
               {/* All Ticket */}
               <DropdownMenuItem
                 onClick={() => dispatch(setActiveFilter("all"))}
                 className={`flex items-center justify-between px-2.5 py-2 rounded-lg cursor-pointer text-xs sm:text-sm ${activeFilter === "all"
-                  ? "bg-gray-100 text-gray-900 font-semibold"
-                  : "text-gray-700 hover:bg-gray-50"
+                  ? "bg-gray-100 dark:bg-neutral-800 text-gray-900 dark:text-white font-semibold"
+                  : "text-gray-700 dark:text-neutral-300 hover:bg-gray-50 dark:hover:bg-neutral-800"
                   }`}
               >
                 <div className="flex items-center gap-2">
                   {activeFilter === "all" ? (
-                    <Check className="h-3.5 w-3.5 text-gray-900 shrink-0" />
+                    <Check className="h-3.5 w-3.5 text-gray-900 dark:text-white shrink-0" />
                   ) : (
                     <span className="w-3.5 shrink-0" />
                   )}
                   <span>All ticket</span>
                 </div>
-                <span className="rounded-full bg-gray-100 border border-gray-200 px-2 py-0.5 text-[11px] font-medium text-gray-600">
+                <span className="rounded-full bg-gray-100 dark:bg-neutral-800 border border-gray-200 dark:border-neutral-700 px-2 py-0.5 text-[11px] font-medium text-gray-600 dark:text-neutral-400">
                   {counts.all}
                 </span>
               </DropdownMenuItem>
@@ -573,19 +573,19 @@ export const HostEventDetailsView: React.FC<HostEventDetailsViewProps> = ({
                 <DropdownMenuItem
                   onClick={() => dispatch(setActiveFilter("editable"))}
                   className={`flex items-center justify-between px-2.5 py-2 rounded-lg cursor-pointer text-xs sm:text-sm ${activeFilter === "editable"
-                    ? "bg-blue-50 text-blue-700 font-semibold"
-                    : "text-gray-700 hover:bg-blue-50/50"
+                    ? "bg-blue-50 dark:bg-blue-950/40 text-blue-700 dark:text-blue-300 font-semibold"
+                    : "text-gray-700 dark:text-neutral-300 hover:bg-blue-50/50 dark:hover:bg-blue-950/20"
                     }`}
                 >
                   <div className="flex items-center gap-2">
                     {activeFilter === "editable" ? (
-                      <Check className="h-3.5 w-3.5 text-blue-700 shrink-0" />
+                      <Check className="h-3.5 w-3.5 text-blue-700 dark:text-blue-300 shrink-0" />
                     ) : (
                       <span className="w-3.5 shrink-0" />
                     )}
                     <span>Editable</span>
                   </div>
-                  <span className="rounded-full bg-blue-100 text-blue-700 px-2 py-0.5 text-[11px] font-medium">
+                  <span className="rounded-full bg-blue-100 dark:bg-blue-950/60 text-blue-700 dark:text-blue-300 px-2 py-0.5 text-[11px] font-medium">
                     {counts.editable}
                   </span>
                 </DropdownMenuItem>
@@ -595,19 +595,19 @@ export const HostEventDetailsView: React.FC<HostEventDetailsViewProps> = ({
               <DropdownMenuItem
                 onClick={() => dispatch(setActiveFilter("locked"))}
                 className={`flex items-center justify-between px-2.5 py-2 rounded-lg cursor-pointer text-xs sm:text-sm ${activeFilter === "locked"
-                  ? "bg-orange-50 text-orange-700 font-semibold"
-                  : "text-gray-700 hover:bg-orange-50/50"
+                  ? "bg-orange-50 dark:bg-orange-950/40 text-orange-700 dark:text-orange-300 font-semibold"
+                  : "text-gray-700 dark:text-neutral-300 hover:bg-orange-50/50 dark:hover:bg-orange-950/20"
                   }`}
               >
                 <div className="flex items-center gap-2">
                   {activeFilter === "locked" ? (
-                    <Check className="h-3.5 w-3.5 text-orange-700 shrink-0" />
+                    <Check className="h-3.5 w-3.5 text-orange-700 dark:text-orange-300 shrink-0" />
                   ) : (
                     <span className="w-3.5 shrink-0" />
                   )}
                   <span>Locked/ Ready</span>
                 </div>
-                <span className="rounded-full bg-orange-100 text-orange-700 px-2 py-0.5 text-[11px] font-medium">
+                <span className="rounded-full bg-orange-100 dark:bg-orange-950/60 text-orange-700 dark:text-orange-300 px-2 py-0.5 text-[11px] font-medium">
                   {counts.locked}
                 </span>
               </DropdownMenuItem>
@@ -616,19 +616,19 @@ export const HostEventDetailsView: React.FC<HostEventDetailsViewProps> = ({
               <DropdownMenuItem
                 onClick={() => dispatch(setActiveFilter("send"))}
                 className={`flex items-center justify-between px-2.5 py-2 rounded-lg cursor-pointer text-xs sm:text-sm ${activeFilter === "send" || activeFilter === "sent"
-                  ? "bg-emerald-50 text-emerald-700 font-semibold"
-                  : "text-gray-700 hover:bg-emerald-50/50"
+                  ? "bg-emerald-50 dark:bg-emerald-950/40 text-emerald-700 dark:text-emerald-300 font-semibold"
+                  : "text-gray-700 dark:text-neutral-300 hover:bg-emerald-50/50 dark:hover:bg-emerald-950/20"
                   }`}
               >
                 <div className="flex items-center gap-2">
                   {activeFilter === "send" || activeFilter === "sent" ? (
-                    <Check className="h-3.5 w-3.5 text-emerald-700 shrink-0" />
+                    <Check className="h-3.5 w-3.5 text-emerald-700 dark:text-emerald-300 shrink-0" />
                   ) : (
                     <span className="w-3.5 shrink-0" />
                   )}
                   <span>{isLive ? "Checked In / Sent" : "Send"}</span>
                 </div>
-                <span className="rounded-full bg-emerald-100 text-emerald-700 px-2 py-0.5 text-[11px] font-medium">
+                <span className="rounded-full bg-emerald-100 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-300 px-2 py-0.5 text-[11px] font-medium">
                   {counts.sent}
                 </span>
               </DropdownMenuItem>
@@ -638,19 +638,19 @@ export const HostEventDetailsView: React.FC<HostEventDetailsViewProps> = ({
                 <DropdownMenuItem
                   onClick={() => dispatch(setActiveFilter("voided"))}
                   className={`flex items-center justify-between px-2.5 py-2 rounded-lg cursor-pointer text-xs sm:text-sm ${activeFilter === "voided"
-                    ? "bg-gray-100 text-gray-800 font-semibold"
-                    : "text-gray-700 hover:bg-gray-50"
+                    ? "bg-gray-100 dark:bg-neutral-800 text-gray-800 dark:text-neutral-200 font-semibold"
+                    : "text-gray-700 dark:text-neutral-300 hover:bg-gray-50 dark:hover:bg-neutral-800"
                     }`}
                 >
                   <div className="flex items-center gap-2">
                     {activeFilter === "voided" ? (
-                      <Check className="h-3.5 w-3.5 text-gray-800 shrink-0" />
+                      <Check className="h-3.5 w-3.5 text-gray-800 dark:text-neutral-200 shrink-0" />
                     ) : (
                       <span className="w-3.5 shrink-0" />
                     )}
                     <span>Voided</span>
                   </div>
-                  <span className="rounded-full bg-gray-200 text-gray-700 px-2 py-0.5 text-[11px] font-medium">
+                  <span className="rounded-full bg-gray-200 dark:bg-neutral-700 text-gray-700 dark:text-neutral-300 px-2 py-0.5 text-[11px] font-medium">
                     {counts.voided}
                   </span>
                 </DropdownMenuItem>
@@ -661,19 +661,19 @@ export const HostEventDetailsView: React.FC<HostEventDetailsViewProps> = ({
                 <DropdownMenuItem
                   onClick={() => dispatch(setActiveFilter("rsvp"))}
                   className={`flex items-center justify-between px-2.5 py-2 rounded-lg cursor-pointer text-xs sm:text-sm ${activeFilter === "rsvp"
-                    ? "bg-amber-50 text-amber-900 font-semibold"
-                    : "text-gray-700 hover:bg-amber-50/50"
+                    ? "bg-amber-50 dark:bg-amber-950/40 text-amber-900 dark:text-amber-300 font-semibold"
+                    : "text-gray-700 dark:text-neutral-300 hover:bg-amber-50/50 dark:hover:bg-amber-950/20"
                     }`}
                 >
                   <div className="flex items-center gap-2">
                     {activeFilter === "rsvp" ? (
-                      <Check className="h-3.5 w-3.5 text-amber-900 shrink-0" />
+                      <Check className="h-3.5 w-3.5 text-amber-900 dark:text-amber-300 shrink-0" />
                     ) : (
                       <span className="w-3.5 shrink-0" />
                     )}
                     <span className="flex items-center gap-1.5">
                       <span>RSVP Deadline</span>
-                      <CalendarDays className="h-3.5 w-3.5 text-amber-600" />
+                      <CalendarDays className="h-3.5 w-3.5 text-amber-600 dark:text-amber-400" />
                     </span>
                   </div>
                 </DropdownMenuItem>
@@ -684,7 +684,7 @@ export const HostEventDetailsView: React.FC<HostEventDetailsViewProps> = ({
           <button
             type="button"
             onClick={() => toast.info("Bulk actions menu opened")}
-            className="inline-flex items-center gap-1.5 rounded-lg border border-[#C39B4C]/40 bg-white px-3.5 py-1.5 text-xs sm:text-sm font-medium text-[#C39B4C] hover:bg-amber-50/30 transition-colors cursor-pointer shadow-2xs"
+            className="inline-flex items-center gap-1.5 rounded-lg border border-[#C39B4C]/40 bg-white dark:bg-neutral-900 px-3.5 py-1.5 text-xs sm:text-sm font-medium text-[#C39B4C] hover:bg-amber-50/30 dark:hover:bg-amber-950/30 transition-colors cursor-pointer shadow-2xs"
           >
             Bulk Actions
             <ChevronDown className="h-3.5 w-3.5 text-[#C39B4C]" />
@@ -702,10 +702,10 @@ export const HostEventDetailsView: React.FC<HostEventDetailsViewProps> = ({
       </div>
 
       {/* Tickets Table - Uniform Consistent Design across All Packages & Timelines */}
-      <div className="overflow-hidden rounded-2xl border border-gray-100 bg-white shadow-xs">
+      <div className="overflow-hidden rounded-2xl border border-gray-100 dark:border-neutral-800 bg-white dark:bg-neutral-900/60 shadow-xs">
         <div className="overflow-x-auto">
           <table className="w-full text-left text-xs sm:text-sm font-work-sans">
-            <thead className="border-b border-gray-100 bg-gray-50/50 text-xs font-semibold text-gray-600">
+            <thead className="border-b border-gray-100 dark:border-neutral-800 bg-gray-50/50 dark:bg-neutral-900/80 text-xs font-semibold text-gray-600 dark:text-neutral-400">
               <tr>
                 <th className="py-3.5 pl-6 pr-4">Ticket (Guest #)</th>
                 <th className="py-3.5 px-4">Ticket Name</th>
@@ -723,12 +723,12 @@ export const HostEventDetailsView: React.FC<HostEventDetailsViewProps> = ({
               </tr>
             </thead>
 
-            <tbody className="divide-y divide-gray-100">
+            <tbody className="divide-y divide-gray-100 dark:divide-neutral-800">
               {filteredTickets.length === 0 ? (
                 <tr>
                   <td
                     colSpan={isPremium ? 9 : 7}
-                    className="py-12 text-center text-gray-500 font-work-sans"
+                    className="py-12 text-center text-gray-500 dark:text-neutral-400 font-work-sans"
                   >
                     No tickets found matching current filters.
                   </td>
@@ -738,10 +738,10 @@ export const HostEventDetailsView: React.FC<HostEventDetailsViewProps> = ({
                   return (
                     <tr
                       key={ticket.id}
-                      className="hover:bg-gray-50/60 transition-colors"
+                      className="hover:bg-gray-50/60 dark:hover:bg-neutral-800/40 transition-colors"
                     >
                       {/* 1. Ticket (Guest #) */}
-                      <td className="py-3.5 pl-6 pr-4 font-medium text-gray-800 whitespace-nowrap">
+                      <td className="py-3.5 pl-6 pr-4 font-medium text-gray-800 dark:text-neutral-200 whitespace-nowrap">
                         {ticket.ticketId}
                       </td>
 
@@ -763,7 +763,7 @@ export const HostEventDetailsView: React.FC<HostEventDetailsViewProps> = ({
                                   ? "Add guest name..."
                                   : "Enter ticket name..."
                               }
-                              className="px-2.5 py-1 text-xs rounded-md border border-[#C39B4C] bg-white text-gray-900 focus:outline-none focus:ring-1 focus:ring-[#C39B4C] w-36 sm:w-44 shadow-2xs font-work-sans"
+                              className="px-2.5 py-1 text-xs rounded-md border border-[#C39B4C] bg-white dark:bg-neutral-900 text-gray-900 dark:text-white focus:outline-none focus:ring-1 focus:ring-[#C39B4C] w-36 sm:w-44 shadow-2xs font-work-sans"
                             />
                             <button
                               type="button"
@@ -776,7 +776,7 @@ export const HostEventDetailsView: React.FC<HostEventDetailsViewProps> = ({
                             <button
                               type="button"
                               onClick={handleCancelEdit}
-                              className="p-1 rounded border border-gray-200 text-gray-500 hover:bg-gray-100 transition-colors cursor-pointer"
+                              className="p-1 rounded border border-gray-200 dark:border-neutral-700 text-gray-500 dark:text-neutral-400 hover:bg-gray-100 dark:hover:bg-neutral-800 transition-colors cursor-pointer"
                               title="Cancel"
                             >
                               <span className="text-xs font-bold leading-none">
@@ -786,7 +786,7 @@ export const HostEventDetailsView: React.FC<HostEventDetailsViewProps> = ({
                           </div>
                         ) : isLive ? (
                           /* In Live Mode: NOT editable */
-                          <span className="text-gray-700 font-medium">
+                          <span className="text-gray-700 dark:text-neutral-300 font-medium">
                             {ticket.guestName && ticket.guestName !== "--"
                               ? ticket.guestName
                               : "--"}
@@ -800,20 +800,20 @@ export const HostEventDetailsView: React.FC<HostEventDetailsViewProps> = ({
                             onClick={() =>
                               handleStartEdit(ticket.id, ticket.guestName)
                             }
-                            className="group inline-flex items-center gap-1.5 cursor-pointer text-gray-800 hover:text-[#C39B4C] transition-colors text-left"
+                            className="group inline-flex items-center gap-1.5 cursor-pointer text-gray-800 dark:text-neutral-200 hover:text-[#C39B4C] transition-colors text-left"
                             title="Click to edit ticket name"
                           >
                             <span className="font-medium text-xs sm:text-sm">
                               {ticket.guestName}
                             </span>
-                            <Pencil className="h-3 w-3 opacity-0 group-hover:opacity-100 text-gray-400 group-hover:text-[#C39B4C] transition-opacity" />
+                            <Pencil className="h-3 w-3 opacity-0 group-hover:opacity-100 text-gray-400 dark:text-neutral-500 group-hover:text-[#C39B4C] transition-opacity" />
                           </button>
                         ) : (
                           /* Standard / Initial state: click to input name for tracking */
                           <button
                             type="button"
                             onClick={() => handleStartEdit(ticket.id, "")}
-                            className="inline-flex items-center gap-1 text-xs text-gray-400 hover:text-[#C39B4C] transition-colors cursor-pointer italic"
+                            className="inline-flex items-center gap-1 text-xs text-gray-400 dark:text-neutral-500 hover:text-[#C39B4C] transition-colors cursor-pointer italic"
                             title="Add guest name for internal tracking"
                           >
                             <Pencil className="h-3 w-3" />
@@ -823,7 +823,7 @@ export const HostEventDetailsView: React.FC<HostEventDetailsViewProps> = ({
                       </td>
 
                       {/* 3. Room (Consistently named Room, formerly Table) */}
-                      <td className="py-3.5 px-4 text-gray-700 whitespace-nowrap">
+                      <td className="py-3.5 px-4 text-gray-700 dark:text-neutral-300 whitespace-nowrap">
                         {ticket.table}
                       </td>
 
@@ -832,19 +832,19 @@ export const HostEventDetailsView: React.FC<HostEventDetailsViewProps> = ({
                         <>
                           <td className="py-3.5 px-4 whitespace-nowrap">
                             {ticket.rsvpStatus === "Pending" ? (
-                              <span className="font-medium text-[#F79009]">
+                              <span className="font-medium text-[#F79009] dark:text-amber-400">
                                 Pending
                               </span>
                             ) : ticket.rsvpStatus === "Confirm" ? (
-                              <span className="font-medium text-[#12B76A]">
+                              <span className="font-medium text-[#12B76A] dark:text-emerald-400">
                                 Confirmed
                               </span>
                             ) : ticket.rsvpStatus === "Decline" ? (
-                              <span className="font-medium text-gray-400">
+                              <span className="font-medium text-gray-400 dark:text-neutral-500">
                                 Declined
                               </span>
                             ) : (
-                              <span className="text-gray-400">--</span>
+                              <span className="text-gray-400 dark:text-neutral-500">--</span>
                             )}
                           </td>
 
@@ -858,7 +858,7 @@ export const HostEventDetailsView: React.FC<HostEventDetailsViewProps> = ({
                                     ticket.guestName
                                   )
                                 }
-                                className="rounded-md bg-[#B58500]/15 px-2.5 py-1 text-xs font-medium text-[#B58500] hover:bg-[#B58500]/25 transition-colors cursor-pointer font-work-sans"
+                                className="rounded-md bg-[#B58500]/15 dark:bg-[#B58500]/25 px-2.5 py-1 text-xs font-medium text-[#B58500] dark:text-[#E0A83B] hover:bg-[#B58500]/25 dark:hover:bg-[#B58500]/35 transition-colors cursor-pointer font-work-sans"
                               >
                                 Reminder
                               </button>
@@ -871,19 +871,19 @@ export const HostEventDetailsView: React.FC<HostEventDetailsViewProps> = ({
                                     ticket.guestName
                                   )
                                 }
-                                className="rounded-md bg-[#B58500]/15 px-2.5 py-1 text-xs font-medium text-[#B58500] hover:bg-[#B58500]/25 transition-colors cursor-pointer font-work-sans"
+                                className="rounded-md bg-[#B58500]/15 dark:bg-[#B58500]/25 px-2.5 py-1 text-xs font-medium text-[#B58500] dark:text-[#E0A83B] hover:bg-[#B58500]/25 dark:hover:bg-[#B58500]/35 transition-colors cursor-pointer font-work-sans"
                               >
                                 Follow-up
                               </button>
                             ) : (
-                              <span className="text-gray-400">--</span>
+                              <span className="text-gray-400 dark:text-neutral-500">--</span>
                             )}
                           </td>
                         </>
                       )}
 
                       {/* 6. Ticket Type */}
-                      <td className="py-3.5 px-4 text-gray-700 whitespace-nowrap">
+                      <td className="py-3.5 px-4 text-gray-700 dark:text-neutral-300 whitespace-nowrap">
                         {ticket.ticketType}
                       </td>
 
@@ -893,50 +893,50 @@ export const HostEventDetailsView: React.FC<HostEventDetailsViewProps> = ({
                           <button
                             type="button"
                             onClick={() => handleCopyLink(ticket.ticketId)}
-                            className="text-[#175CD3] hover:underline cursor-pointer font-medium"
+                            className="text-[#175CD3] dark:text-[#60A5FA] hover:underline cursor-pointer font-medium"
                           >
                             {copiedId === ticket.ticketId
                               ? "Copied!"
                               : ticket.ticketLink}
                           </button>
                         ) : (
-                          <span className="text-gray-400">--</span>
+                          <span className="text-gray-400 dark:text-neutral-500">--</span>
                         )}
                       </td>
 
                       {/* 8. Check-in time */}
-                      <td className="py-3.5 px-4 text-gray-600 whitespace-nowrap">
+                      <td className="py-3.5 px-4 text-gray-600 dark:text-neutral-400 whitespace-nowrap">
                         {ticket.checkInTime || "--"}
                       </td>
 
                       {/* 9. Status (Consistently placed at the end for all packages) */}
                       <td className="py-3.5 pr-6 pl-4 whitespace-nowrap">
                         {ticket.status === "Editable" && (
-                          <span className="inline-flex items-center gap-1 rounded-md bg-[#EFF8FF] px-2.5 py-0.5 text-xs font-medium text-[#175CD3] border border-[#B2DDFF]/70">
+                          <span className="inline-flex items-center gap-1 rounded-md bg-[#EFF8FF] dark:bg-blue-950/30 px-2.5 py-0.5 text-xs font-medium text-[#175CD3] dark:text-blue-400 border border-[#B2DDFF]/70 dark:border-blue-800/60">
                             <Pencil className="h-3 w-3" />
                             Editable
                           </span>
                         )}
                         {ticket.status === "Locked/ Ready" && (
-                          <span className="inline-flex items-center gap-1 rounded-md bg-[#FFF1F3] px-2.5 py-0.5 text-xs font-medium text-[#F04438] border border-[#FDA29B]/70">
+                          <span className="inline-flex items-center gap-1 rounded-md bg-[#FFF1F3] dark:bg-rose-950/30 px-2.5 py-0.5 text-xs font-medium text-[#F04438] dark:text-rose-400 border border-[#FDA29B]/70 dark:border-rose-800/60">
                             <Lock className="h-3 w-3" />
                             Locked/ Ready
                           </span>
                         )}
                         {ticket.status === "Sent" && (
-                          <span className="inline-flex items-center gap-1 rounded-md bg-[#ECFDF3] px-2.5 py-0.5 text-xs font-medium text-[#027A48] border border-[#ABEFC6]/70">
+                          <span className="inline-flex items-center gap-1 rounded-md bg-[#ECFDF3] dark:bg-emerald-950/30 px-2.5 py-0.5 text-xs font-medium text-[#027A48] dark:text-emerald-400 border border-[#ABEFC6]/70 dark:border-emerald-800/60">
                             <CheckCircle2 className="h-3 w-3" />
                             Sent
                           </span>
                         )}
                         {ticket.status === "Checked In" && (
-                          <span className="inline-flex items-center gap-1 rounded-md bg-[#ECFDF3] px-2.5 py-0.5 text-xs font-medium text-[#027A48] border border-[#ABEFC6]/70">
+                          <span className="inline-flex items-center gap-1 rounded-md bg-[#ECFDF3] dark:bg-emerald-950/30 px-2.5 py-0.5 text-xs font-medium text-[#027A48] dark:text-emerald-400 border border-[#ABEFC6]/70 dark:border-emerald-800/60">
                             <Check className="h-3 w-3" />
                             Checked In
                           </span>
                         )}
                         {ticket.status === "Voided" && (
-                          <span className="inline-flex items-center gap-1 rounded-md bg-gray-100 px-2.5 py-0.5 text-xs font-medium text-gray-600 border border-gray-200">
+                          <span className="inline-flex items-center gap-1 rounded-md bg-gray-100 dark:bg-neutral-800 px-2.5 py-0.5 text-xs font-medium text-gray-600 dark:text-neutral-400 border border-gray-200 dark:border-neutral-700">
                             Voided
                           </span>
                         )}
@@ -950,11 +950,11 @@ export const HostEventDetailsView: React.FC<HostEventDetailsViewProps> = ({
         </div>
 
         {/* Pagination */}
-        <div className="flex items-center justify-center gap-1.5 border-t border-gray-100 py-4">
+        <div className="flex items-center justify-center gap-1.5 border-t border-gray-100 dark:border-neutral-800 py-4">
           <button
             type="button"
             onClick={() => setCurrentPage((p) => Math.max(1, p - 1))}
-            className="flex h-8 w-8 items-center justify-center rounded-lg border border-gray-200 text-gray-500 hover:bg-gray-50 transition-colors cursor-pointer text-xs"
+            className="flex h-8 w-8 items-center justify-center rounded-lg border border-gray-200 dark:border-neutral-700 text-gray-500 dark:text-neutral-400 hover:bg-gray-50 dark:hover:bg-neutral-800 transition-colors cursor-pointer text-xs"
           >
             &lt;
           </button>
@@ -965,7 +965,7 @@ export const HostEventDetailsView: React.FC<HostEventDetailsViewProps> = ({
               onClick={() => setCurrentPage(page)}
               className={`flex h-8 w-8 items-center justify-center rounded-lg text-xs font-medium transition-colors cursor-pointer ${currentPage === page
                 ? "bg-[#C39B4C] text-white"
-                : "border border-gray-200 text-gray-700 hover:bg-gray-50"
+                : "border border-gray-200 dark:border-neutral-700 text-gray-700 dark:text-neutral-300 hover:bg-gray-50 dark:hover:bg-neutral-800"
                 }`}
             >
               {page}
@@ -974,7 +974,7 @@ export const HostEventDetailsView: React.FC<HostEventDetailsViewProps> = ({
           <button
             type="button"
             onClick={() => setCurrentPage((p) => Math.min(5, p + 1))}
-            className="flex h-8 w-8 items-center justify-center rounded-lg border border-gray-200 text-gray-500 hover:bg-gray-50 transition-colors cursor-pointer text-xs"
+            className="flex h-8 w-8 items-center justify-center rounded-lg border border-gray-200 dark:border-neutral-700 text-gray-500 dark:text-neutral-400 hover:bg-gray-50 dark:hover:bg-neutral-800 transition-colors cursor-pointer text-xs"
           >
             &gt;
           </button>

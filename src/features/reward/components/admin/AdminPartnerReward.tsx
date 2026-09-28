@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { RootState } from "@/redux/store";
 import React, { useMemo, useState } from "react";
@@ -66,10 +66,10 @@ export const AdminPartnerReward: React.FC = () => {
       {/* ========================================================================= */}
       <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-4">
         <div>
-          <h1 className="text-2xl sm:text-3xl font-bold font-space-grotesk text-neutral-900 tracking-tight">
+          <h1 className="text-2xl sm:text-3xl font-bold font-space-grotesk text-neutral-900 dark:text-white tracking-tight">
             Partner Rewards
           </h1>
-          <p className="text-xs sm:text-sm text-neutral-500 font-work-sans mt-1">
+          <p className="text-xs sm:text-sm text-neutral-500 dark:text-neutral-400 font-work-sans mt-1">
             Manage and track rewards earned by partners
           </p>
         </div>
@@ -106,7 +106,7 @@ export const AdminPartnerReward: React.FC = () => {
       {/* ========================================================================= */}
       {/* 5. Main Table Container */}
       {/* ========================================================================= */}
-      <div className="bg-white rounded-2xl border border-neutral-100 shadow-[0_1px_3px_rgba(0,0,0,0.02)] overflow-hidden">
+      <div className="bg-white dark:bg-neutral-900/40 rounded-2xl border border-neutral-100 dark:border-neutral-800 shadow-[0_1px_3px_rgba(0,0,0,0.02)] overflow-hidden">
         {activeTab === "pending" ? (
           <AdminPendingRewardTable
             items={filteredPendingRewards}

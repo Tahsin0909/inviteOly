@@ -22,17 +22,17 @@ export default function CreateEventGatewayPage() {
   }, [isAuthenticated, role, router]);
 
   return (
-    <main className="min-h-screen bg-[#0F0F0F] text-white pt-24 pb-20 font-work-sans">
+    <main className="min-h-screen bg-neutral-50/60 dark:bg-[#0F0F0F] text-neutral-900 dark:text-white pt-24 pb-20 font-work-sans transition-colors duration-200">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-5xl">
         {/* Hero */}
         <div className="text-center max-w-3xl mx-auto mb-16">
           <span className="text-xs font-semibold tracking-[0.2em] text-[#B89047] uppercase font-space-grotesk">
             EVENT CREATOR
           </span>
-          <h1 className="text-3xl sm:text-5xl font-bold font-space-grotesk text-white mt-3 tracking-tight">
+          <h1 className="text-3xl sm:text-5xl font-bold font-space-grotesk text-neutral-900 dark:text-white mt-3 tracking-tight">
             Create Your Next Unforgettable Event
           </h1>
-          <p className="text-sm sm:text-base text-neutral-400 mt-4 leading-relaxed max-w-2xl mx-auto">
+          <p className="text-sm sm:text-base text-neutral-600 dark:text-neutral-400 mt-4 leading-relaxed max-w-2xl mx-auto">
             Set up your event in minutes, configure secure QR guest tickets, manage RSVPs, and ensure seamless entry verification on event day.
           </p>
 
@@ -45,7 +45,7 @@ export default function CreateEventGatewayPage() {
             </Link>
             <Link
               href="/login?redirect=/host/create-event"
-              className="px-8 py-3.5 rounded-xl bg-neutral-900 hover:bg-neutral-800 border border-neutral-700 text-white font-semibold text-sm transition-all"
+              className="px-8 py-3.5 rounded-xl bg-white dark:bg-neutral-900 hover:bg-neutral-100 dark:hover:bg-neutral-800 border border-neutral-300 dark:border-neutral-700 text-neutral-900 dark:text-white font-semibold text-sm transition-all shadow-xs"
             >
               Host Sign In
             </Link>
@@ -54,46 +54,46 @@ export default function CreateEventGatewayPage() {
 
         {/* 3 Step Process */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
-          <div className="bg-neutral-900/50 border border-neutral-800 rounded-2xl p-7 space-y-3">
+          <div className="bg-white dark:bg-neutral-900/50 border border-neutral-200/80 dark:border-neutral-800 rounded-2xl p-7 space-y-3 shadow-xs dark:shadow-none">
             <div className="size-10 rounded-xl bg-[#B89047]/10 text-[#B89047] font-bold font-space-grotesk flex items-center justify-center text-sm">
               01
             </div>
-            <h3 className="text-lg font-bold font-space-grotesk text-white">
+            <h3 className="text-lg font-bold font-space-grotesk text-neutral-900 dark:text-white">
               Event Details & Venue
             </h3>
-            <p className="text-xs sm:text-sm text-neutral-400 leading-relaxed">
+            <p className="text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed">
               Add your date, time, venue address, dress code, and select from our partner ballrooms or private estates.
             </p>
           </div>
 
-          <div className="bg-neutral-900/50 border border-neutral-800 rounded-2xl p-7 space-y-3">
+          <div className="bg-white dark:bg-neutral-900/50 border border-neutral-200/80 dark:border-neutral-800 rounded-2xl p-7 space-y-3 shadow-xs dark:shadow-none">
             <div className="size-10 rounded-xl bg-[#B89047]/10 text-[#B89047] font-bold font-space-grotesk flex items-center justify-center text-sm">
               02
             </div>
-            <h3 className="text-lg font-bold font-space-grotesk text-white">
+            <h3 className="text-lg font-bold font-space-grotesk text-neutral-900 dark:text-white">
               Select Package Tier
             </h3>
-            <p className="text-xs sm:text-sm text-neutral-400 leading-relaxed">
+            <p className="text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed">
               Choose an attendee package matching your guest count (Intimate, Signature, Grand) with instant automated invoice generation.
             </p>
           </div>
 
-          <div className="bg-neutral-900/50 border border-neutral-800 rounded-2xl p-7 space-y-3">
+          <div className="bg-white dark:bg-neutral-900/50 border border-neutral-200/80 dark:border-neutral-800 rounded-2xl p-7 space-y-3 shadow-xs dark:shadow-none">
             <div className="size-10 rounded-xl bg-[#B89047]/10 text-[#B89047] font-bold font-space-grotesk flex items-center justify-center text-sm">
               03
             </div>
-            <h3 className="text-lg font-bold font-space-grotesk text-white">
+            <h3 className="text-lg font-bold font-space-grotesk text-neutral-900 dark:text-white">
               Dispatch Digital Tickets
             </h3>
-            <p className="text-xs sm:text-sm text-neutral-400 leading-relaxed">
+            <p className="text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed">
               Send encrypted QR ticket invitations directly to your guests via WhatsApp or SMS, and track confirmations live.
             </p>
           </div>
         </div>
 
         {/* Feature Highlights */}
-        <div className="bg-neutral-900/40 border border-neutral-800 rounded-2xl p-8 sm:p-10">
-          <h3 className="text-xl sm:text-2xl font-bold font-space-grotesk text-white mb-6">
+        <div className="bg-white dark:bg-neutral-900/40 border border-neutral-200/80 dark:border-neutral-800 rounded-2xl p-8 sm:p-10 shadow-xs dark:shadow-none">
+          <h3 className="text-xl sm:text-2xl font-bold font-space-grotesk text-neutral-900 dark:text-white mb-6">
             Included in Every Event Setup
           </h3>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5">
@@ -107,7 +107,7 @@ export default function CreateEventGatewayPage() {
             ].map((feature, idx) => (
               <div key={idx} className="flex items-center gap-2.5">
                 <CheckCircle2 className="size-4.5 text-[#0FA958] shrink-0" />
-                <span className="text-sm text-neutral-300 font-medium">{feature}</span>
+                <span className="text-sm text-neutral-700 dark:text-neutral-300 font-medium">{feature}</span>
               </div>
             ))}
           </div>

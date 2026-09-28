@@ -51,10 +51,10 @@ export const HostEvent: React.FC = () => {
             {/* Overview Header matching media_1789202843941.png */}
             <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
                 <div>
-                    <h1 className="text-2xl sm:text-3xl font-bold font-space-grotesk text-gray-900 tracking-tight">
+                    <h1 className="text-2xl sm:text-3xl font-bold font-space-grotesk text-gray-900 dark:text-white tracking-tight">
                         Events Management
                     </h1>
-                    <p className="mt-1 text-xs sm:text-sm text-gray-500 font-work-sans">
+                    <p className="mt-1 text-xs sm:text-sm text-gray-500 dark:text-neutral-400 font-work-sans">
                         Manage all your events, track their progress, and monitor every stage
                         from request to completion.
                     </p>

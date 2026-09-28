@@ -63,24 +63,24 @@ export const InvitePartnerForm: React.FC<InvitePartnerFormProps> = ({
   return (
     <div
       className={cn(
-        "flex flex-col h-full font-work-sans bg-white text-neutral-800",
+        "flex flex-col h-full font-work-sans bg-white dark:bg-neutral-900 text-neutral-800 dark:text-neutral-200",
         className
       )}
     >
       {/* Header */}
-      <div className="flex items-start justify-between p-6 sm:p-7 border-b border-neutral-100">
+      <div className="flex items-start justify-between p-6 sm:p-7 border-b border-neutral-100 dark:border-neutral-800">
         <div>
-          <h2 className="text-xl font-bold font-space-grotesk text-neutral-900 tracking-tight">
+          <h2 className="text-xl font-bold font-space-grotesk text-neutral-900 dark:text-white tracking-tight">
             Invite a Partner
           </h2>
-          <p className="text-xs sm:text-sm text-neutral-500 mt-1">
+          <p className="text-xs sm:text-sm text-neutral-500 dark:text-neutral-400 mt-1">
             Send a personalized invitation to join InviteOly as a Partner.
           </p>
         </div>
         <button
           type="button"
           onClick={onClose}
-          className="size-8 rounded-lg border border-neutral-200/80 hover:bg-neutral-50 flex items-center justify-center text-neutral-400 hover:text-neutral-700 transition-colors"
+          className="size-8 rounded-lg border border-neutral-200/80 dark:border-neutral-700 hover:bg-neutral-50 dark:hover:bg-neutral-800 flex items-center justify-center text-neutral-400 hover:text-neutral-700 dark:hover:text-neutral-200 transition-colors"
           aria-label="Close drawer"
         >
           <X className="size-4" />
@@ -93,7 +93,7 @@ export const InvitePartnerForm: React.FC<InvitePartnerFormProps> = ({
         className="flex-1 overflow-y-auto p-6 sm:p-7 space-y-6"
       >
         <div>
-          <h3 className="text-[11px] font-bold uppercase tracking-wider text-neutral-500 mb-4 font-space-grotesk">
+          <h3 className="text-[11px] font-bold uppercase tracking-wider text-neutral-500 dark:text-neutral-400 mb-4 font-space-grotesk">
             PERSONAL & CONTACT INFORMATION
           </h3>
 
@@ -101,11 +101,11 @@ export const InvitePartnerForm: React.FC<InvitePartnerFormProps> = ({
             {/* First & Last Name */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
-                <label className="block text-xs font-medium text-neutral-700 mb-1.5">
+                <label className="block text-xs font-medium text-neutral-700 dark:text-neutral-300 mb-1.5">
                   First Name
                 </label>
                 <div className="relative">
-                  <User className="absolute left-3.5 top-1/2 -translate-y-1/2 size-4 text-neutral-400 pointer-events-none" />
+                  <User className="absolute left-3.5 top-1/2 -translate-y-1/2 size-4 text-neutral-400 dark:text-neutral-500 pointer-events-none" />
                   <input
                     type="text"
                     name="firstName"
@@ -113,17 +113,17 @@ export const InvitePartnerForm: React.FC<InvitePartnerFormProps> = ({
                     onChange={handleChange}
                     placeholder="Shaima"
                     required
-                    className="w-full h-10.5 pl-10 pr-3.5 rounded-xl border border-neutral-200 bg-white text-xs sm:text-sm text-neutral-800 placeholder:text-neutral-400 focus:outline-none focus:border-[#B89047] focus:ring-1 focus:ring-[#B89047]/20 transition-all"
+                    className="w-full h-10.5 pl-10 pr-3.5 rounded-xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-950 text-xs sm:text-sm text-neutral-800 dark:text-neutral-200 placeholder:text-neutral-400 dark:placeholder:text-neutral-600 focus:outline-none focus:border-[#B89047] focus:ring-1 focus:ring-[#B89047]/20 transition-all"
                   />
                 </div>
               </div>
 
               <div>
-                <label className="block text-xs font-medium text-neutral-700 mb-1.5">
+                <label className="block text-xs font-medium text-neutral-700 dark:text-neutral-300 mb-1.5">
                   Last Name
                 </label>
                 <div className="relative">
-                  <User className="absolute left-3.5 top-1/2 -translate-y-1/2 size-4 text-neutral-400 pointer-events-none" />
+                  <User className="absolute left-3.5 top-1/2 -translate-y-1/2 size-4 text-neutral-400 dark:text-neutral-500 pointer-events-none" />
                   <input
                     type="text"
                     name="lastName"
@@ -131,7 +131,7 @@ export const InvitePartnerForm: React.FC<InvitePartnerFormProps> = ({
                     onChange={handleChange}
                     placeholder="Hussain"
                     required
-                    className="w-full h-10.5 pl-10 pr-3.5 rounded-xl border border-neutral-200 bg-white text-xs sm:text-sm text-neutral-800 placeholder:text-neutral-400 focus:outline-none focus:border-[#B89047] focus:ring-1 focus:ring-[#B89047]/20 transition-all"
+                    className="w-full h-10.5 pl-10 pr-3.5 rounded-xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-950 text-xs sm:text-sm text-neutral-800 dark:text-neutral-200 placeholder:text-neutral-400 dark:placeholder:text-neutral-600 focus:outline-none focus:border-[#B89047] focus:ring-1 focus:ring-[#B89047]/20 transition-all"
                   />
                 </div>
               </div>
@@ -140,7 +140,7 @@ export const InvitePartnerForm: React.FC<InvitePartnerFormProps> = ({
             {/* Role & Partner Type */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
-                <label className="block text-xs font-medium text-neutral-700 mb-1.5">
+                <label className="block text-xs font-medium text-neutral-700 dark:text-neutral-300 mb-1.5">
                   Role
                 </label>
                 <div className="relative">
@@ -148,7 +148,7 @@ export const InvitePartnerForm: React.FC<InvitePartnerFormProps> = ({
                     name="role"
                     value={formData.role}
                     onChange={handleChange}
-                    className="w-full h-10.5 pl-3.5 pr-9 rounded-xl border border-neutral-200 bg-white text-xs sm:text-sm text-neutral-800 focus:outline-none focus:border-[#B89047] focus:ring-1 focus:ring-[#B89047]/20 appearance-none transition-all cursor-pointer"
+                    className="w-full h-10.5 pl-3.5 pr-9 rounded-xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-950 text-xs sm:text-sm text-neutral-800 dark:text-neutral-200 focus:outline-none focus:border-[#B89047] focus:ring-1 focus:ring-[#B89047]/20 appearance-none transition-all cursor-pointer"
                   >
                     <option value="Partner">Partner</option>
                     <option value="Venue Manager">Venue Manager</option>
@@ -160,7 +160,7 @@ export const InvitePartnerForm: React.FC<InvitePartnerFormProps> = ({
               </div>
 
               <div>
-                <label className="block text-xs font-medium text-neutral-700 mb-1.5">
+                <label className="block text-xs font-medium text-neutral-700 dark:text-neutral-300 mb-1.5">
                   Partner Type
                 </label>
                 <div className="relative">
@@ -168,7 +168,7 @@ export const InvitePartnerForm: React.FC<InvitePartnerFormProps> = ({
                     name="partnerType"
                     value={formData.partnerType}
                     onChange={handleChange}
-                    className="w-full h-10.5 pl-3.5 pr-9 rounded-xl border border-neutral-200 bg-white text-xs sm:text-sm text-neutral-800 focus:outline-none focus:border-[#B89047] focus:ring-1 focus:ring-[#B89047]/20 appearance-none transition-all cursor-pointer"
+                    className="w-full h-10.5 pl-3.5 pr-9 rounded-xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-950 text-xs sm:text-sm text-neutral-800 dark:text-neutral-200 focus:outline-none focus:border-[#B89047] focus:ring-1 focus:ring-[#B89047]/20 appearance-none transition-all cursor-pointer"
                   >
                     <option value="Venue">Venue</option>
                     <option value="Catering">Catering</option>
@@ -185,7 +185,7 @@ export const InvitePartnerForm: React.FC<InvitePartnerFormProps> = ({
             {/* Business Name & Business Email */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
-                <label className="block text-xs font-medium text-neutral-700 mb-1.5">
+                <label className="block text-xs font-medium text-neutral-700 dark:text-neutral-300 mb-1.5">
                   Business / Organization Name
                 </label>
                 <input
@@ -194,12 +194,12 @@ export const InvitePartnerForm: React.FC<InvitePartnerFormProps> = ({
                   value={formData.businessName}
                   onChange={handleChange}
                   placeholder="Elite Events Co."
-                  className="w-full h-10.5 px-3.5 rounded-xl border border-neutral-200 bg-white text-xs sm:text-sm text-neutral-800 placeholder:text-neutral-400 focus:outline-none focus:border-[#B89047] focus:ring-1 focus:ring-[#B89047]/20 transition-all"
+                  className="w-full h-10.5 px-3.5 rounded-xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-950 text-xs sm:text-sm text-neutral-800 dark:text-neutral-200 placeholder:text-neutral-400 dark:placeholder:text-neutral-600 focus:outline-none focus:border-[#B89047] focus:ring-1 focus:ring-[#B89047]/20 transition-all"
                 />
               </div>
 
               <div>
-                <label className="block text-xs font-medium text-neutral-700 mb-1.5">
+                <label className="block text-xs font-medium text-neutral-700 dark:text-neutral-300 mb-1.5">
                   Business email
                 </label>
                 <input
@@ -209,7 +209,7 @@ export const InvitePartnerForm: React.FC<InvitePartnerFormProps> = ({
                   onChange={handleChange}
                   placeholder="john.doe@example.com"
                   required
-                  className="w-full h-10.5 px-3.5 rounded-xl border border-neutral-200 bg-white text-xs sm:text-sm text-neutral-800 placeholder:text-neutral-400 focus:outline-none focus:border-[#B89047] focus:ring-1 focus:ring-[#B89047]/20 transition-all"
+                  className="w-full h-10.5 px-3.5 rounded-xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-950 text-xs sm:text-sm text-neutral-800 dark:text-neutral-200 placeholder:text-neutral-400 dark:placeholder:text-neutral-600 focus:outline-none focus:border-[#B89047] focus:ring-1 focus:ring-[#B89047]/20 transition-all"
                 />
               </div>
             </div>
@@ -217,7 +217,7 @@ export const InvitePartnerForm: React.FC<InvitePartnerFormProps> = ({
             {/* Phone Number & Website */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
-                <label className="block text-xs font-medium text-neutral-700 mb-1.5">
+                <label className="block text-xs font-medium text-neutral-700 dark:text-neutral-300 mb-1.5">
                   Phone Number
                 </label>
                 <input
@@ -226,12 +226,12 @@ export const InvitePartnerForm: React.FC<InvitePartnerFormProps> = ({
                   value={formData.phone}
                   onChange={handleChange}
                   placeholder="+(XXX)XXX-XXXX"
-                  className="w-full h-10.5 px-3.5 rounded-xl border border-neutral-200 bg-white text-xs sm:text-sm text-neutral-800 placeholder:text-neutral-400 focus:outline-none focus:border-[#B89047] focus:ring-1 focus:ring-[#B89047]/20 transition-all"
+                  className="w-full h-10.5 px-3.5 rounded-xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-950 text-xs sm:text-sm text-neutral-800 dark:text-neutral-200 placeholder:text-neutral-400 dark:placeholder:text-neutral-600 focus:outline-none focus:border-[#B89047] focus:ring-1 focus:ring-[#B89047]/20 transition-all"
                 />
               </div>
 
               <div>
-                <label className="block text-xs font-medium text-neutral-700 mb-1.5">
+                <label className="block text-xs font-medium text-neutral-700 dark:text-neutral-300 mb-1.5">
                   Website or social media (Optional)
                 </label>
                 <input
@@ -240,14 +240,14 @@ export const InvitePartnerForm: React.FC<InvitePartnerFormProps> = ({
                   value={formData.website}
                   onChange={handleChange}
                   placeholder="www.invitoly.com"
-                  className="w-full h-10.5 px-3.5 rounded-xl border border-neutral-200 bg-white text-xs sm:text-sm text-neutral-800 placeholder:text-neutral-400 focus:outline-none focus:border-[#B89047] focus:ring-1 focus:ring-[#B89047]/20 transition-all"
+                  className="w-full h-10.5 px-3.5 rounded-xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-950 text-xs sm:text-sm text-neutral-800 dark:text-neutral-200 placeholder:text-neutral-400 dark:placeholder:text-neutral-600 focus:outline-none focus:border-[#B89047] focus:ring-1 focus:ring-[#B89047]/20 transition-all"
                 />
               </div>
             </div>
 
             {/* Business Address */}
             <div>
-              <label className="block text-xs font-medium text-neutral-700 mb-1.5">
+              <label className="block text-xs font-medium text-neutral-700 dark:text-neutral-300 mb-1.5">
                 Business Address (Optional)
               </label>
               <input
@@ -256,7 +256,7 @@ export const InvitePartnerForm: React.FC<InvitePartnerFormProps> = ({
                 value={formData.businessAddress}
                 onChange={handleChange}
                 placeholder="e.g. 123 East St, San Francisco Ca 94112"
-                className="w-full h-10.5 px-3.5 rounded-xl border border-neutral-200 bg-white text-xs sm:text-sm text-neutral-800 placeholder:text-neutral-400 focus:outline-none focus:border-[#B89047] focus:ring-1 focus:ring-[#B89047]/20 transition-all"
+                className="w-full h-10.5 px-3.5 rounded-xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-950 text-xs sm:text-sm text-neutral-800 dark:text-neutral-200 placeholder:text-neutral-400 dark:placeholder:text-neutral-600 focus:outline-none focus:border-[#B89047] focus:ring-1 focus:ring-[#B89047]/20 transition-all"
               />
             </div>
           </div>

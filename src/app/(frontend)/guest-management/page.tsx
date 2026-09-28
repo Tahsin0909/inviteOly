@@ -22,17 +22,17 @@ export default function GuestManagementGatewayPage() {
   }, [isAuthenticated, role, router]);
 
   return (
-    <main className="min-h-screen bg-[#0F0F0F] text-white pt-24 pb-20 font-work-sans">
+    <main className="min-h-screen bg-neutral-50/60 dark:bg-[#0F0F0F] text-neutral-900 dark:text-white pt-24 pb-20 font-work-sans transition-colors duration-200">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-5xl">
         {/* Hero */}
         <div className="text-center max-w-3xl mx-auto mb-16">
           <span className="text-xs font-semibold tracking-[0.2em] text-[#B89047] uppercase font-space-grotesk">
             GUEST EXPERIENCE
           </span>
-          <h1 className="text-3xl sm:text-5xl font-bold font-space-grotesk text-white mt-3 tracking-tight">
+          <h1 className="text-3xl sm:text-5xl font-bold font-space-grotesk text-neutral-900 dark:text-white mt-3 tracking-tight">
             Know Exactly Who&apos;s Coming Before the Big Day
           </h1>
-          <p className="text-sm sm:text-base text-neutral-400 mt-4 leading-relaxed max-w-2xl mx-auto">
+          <p className="text-sm sm:text-base text-neutral-600 dark:text-neutral-400 mt-4 leading-relaxed max-w-2xl mx-auto">
             Streamline your guest list, collect dietary notes, manage table seating, and monitor check-ins at the door in real time with our Host Dashboard.
           </p>
 
@@ -45,7 +45,7 @@ export default function GuestManagementGatewayPage() {
             </Link>
             <Link
               href="/login?redirect=/host/events"
-              className="px-8 py-3.5 rounded-xl bg-neutral-900 hover:bg-neutral-800 border border-neutral-700 text-white font-semibold text-sm transition-all"
+              className="px-8 py-3.5 rounded-xl bg-white dark:bg-neutral-900 hover:bg-neutral-100 dark:hover:bg-neutral-800 border border-neutral-300 dark:border-neutral-700 text-neutral-900 dark:text-white font-semibold text-sm transition-all shadow-xs"
             >
               Host Dashboard Login
             </Link>
@@ -54,38 +54,38 @@ export default function GuestManagementGatewayPage() {
 
         {/* 3 Value Pillars */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
-          <div className="bg-neutral-900/50 border border-neutral-800 rounded-2xl p-7 space-y-3">
+          <div className="bg-white dark:bg-neutral-900/50 border border-neutral-200/80 dark:border-neutral-800 rounded-2xl p-7 space-y-3 shadow-xs dark:shadow-none">
             <div className="size-11 rounded-xl bg-[#B89047]/10 text-[#B89047] flex items-center justify-center">
               <Users className="size-5" />
             </div>
-            <h3 className="text-lg font-bold font-space-grotesk text-white">
+            <h3 className="text-lg font-bold font-space-grotesk text-neutral-900 dark:text-white">
               Instant RSVP Responses
             </h3>
-            <p className="text-xs sm:text-sm text-neutral-400 leading-relaxed">
+            <p className="text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed">
               Track who has viewed their invite, confirmed attendance, or declined in real time with zero manual follow-up stress.
             </p>
           </div>
 
-          <div className="bg-neutral-900/50 border border-neutral-800 rounded-2xl p-7 space-y-3">
+          <div className="bg-white dark:bg-neutral-900/50 border border-neutral-200/80 dark:border-neutral-800 rounded-2xl p-7 space-y-3 shadow-xs dark:shadow-none">
             <div className="size-11 rounded-xl bg-[#B89047]/10 text-[#B89047] flex items-center justify-center">
               <QrCode className="size-5" />
             </div>
-            <h3 className="text-lg font-bold font-space-grotesk text-white">
+            <h3 className="text-lg font-bold font-space-grotesk text-neutral-900 dark:text-white">
               One-Scan Entry Validation
             </h3>
-            <p className="text-xs sm:text-sm text-neutral-400 leading-relaxed">
+            <p className="text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed">
               Each confirmed guest receives a unique QR code. Entry door teams scan in under one second, eliminating long entrance queues.
             </p>
           </div>
 
-          <div className="bg-neutral-900/50 border border-neutral-800 rounded-2xl p-7 space-y-3">
+          <div className="bg-white dark:bg-neutral-900/50 border border-neutral-200/80 dark:border-neutral-800 rounded-2xl p-7 space-y-3 shadow-xs dark:shadow-none">
             <div className="size-11 rounded-xl bg-[#B89047]/10 text-[#B89047] flex items-center justify-center">
               <Smartphone className="size-5" />
             </div>
-            <h3 className="text-lg font-bold font-space-grotesk text-white">
+            <h3 className="text-lg font-bold font-space-grotesk text-neutral-900 dark:text-white">
               Live Arrival Dashboard
             </h3>
-            <p className="text-xs sm:text-sm text-neutral-400 leading-relaxed">
+            <p className="text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed">
               Watch your arrival percentages live on your phone. See when VIPs, family members, or specific tables have checked in.
             </p>
           </div>
