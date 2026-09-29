@@ -73,11 +73,11 @@ export const StepPreviewTicket: React.FC = () => {
       </div>
 
       {/* Bottom Navigation Buttons */}
-      <div className="flex items-center justify-between pt-6 border-t border-neutral-100 max-w-5xl mx-auto">
+      <div className="flex items-center justify-between pt-6 border-t border-neutral-100 dark:border-neutral-800 max-w-5xl mx-auto">
         <button
           type="button"
           onClick={handleCancel}
-          className="px-6 py-2.5 rounded-lg bg-neutral-100 hover:bg-neutral-200 text-neutral-700 text-xs sm:text-sm font-medium transition-all cursor-pointer"
+          className="px-6 py-2.5 rounded-lg bg-neutral-100 dark:bg-neutral-800 hover:bg-neutral-200 dark:hover:bg-neutral-700 text-neutral-700 dark:text-neutral-200 text-xs sm:text-sm font-medium transition-all cursor-pointer"
         >
           Back
         </button>

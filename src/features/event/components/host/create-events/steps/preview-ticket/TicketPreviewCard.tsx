@@ -30,7 +30,7 @@ export const TicketPreviewCard: React.FC<TicketPreviewCardProps> = ({
   const isPremium = packageSelection?.tier === "premium";
 
   return (
-    <div className="bg-white rounded-3xl border border-neutral-200/80 shadow-xs p-5 sm:p-8 space-y-6 font-work-sans">
+    <div className="bg-white dark:bg-neutral-900/80 rounded-3xl border border-neutral-200/80 dark:border-neutral-800 shadow-xs p-5 sm:p-8 space-y-6 font-work-sans">
       {/* 1. Header Branding with ticketIcon.png matching media_1789292285749.png */}
       <div className="text-center space-y-1.5">
         <div className="flex items-center justify-center gap-2">
@@ -41,18 +41,18 @@ export const TicketPreviewCard: React.FC<TicketPreviewCardProps> = ({
             height={28}
             className="rounded-full shrink-0"
           />
-          <span className="font-bold text-2xl font-space-grotesk text-neutral-900 tracking-tight">
+          <span className="font-bold text-2xl font-space-grotesk text-neutral-900 dark:text-white tracking-tight">
             Invite<span className="text-[#C39B4C]">Oly</span>
           </span>
         </div>
 
         {/* Ornamental Subtitle */}
         <div className="flex items-center justify-center gap-2 pt-0.5">
-          <div className="h-[1px] w-10 sm:w-16 bg-[#E5C378]/70" />
+          <div className="h-[1px] w-10 sm:w-16 bg-[#E5C378]/70 dark:bg-[#E5C378]/40" />
           <p className="text-[11px] sm:text-xs text-[#C39B4C] tracking-widest font-semibold uppercase font-space-grotesk">
             • Your Invitation Has Arrived •
           </p>
-          <div className="h-[1px] w-10 sm:w-16 bg-[#E5C378]/70" />
+          <div className="h-[1px] w-10 sm:w-16 bg-[#E5C378]/70 dark:bg-[#E5C378]/40" />
         </div>
       </div>
 

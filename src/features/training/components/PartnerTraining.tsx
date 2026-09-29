@@ -106,10 +106,10 @@ export const PartnerTraining: React.FC<PartnerTrainingProps> = ({ className }) =
       {/* ========================================================================= */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <h1 className="text-2xl sm:text-3xl font-bold font-space-grotesk text-neutral-900 tracking-tight">
+          <h1 className="text-2xl sm:text-3xl font-bold font-space-grotesk text-neutral-900 dark:text-white tracking-tight">
             Training & Resources
           </h1>
-          <p className="text-xs sm:text-sm text-neutral-500 font-work-sans mt-1 max-w-2xl">
+          <p className="text-xs sm:text-sm text-neutral-500 dark:text-neutral-400 font-work-sans mt-1 max-w-2xl">
             Everything Partners and event staff need to confidently use InviteOly and
             provide a smooth guest-entry experience.
           </p>
@@ -117,13 +117,13 @@ export const PartnerTraining: React.FC<PartnerTrainingProps> = ({ className }) =
 
         {/* Search Input */}
         <div className="relative w-full sm:w-72 shrink-0">
-          <Search className="size-4 text-neutral-400 absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none" />
+          <Search className="size-4 text-neutral-400 dark:text-neutral-500 absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none" />
           <input
             type="text"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             placeholder="Search guides or FAQs..."
-            className="w-full pl-9 pr-4 py-2 bg-white rounded-xl border border-neutral-200 text-xs sm:text-sm text-neutral-800 placeholder:text-neutral-400 focus:outline-none focus:border-[#C39B4C] focus:ring-1 focus:ring-[#C39B4C] transition-all"
+            className="w-full pl-9 pr-4 py-2 bg-white dark:bg-neutral-950 rounded-xl border border-neutral-200 dark:border-neutral-800 text-xs sm:text-sm text-neutral-800 dark:text-neutral-200 placeholder:text-neutral-400 dark:placeholder:text-neutral-600 focus:outline-none focus:border-[#C39B4C] focus:ring-1 focus:ring-[#C39B4C] transition-all"
           />
         </div>
       </div>
@@ -132,8 +132,8 @@ export const PartnerTraining: React.FC<PartnerTrainingProps> = ({ className }) =
       {/* CARD 1: Partner Training */}
       {/* ========================================================================= */}
       {filteredPartnerModules.length > 0 && (
-        <div className="bg-white rounded-xl sm:rounded-2xl border border-neutral-100 shadow-[0_1px_3px_rgba(0,0,0,0.02)] p-5 sm:p-7">
-          <h2 className="text-base sm:text-lg font-bold font-space-grotesk text-neutral-900 mb-4 tracking-tight">
+        <div className="bg-white dark:bg-neutral-900/80 rounded-xl sm:rounded-2xl border border-neutral-200/80 dark:border-neutral-800 shadow-[0_1px_3px_rgba(0,0,0,0.02)] p-5 sm:p-7">
+          <h2 className="text-base sm:text-lg font-bold font-space-grotesk text-neutral-900 dark:text-white mb-4 tracking-tight">
             Partner Training
           </h2>
 
@@ -154,8 +154,8 @@ export const PartnerTraining: React.FC<PartnerTrainingProps> = ({ className }) =
       {/* CARD 2: Event Staff / Scanner Training */}
       {/* ========================================================================= */}
       {filteredStaffModules.length > 0 && (
-        <div className="bg-white rounded-xl sm:rounded-2xl border border-neutral-100 shadow-[0_1px_3px_rgba(0,0,0,0.02)] p-5 sm:p-7">
-          <h2 className="text-base sm:text-lg font-bold font-space-grotesk text-neutral-900 mb-4 tracking-tight">
+        <div className="bg-white dark:bg-neutral-900/80 rounded-xl sm:rounded-2xl border border-neutral-200/80 dark:border-neutral-800 shadow-[0_1px_3px_rgba(0,0,0,0.02)] p-5 sm:p-7">
+          <h2 className="text-base sm:text-lg font-bold font-space-grotesk text-neutral-900 dark:text-white mb-4 tracking-tight">
             Event Staff / Scanner Training
           </h2>
 
@@ -176,8 +176,8 @@ export const PartnerTraining: React.FC<PartnerTrainingProps> = ({ className }) =
       {/* CARD 3: FAQs for Partners */}
       {/* ========================================================================= */}
       {filteredFaqs.length > 0 && (
-        <div className="bg-white rounded-xl sm:rounded-2xl border border-neutral-100 shadow-[0_1px_3px_rgba(0,0,0,0.02)] p-5 sm:p-7">
-          <h2 className="text-base sm:text-lg font-bold font-space-grotesk text-neutral-900 mb-4 tracking-tight">
+        <div className="bg-white dark:bg-neutral-900/80 rounded-xl sm:rounded-2xl border border-neutral-200/80 dark:border-neutral-800 shadow-[0_1px_3px_rgba(0,0,0,0.02)] p-5 sm:p-7">
+          <h2 className="text-base sm:text-lg font-bold font-space-grotesk text-neutral-900 dark:text-white mb-4 tracking-tight">
             FAQs for Partners
           </h2>
 
@@ -198,11 +198,11 @@ export const PartnerTraining: React.FC<PartnerTrainingProps> = ({ className }) =
       {filteredPartnerModules.length === 0 &&
         filteredStaffModules.length === 0 &&
         filteredFaqs.length === 0 && (
-          <div className="bg-white rounded-xl sm:rounded-2xl border border-neutral-100 p-10 text-center space-y-2">
-            <p className="text-base font-semibold text-neutral-800">
+          <div className="bg-white dark:bg-neutral-900/80 rounded-xl sm:rounded-2xl border border-neutral-200/80 dark:border-neutral-800 p-10 text-center space-y-2">
+            <p className="text-base font-semibold text-neutral-800 dark:text-neutral-200">
               No training resources or FAQs found
             </p>
-            <p className="text-xs sm:text-sm text-neutral-500">
+            <p className="text-xs sm:text-sm text-neutral-500 dark:text-neutral-400">
               Try adjusting your search terms to find what you are looking for.
             </p>
             <button

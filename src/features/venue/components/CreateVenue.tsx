@@ -242,7 +242,7 @@ export const CreateVenue: React.FC = () => {
             {/* ========================================================================= */}
             {/* 1. Step Progress Wizard Bar */}
             {/* ========================================================================= */}
-            <div className="px-6 py-4 border-b border-neutral-100 bg-neutral-50/50 shrink-0">
+            <div className="px-6 py-4 border-b border-neutral-100 dark:border-neutral-800 bg-neutral-50/50 dark:bg-neutral-950/40 shrink-0">
                 <div className="flex items-center justify-between">
                     {/* Step 1 Tab */}
                     <button
@@ -255,22 +255,22 @@ export const CreateVenue: React.FC = () => {
                                 ? "bg-[#C39B4C] text-white shadow-xs"
                                 : drawerStep > 1
                                     ? "bg-[#16A34A] text-white"
-                                    : "bg-neutral-200 text-neutral-600"
+                                    : "bg-neutral-200 dark:bg-neutral-800 text-neutral-600 dark:text-neutral-400"
                                 }`}
                         >
                             {drawerStep > 1 ? <Check className="size-3.5" /> : "1"}
                         </div>
                         <span
                             className={`text-xs font-medium ${drawerStep === 1
-                                ? "text-neutral-900 font-semibold"
-                                : "text-neutral-500"
+                                ? "text-neutral-900 dark:text-white font-semibold"
+                                : "text-neutral-500 dark:text-neutral-400"
                                 }`}
                         >
                             Basic Info
                         </span>
                     </button>
 
-                    <ChevronRight className="size-4 text-neutral-300" />
+                    <ChevronRight className="size-4 text-neutral-300 dark:text-neutral-600" />
 
                     {/* Step 2 Tab */}
                     <button
@@ -283,22 +283,22 @@ export const CreateVenue: React.FC = () => {
                                 ? "bg-[#C39B4C] text-white shadow-xs"
                                 : drawerStep > 2
                                     ? "bg-[#16A34A] text-white"
-                                    : "bg-neutral-200 text-neutral-600"
+                                    : "bg-neutral-200 dark:bg-neutral-800 text-neutral-600 dark:text-neutral-400"
                                 }`}
                         >
                             {drawerStep > 2 ? <Check className="size-3.5" /> : "2"}
                         </div>
                         <span
                             className={`text-xs font-medium ${drawerStep === 2
-                                ? "text-neutral-900 font-semibold"
-                                : "text-neutral-500"
+                                ? "text-neutral-900 dark:text-white font-semibold"
+                                : "text-neutral-500 dark:text-neutral-400"
                                 }`}
                         >
                             Spaces
                         </span>
                     </button>
 
-                    <ChevronRight className="size-4 text-neutral-300" />
+                    <ChevronRight className="size-4 text-neutral-300 dark:text-neutral-600" />
 
                     {/* Step 3 Tab */}
                     <button
@@ -309,15 +309,15 @@ export const CreateVenue: React.FC = () => {
                         <div
                             className={`size-7 rounded-full text-xs font-semibold flex items-center justify-center transition-all ${drawerStep === 3
                                 ? "bg-[#C39B4C] text-white shadow-xs"
-                                : "bg-neutral-200 text-neutral-600"
+                                : "bg-neutral-200 dark:bg-neutral-800 text-neutral-600 dark:text-neutral-400"
                                 }`}
                         >
                             3
                         </div>
                         <span
                             className={`text-xs font-medium ${drawerStep === 3
-                                ? "text-neutral-900 font-semibold"
-                                : "text-neutral-500"
+                                ? "text-neutral-900 dark:text-white font-semibold"
+                                : "text-neutral-500 dark:text-neutral-400"
                                 }`}
                         >
                             Parking & Review
@@ -339,16 +339,16 @@ export const CreateVenue: React.FC = () => {
                     <div className={drawerStep === 1 ? "space-y-4" : "hidden"}>
                         {/* Venue Name */}
                         <div>
-                            <label className="block text-xs sm:text-sm font-semibold text-neutral-800 mb-1.5">
+                            <label className="block text-xs sm:text-sm font-semibold text-neutral-800 dark:text-neutral-200 mb-1.5">
                                 Venue Name <span className="text-red-500">*</span>
                             </label>
                             <input
                                 type="text"
                                 placeholder="e.g. The Grand Ballroom"
                                 {...register("name")}
-                                className={`w-full px-3.5 py-2.5 rounded-lg border text-xs sm:text-sm text-neutral-900 placeholder:text-neutral-400 focus:outline-none transition-all bg-white ${errors.name
-                                    ? "border-red-400 focus:border-red-500 focus:ring-2 focus:ring-red-200"
-                                    : "border-neutral-200 focus:ring-2 focus:ring-[#C39B4C]/20 focus:border-[#C39B4C]"
+                                className={`w-full px-3.5 py-2.5 rounded-lg border text-xs sm:text-sm text-neutral-900 dark:text-white placeholder:text-neutral-400 dark:placeholder:text-neutral-600 focus:outline-none transition-all bg-white dark:bg-neutral-950 ${errors.name
+                                    ? "border-red-400 focus:border-red-500 focus:ring-2 focus:ring-red-200 dark:focus:ring-red-900/30"
+                                    : "border-neutral-200 dark:border-neutral-800 focus:ring-2 focus:ring-[#C39B4C]/20 focus:border-[#C39B4C]"
                                     }`}
                             />
                             {errors.name && (
@@ -360,16 +360,16 @@ export const CreateVenue: React.FC = () => {
 
                         {/* Street Address */}
                         <div>
-                            <label className="block text-xs sm:text-sm font-semibold text-neutral-800 mb-1.5">
+                            <label className="block text-xs sm:text-sm font-semibold text-neutral-800 dark:text-neutral-200 mb-1.5">
                                 Street Address <span className="text-red-500">*</span>
                             </label>
                             <input
                                 type="text"
                                 placeholder="Enter venue address"
                                 {...register("streetAddress")}
-                                className={`w-full px-3.5 py-2.5 rounded-lg border text-xs sm:text-sm text-neutral-900 placeholder:text-neutral-400 focus:outline-none transition-all bg-white ${errors.streetAddress
-                                    ? "border-red-400 focus:border-red-500 focus:ring-2 focus:ring-red-200"
-                                    : "border-neutral-200 focus:ring-2 focus:ring-[#C39B4C]/20 focus:border-[#C39B4C]"
+                                className={`w-full px-3.5 py-2.5 rounded-lg border text-xs sm:text-sm text-neutral-900 dark:text-white placeholder:text-neutral-400 dark:placeholder:text-neutral-600 focus:outline-none transition-all bg-white dark:bg-neutral-950 ${errors.streetAddress
+                                    ? "border-red-400 focus:border-red-500 focus:ring-2 focus:ring-red-200 dark:focus:ring-red-900/30"
+                                    : "border-neutral-200 dark:border-neutral-800 focus:ring-2 focus:ring-[#C39B4C]/20 focus:border-[#C39B4C]"
                                     }`}
                             />
                             {errors.streetAddress && (
@@ -382,16 +382,16 @@ export const CreateVenue: React.FC = () => {
                         {/* City & State/Region */}
                         <div className="grid grid-cols-2 gap-3">
                             <div>
-                                <label className="block text-xs sm:text-sm font-semibold text-neutral-800 mb-1.5">
+                                <label className="block text-xs sm:text-sm font-semibold text-neutral-800 dark:text-neutral-200 mb-1.5">
                                     City <span className="text-red-500">*</span>
                                 </label>
                                 <input
                                     type="text"
                                     placeholder="e.g. New York"
                                     {...register("city")}
-                                    className={`w-full px-3.5 py-2.5 rounded-lg border text-xs sm:text-sm text-neutral-900 placeholder:text-neutral-400 focus:outline-none transition-all bg-white ${errors.city
-                                        ? "border-red-400 focus:border-red-500 focus:ring-2 focus:ring-red-200"
-                                        : "border-neutral-200 focus:ring-2 focus:ring-[#C39B4C]/20 focus:border-[#C39B4C]"
+                                    className={`w-full px-3.5 py-2.5 rounded-lg border text-xs sm:text-sm text-neutral-900 dark:text-white placeholder:text-neutral-400 dark:placeholder:text-neutral-600 focus:outline-none transition-all bg-white dark:bg-neutral-950 ${errors.city
+                                        ? "border-red-400 focus:border-red-500 focus:ring-2 focus:ring-red-200 dark:focus:ring-red-900/30"
+                                        : "border-neutral-200 dark:border-neutral-800 focus:ring-2 focus:ring-[#C39B4C]/20 focus:border-[#C39B4C]"
                                         }`}
                                 />
                                 {errors.city && (
@@ -402,16 +402,16 @@ export const CreateVenue: React.FC = () => {
                             </div>
 
                             <div>
-                                <label className="block text-xs sm:text-sm font-semibold text-neutral-800 mb-1.5">
+                                <label className="block text-xs sm:text-sm font-semibold text-neutral-800 dark:text-neutral-200 mb-1.5">
                                     State / Region <span className="text-red-500">*</span>
                                 </label>
                                 <input
                                     type="text"
                                     placeholder="NY"
                                     {...register("state")}
-                                    className={`w-full px-3.5 py-2.5 rounded-lg border text-xs sm:text-sm text-neutral-900 placeholder:text-neutral-400 focus:outline-none transition-all bg-white ${errors.state
-                                        ? "border-red-400 focus:border-red-500 focus:ring-2 focus:ring-red-200"
-                                        : "border-neutral-200 focus:ring-2 focus:ring-[#C39B4C]/20 focus:border-[#C39B4C]"
+                                    className={`w-full px-3.5 py-2.5 rounded-lg border text-xs sm:text-sm text-neutral-900 dark:text-white placeholder:text-neutral-400 dark:placeholder:text-neutral-600 focus:outline-none transition-all bg-white dark:bg-neutral-950 ${errors.state
+                                        ? "border-red-400 focus:border-red-500 focus:ring-2 focus:ring-red-200 dark:focus:ring-red-900/30"
+                                        : "border-neutral-200 dark:border-neutral-800 focus:ring-2 focus:ring-[#C39B4C]/20 focus:border-[#C39B4C]"
                                         }`}
                                 />
                                 {errors.state && (
@@ -424,8 +424,8 @@ export const CreateVenue: React.FC = () => {
 
                         {/* Capacity (Number) */}
                         <div>
-                            <label className="block text-xs sm:text-sm font-semibold text-neutral-800 mb-1.5">
-                                Capacity (Number) <span className="text-neutral-400 font-normal">(optional)</span>
+                            <label className="block text-xs sm:text-sm font-semibold text-neutral-800 dark:text-neutral-200 mb-1.5">
+                                Capacity (Number) <span className="text-neutral-400 dark:text-neutral-500 font-normal">(optional)</span>
                             </label>
                             <input
                                 type="number"
@@ -433,9 +433,9 @@ export const CreateVenue: React.FC = () => {
                                 step="1"
                                 placeholder="e.g. 500"
                                 {...register("capacity", { valueAsNumber: true })}
-                                className={`w-full px-3.5 py-2.5 rounded-lg border text-xs sm:text-sm text-neutral-900 placeholder:text-neutral-400 focus:outline-none transition-all bg-white ${errors.capacity
-                                    ? "border-red-400 focus:border-red-500 focus:ring-2 focus:ring-red-200"
-                                    : "border-neutral-200 focus:ring-2 focus:ring-[#C39B4C]/20 focus:border-[#C39B4C]"
+                                className={`w-full px-3.5 py-2.5 rounded-lg border text-xs sm:text-sm text-neutral-900 dark:text-white placeholder:text-neutral-400 dark:placeholder:text-neutral-600 focus:outline-none transition-all bg-white dark:bg-neutral-950 ${errors.capacity
+                                    ? "border-red-400 focus:border-red-500 focus:ring-2 focus:ring-red-200 dark:focus:ring-red-900/30"
+                                    : "border-neutral-200 dark:border-neutral-800 focus:ring-2 focus:ring-[#C39B4C]/20 focus:border-[#C39B4C]"
                                     }`}
                             />
                             {errors.capacity && (
@@ -449,19 +449,19 @@ export const CreateVenue: React.FC = () => {
                     {/* STEP 2: Available Spaces */}
                     <div className={drawerStep === 2 ? "space-y-5" : "hidden"}>
                         <div>
-                            <h3 className="text-sm font-semibold text-neutral-900">
+                            <h3 className="text-sm font-semibold text-neutral-900 dark:text-white">
                                 Available Spaces
                             </h3>
-                            <p className="text-xs text-neutral-500 mt-0.5">
+                            <p className="text-xs text-neutral-500 dark:text-neutral-400 mt-0.5">
                                 Add the rooms or spaces available at this venue.
                             </p>
                         </div>
 
                         {/* Inline Space Addition Form matching media_1788945916733.png */}
                         {isAddingSpace ? (
-                            <div className="p-4 rounded-xl border border-amber-200 bg-amber-50/40 space-y-3">
+                            <div className="p-4 rounded-xl border border-amber-200 dark:border-amber-900/50 bg-amber-50/40 dark:bg-amber-950/20 space-y-3">
                                 <div className="flex items-center justify-between">
-                                    <span className="text-xs font-semibold text-neutral-800">
+                                    <span className="text-xs font-semibold text-neutral-800 dark:text-neutral-200">
                                         New Space Details
                                     </span>
                                     <button
@@ -470,7 +470,7 @@ export const CreateVenue: React.FC = () => {
                                             setIsAddingSpace(false);
                                             resetSpaceForm();
                                         }}
-                                        className="text-neutral-400 hover:text-neutral-600 cursor-pointer"
+                                        className="text-neutral-400 hover:text-neutral-600 dark:hover:text-neutral-300 cursor-pointer"
                                     >
                                         <X className="size-4" />
                                     </button>
@@ -489,9 +489,9 @@ export const CreateVenue: React.FC = () => {
                                                     handleSpaceSubmit(onAddSpace)();
                                                 }
                                             }}
-                                            className={`w-full px-3.5 py-2 rounded-lg border bg-white text-xs sm:text-sm text-neutral-900 placeholder:text-neutral-400 focus:outline-none ${spaceErrors.name
-                                                ? "border-red-400 focus:ring-2 focus:ring-red-200"
-                                                : "border-neutral-200 focus:ring-2 focus:ring-[#C39B4C]/20 focus:border-[#C39B4C]"
+                                            className={`w-full px-3.5 py-2 rounded-lg border bg-white dark:bg-neutral-950 text-xs sm:text-sm text-neutral-900 dark:text-white placeholder:text-neutral-400 dark:placeholder:text-neutral-600 focus:outline-none ${spaceErrors.name
+                                                ? "border-red-400 focus:ring-2 focus:ring-red-200 dark:focus:ring-red-900/30"
+                                                : "border-neutral-200 dark:border-neutral-800 focus:ring-2 focus:ring-[#C39B4C]/20 focus:border-[#C39B4C]"
                                                 }`}
                                         />
                                         {spaceErrors.name && (
@@ -517,9 +517,9 @@ export const CreateVenue: React.FC = () => {
                                                         handleSpaceSubmit(onAddSpace)();
                                                     }
                                                 }}
-                                                className={`w-full px-3.5 py-2 rounded-lg border bg-white text-xs sm:text-sm text-neutral-900 placeholder:text-neutral-400 focus:outline-none ${spaceErrors.capacity
-                                                    ? "border-red-400 focus:ring-2 focus:ring-red-200"
-                                                    : "border-neutral-200 focus:ring-2 focus:ring-[#C39B4C]/20 focus:border-[#C39B4C]"
+                                                className={`w-full px-3.5 py-2 rounded-lg border bg-white dark:bg-neutral-950 text-xs sm:text-sm text-neutral-900 dark:text-white placeholder:text-neutral-400 dark:placeholder:text-neutral-600 focus:outline-none ${spaceErrors.capacity
+                                                    ? "border-red-400 focus:ring-2 focus:ring-red-200 dark:focus:ring-red-900/30"
+                                                    : "border-neutral-200 dark:border-neutral-800 focus:ring-2 focus:ring-[#C39B4C]/20 focus:border-[#C39B4C]"
                                                     }`}
                                             />
                                             {spaceErrors.capacity && (
@@ -543,7 +543,7 @@ export const CreateVenue: React.FC = () => {
                                                 setIsAddingSpace(false);
                                                 resetSpaceForm();
                                             }}
-                                            className="px-3.5 py-2 bg-neutral-100 hover:bg-neutral-200 text-neutral-700 text-xs font-medium rounded-lg transition-colors cursor-pointer shrink-0"
+                                            className="px-3.5 py-2 bg-neutral-100 dark:bg-neutral-800 hover:bg-neutral-200 dark:hover:bg-neutral-700 text-neutral-700 dark:text-neutral-200 text-xs font-medium rounded-lg transition-colors cursor-pointer shrink-0"
                                         >
                                             Cancel
                                         </button>
@@ -563,26 +563,26 @@ export const CreateVenue: React.FC = () => {
 
                         {/* List of Configured Spaces */}
                         <div className="space-y-2 pt-2">
-                            <span className="text-xs font-semibold uppercase tracking-wider text-neutral-400">
+                            <span className="text-xs font-semibold uppercase tracking-wider text-neutral-400 dark:text-neutral-500">
                                 Spaces ({watchedSpaces.length})
                             </span>
 
                             {watchedSpaces.length > 0 ? (
-                                <div className="divide-y divide-neutral-100 rounded-xl border border-neutral-200/80 bg-white overflow-hidden shadow-2xs">
+                                <div className="divide-y divide-neutral-100 dark:divide-neutral-800 rounded-xl border border-neutral-200/80 dark:border-neutral-800 bg-white dark:bg-neutral-900 overflow-hidden shadow-2xs">
                                     {watchedSpaces.map((space, idx) => (
                                         <div
                                             key={space.id || idx}
-                                            className="flex items-center justify-between p-3.5 hover:bg-neutral-50/60 transition-colors"
+                                            className="flex items-center justify-between p-3.5 hover:bg-neutral-50/60 dark:hover:bg-neutral-800/50 transition-colors"
                                         >
                                             <div className="flex items-center gap-3">
-                                                <div className="size-8 rounded-lg bg-amber-50 text-[#C39B4C] flex items-center justify-center shrink-0">
+                                                <div className="size-8 rounded-lg bg-amber-50 dark:bg-amber-950/40 text-[#C39B4C] flex items-center justify-center shrink-0">
                                                     <Building2 className="size-4" />
                                                 </div>
                                                 <div>
-                                                    <p className="text-xs sm:text-sm font-semibold text-neutral-900">
+                                                    <p className="text-xs sm:text-sm font-semibold text-neutral-900 dark:text-white">
                                                         {space.name}
                                                     </p>
-                                                    <p className="text-[11px] text-neutral-400">
+                                                    <p className="text-[11px] text-neutral-400 dark:text-neutral-500">
                                                         {space.capacity
                                                             ? `Capacity: ${space.capacity} guests (number)`
                                                             : "Capacity unassigned"}
@@ -593,7 +593,7 @@ export const CreateVenue: React.FC = () => {
                                             <button
                                                 type="button"
                                                 onClick={() => handleRemoveSpace(idx)}
-                                                className="p-1.5 text-neutral-400 hover:text-red-600 transition-colors rounded-lg hover:bg-red-50 cursor-pointer"
+                                                className="p-1.5 text-neutral-400 hover:text-red-600 dark:hover:text-red-400 transition-colors rounded-lg hover:bg-red-50 dark:hover:bg-red-950/30 cursor-pointer"
                                                 title="Remove space"
                                             >
                                                 <Trash2 className="size-4" />
@@ -602,8 +602,8 @@ export const CreateVenue: React.FC = () => {
                                     ))}
                                 </div>
                             ) : (
-                                <div className="p-6 rounded-xl border border-dashed border-neutral-200 text-center bg-neutral-50/50">
-                                    <p className="text-xs text-neutral-400">
+                                <div className="p-6 rounded-xl border border-dashed border-neutral-200 dark:border-neutral-800 text-center bg-neutral-50/50 dark:bg-neutral-950/30">
+                                    <p className="text-xs text-neutral-400 dark:text-neutral-500">
                                         No spaces added yet. Click &ldquo;+ Add Space&rdquo; to add rooms, halls, or terraces.
                                     </p>
                                 </div>
@@ -614,36 +614,36 @@ export const CreateVenue: React.FC = () => {
                     {/* STEP 3: Parking & Review */}
                     <div className={drawerStep === 3 ? "space-y-5" : "hidden"}>
                         <div>
-                            <label className="block text-xs sm:text-sm font-semibold text-neutral-800 mb-1">
+                            <label className="block text-xs sm:text-sm font-semibold text-neutral-800 dark:text-neutral-200 mb-1">
                                 Parking Information
                             </label>
-                            <p className="text-xs text-neutral-500 mb-2">
+                            <p className="text-xs text-neutral-500 dark:text-neutral-400 mb-2">
                                 Provide parking instructions, nearby decks, or valet services.
                             </p>
                             <textarea
                                 rows={4}
                                 placeholder="Add parking instructions, entrance information, valet details, etc."
                                 {...register("parkingInfo")}
-                                className="w-full px-3.5 py-2.5 rounded-lg border border-neutral-200 text-xs sm:text-sm text-neutral-900 placeholder:text-neutral-400 focus:outline-none focus:ring-2 focus:ring-[#C39B4C]/20 focus:border-[#C39B4C] transition-all bg-white"
+                                className="w-full px-3.5 py-2.5 rounded-lg border border-neutral-200 dark:border-neutral-800 text-xs sm:text-sm text-neutral-900 dark:text-white placeholder:text-neutral-400 dark:placeholder:text-neutral-600 focus:outline-none focus:ring-2 focus:ring-[#C39B4C]/20 focus:border-[#C39B4C] transition-all bg-white dark:bg-neutral-950"
                             />
                         </div>
 
                         {/* Summary Review Card */}
-                        <div className="rounded-xl border border-neutral-200 bg-neutral-50/70 p-4 space-y-3">
-                            <h4 className="text-xs font-bold uppercase tracking-wider text-neutral-500">
+                        <div className="rounded-xl border border-neutral-200 dark:border-neutral-800 bg-neutral-50/70 dark:bg-neutral-950/40 p-4 space-y-3">
+                            <h4 className="text-xs font-bold uppercase tracking-wider text-neutral-500 dark:text-neutral-400">
                                 Venue Summary Preview
                             </h4>
 
-                            <div className="space-y-2 text-xs text-neutral-700">
+                            <div className="space-y-2 text-xs text-neutral-700 dark:text-neutral-300">
                                 <div className="flex items-center gap-2">
-                                    <span className="font-semibold text-neutral-900 w-24">
+                                    <span className="font-semibold text-neutral-900 dark:text-white w-24">
                                         Venue:
                                     </span>
                                     <span>{watchedValues.name || "Untitled Venue"}</span>
                                 </div>
 
                                 <div className="flex items-center gap-2">
-                                    <span className="font-semibold text-neutral-900 w-24">
+                                    <span className="font-semibold text-neutral-900 dark:text-white w-24">
                                         Address:
                                     </span>
                                     <span>
@@ -656,7 +656,7 @@ export const CreateVenue: React.FC = () => {
                                 </div>
 
                                 <div className="flex items-center gap-2">
-                                    <span className="font-semibold text-neutral-900 w-24">
+                                    <span className="font-semibold text-neutral-900 dark:text-white w-24">
                                         Capacity:
                                     </span>
                                     <span>
@@ -667,7 +667,7 @@ export const CreateVenue: React.FC = () => {
                                 </div>
 
                                 <div className="flex items-center gap-2">
-                                    <span className="font-semibold text-neutral-900 w-24">
+                                    <span className="font-semibold text-neutral-900 dark:text-white w-24">
                                         Spaces:
                                     </span>
                                     <span>
@@ -677,12 +677,21 @@ export const CreateVenue: React.FC = () => {
                                     </span>
                                 </div>
 
+                                <div className="flex items-center gap-2">
+                                    <span className="font-semibold text-neutral-900 dark:text-white w-24">
+                                        Parking:
+                                    </span>
+                                    <span className="line-clamp-2">
+                                        {watchedValues.parkingInfo || "No parking information provided"}
+                                    </span>
+                                </div>
+
                                 {watchedSpaces.length > 0 && (
                                     <div className="flex flex-wrap gap-1.5 pt-1 pl-24">
                                         {watchedSpaces.map((s, idx) => (
                                             <span
                                                 key={idx}
-                                                className="px-2 py-0.5 rounded bg-white border border-neutral-200 text-[11px] text-neutral-600"
+                                                className="px-2 py-0.5 rounded bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 text-[11px] text-neutral-600 dark:text-neutral-300"
                                             >
                                                 {s.name} ({s.capacity || 0})
                                             </span>
@@ -697,12 +706,12 @@ export const CreateVenue: React.FC = () => {
                 {/* ========================================================================= */}
                 {/* 3. Footer Navigation Buttons */}
                 {/* ========================================================================= */}
-                <div className="px-6 py-4 border-t border-neutral-100 bg-white flex items-center justify-between gap-3 shrink-0">
+                <div className="px-6 py-4 border-t border-neutral-100 dark:border-neutral-800 bg-white dark:bg-neutral-900 flex items-center justify-between gap-3 shrink-0">
                     {drawerStep === 1 ? (
                         <button
                             type="button"
                             onClick={() => dispatch(closeDrawer())}
-                            className="px-5 py-2.5 rounded-lg border border-neutral-200 text-xs sm:text-sm font-medium text-neutral-700 hover:bg-neutral-50 transition-colors cursor-pointer"
+                            className="px-5 py-2.5 rounded-lg border border-neutral-200 dark:border-neutral-800 text-xs sm:text-sm font-medium text-neutral-700 dark:text-neutral-200 hover:bg-neutral-50 dark:hover:bg-neutral-800 transition-colors cursor-pointer"
                         >
                             Cancel
                         </button>
@@ -710,7 +719,7 @@ export const CreateVenue: React.FC = () => {
                         <button
                             type="button"
                             onClick={() => dispatch(prevDrawerStep())}
-                            className="px-5 py-2.5 rounded-lg border border-neutral-200 text-xs sm:text-sm font-medium text-neutral-700 hover:bg-neutral-50 transition-colors cursor-pointer"
+                            className="px-5 py-2.5 rounded-lg border border-neutral-200 dark:border-neutral-800 text-xs sm:text-sm font-medium text-neutral-700 dark:text-neutral-200 hover:bg-neutral-50 dark:hover:bg-neutral-800 transition-colors cursor-pointer"
                         >
                             Back
                         </button>

@@ -20,15 +20,15 @@ export const EventCards: React.FC<EventCardsProps> = ({
     const getStatusBadge = (status: EventCardStatus) => {
         switch (status) {
             case "Active":
-                return "bg-[#EAF7EE] text-[#16A34A] border-[#C6EFD2]";
+                return "bg-[#EAF7EE] dark:bg-emerald-950/40 text-[#16A34A] dark:text-emerald-400 border-[#C6EFD2] dark:border-emerald-800/60";
             case "Scheduled":
-                return "bg-[#EFF6FF] text-[#2563EB] border-[#DBEAFE]";
+                return "bg-[#EFF6FF] dark:bg-blue-950/40 text-[#2563EB] dark:text-blue-400 border-[#DBEAFE] dark:border-blue-800/60";
             case "Completed":
-                return "bg-neutral-100 text-neutral-700 border-neutral-200";
+                return "bg-neutral-100 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 border-neutral-200 dark:border-neutral-700";
             case "Pending":
-                return "bg-amber-50 text-amber-700 border-amber-200";
+                return "bg-amber-50 dark:bg-amber-950/40 text-amber-700 dark:text-amber-400 border-amber-200 dark:border-amber-800/60";
             default:
-                return "bg-neutral-100 text-neutral-700 border-neutral-200";
+                return "bg-neutral-100 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 border-neutral-200 dark:border-neutral-700";
         }
     };
 
@@ -38,18 +38,18 @@ export const EventCards: React.FC<EventCardsProps> = ({
             case "green":
                 return {
                     bar: "bg-[#16A34A]",
-                    track: "bg-[#EAF7EE]",
+                    track: "bg-[#EAF7EE] dark:bg-emerald-950/40",
                 };
             case "orange":
                 return {
                     bar: "bg-[#D97706]",
-                    track: "bg-[#FEF3C7]",
+                    track: "bg-[#FEF3C7] dark:bg-amber-950/40",
                 };
             case "gray":
             default:
                 return {
-                    bar: "bg-neutral-300",
-                    track: "bg-neutral-100",
+                    bar: "bg-neutral-300 dark:bg-neutral-700",
+                    track: "bg-neutral-100 dark:bg-neutral-800",
                 };
         }
     };
@@ -60,7 +60,7 @@ export const EventCards: React.FC<EventCardsProps> = ({
     return (
         <div
             className={cn(
-                "bg-white rounded-2xl sm:rounded-3xl p-5 sm:p-6 border border-neutral-200/80 shadow-xs hover:shadow-md transition-all duration-200 flex flex-col justify-between",
+                "bg-white dark:bg-neutral-900/80 rounded-2xl sm:rounded-3xl p-5 sm:p-6 border border-neutral-200/80 dark:border-neutral-800 shadow-xs hover:shadow-md transition-all duration-200 flex flex-col justify-between",
                 className
             )}
         >
@@ -78,53 +78,53 @@ export const EventCards: React.FC<EventCardsProps> = ({
                 </div>
 
                 {/* Event Title */}
-                <h3 className="text-xl sm:text-[22px] font-bold font-space-grotesk text-neutral-900 mt-3.5 tracking-tight">
+                <h3 className="text-xl sm:text-[22px] font-bold font-space-grotesk text-neutral-900 dark:text-white mt-3.5 tracking-tight">
                     {event.title}
                 </h3>
 
                 {/* Date & Time Row */}
-                <div className="flex flex-wrap items-center gap-3 sm:gap-4 text-xs sm:text-[13px] text-neutral-600 font-work-sans mt-3">
+                <div className="flex flex-wrap items-center gap-3 sm:gap-4 text-xs sm:text-[13px] text-neutral-600 dark:text-neutral-400 font-work-sans mt-3">
                     <div className="flex items-center gap-1.5">
-                        <Calendar className="size-3.5 text-neutral-400 shrink-0" />
+                        <Calendar className="size-3.5 text-neutral-400 dark:text-neutral-500 shrink-0" />
                         <span>{event.date}</span>
                     </div>
                     <div className="flex items-center gap-1.5">
-                        <Clock className="size-3.5 text-neutral-400 shrink-0" />
+                        <Clock className="size-3.5 text-neutral-400 dark:text-neutral-500 shrink-0" />
                         <span>{event.time}</span>
                     </div>
                 </div>
 
                 {/* Host Row */}
-                <div className="flex items-center gap-1.5 text-xs sm:text-sm text-neutral-700 font-work-sans mt-2">
-                    <User className="size-3.5 text-neutral-400 shrink-0" />
+                <div className="flex items-center gap-1.5 text-xs sm:text-sm text-neutral-700 dark:text-neutral-300 font-work-sans mt-2">
+                    <User className="size-3.5 text-neutral-400 dark:text-neutral-500 shrink-0" />
                     <span>{event.hostName}</span>
                 </div>
 
                 {/* 3-Column Stats Grid */}
                 <div className="grid grid-cols-3 gap-2 mt-6 pt-2">
                     <div>
-                        <p className="text-xs font-medium text-neutral-400 font-work-sans">
+                        <p className="text-xs font-medium text-neutral-400 dark:text-neutral-500 font-work-sans">
                             {guestLabel}
                         </p>
-                        <p className="text-xl sm:text-2xl font-bold font-space-grotesk text-neutral-900 mt-1">
+                        <p className="text-xl sm:text-2xl font-bold font-space-grotesk text-neutral-900 dark:text-white mt-1">
                             {event.guests}
                         </p>
                     </div>
 
                     <div>
-                        <p className="text-xs font-medium text-neutral-400 font-work-sans">
+                        <p className="text-xs font-medium text-neutral-400 dark:text-neutral-500 font-work-sans">
                             Checked In
                         </p>
-                        <p className="text-xl sm:text-2xl font-bold font-space-grotesk text-neutral-900 mt-1">
+                        <p className="text-xl sm:text-2xl font-bold font-space-grotesk text-neutral-900 dark:text-white mt-1">
                             {event.checkedIn}
                         </p>
                     </div>
 
                     <div>
-                        <p className="text-xs font-medium text-neutral-400 font-work-sans">
+                        <p className="text-xs font-medium text-neutral-400 dark:text-neutral-500 font-work-sans">
                             Remaining
                         </p>
-                        <p className="text-xl sm:text-2xl font-bold font-space-grotesk text-neutral-900 mt-1">
+                        <p className="text-xl sm:text-2xl font-bold font-space-grotesk text-neutral-900 dark:text-white mt-1">
                             {event.remaining}
                         </p>
                     </div>
@@ -138,7 +138,7 @@ export const EventCards: React.FC<EventCardsProps> = ({
                             style={{ width: `${Math.min(100, Math.max(0, event.progressPercentage))}%` }}
                         />
                     </div>
-                    <span className="text-xs font-medium text-neutral-400 font-work-sans shrink-0">
+                    <span className="text-xs font-medium text-neutral-400 dark:text-neutral-500 font-work-sans shrink-0">
                         {event.progressPercentage}%
                     </span>
                 </div>
@@ -149,7 +149,7 @@ export const EventCards: React.FC<EventCardsProps> = ({
                 <Link
                     href={`/partner/events/${event.id}`}
                     onClick={() => onViewEvent?.(event)}
-                    className="block w-full py-2.5 px-4 rounded-xl sm:rounded-2xl border border-neutral-200 hover:border-[#C39B4C] hover:bg-[#C39B4C]/5 text-[#C39B4C] text-xs sm:text-sm font-semibold font-work-sans transition-colors text-center"
+                    className="block w-full py-2.5 px-4 rounded-xl sm:rounded-2xl border border-neutral-200 dark:border-neutral-800 hover:border-[#C39B4C] dark:hover:border-[#C39B4C] hover:bg-[#C39B4C]/5 text-[#C39B4C] text-xs sm:text-sm font-semibold font-work-sans transition-colors text-center cursor-pointer"
                 >
                     View Event
                 </Link>

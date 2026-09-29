@@ -21,8 +21,8 @@ export const PartnerFaqItem: React.FC<PartnerFaqItemProps> = ({
       className={cn(
         "rounded-xl transition-all duration-200 overflow-hidden",
         isOpen
-          ? "border border-neutral-200/80 bg-white shadow-2xs"
-          : "bg-[#F7F7F7] hover:bg-[#F2F2F2]"
+          ? "border border-neutral-200/80 dark:border-neutral-800 bg-white dark:bg-neutral-900 shadow-2xs"
+          : "bg-[#F7F7F7] dark:bg-neutral-950/60 hover:bg-[#F2F2F2] dark:hover:bg-neutral-800/60"
       )}
     >
       <button
@@ -30,21 +30,23 @@ export const PartnerFaqItem: React.FC<PartnerFaqItemProps> = ({
         onClick={onToggle}
         className={cn(
           "w-full flex items-center justify-between px-4 sm:px-5 py-3.5 sm:py-4 text-left font-work-sans transition-colors cursor-pointer",
-          isOpen ? "text-neutral-900 font-semibold" : "text-neutral-800 font-medium"
+          isOpen
+            ? "text-neutral-900 dark:text-white font-semibold"
+            : "text-neutral-800 dark:text-neutral-300 font-medium"
         )}
       >
         <span className="text-xs sm:text-sm">{faq.question}</span>
-        <span className="text-neutral-400 shrink-0 ml-3">
+        <span className="text-neutral-400 dark:text-neutral-500 shrink-0 ml-3">
           {isOpen ? (
-            <ChevronUp className="size-4 text-neutral-500" />
+            <ChevronUp className="size-4 text-neutral-500 dark:text-neutral-400" />
           ) : (
-            <ChevronDown className="size-4 text-neutral-400" />
+            <ChevronDown className="size-4 text-neutral-400 dark:text-neutral-500" />
           )}
         </span>
       </button>
 
       {isOpen && (
-        <div className="px-4 sm:px-5 pb-4 sm:pb-5 pt-1 border-t border-neutral-100 text-xs sm:text-sm font-work-sans text-neutral-600 leading-relaxed">
+        <div className="px-4 sm:px-5 pb-4 sm:pb-5 pt-1 border-t border-neutral-100 dark:border-neutral-800 text-xs sm:text-sm font-work-sans text-neutral-600 dark:text-neutral-400 leading-relaxed">
           <p>{faq.answer}</p>
         </div>
       )}

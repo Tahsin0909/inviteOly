@@ -129,68 +129,68 @@ export const StepEventPreview: React.FC = () => {
     <div className="w-full space-y-8 font-work-sans py-2 max-w-5xl mx-auto">
       {/* 1. Host or Client Information */}
       <section className="space-y-4">
-        <h2 className="text-base sm:text-lg font-bold font-space-grotesk text-neutral-900">
+        <h2 className="text-base sm:text-lg font-bold font-space-grotesk text-neutral-900 dark:text-white">
           Host or Client Information
         </h2>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
-            <label className="block text-xs font-semibold text-neutral-700 mb-1.5">
+            <label className="block text-xs font-semibold text-neutral-700 dark:text-neutral-300 mb-1.5">
               Host or Client Name
             </label>
             <input
               type="text"
               readOnly
               value={hostName}
-              className="w-full px-3.5 py-2.5 text-xs sm:text-sm bg-neutral-50 border border-neutral-200/90 rounded-lg text-neutral-800 select-all focus:outline-none"
+              className="w-full px-3.5 py-2.5 text-xs sm:text-sm bg-neutral-50 dark:bg-neutral-950/60 border border-neutral-200/90 dark:border-neutral-800 rounded-lg text-neutral-800 dark:text-neutral-200 select-all focus:outline-none"
             />
           </div>
 
           <div>
-            <label className="block text-xs font-semibold text-neutral-700 mb-1.5">
+            <label className="block text-xs font-semibold text-neutral-700 dark:text-neutral-300 mb-1.5">
               Host Type
             </label>
             <input
               type="text"
               readOnly
               value={hostType}
-              className="w-full px-3.5 py-2.5 text-xs sm:text-sm bg-neutral-50 border border-neutral-200/90 rounded-lg text-neutral-800 select-all focus:outline-none"
+              className="w-full px-3.5 py-2.5 text-xs sm:text-sm bg-neutral-50 dark:bg-neutral-950/60 border border-neutral-200/90 dark:border-neutral-800 rounded-lg text-neutral-800 dark:text-neutral-200 select-all focus:outline-none"
             />
           </div>
 
           <div>
-            <label className="block text-xs font-semibold text-neutral-700 mb-1.5">
+            <label className="block text-xs font-semibold text-neutral-700 dark:text-neutral-300 mb-1.5">
               Email Address
             </label>
             <input
               type="text"
               readOnly
               value={email}
-              className="w-full px-3.5 py-2.5 text-xs sm:text-sm bg-neutral-50 border border-neutral-200/90 rounded-lg text-neutral-800 select-all focus:outline-none"
+              className="w-full px-3.5 py-2.5 text-xs sm:text-sm bg-neutral-50 dark:bg-neutral-950/60 border border-neutral-200/90 dark:border-neutral-800 rounded-lg text-neutral-800 dark:text-neutral-200 select-all focus:outline-none"
             />
           </div>
 
           <div>
-            <label className="block text-xs font-semibold text-neutral-700 mb-1.5">
+            <label className="block text-xs font-semibold text-neutral-700 dark:text-neutral-300 mb-1.5">
               Phone Number
             </label>
             <input
               type="text"
               readOnly
               value={phone}
-              className="w-full px-3.5 py-2.5 text-xs sm:text-sm bg-neutral-50 border border-neutral-200/90 rounded-lg text-neutral-800 select-all focus:outline-none"
+              className="w-full px-3.5 py-2.5 text-xs sm:text-sm bg-neutral-50 dark:bg-neutral-950/60 border border-neutral-200/90 dark:border-neutral-800 rounded-lg text-neutral-800 dark:text-neutral-200 select-all focus:outline-none"
             />
           </div>
 
           <div className="md:col-span-2">
-            <label className="block text-xs font-semibold text-neutral-700 mb-1.5">
+            <label className="block text-xs font-semibold text-neutral-700 dark:text-neutral-300 mb-1.5">
               Company Name
             </label>
             <input
               type="text"
               readOnly
               value={companyName}
-              className="w-full px-3.5 py-2.5 text-xs sm:text-sm bg-neutral-50 border border-neutral-200/90 rounded-lg text-neutral-800 select-all focus:outline-none"
+              className="w-full px-3.5 py-2.5 text-xs sm:text-sm bg-neutral-50 dark:bg-neutral-950/60 border border-neutral-200/90 dark:border-neutral-800 rounded-lg text-neutral-800 dark:text-neutral-200 select-all focus:outline-none"
             />
           </div>
         </div>
@@ -198,44 +198,44 @@ export const StepEventPreview: React.FC = () => {
 
       {/* 2. Basic Event Information */}
       <section className="space-y-4">
-        <h2 className="text-base sm:text-lg font-bold font-space-grotesk text-neutral-900">
+        <h2 className="text-base sm:text-lg font-bold font-space-grotesk text-neutral-900 dark:text-white">
           Basic Event Information
         </h2>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
-            <label className="block text-xs font-semibold text-neutral-700 mb-1.5">
+            <label className="block text-xs font-semibold text-neutral-700 dark:text-neutral-300 mb-1.5">
               Event Name
             </label>
             <input
               type="text"
               readOnly
               value={eventName}
-              className="w-full px-3.5 py-2.5 text-xs sm:text-sm bg-neutral-50 border border-neutral-200/90 rounded-lg text-neutral-800 select-all focus:outline-none"
+              className="w-full px-3.5 py-2.5 text-xs sm:text-sm bg-neutral-50 dark:bg-neutral-950/60 border border-neutral-200/90 dark:border-neutral-800 rounded-lg text-neutral-800 dark:text-neutral-200 select-all focus:outline-none"
             />
           </div>
 
           <div>
-            <label className="block text-xs font-semibold text-neutral-700 mb-1.5">
+            <label className="block text-xs font-semibold text-neutral-700 dark:text-neutral-300 mb-1.5">
               Event Type
             </label>
             <input
               type="text"
               readOnly
               value={eventType}
-              className="w-full px-3.5 py-2.5 text-xs sm:text-sm bg-neutral-50 border border-neutral-200/90 rounded-lg text-neutral-800 select-all focus:outline-none"
+              className="w-full px-3.5 py-2.5 text-xs sm:text-sm bg-neutral-50 dark:bg-neutral-950/60 border border-neutral-200/90 dark:border-neutral-800 rounded-lg text-neutral-800 dark:text-neutral-200 select-all focus:outline-none"
             />
           </div>
 
           <div className="md:col-span-2">
-            <label className="block text-xs font-semibold text-neutral-700 mb-1.5">
+            <label className="block text-xs font-semibold text-neutral-700 dark:text-neutral-300 mb-1.5">
               Event Description
             </label>
             <textarea
               readOnly
               rows={4}
               value={eventDescription}
-              className="w-full p-3.5 text-xs sm:text-sm bg-neutral-50 border border-neutral-200/90 rounded-lg text-neutral-700 leading-relaxed resize-none focus:outline-none"
+              className="w-full p-3.5 text-xs sm:text-sm bg-neutral-50 dark:bg-neutral-950/60 border border-neutral-200/90 dark:border-neutral-800 rounded-lg text-neutral-700 dark:text-neutral-300 leading-relaxed resize-none focus:outline-none"
             />
           </div>
         </div>
@@ -243,13 +243,13 @@ export const StepEventPreview: React.FC = () => {
 
       {/* 3. Event Date and Time */}
       <section className="space-y-4">
-        <h2 className="text-base sm:text-lg font-bold font-space-grotesk text-neutral-900">
+        <h2 className="text-base sm:text-lg font-bold font-space-grotesk text-neutral-900 dark:text-white">
           Event Date and Time
         </h2>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
-            <label className="block text-xs font-semibold text-neutral-700 mb-1.5">
+            <label className="block text-xs font-semibold text-neutral-700 dark:text-neutral-300 mb-1.5">
               Event Date
             </label>
             <div className="relative">
@@ -257,14 +257,14 @@ export const StepEventPreview: React.FC = () => {
                 type="text"
                 readOnly
                 value={eventDate}
-                className="w-full px-3.5 py-2.5 pr-10 text-xs sm:text-sm bg-neutral-50 border border-neutral-200/90 rounded-lg text-neutral-600 focus:outline-none"
+                className="w-full px-3.5 py-2.5 pr-10 text-xs sm:text-sm bg-neutral-50 dark:bg-neutral-950/60 border border-neutral-200/90 dark:border-neutral-800 rounded-lg text-neutral-600 dark:text-neutral-300 focus:outline-none"
               />
-              <CalendarIcon className="absolute right-3.5 top-1/2 -translate-y-1/2 size-4 text-neutral-400 pointer-events-none" />
+              <CalendarIcon className="absolute right-3.5 top-1/2 -translate-y-1/2 size-4 text-neutral-400 dark:text-neutral-500 pointer-events-none" />
             </div>
           </div>
 
           <div>
-            <label className="block text-xs font-semibold text-neutral-700 mb-1.5">
+            <label className="block text-xs font-semibold text-neutral-700 dark:text-neutral-300 mb-1.5">
               End Date
             </label>
             <div className="relative">
@@ -272,33 +272,33 @@ export const StepEventPreview: React.FC = () => {
                 type="text"
                 readOnly
                 value={endDate}
-                className="w-full px-3.5 py-2.5 pr-10 text-xs sm:text-sm bg-neutral-50 border border-neutral-200/90 rounded-lg text-neutral-600 focus:outline-none"
+                className="w-full px-3.5 py-2.5 pr-10 text-xs sm:text-sm bg-neutral-50 dark:bg-neutral-950/60 border border-neutral-200/90 dark:border-neutral-800 rounded-lg text-neutral-600 dark:text-neutral-300 focus:outline-none"
               />
-              <CalendarIcon className="absolute right-3.5 top-1/2 -translate-y-1/2 size-4 text-neutral-400 pointer-events-none" />
+              <CalendarIcon className="absolute right-3.5 top-1/2 -translate-y-1/2 size-4 text-neutral-400 dark:text-neutral-500 pointer-events-none" />
             </div>
           </div>
 
           <div>
-            <label className="block text-xs font-semibold text-neutral-700 mb-1.5">
+            <label className="block text-xs font-semibold text-neutral-700 dark:text-neutral-300 mb-1.5">
               Start Time*
             </label>
             <input
               type="text"
               readOnly
               value={startTime}
-              className="w-full px-3.5 py-2.5 text-xs sm:text-sm bg-neutral-50 border border-neutral-200/90 rounded-lg text-neutral-600 focus:outline-none"
+              className="w-full px-3.5 py-2.5 text-xs sm:text-sm bg-neutral-50 dark:bg-neutral-950/60 border border-neutral-200/90 dark:border-neutral-800 rounded-lg text-neutral-600 dark:text-neutral-300 focus:outline-none"
             />
           </div>
 
           <div>
-            <label className="block text-xs font-semibold text-neutral-700 mb-1.5">
+            <label className="block text-xs font-semibold text-neutral-700 dark:text-neutral-300 mb-1.5">
               End Time*
             </label>
             <input
               type="text"
               readOnly
               value={endTime}
-              className="w-full px-3.5 py-2.5 text-xs sm:text-sm bg-neutral-50 border border-neutral-200/90 rounded-lg text-neutral-600 focus:outline-none"
+              className="w-full px-3.5 py-2.5 text-xs sm:text-sm bg-neutral-50 dark:bg-neutral-950/60 border border-neutral-200/90 dark:border-neutral-800 rounded-lg text-neutral-600 dark:text-neutral-300 focus:outline-none"
             />
           </div>
         </div>
@@ -306,80 +306,80 @@ export const StepEventPreview: React.FC = () => {
 
       {/* 4. Venue and Location */}
       <section className="space-y-4">
-        <h2 className="text-base sm:text-lg font-bold font-space-grotesk text-neutral-900">
+        <h2 className="text-base sm:text-lg font-bold font-space-grotesk text-neutral-900 dark:text-white">
           Venue and Location
         </h2>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
-            <label className="block text-xs font-semibold text-neutral-700 mb-1.5">
+            <label className="block text-xs font-semibold text-neutral-700 dark:text-neutral-300 mb-1.5">
               Venue
             </label>
             <input
               type="text"
               readOnly
               value={venue}
-              className="w-full px-3.5 py-2.5 text-xs sm:text-sm bg-neutral-50 border border-neutral-200/90 rounded-lg text-neutral-800 focus:outline-none"
+              className="w-full px-3.5 py-2.5 text-xs sm:text-sm bg-neutral-50 dark:bg-neutral-950/60 border border-neutral-200/90 dark:border-neutral-800 rounded-lg text-neutral-800 dark:text-neutral-200 focus:outline-none"
             />
           </div>
 
           <div>
-            <label className="block text-xs font-semibold text-neutral-700 mb-1.5">
+            <label className="block text-xs font-semibold text-neutral-700 dark:text-neutral-300 mb-1.5">
               Room
             </label>
             <input
               type="text"
               readOnly
               value={room}
-              className="w-full px-3.5 py-2.5 text-xs sm:text-sm bg-neutral-50 border border-neutral-200/90 rounded-lg text-neutral-800 focus:outline-none"
+              className="w-full px-3.5 py-2.5 text-xs sm:text-sm bg-neutral-50 dark:bg-neutral-950/60 border border-neutral-200/90 dark:border-neutral-800 rounded-lg text-neutral-800 dark:text-neutral-200 focus:outline-none"
             />
           </div>
 
           <div className="md:col-span-2">
-            <label className="block text-xs font-semibold text-neutral-700 mb-1.5">
+            <label className="block text-xs font-semibold text-neutral-700 dark:text-neutral-300 mb-1.5">
               Full Address
             </label>
             <input
               type="text"
               readOnly
               value={address}
-              className="w-full px-3.5 py-2.5 text-xs sm:text-sm bg-neutral-50 border border-neutral-200/90 rounded-lg text-neutral-800 focus:outline-none"
+              className="w-full px-3.5 py-2.5 text-xs sm:text-sm bg-neutral-50 dark:bg-neutral-950/60 border border-neutral-200/90 dark:border-neutral-800 rounded-lg text-neutral-800 dark:text-neutral-200 focus:outline-none"
             />
           </div>
 
           <div>
-            <label className="block text-xs font-semibold text-neutral-700 mb-1.5">
+            <label className="block text-xs font-semibold text-neutral-700 dark:text-neutral-300 mb-1.5">
               City
             </label>
             <input
               type="text"
               readOnly
               value={city}
-              className="w-full px-3.5 py-2.5 text-xs sm:text-sm bg-neutral-50 border border-neutral-200/90 rounded-lg text-neutral-800 focus:outline-none"
+              className="w-full px-3.5 py-2.5 text-xs sm:text-sm bg-neutral-50 dark:bg-neutral-950/60 border border-neutral-200/90 dark:border-neutral-800 rounded-lg text-neutral-800 dark:text-neutral-200 focus:outline-none"
             />
           </div>
 
           <div>
-            <label className="block text-xs font-semibold text-neutral-700 mb-1.5">
+            <label className="block text-xs font-semibold text-neutral-700 dark:text-neutral-300 mb-1.5">
               State
             </label>
             <input
               type="text"
               readOnly
               value={state}
-              className="w-full px-3.5 py-2.5 text-xs sm:text-sm bg-neutral-50 border border-neutral-200/90 rounded-lg text-neutral-800 focus:outline-none"
+              className="w-full px-3.5 py-2.5 text-xs sm:text-sm bg-neutral-50 dark:bg-neutral-950/60 border border-neutral-200/90 dark:border-neutral-800 rounded-lg text-neutral-800 dark:text-neutral-200 focus:outline-none"
             />
           </div>
 
           <div className="md:col-span-2">
-            <label className="block text-xs font-semibold text-neutral-700 mb-1.5">
+            <label className="block text-xs font-semibold text-neutral-700 dark:text-neutral-300 mb-1.5">
               Postal Code
             </label>
             <input
               type="text"
               readOnly
               value={postalCode}
-              className="w-full px-3.5 py-2.5 text-xs sm:text-sm bg-neutral-50 border border-neutral-200/90 rounded-lg text-neutral-800 focus:outline-none"
+              className="w-full px-3.5 py-2.5 text-xs sm:text-sm bg-neutral-50 dark:bg-neutral-950/60 border border-neutral-200/90 dark:border-neutral-800 rounded-lg text-neutral-800 dark:text-neutral-200 focus:outline-none"
             />
           </div>
         </div>
@@ -388,17 +388,17 @@ export const StepEventPreview: React.FC = () => {
       {/* 5. Guest List Table (Premium) or Numbered Ticket Allocation (Standard) */}
       {isStandard ? (
         <section className="space-y-4">
-          <div className="p-5 rounded-2xl bg-neutral-50/70 border border-neutral-200/90 space-y-4">
+          <div className="p-5 rounded-2xl bg-neutral-50/70 dark:bg-neutral-900/60 border border-neutral-200/90 dark:border-neutral-800 space-y-4">
             <div className="flex items-center justify-between flex-wrap gap-2">
               <div>
-                <h3 className="text-base font-bold font-space-grotesk text-neutral-900">
+                <h3 className="text-base font-bold font-space-grotesk text-neutral-900 dark:text-white">
                   Numbered Ticket Allocation
                 </h3>
-                <p className="text-xs text-neutral-500 mt-0.5">
+                <p className="text-xs text-neutral-500 dark:text-neutral-400 mt-0.5">
                   Standard Package tickets are issued with sequential guest numbers (Guest 001, Guest 002, etc.). No personalized guest list is required.
                 </p>
               </div>
-              <span className="px-3 py-1 rounded-full text-xs font-semibold bg-[#FEF7EC] text-[#B89047] border border-[#F6DFA9]">
+              <span className="px-3 py-1 rounded-full text-xs font-semibold bg-[#FEF7EC] dark:bg-[#FEF7EC]/10 text-[#B89047] border border-[#F6DFA9] dark:border-[#B89047]/30">
                 Standard Package
               </span>
             </div>
@@ -407,30 +407,30 @@ export const StepEventPreview: React.FC = () => {
               {["Guest 001", "Guest 002", "Guest 003", "Guest 004", "Guest 005", "Guest 006", "Guest 007", "Guest 008"].map((guestNum) => (
                 <div
                   key={guestNum}
-                  className="p-3 bg-white rounded-xl border border-neutral-200/80 shadow-2xs flex items-center justify-between"
+                  className="p-3 bg-white dark:bg-neutral-950/70 rounded-xl border border-neutral-200/80 dark:border-neutral-800 shadow-2xs flex items-center justify-between"
                 >
                   <div>
-                    <p className="text-xs font-bold text-neutral-900 font-space-grotesk">{guestNum}</p>
-                    <p className="text-[11px] text-neutral-400">General Admission</p>
+                    <p className="text-xs font-bold text-neutral-900 dark:text-white font-space-grotesk">{guestNum}</p>
+                    <p className="text-[11px] text-neutral-400 dark:text-neutral-500">General Admission</p>
                   </div>
-                  <span className="text-[10px] font-semibold text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded-md">
+                  <span className="text-[10px] font-semibold text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/40 px-2 py-0.5 rounded-md">
                     Ready
                   </span>
                 </div>
               ))}
             </div>
 
-            <p className="text-[11px] text-neutral-400 italic">
+            <p className="text-[11px] text-neutral-400 dark:text-neutral-500 italic">
               * Showing first 8 sample ticket allocations. Complete batch will be generated upon confirmation.
             </p>
           </div>
         </section>
       ) : (
         <section className="space-y-4">
-          <div className="overflow-x-auto rounded-xl border border-neutral-200/90 bg-white shadow-2xs">
+          <div className="overflow-x-auto rounded-xl border border-neutral-200/90 dark:border-neutral-800 bg-white dark:bg-neutral-900/80 shadow-2xs">
             <table className="w-full text-left text-xs sm:text-sm border-collapse">
               <thead>
-                <tr className="bg-neutral-50/90 border-b border-neutral-200/90 text-neutral-700 font-semibold">
+                <tr className="bg-neutral-50/90 dark:bg-neutral-950/80 border-b border-neutral-200/90 dark:border-neutral-800 text-neutral-700 dark:text-neutral-300 font-semibold">
                   <th className="py-3 px-4 font-semibold">Guest Name</th>
                   <th className="py-3 px-4 font-semibold">Email</th>
                   <th className="py-3 px-4 font-semibold">Ticket Type</th>
@@ -438,19 +438,19 @@ export const StepEventPreview: React.FC = () => {
                   <th className="py-3 px-4 font-semibold text-right">Action</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-neutral-100 text-neutral-700">
+              <tbody className="divide-y divide-neutral-100 dark:divide-neutral-800 text-neutral-700 dark:text-neutral-300">
                 {guests.map((g) => (
-                  <tr key={g.id} className="hover:bg-neutral-50/50 transition-colors">
-                    <td className="py-3.5 px-4 font-semibold text-neutral-900 whitespace-nowrap">
+                  <tr key={g.id} className="hover:bg-neutral-50/50 dark:hover:bg-neutral-800/40 transition-colors">
+                    <td className="py-3.5 px-4 font-semibold text-neutral-900 dark:text-white whitespace-nowrap">
                       {g.name}
                     </td>
-                    <td className="py-3.5 px-4 text-neutral-500 whitespace-nowrap">
+                    <td className="py-3.5 px-4 text-neutral-500 dark:text-neutral-400 whitespace-nowrap">
                       {g.email}
                     </td>
-                    <td className="py-3.5 px-4 text-neutral-600 whitespace-nowrap">
+                    <td className="py-3.5 px-4 text-neutral-600 dark:text-neutral-300 whitespace-nowrap">
                       {g.ticketType}
                     </td>
-                    <td className="py-3.5 px-4 text-neutral-500 italic whitespace-nowrap">
+                    <td className="py-3.5 px-4 text-neutral-500 dark:text-neutral-400 italic whitespace-nowrap">
                       {g.table}
                     </td>
                     <td className="py-3.5 px-4 text-right whitespace-nowrap">
@@ -459,7 +459,7 @@ export const StepEventPreview: React.FC = () => {
                           type="button"
                           onClick={() => handleEditClick(g)}
                           title="Edit guest"
-                          className="text-neutral-400 hover:text-neutral-700 transition-colors p-1"
+                          className="text-neutral-400 dark:text-neutral-500 hover:text-neutral-700 dark:hover:text-neutral-200 transition-colors p-1"
                         >
                           <Pencil className="size-3.5" />
                         </button>
@@ -467,7 +467,7 @@ export const StepEventPreview: React.FC = () => {
                           type="button"
                           onClick={() => handleDelete(g.id)}
                           title="Delete guest"
-                          className="text-neutral-400 hover:text-red-500 transition-colors p-1"
+                          className="text-neutral-400 dark:text-neutral-500 hover:text-red-500 dark:hover:text-red-400 transition-colors p-1"
                         >
                           <Trash2 className="size-3.5" />
                         </button>
@@ -482,11 +482,11 @@ export const StepEventPreview: React.FC = () => {
       )}
 
       {/* 7. Bottom Action Buttons */}
-      <div className="flex items-center justify-between pt-6 border-t border-neutral-100">
+      <div className="flex items-center justify-between pt-6 border-t border-neutral-100 dark:border-neutral-800">
         <button
           type="button"
           onClick={() => dispatch(setCurrentStep(isStandard ? 4 : 5))}
-          className="px-6 py-2.5 rounded-lg bg-neutral-100 hover:bg-neutral-200 text-neutral-700 text-xs sm:text-sm font-medium transition-all cursor-pointer"
+          className="px-6 py-2.5 rounded-lg bg-neutral-100 dark:bg-neutral-800 hover:bg-neutral-200 dark:hover:bg-neutral-700 text-neutral-700 dark:text-neutral-200 text-xs sm:text-sm font-medium transition-all cursor-pointer"
         >
           Back
         </button>
@@ -511,75 +511,75 @@ export const StepEventPreview: React.FC = () => {
       {/* Edit Guest Modal */}
       {editingGuest && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-xs p-4 animate-in fade-in">
-          <div className="bg-white rounded-2xl max-w-md w-full p-6 shadow-xl space-y-4 font-work-sans relative animate-in zoom-in-95">
+          <div className="bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 rounded-2xl max-w-md w-full p-6 shadow-xl space-y-4 font-work-sans relative animate-in zoom-in-95">
             <button
               type="button"
               onClick={() => setEditingGuest(null)}
-              className="absolute top-4 right-4 text-neutral-400 hover:text-neutral-700 transition-colors"
+              className="absolute top-4 right-4 text-neutral-400 dark:text-neutral-500 hover:text-neutral-700 dark:hover:text-neutral-200 transition-colors"
             >
               <X className="size-4" />
             </button>
 
-            <h3 className="text-base font-bold font-space-grotesk text-neutral-900">
+            <h3 className="text-base font-bold font-space-grotesk text-neutral-900 dark:text-white">
               Edit Guest Details
             </h3>
 
             <form onSubmit={handleSaveEdit} className="space-y-3.5">
               <div>
-                <label className="block text-xs font-semibold text-neutral-700 mb-1">
+                <label className="block text-xs font-semibold text-neutral-700 dark:text-neutral-300 mb-1">
                   Guest Name
                 </label>
                 <input
                   type="text"
                   value={editName}
                   onChange={(e) => setEditName(e.target.value)}
-                  className="w-full px-3 py-2 text-xs sm:text-sm border border-neutral-200 rounded-lg focus:outline-none focus:border-[#B89047]"
+                  className="w-full px-3 py-2 text-xs sm:text-sm bg-white dark:bg-neutral-950 text-neutral-900 dark:text-white border border-neutral-200 dark:border-neutral-800 rounded-lg focus:outline-none focus:border-[#B89047]"
                 />
               </div>
 
               <div>
-                <label className="block text-xs font-semibold text-neutral-700 mb-1">
+                <label className="block text-xs font-semibold text-neutral-700 dark:text-neutral-300 mb-1">
                   Email Address
                 </label>
                 <input
                   type="email"
                   value={editEmail}
                   onChange={(e) => setEditEmail(e.target.value)}
-                  className="w-full px-3 py-2 text-xs sm:text-sm border border-neutral-200 rounded-lg focus:outline-none focus:border-[#B89047]"
+                  className="w-full px-3 py-2 text-xs sm:text-sm bg-white dark:bg-neutral-950 text-neutral-900 dark:text-white border border-neutral-200 dark:border-neutral-800 rounded-lg focus:outline-none focus:border-[#B89047]"
                 />
               </div>
 
               <div className="grid grid-cols-2 gap-3">
                 <div>
-                  <label className="block text-xs font-semibold text-neutral-700 mb-1">
+                  <label className="block text-xs font-semibold text-neutral-700 dark:text-neutral-300 mb-1">
                     Ticket Type
                   </label>
                   <input
                     type="text"
                     value={editTicketType}
                     onChange={(e) => setEditTicketType(e.target.value)}
-                    className="w-full px-3 py-2 text-xs sm:text-sm border border-neutral-200 rounded-lg focus:outline-none focus:border-[#B89047]"
+                    className="w-full px-3 py-2 text-xs sm:text-sm bg-white dark:bg-neutral-950 text-neutral-900 dark:text-white border border-neutral-200 dark:border-neutral-800 rounded-lg focus:outline-none focus:border-[#B89047]"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-xs font-semibold text-neutral-700 mb-1">
+                  <label className="block text-xs font-semibold text-neutral-700 dark:text-neutral-300 mb-1">
                     Table
                   </label>
                   <input
                     type="text"
                     value={editTable}
                     onChange={(e) => setEditTable(e.target.value)}
-                    className="w-full px-3 py-2 text-xs sm:text-sm border border-neutral-200 rounded-lg focus:outline-none focus:border-[#B89047]"
+                    className="w-full px-3 py-2 text-xs sm:text-sm bg-white dark:bg-neutral-950 text-neutral-900 dark:text-white border border-neutral-200 dark:border-neutral-800 rounded-lg focus:outline-none focus:border-[#B89047]"
                   />
                 </div>
               </div>
 
-              <div className="flex items-center justify-end gap-2 pt-3 border-t border-neutral-100">
+              <div className="flex items-center justify-end gap-2 pt-3 border-t border-neutral-100 dark:border-neutral-800">
                 <button
                   type="button"
                   onClick={() => setEditingGuest(null)}
-                  className="px-4 py-2 text-xs font-medium text-neutral-600 hover:bg-neutral-100 rounded-lg"
+                  className="px-4 py-2 text-xs font-medium text-neutral-600 dark:text-neutral-300 hover:bg-neutral-100 dark:hover:bg-neutral-800 rounded-lg"
                 >
                   Back
                 </button>
@@ -598,16 +598,16 @@ export const StepEventPreview: React.FC = () => {
       {/* Success Publication Modal */}
       {showSuccessModal && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-xs p-4 animate-in fade-in">
-          <div className="bg-white rounded-2xl max-w-md w-full p-6 sm:p-7 shadow-2xl space-y-5 font-work-sans text-center relative animate-in zoom-in-95">
-            <div className="size-14 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center mx-auto shadow-2xs">
+          <div className="bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 rounded-2xl max-w-md w-full p-6 sm:p-7 shadow-2xl space-y-5 font-work-sans text-center relative animate-in zoom-in-95">
+            <div className="size-14 rounded-full bg-emerald-100 dark:bg-emerald-950/50 text-emerald-600 dark:text-emerald-400 flex items-center justify-center mx-auto shadow-2xs">
               <CheckCircle2 className="size-8 stroke-[2.5]" />
             </div>
 
             <div>
-              <h3 className="text-xl font-bold font-space-grotesk text-neutral-900">
+              <h3 className="text-xl font-bold font-space-grotesk text-neutral-900 dark:text-white">
                 Event Created Successfully!
               </h3>
-              <p className="text-xs sm:text-sm text-neutral-500 mt-1">
+              <p className="text-xs sm:text-sm text-neutral-500 dark:text-neutral-400 mt-1">
                 Your event &ldquo;{eventName}&rdquo; has been finalized. {isStandard ? "Your numbered digital tickets are now active." : "Your digital tickets and guest list are now active."}
               </p>
             </div>

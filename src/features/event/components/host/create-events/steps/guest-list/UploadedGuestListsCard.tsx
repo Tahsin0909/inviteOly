@@ -68,9 +68,9 @@ export const UploadedGuestListsCard: React.FC<UploadedGuestListsCardProps> = ({
   };
 
   return (
-    <div className="w-full rounded-2xl border border-neutral-200/90 bg-white p-5 sm:p-6 shadow-2xs font-work-sans space-y-4">
+    <div className="w-full rounded-2xl border border-neutral-200/90 dark:border-neutral-800 bg-white dark:bg-neutral-900/80 p-5 sm:p-6 shadow-2xs font-work-sans space-y-4">
       {/* Card Header */}
-      <h3 className="text-sm sm:text-base font-semibold font-space-grotesk text-neutral-900">
+      <h3 className="text-sm sm:text-base font-semibold font-space-grotesk text-neutral-900 dark:text-white">
         Uploaded Guest Lists
       </h3>
 
@@ -86,8 +86,8 @@ export const UploadedGuestListsCard: React.FC<UploadedGuestListsCardProps> = ({
               key={item.id}
               onMouseEnter={() => setHoveredId(item.id)}
               className={`flex items-center justify-between p-2.5 sm:px-3.5 rounded-xl transition-all ${isHighlighted
-                  ? "bg-neutral-100/90 shadow-2xs"
-                  : "bg-white hover:bg-neutral-50/70"
+                ? "bg-neutral-100/90 dark:bg-neutral-800/90 shadow-2xs"
+                : "bg-white dark:bg-neutral-900/40 hover:bg-neutral-50/70 dark:hover:bg-neutral-800/50"
                 }`}
             >
               {/* Left: Avatar initial + Name + Guest count */}
@@ -98,10 +98,10 @@ export const UploadedGuestListsCard: React.FC<UploadedGuestListsCardProps> = ({
                   {initial}
                 </div>
                 <div>
-                  <h4 className="text-xs sm:text-sm font-semibold text-neutral-900 leading-tight">
+                  <h4 className="text-xs sm:text-sm font-semibold text-neutral-900 dark:text-white leading-tight">
                     {item.ticketType}
                   </h4>
-                  <p className="text-[11px] sm:text-xs text-neutral-500 mt-0.5">
+                  <p className="text-[11px] sm:text-xs text-neutral-500 dark:text-neutral-400 mt-0.5">
                     {item.guestsCount} guests
                   </p>
                 </div>
@@ -114,7 +114,7 @@ export const UploadedGuestListsCard: React.FC<UploadedGuestListsCardProps> = ({
                     type="button"
                     title={`Delete ${item.ticketType} list`}
                     onClick={() => onDeleteList(item.id)}
-                    className="size-7 sm:size-8 rounded-lg bg-white border border-neutral-200 text-red-500 hover:text-red-600 hover:bg-red-50/60 shadow-2xs flex items-center justify-center transition-all cursor-pointer"
+                    className="size-7 sm:size-8 rounded-lg bg-white dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 text-red-500 hover:text-red-600 dark:hover:text-red-400 hover:bg-red-50/60 dark:hover:bg-red-950/40 shadow-2xs flex items-center justify-center transition-all cursor-pointer"
                   >
                     <Trash2 className="size-4 stroke-[2]" />
                   </button>
@@ -129,7 +129,7 @@ export const UploadedGuestListsCard: React.FC<UploadedGuestListsCardProps> = ({
         })}
 
         {guestLists.length === 0 && (
-          <div className="py-6 text-center text-xs text-neutral-400">
+          <div className="py-6 text-center text-xs text-neutral-400 dark:text-neutral-500">
             No guest lists uploaded yet. Select a ticket type and upload a CSV file.
           </div>
         )}
@@ -141,18 +141,18 @@ export const UploadedGuestListsCard: React.FC<UploadedGuestListsCardProps> = ({
           <button
             type="button"
             onClick={() => setShowAddForm(true)}
-            className="text-xs sm:text-sm font-semibold text-[#B89047] hover:text-[#9c7733] hover:underline transition-all cursor-pointer inline-block"
+            className="text-xs sm:text-sm font-semibold text-[#B89047] hover:text-[#9c7733] dark:hover:text-[#d4ab59] hover:underline transition-all cursor-pointer inline-block"
           >
             Add Guest
           </button>
         </div>
       ) : (
         /* Manual Guest Entry Form matching image 2 */
-        <div className="pt-3 border-t border-neutral-100 space-y-3.5 animate-in fade-in slide-in-from-top-2 duration-150">
+        <div className="pt-3 border-t border-neutral-100 dark:border-neutral-800 space-y-3.5 animate-in fade-in slide-in-from-top-2 duration-150">
           <form onSubmit={handleManualSubmit} className="space-y-3">
             {/* Guest Name */}
             <div>
-              <label className="block text-[11px] sm:text-xs font-semibold text-neutral-700 mb-1">
+              <label className="block text-[11px] sm:text-xs font-semibold text-neutral-700 dark:text-neutral-300 mb-1">
                 Guest Name
               </label>
               <input
@@ -160,13 +160,13 @@ export const UploadedGuestListsCard: React.FC<UploadedGuestListsCardProps> = ({
                 value={guestName}
                 onChange={(e) => setGuestName(e.target.value)}
                 placeholder="e.g,Marcus Thorne"
-                className="w-full text-xs sm:text-sm px-3 py-2 border border-neutral-200 rounded-lg focus:outline-none focus:border-[#B89047] focus:ring-1 focus:ring-[#B89047]/30 transition-all placeholder:text-neutral-300"
+                className="w-full text-xs sm:text-sm px-3 py-2 border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-950 text-neutral-900 dark:text-white rounded-lg focus:outline-none focus:border-[#B89047] focus:ring-1 focus:ring-[#B89047]/30 transition-all placeholder:text-neutral-300 dark:placeholder:text-neutral-600"
               />
             </div>
 
             {/* Guest Email */}
             <div>
-              <label className="block text-[11px] sm:text-xs font-semibold text-neutral-700 mb-1">
+              <label className="block text-[11px] sm:text-xs font-semibold text-neutral-700 dark:text-neutral-300 mb-1">
                 Guest Email
               </label>
               <input
@@ -174,38 +174,38 @@ export const UploadedGuestListsCard: React.FC<UploadedGuestListsCardProps> = ({
                 value={guestEmail}
                 onChange={(e) => setGuestEmail(e.target.value)}
                 placeholder="example@gmail.com"
-                className="w-full text-xs sm:text-sm px-3 py-2 border border-neutral-200 rounded-lg focus:outline-none focus:border-[#B89047] focus:ring-1 focus:ring-[#B89047]/30 transition-all placeholder:text-neutral-300"
+                className="w-full text-xs sm:text-sm px-3 py-2 border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-950 text-neutral-900 dark:text-white rounded-lg focus:outline-none focus:border-[#B89047] focus:ring-1 focus:ring-[#B89047]/30 transition-all placeholder:text-neutral-300 dark:placeholder:text-neutral-600"
               />
             </div>
 
             {/* Ticket Type */}
             <div>
-              <label className="block text-[11px] sm:text-xs font-semibold text-neutral-700 mb-1">
+              <label className="block text-[11px] sm:text-xs font-semibold text-neutral-700 dark:text-neutral-300 mb-1">
                 Ticket Type
               </label>
               <div className="relative">
                 <select
                   value={ticketType}
                   onChange={(e) => setTicketType(e.target.value)}
-                  className="w-full text-xs sm:text-sm px-3 py-2 border border-neutral-200 rounded-lg focus:outline-none focus:border-[#B89047] focus:ring-1 focus:ring-[#B89047]/30 transition-all appearance-none bg-white text-neutral-700 cursor-pointer"
+                  className="w-full text-xs sm:text-sm px-3 py-2 border border-neutral-200 dark:border-neutral-800 rounded-lg focus:outline-none focus:border-[#B89047] focus:ring-1 focus:ring-[#B89047]/30 transition-all appearance-none bg-white dark:bg-neutral-950 text-neutral-700 dark:text-neutral-200 cursor-pointer"
                 >
-                  <option value="" disabled>
+                  <option value="" disabled className="dark:bg-neutral-900">
                     Select Ticket Type
                   </option>
                   {TICKET_TYPES.map((t) => (
-                    <option key={t} value={t}>
+                    <option key={t} value={t} className="dark:bg-neutral-900">
                       {t}
                     </option>
                   ))}
-                  <option value="Staff">Staff</option>
+                  <option value="Staff" className="dark:bg-neutral-900">Staff</option>
                 </select>
-                <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 size-4 text-neutral-400 pointer-events-none" />
+                <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 size-4 text-neutral-400 dark:text-neutral-500 pointer-events-none" />
               </div>
             </div>
 
             {/* Table */}
             <div>
-              <label className="block text-[11px] sm:text-xs font-semibold text-neutral-700 mb-1">
+              <label className="block text-[11px] sm:text-xs font-semibold text-neutral-700 dark:text-neutral-300 mb-1">
                 Table
               </label>
               <input
@@ -213,13 +213,13 @@ export const UploadedGuestListsCard: React.FC<UploadedGuestListsCardProps> = ({
                 value={table}
                 onChange={(e) => setTable(e.target.value)}
                 placeholder="e.g,A1"
-                className="w-full text-xs sm:text-sm px-3 py-2 border border-neutral-200 rounded-lg focus:outline-none focus:border-[#B89047] focus:ring-1 focus:ring-[#B89047]/30 transition-all placeholder:text-neutral-300"
+                className="w-full text-xs sm:text-sm px-3 py-2 border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-950 text-neutral-900 dark:text-white rounded-lg focus:outline-none focus:border-[#B89047] focus:ring-1 focus:ring-[#B89047]/30 transition-all placeholder:text-neutral-300 dark:placeholder:text-neutral-600"
               />
             </div>
 
             {/* Form Error */}
             {formError && (
-              <p className="text-red-500 text-[11px]">{formError}</p>
+              <p className="text-red-500 dark:text-red-400 text-[11px]">{formError}</p>
             )}
 
             {/* Action Buttons */}
@@ -230,7 +230,7 @@ export const UploadedGuestListsCard: React.FC<UploadedGuestListsCardProps> = ({
                   setShowAddForm(false);
                   setFormError("");
                 }}
-                className="text-xs text-neutral-500 hover:text-neutral-800 transition-colors"
+                className="text-xs text-neutral-500 dark:text-neutral-400 hover:text-neutral-800 dark:hover:text-neutral-200 transition-colors"
               >
                 Close
               </button>

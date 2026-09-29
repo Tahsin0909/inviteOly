@@ -108,10 +108,10 @@ export const EventManagement: React.FC<EventManagementProps> = ({
             {/* Top Header: Title, Description, Date & View Toggle */}
             <div className="flex flex-col md:flex-row md:items-start justify-between gap-4">
                 <div>
-                    <h1 className="text-2xl sm:text-3xl font-bold font-space-grotesk text-neutral-900 tracking-tight">
+                    <h1 className="text-2xl sm:text-3xl font-bold font-space-grotesk text-neutral-900 dark:text-white tracking-tight">
                         Events Management
                     </h1>
-                    <p className="text-xs sm:text-sm text-neutral-500 font-work-sans mt-1 max-w-xl">
+                    <p className="text-xs sm:text-sm text-neutral-500 dark:text-neutral-400 font-work-sans mt-1 max-w-xl">
                         Manage all your events, track their progress, and monitor every stage
                         from request to completion.
                     </p>
@@ -119,9 +119,9 @@ export const EventManagement: React.FC<EventManagementProps> = ({
 
                 <div className="flex flex-col items-start md:items-end gap-1.5 self-start shrink-0">
                     {/* Formatted Date */}
-                    <div className="flex items-center gap-1.5 text-xs sm:text-sm text-neutral-500 font-work-sans">
+                    <div className="flex items-center gap-1.5 text-xs sm:text-sm text-neutral-500 dark:text-neutral-400 font-work-sans">
                         <span>{data.dateFormatted || "06 Aug, 2026"}</span>
-                        <CalendarIcon className="size-4 text-neutral-400" />
+                        <CalendarIcon className="size-4 text-neutral-400 dark:text-neutral-500" />
                     </div>
 
                     {/* Toggle View Mode Link */}
@@ -142,45 +142,45 @@ export const EventManagement: React.FC<EventManagementProps> = ({
                 /* Current Events Metrics (3 Cards) */
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
                     {/* Card 1: Today's Events */}
-                    <div className="bg-white rounded-2xl sm:rounded-3xl p-5 sm:p-6 border border-neutral-200/80 shadow-xs flex flex-col justify-between min-h-[145px] sm:min-h-[160px]">
+                    <div className="bg-white dark:bg-neutral-900/80 rounded-2xl sm:rounded-3xl p-5 sm:p-6 border border-neutral-200/80 dark:border-neutral-800 shadow-xs flex flex-col justify-between min-h-[145px] sm:min-h-[160px]">
                         <div className="size-11 rounded-xl bg-[#C39B4C] flex items-center justify-center shadow-2xs">
                             <BuntingIcon />
                         </div>
                         <div className="mt-4">
-                            <p className="text-xs sm:text-sm font-medium text-neutral-600 font-work-sans">
+                            <p className="text-xs sm:text-sm font-medium text-neutral-600 dark:text-neutral-400 font-work-sans">
                                 Today&apos;s Events
                             </p>
-                            <p className="text-3xl sm:text-4xl font-bold font-space-grotesk text-neutral-900 mt-1 tracking-tight">
+                            <p className="text-3xl sm:text-4xl font-bold font-space-grotesk text-neutral-900 dark:text-white mt-1 tracking-tight">
                                 {data.currentMetrics.todaysEvents}
                             </p>
                         </div>
                     </div>
 
                     {/* Card 2: Upcoming Events */}
-                    <div className="bg-white rounded-2xl sm:rounded-3xl p-5 sm:p-6 border border-neutral-200/80 shadow-xs flex flex-col justify-between min-h-[145px] sm:min-h-[160px]">
+                    <div className="bg-white dark:bg-neutral-900/80 rounded-2xl sm:rounded-3xl p-5 sm:p-6 border border-neutral-200/80 dark:border-neutral-800 shadow-xs flex flex-col justify-between min-h-[145px] sm:min-h-[160px]">
                         <div className="size-11 rounded-xl bg-[#C39B4C] flex items-center justify-center shadow-2xs">
                             <SoonClockIcon />
                         </div>
                         <div className="mt-4">
-                            <p className="text-xs sm:text-sm font-medium text-neutral-600 font-work-sans">
+                            <p className="text-xs sm:text-sm font-medium text-neutral-600 dark:text-neutral-400 font-work-sans">
                                 Upcoming Events
                             </p>
-                            <p className="text-3xl sm:text-4xl font-bold font-space-grotesk text-neutral-900 mt-1 tracking-tight">
+                            <p className="text-3xl sm:text-4xl font-bold font-space-grotesk text-neutral-900 dark:text-white mt-1 tracking-tight">
                                 {data.currentMetrics.upcomingEvents}
                             </p>
                         </div>
                     </div>
 
                     {/* Card 3: Total Guests */}
-                    <div className="bg-white rounded-2xl sm:rounded-3xl p-5 sm:p-6 border border-neutral-200/80 shadow-xs flex flex-col justify-between min-h-[145px] sm:min-h-[160px]">
+                    <div className="bg-white dark:bg-neutral-900/80 rounded-2xl sm:rounded-3xl p-5 sm:p-6 border border-neutral-200/80 dark:border-neutral-800 shadow-xs flex flex-col justify-between min-h-[145px] sm:min-h-[160px]">
                         <div className="size-11 rounded-xl bg-[#C39B4C] flex items-center justify-center shadow-2xs">
                             <GuestsIcon />
                         </div>
                         <div className="mt-4">
-                            <p className="text-xs sm:text-sm font-medium text-neutral-600 font-work-sans">
+                            <p className="text-xs sm:text-sm font-medium text-neutral-600 dark:text-neutral-400 font-work-sans">
                                 Total Guests
                             </p>
-                            <p className="text-3xl sm:text-4xl font-bold font-space-grotesk text-neutral-900 mt-1 tracking-tight">
+                            <p className="text-3xl sm:text-4xl font-bold font-space-grotesk text-neutral-900 dark:text-white mt-1 tracking-tight">
                                 {data.currentMetrics.totalGuests}
                             </p>
                         </div>
@@ -190,30 +190,30 @@ export const EventManagement: React.FC<EventManagementProps> = ({
                 /* Past Events Metrics (2 Cards) */
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
                     {/* Card 1: Completed Events */}
-                    <div className="bg-white rounded-2xl sm:rounded-3xl p-5 sm:p-6 border border-neutral-200/80 shadow-xs flex flex-col justify-between min-h-[145px] sm:min-h-[160px]">
+                    <div className="bg-white dark:bg-neutral-900/80 rounded-2xl sm:rounded-3xl p-5 sm:p-6 border border-neutral-200/80 dark:border-neutral-800 shadow-xs flex flex-col justify-between min-h-[145px] sm:min-h-[160px]">
                         <div className="size-11 rounded-xl bg-[#C39B4C] flex items-center justify-center shadow-2xs">
                             <BuntingIcon />
                         </div>
                         <div className="mt-4">
-                            <p className="text-xs sm:text-sm font-medium text-neutral-600 font-work-sans">
+                            <p className="text-xs sm:text-sm font-medium text-neutral-600 dark:text-neutral-400 font-work-sans">
                                 Completed Events
                             </p>
-                            <p className="text-3xl sm:text-4xl font-bold font-space-grotesk text-neutral-900 mt-1 tracking-tight">
+                            <p className="text-3xl sm:text-4xl font-bold font-space-grotesk text-neutral-900 dark:text-white mt-1 tracking-tight">
                                 {data.pastMetrics.completedEvents}
                             </p>
                         </div>
                     </div>
 
                     {/* Card 2: Total Guests */}
-                    <div className="bg-white rounded-2xl sm:rounded-3xl p-5 sm:p-6 border border-neutral-200/80 shadow-xs flex flex-col justify-between min-h-[145px] sm:min-h-[160px]">
+                    <div className="bg-white dark:bg-neutral-900/80 rounded-2xl sm:rounded-3xl p-5 sm:p-6 border border-neutral-200/80 dark:border-neutral-800 shadow-xs flex flex-col justify-between min-h-[145px] sm:min-h-[160px]">
                         <div className="size-11 rounded-xl bg-[#C39B4C] flex items-center justify-center shadow-2xs">
                             <GuestsIcon />
                         </div>
                         <div className="mt-4">
-                            <p className="text-xs sm:text-sm font-medium text-neutral-600 font-work-sans">
+                            <p className="text-xs sm:text-sm font-medium text-neutral-600 dark:text-neutral-400 font-work-sans">
                                 Total Guests
                             </p>
-                            <p className="text-3xl sm:text-4xl font-bold font-space-grotesk text-neutral-900 mt-1 tracking-tight">
+                            <p className="text-3xl sm:text-4xl font-bold font-space-grotesk text-neutral-900 dark:text-white mt-1 tracking-tight">
                                 {data.pastMetrics.totalGuests}
                             </p>
                         </div>
@@ -224,24 +224,24 @@ export const EventManagement: React.FC<EventManagementProps> = ({
             {/* Events Section: Header & Cards Grid */}
             <div className="space-y-4 sm:space-y-5">
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3.5">
-                    <h2 className="text-xl sm:text-2xl font-bold font-space-grotesk text-neutral-900 tracking-tight">
+                    <h2 className="text-xl sm:text-2xl font-bold font-space-grotesk text-neutral-900 dark:text-white tracking-tight">
                         Events
                     </h2>
 
                     {/* Pill Search Input */}
                     <div className="relative w-full sm:w-72 md:w-80">
-                        <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 size-4 text-neutral-400 pointer-events-none" />
+                        <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 size-4 text-neutral-400 dark:text-neutral-500 pointer-events-none" />
                         <input
                             type="text"
                             value={searchQuery}
                             onChange={(e) => setSearchQuery(e.target.value)}
                             placeholder="Search host name..."
-                            className="w-full pl-10 pr-9 py-2 text-sm bg-white border border-neutral-200 rounded-full focus:outline-none focus:ring-2 focus:ring-[#C39B4C]/25 focus:border-[#C39B4C] placeholder:text-neutral-400 transition-all font-work-sans shadow-2xs"
+                            className="w-full pl-10 pr-9 py-2 text-sm bg-white dark:bg-neutral-950 text-neutral-900 dark:text-white border border-neutral-200 dark:border-neutral-800 rounded-full focus:outline-none focus:ring-2 focus:ring-[#C39B4C]/25 focus:border-[#C39B4C] placeholder:text-neutral-400 dark:placeholder:text-neutral-600 transition-all font-work-sans shadow-2xs"
                         />
                         {searchQuery && (
                             <button
                                 onClick={() => setSearchQuery("")}
-                                className="absolute right-3 top-1/2 -translate-y-1/2 text-neutral-400 hover:text-neutral-600 p-0.5 rounded-full transition-colors"
+                                className="absolute right-3 top-1/2 -translate-y-1/2 text-neutral-400 hover:text-neutral-600 dark:hover:text-neutral-200 p-0.5 rounded-full transition-colors cursor-pointer"
                                 aria-label="Clear search"
                             >
                                 <X className="size-3.5" />
@@ -252,19 +252,19 @@ export const EventManagement: React.FC<EventManagementProps> = ({
 
                 {/* Event Cards Grid or Empty State */}
                 {filteredEvents.length === 0 ? (
-                    <div className="bg-white rounded-2xl sm:rounded-3xl p-12 text-center border border-neutral-200/80 shadow-xs">
-                        <div className="size-12 rounded-full bg-neutral-100 flex items-center justify-center mx-auto mb-3 text-neutral-400">
+                    <div className="bg-white dark:bg-neutral-900/80 rounded-2xl sm:rounded-3xl p-12 text-center border border-neutral-200/80 dark:border-neutral-800 shadow-xs">
+                        <div className="size-12 rounded-full bg-neutral-100 dark:bg-neutral-800 flex items-center justify-center mx-auto mb-3 text-neutral-400 dark:text-neutral-500">
                             <Search className="size-5" />
                         </div>
-                        <h3 className="text-base font-semibold font-space-grotesk text-neutral-900">
+                        <h3 className="text-base font-semibold font-space-grotesk text-neutral-900 dark:text-white">
                             No events found
                         </h3>
-                        <p className="text-xs sm:text-sm text-neutral-500 font-work-sans mt-1 max-w-sm mx-auto">
+                        <p className="text-xs sm:text-sm text-neutral-500 dark:text-neutral-400 font-work-sans mt-1 max-w-sm mx-auto">
                             No {viewMode === "current" ? "active" : "past"} events matched &ldquo;{searchQuery}&rdquo;.
                         </p>
                         <button
                             onClick={() => setSearchQuery("")}
-                            className="mt-4 text-xs font-semibold text-[#C39B4C] hover:text-[#b08738] transition-colors"
+                            className="mt-4 text-xs font-semibold text-[#C39B4C] hover:text-[#b08738] transition-colors cursor-pointer"
                         >
                             Clear search filter
                         </button>

@@ -21,8 +21,8 @@ export const PartnerTrainingModuleItem: React.FC<PartnerTrainingModuleItemProps>
       className={cn(
         "rounded-xl transition-all duration-200 overflow-hidden",
         isOpen
-          ? "border border-neutral-200/80 bg-white shadow-2xs"
-          : "bg-[#F7F7F7] hover:bg-[#F2F2F2]"
+          ? "border border-neutral-200/80 dark:border-neutral-800 bg-white dark:bg-neutral-900 shadow-2xs"
+          : "bg-[#F7F7F7] dark:bg-neutral-950/60 hover:bg-[#F2F2F2] dark:hover:bg-neutral-800/60"
       )}
     >
       {/* Header Button */}
@@ -31,25 +31,27 @@ export const PartnerTrainingModuleItem: React.FC<PartnerTrainingModuleItemProps>
         onClick={onToggle}
         className={cn(
           "w-full flex items-center justify-between px-4 sm:px-5 py-3.5 sm:py-4 text-left font-work-sans transition-colors cursor-pointer",
-          isOpen ? "text-neutral-900 font-semibold" : "text-neutral-800 font-medium"
+          isOpen
+            ? "text-neutral-900 dark:text-white font-semibold"
+            : "text-neutral-800 dark:text-neutral-300 font-medium"
         )}
       >
         <span className="text-xs sm:text-sm">{module.title}</span>
-        <span className="text-neutral-400 shrink-0 ml-3">
+        <span className="text-neutral-400 dark:text-neutral-500 shrink-0 ml-3">
           {isOpen ? (
-            <ChevronUp className="size-4 text-neutral-500" />
+            <ChevronUp className="size-4 text-neutral-500 dark:text-neutral-400" />
           ) : (
-            <ChevronDown className="size-4 text-neutral-400" />
+            <ChevronDown className="size-4 text-neutral-400 dark:text-neutral-500" />
           )}
         </span>
       </button>
 
       {/* Accordion Content */}
       {isOpen && (
-        <div className="px-4 sm:px-5 pb-5 sm:pb-6 pt-2 border-t border-neutral-100 text-xs sm:text-sm font-work-sans space-y-4 leading-relaxed text-neutral-600">
+        <div className="px-4 sm:px-5 pb-5 sm:pb-6 pt-2 border-t border-neutral-100 dark:border-neutral-800 text-xs sm:text-sm font-work-sans space-y-4 leading-relaxed text-neutral-600 dark:text-neutral-400">
           {/* Optional Intro Text */}
           {module.introText && (
-            <p className="text-neutral-800 font-medium">{module.introText}</p>
+            <p className="text-neutral-800 dark:text-neutral-200 font-medium">{module.introText}</p>
           )}
 
           {/* 1. Numbered List (e.g. 1, 2, 3 serials) */}
@@ -58,9 +60,9 @@ export const PartnerTrainingModuleItem: React.FC<PartnerTrainingModuleItemProps>
               {module.numberedList.map((item, idx) => (
                 <li
                   key={idx}
-                  className="flex items-start gap-2.5 leading-relaxed text-neutral-700"
+                  className="flex items-start gap-2.5 leading-relaxed text-neutral-700 dark:text-neutral-300"
                 >
-                  <span className="font-semibold text-neutral-900 shrink-0 select-none">
+                  <span className="font-semibold text-neutral-900 dark:text-white shrink-0 select-none">
                     {idx + 1}.
                   </span>
                   <span>{item}</span>
@@ -74,13 +76,13 @@ export const PartnerTrainingModuleItem: React.FC<PartnerTrainingModuleItemProps>
             <div className="space-y-4">
               {module.steps.map((step) => (
                 <div key={step.number} className="space-y-1.5">
-                  <h4 className="font-semibold text-neutral-900 text-xs sm:text-sm pt-1">
+                  <h4 className="font-semibold text-neutral-900 dark:text-white text-xs sm:text-sm pt-1">
                     {step.number}. {step.title}
                   </h4>
 
                   {step.paragraphs &&
                     step.paragraphs.map((para, idx) => (
-                      <p key={idx} className="text-neutral-600 leading-relaxed">
+                      <p key={idx} className="text-neutral-600 dark:text-neutral-400 leading-relaxed">
                         {para}
                       </p>
                     ))}
@@ -89,10 +91,10 @@ export const PartnerTrainingModuleItem: React.FC<PartnerTrainingModuleItemProps>
                   {step.responsibilities && (
                     <div className="space-y-3 pt-1">
                       <div>
-                        <p className="font-medium text-neutral-800 mb-1">
+                        <p className="font-medium text-neutral-800 dark:text-neutral-200 mb-1">
                           Partner Responsibilities:
                         </p>
-                        <ol className="list-decimal list-inside space-y-1 pl-1 text-neutral-600">
+                        <ol className="list-decimal list-inside space-y-1 pl-1 text-neutral-600 dark:text-neutral-400">
                           {step.responsibilities.partner.map((item, idx) => (
                             <li key={idx} className="leading-relaxed">
                               {item}
@@ -102,10 +104,10 @@ export const PartnerTrainingModuleItem: React.FC<PartnerTrainingModuleItemProps>
                       </div>
 
                       <div>
-                        <p className="font-medium text-neutral-800 mb-1">
+                        <p className="font-medium text-neutral-800 dark:text-neutral-200 mb-1">
                           Host Responsibilities:
                         </p>
-                        <ol className="list-decimal list-inside space-y-1 pl-1 text-neutral-600">
+                        <ol className="list-decimal list-inside space-y-1 pl-1 text-neutral-600 dark:text-neutral-400">
                           {step.responsibilities.host.map((item, idx) => (
                             <li key={idx} className="leading-relaxed">
                               {item}
@@ -122,7 +124,7 @@ export const PartnerTrainingModuleItem: React.FC<PartnerTrainingModuleItemProps>
 
           {/* 3. Bullet Points (e.g. InviteOly Scanning & Entry Procedure) */}
           {module.bulletPoints && module.bulletPoints.length > 0 && (
-            <ul className="space-y-2.5 list-disc list-outside pl-4 text-neutral-700 pt-0.5">
+            <ul className="space-y-2.5 list-disc list-outside pl-4 text-neutral-700 dark:text-neutral-300 pt-0.5">
               {module.bulletPoints.map((point, idx) =>
                 typeof point === "string" ? (
                   <li key={idx} className="leading-relaxed pl-1">
@@ -132,7 +134,7 @@ export const PartnerTrainingModuleItem: React.FC<PartnerTrainingModuleItemProps>
                   <li key={idx} className="leading-relaxed pl-1 space-y-1">
                     <span>{point.text}</span>
                     {point.subBullets && (
-                      <ul className="list-none pl-4 space-y-1 mt-1 text-neutral-600">
+                      <ul className="list-none pl-4 space-y-1 mt-1 text-neutral-600 dark:text-neutral-400">
                         {point.subBullets.map((sub, sIdx) => (
                           <li key={sIdx}>- {sub}</li>
                         ))}
@@ -149,10 +151,10 @@ export const PartnerTrainingModuleItem: React.FC<PartnerTrainingModuleItemProps>
             <div className="space-y-4 pt-0.5">
               {module.situations.map((situation, idx) => (
                 <div key={idx} className="space-y-1">
-                  <h5 className="font-semibold text-neutral-900 text-xs sm:text-sm">
+                  <h5 className="font-semibold text-neutral-900 dark:text-white text-xs sm:text-sm">
                     {situation.title}
                   </h5>
-                  <p className="text-neutral-600 leading-relaxed text-xs sm:text-sm">
+                  <p className="text-neutral-600 dark:text-neutral-400 leading-relaxed text-xs sm:text-sm">
                     {situation.description}
                   </p>
                 </div>

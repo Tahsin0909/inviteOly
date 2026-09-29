@@ -34,7 +34,7 @@ export const VenueDetails: React.FC = () => {
                 <button
                     type="button"
                     onClick={() => dispatch(setActiveView("list"))}
-                    className="inline-flex items-center gap-2 px-4 py-2 bg-white border border-neutral-200 hover:bg-neutral-50 text-neutral-800 text-xs sm:text-sm font-medium rounded-lg shadow-2xs transition-all cursor-pointer"
+                    className="inline-flex items-center gap-2 px-4 py-2 bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 hover:bg-neutral-50 dark:hover:bg-neutral-800 text-neutral-800 dark:text-neutral-200 text-xs sm:text-sm font-medium rounded-lg shadow-2xs transition-all cursor-pointer"
                 >
                     <ArrowLeft className="size-4" />
                     <span>Back</span>
@@ -52,7 +52,7 @@ export const VenueDetails: React.FC = () => {
 
             {/* Venue Title */}
             <div>
-                <h1 className="text-2xl sm:text-3xl font-bold font-space-grotesk text-neutral-900 tracking-tight">
+                <h1 className="text-2xl sm:text-3xl font-bold font-space-grotesk text-neutral-900 dark:text-white tracking-tight">
                     {selectedVenue.name}
                 </h1>
             </div>
@@ -64,18 +64,18 @@ export const VenueDetails: React.FC = () => {
                 {/* Left Column (Address & Parking) */}
                 <div className="lg:col-span-4 space-y-5">
                     {/* Venue Address Card */}
-                    <div className="bg-white rounded-2xl border border-neutral-100 p-6 shadow-2xs">
-                        <h3 className="text-[11px] font-bold uppercase tracking-wider text-neutral-400 mb-4">
+                    <div className="bg-white dark:bg-neutral-900/80 rounded-2xl border border-neutral-100 dark:border-neutral-800 p-6 shadow-2xs">
+                        <h3 className="text-[11px] font-bold uppercase tracking-wider text-neutral-400 dark:text-neutral-500 mb-4">
                             VENUE ADDRESS
                         </h3>
 
                         <div className="flex items-start gap-3">
                             <MapPin className="size-5 text-[#C39B4C] shrink-0 mt-0.5" />
-                            <div className="text-xs sm:text-sm text-neutral-700 font-work-sans leading-relaxed">
-                                <p className="font-medium text-neutral-900">
+                            <div className="text-xs sm:text-sm text-neutral-700 dark:text-neutral-300 font-work-sans leading-relaxed">
+                                <p className="font-medium text-neutral-900 dark:text-white">
                                     {selectedVenue.streetAddress}
                                 </p>
-                                <p className="text-neutral-500">
+                                <p className="text-neutral-500 dark:text-neutral-400">
                                     {selectedVenue.city}, {selectedVenue.state}
                                     {selectedVenue.zipCode ? ` ${selectedVenue.zipCode}` : ""}
                                 </p>
@@ -84,12 +84,12 @@ export const VenueDetails: React.FC = () => {
                     </div>
 
                     {/* Parking Information Card */}
-                    <div className="bg-white rounded-2xl border border-neutral-100 p-6 shadow-2xs">
-                        <h3 className="text-[11px] font-bold uppercase tracking-wider text-neutral-400 mb-3">
+                    <div className="bg-white dark:bg-neutral-900/80 rounded-2xl border border-neutral-100 dark:border-neutral-800 p-6 shadow-2xs">
+                        <h3 className="text-[11px] font-bold uppercase tracking-wider text-neutral-400 dark:text-neutral-500 mb-3">
                             PARKING INFORMATION
                         </h3>
 
-                        <p className="text-xs sm:text-sm text-neutral-600 font-work-sans leading-relaxed">
+                        <p className="text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 font-work-sans leading-relaxed">
                             {selectedVenue.parkingInfo?.trim()
                                 ? selectedVenue.parkingInfo
                                 : "No parking information provided for this venue."}
@@ -99,29 +99,29 @@ export const VenueDetails: React.FC = () => {
 
                 {/* Right Column (Available Spaces) */}
                 <div className="lg:col-span-8">
-                    <div className="bg-white rounded-2xl border border-neutral-100 p-6 sm:p-7 shadow-2xs h-full flex flex-col">
-                        <h3 className="text-[11px] font-bold uppercase tracking-wider text-neutral-400 mb-6">
+                    <div className="bg-white dark:bg-neutral-900/80 rounded-2xl border border-neutral-100 dark:border-neutral-800 p-6 sm:p-7 shadow-2xs h-full flex flex-col">
+                        <h3 className="text-[11px] font-bold uppercase tracking-wider text-neutral-400 dark:text-neutral-500 mb-6">
                             AVAILABLE SPACES
                         </h3>
 
                         {selectedVenue.spaces && selectedVenue.spaces.length > 0 ? (
-                            <div className="divide-y divide-neutral-100 flex-1">
+                            <div className="divide-y divide-neutral-100 dark:divide-neutral-800 flex-1">
                                 {selectedVenue.spaces.map((space, idx) => (
                                     <div
                                         key={space.id || idx}
                                         className="py-4 first:pt-0 last:pb-0 flex items-center justify-between"
                                     >
                                         <div>
-                                            <h4 className="text-sm sm:text-base font-bold text-neutral-900">
+                                            <h4 className="text-sm sm:text-base font-bold text-neutral-900 dark:text-white">
                                                 {space.name}
                                             </h4>
-                                            <p className="text-xs text-neutral-400 mt-0.5">
+                                            <p className="text-xs text-neutral-400 dark:text-neutral-500 mt-0.5">
                                                 Available Space
                                             </p>
                                         </div>
 
                                         {space.capacity && (
-                                            <span className="px-3 py-1 rounded-full bg-amber-50 text-[#C39B4C] border border-amber-200/60 text-xs font-medium">
+                                            <span className="px-3 py-1 rounded-full bg-amber-50 dark:bg-amber-950/40 text-[#C39B4C] border border-amber-200/60 dark:border-amber-900/40 text-xs font-medium">
                                                 Capacity: {space.capacity}
                                             </span>
                                         )}
@@ -129,7 +129,7 @@ export const VenueDetails: React.FC = () => {
                                 ))}
                             </div>
                         ) : (
-                            <div className="py-12 text-center text-neutral-400 text-xs sm:text-sm">
+                            <div className="py-12 text-center text-neutral-400 dark:text-neutral-500 text-xs sm:text-sm">
                                 No spaces have been configured for this venue yet.
                             </div>
                         )}

@@ -143,7 +143,7 @@ const DonutChart: React.FC<{
             </svg>
             {/* Center Percentage */}
             <div className="absolute inset-0 flex items-center justify-center flex-col pointer-events-none">
-                <span className="text-2xl sm:text-3xl lg:text-4xl font-bold font-space-grotesk text-neutral-900 tracking-tight">
+                <span className="text-2xl sm:text-3xl lg:text-4xl font-bold font-space-grotesk text-neutral-900 dark:text-white tracking-tight">
                     {percentage}
                 </span>
             </div>
@@ -177,11 +177,11 @@ export const EventDetails: React.FC<EventDetailsProps> = ({
     const getStatusBadge = () => {
         switch (event.status) {
             case "Active":
-                return "bg-[#EAF7EE] text-[#16A34A] border-[#C6EFD2]";
+                return "bg-[#EAF7EE] dark:bg-emerald-950/40 text-[#16A34A] dark:text-emerald-400 border-[#C6EFD2] dark:border-emerald-800/60";
             case "Scheduled":
-                return "bg-[#EFF6FF] text-[#2563EB] border-[#DBEAFE]";
+                return "bg-[#EFF6FF] dark:bg-blue-950/40 text-[#2563EB] dark:text-blue-400 border-[#DBEAFE] dark:border-blue-800/60";
             default:
-                return "bg-neutral-100 text-neutral-700 border-neutral-200";
+                return "bg-neutral-100 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 border-neutral-200 dark:border-neutral-700";
         }
     };
 
@@ -195,16 +195,16 @@ export const EventDetails: React.FC<EventDetailsProps> = ({
                     <div className="flex items-center gap-2 mb-1">
                         <Link
                             href="/partner/events"
-                            className="inline-flex items-center gap-1.5 text-xs text-neutral-500 hover:text-[#C39B4C] transition-colors font-work-sans"
+                            className="inline-flex items-center gap-1.5 text-xs text-neutral-500 dark:text-neutral-400 hover:text-[#C39B4C] transition-colors font-work-sans"
                         >
                             <ArrowLeft className="size-3.5" />
                             <span>Back to Events</span>
                         </Link>
                     </div>
-                    <h1 className="text-2xl sm:text-3xl font-bold font-space-grotesk text-neutral-900 tracking-tight">
+                    <h1 className="text-2xl sm:text-3xl font-bold font-space-grotesk text-neutral-900 dark:text-white tracking-tight">
                         Events Management
                     </h1>
-                    <p className="text-xs sm:text-sm text-neutral-500 font-work-sans mt-0.5 max-w-xl">
+                    <p className="text-xs sm:text-sm text-neutral-500 dark:text-neutral-400 font-work-sans mt-0.5 max-w-xl">
                         Manage all your events, track their progress, and monitor every stage
                         from request to completion.
                     </p>
@@ -212,11 +212,11 @@ export const EventDetails: React.FC<EventDetailsProps> = ({
             </div>
 
             {/* Top Overview Card */}
-            <div className="bg-white rounded-2xl sm:rounded-3xl p-6 sm:p-7 border border-neutral-200/80 shadow-xs">
+            <div className="bg-white dark:bg-neutral-900/80 rounded-2xl sm:rounded-3xl p-6 sm:p-7 border border-neutral-200/80 dark:border-neutral-800 shadow-xs">
                 {/* Title, Badge & Edit Button */}
-                <div className="flex items-start justify-between gap-4 pb-5 border-b border-neutral-100">
+                <div className="flex items-start justify-between gap-4 pb-5 border-b border-neutral-100 dark:border-neutral-800">
                     <div className="flex flex-wrap items-center gap-3">
-                        <h2 className="text-xl sm:text-2xl font-bold font-space-grotesk text-neutral-900 tracking-tight">
+                        <h2 className="text-xl sm:text-2xl font-bold font-space-grotesk text-neutral-900 dark:text-white tracking-tight">
                             {event.title}
                         </h2>
                         <span
@@ -233,7 +233,7 @@ export const EventDetails: React.FC<EventDetailsProps> = ({
                     {isScheduled && (
                         <button
                             onClick={() => alert("Edit event modal or page")}
-                            className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg border border-neutral-200 hover:border-[#C39B4C] hover:bg-[#C39B4C]/5 text-xs font-medium text-neutral-600 hover:text-neutral-900 transition-colors"
+                            className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg border border-neutral-200 dark:border-neutral-800 hover:border-[#C39B4C] dark:hover:border-[#C39B4C] hover:bg-[#C39B4C]/5 text-xs font-medium text-neutral-600 dark:text-neutral-300 hover:text-neutral-900 dark:hover:text-white transition-colors cursor-pointer"
                         >
                             <span>Edit</span>
                             <Pencil className="size-3 text-[#C39B4C]" />
@@ -246,33 +246,33 @@ export const EventDetails: React.FC<EventDetailsProps> = ({
                     {/* Left Column */}
                     <div className="space-y-3">
                         {/* Host Name */}
-                        <div className="flex items-center gap-2.5 text-neutral-700">
-                            <User className="size-4 text-neutral-400 shrink-0" />
+                        <div className="flex items-center gap-2.5 text-neutral-700 dark:text-neutral-300">
+                            <User className="size-4 text-neutral-400 dark:text-neutral-500 shrink-0" />
                             <span>{event.hostName}</span>
                         </div>
 
                         {/* Email */}
-                        <div className="flex items-center gap-2.5 text-neutral-700">
-                            <Mail className="size-4 text-neutral-400 shrink-0" />
+                        <div className="flex items-center gap-2.5 text-neutral-700 dark:text-neutral-300">
+                            <Mail className="size-4 text-neutral-400 dark:text-neutral-500 shrink-0" />
                             <a
                                 href={`mailto:${event.hostEmail}`}
-                                className="hover:text-neutral-900 underline-offset-2 hover:underline"
+                                className="hover:text-neutral-900 dark:hover:text-white underline-offset-2 hover:underline"
                             >
                                 {event.hostEmail}
                             </a>
                         </div>
 
                         {/* Phone */}
-                        <div className="flex items-center gap-2.5 text-neutral-700">
-                            <Phone className="size-4 text-neutral-400 shrink-0" />
-                            <a href={`tel:${event.hostPhone}`} className="hover:text-neutral-900">
+                        <div className="flex items-center gap-2.5 text-neutral-700 dark:text-neutral-300">
+                            <Phone className="size-4 text-neutral-400 dark:text-neutral-500 shrink-0" />
+                            <a href={`tel:${event.hostPhone}`} className="hover:text-neutral-900 dark:hover:text-white">
                                 {event.hostPhone}
                             </a>
                         </div>
 
                         {/* Privacy / Type */}
-                        <div className="flex items-center gap-2.5 text-neutral-700">
-                            <ShieldCheck className="size-4 text-neutral-400 shrink-0" />
+                        <div className="flex items-center gap-2.5 text-neutral-700 dark:text-neutral-300">
+                            <ShieldCheck className="size-4 text-neutral-400 dark:text-neutral-500 shrink-0" />
                             <span>{event.eventTypePrivacy}</span>
                         </div>
                     </div>
@@ -280,25 +280,25 @@ export const EventDetails: React.FC<EventDetailsProps> = ({
                     {/* Right Column */}
                     <div className="space-y-3">
                         {/* Room Name */}
-                        <div className="text-neutral-700">
-                            <span className="text-neutral-500">
+                        <div className="text-neutral-700 dark:text-neutral-300">
+                            <span className="text-neutral-500 dark:text-neutral-400">
                                 {isScheduled ? "Event Space:" : "Name of Ballroom or Room:"}
                             </span>{" "}
-                            <span className="font-semibold text-neutral-900">{event.roomName}</span>
+                            <span className="font-semibold text-neutral-900 dark:text-white">{event.roomName}</span>
                         </div>
 
                         {/* Scanner App Login Code (Active events) */}
                         {event.scannerAppCode && (
-                            <div className="flex items-center gap-2 text-neutral-700">
-                                <span className="text-neutral-500">Scanner App Login Code :</span>
+                            <div className="flex items-center gap-2 text-neutral-700 dark:text-neutral-300">
+                                <span className="text-neutral-500 dark:text-neutral-400">Scanner App Login Code :</span>
                                 {showCode ? (
                                     <div className="flex items-center gap-1.5">
-                                        <span className="font-mono font-bold text-neutral-900 bg-neutral-100 px-2 py-0.5 rounded text-xs">
+                                        <span className="font-mono font-bold text-neutral-900 dark:text-white bg-neutral-100 dark:bg-neutral-800 px-2 py-0.5 rounded text-xs">
                                             {event.scannerAppCode}
                                         </span>
                                         <button
                                             onClick={handleCopyCode}
-                                            className="text-[#C39B4C] hover:text-[#a88237] p-1"
+                                            className="text-[#C39B4C] hover:text-[#a88237] p-1 cursor-pointer"
                                             title="Copy code"
                                         >
                                             {copied ? (
@@ -311,7 +311,7 @@ export const EventDetails: React.FC<EventDetailsProps> = ({
                                 ) : (
                                     <button
                                         onClick={() => setShowCode(true)}
-                                        className="inline-flex items-center gap-1 font-medium text-xs sm:text-sm text-[#C39B4C] hover:underline"
+                                        className="inline-flex items-center gap-1 font-medium text-xs sm:text-sm text-[#C39B4C] hover:underline cursor-pointer"
                                     >
                                         <span>View code</span>
                                         <RotateCw className="size-3" />
@@ -321,14 +321,14 @@ export const EventDetails: React.FC<EventDetailsProps> = ({
                         )}
 
                         {/* Date */}
-                        <div className="flex items-center gap-2.5 text-neutral-700">
-                            <Calendar className="size-4 text-neutral-400 shrink-0" />
+                        <div className="flex items-center gap-2.5 text-neutral-700 dark:text-neutral-300">
+                            <Calendar className="size-4 text-neutral-400 dark:text-neutral-500 shrink-0" />
                             <span>{event.date}</span>
                         </div>
 
                         {/* Time */}
-                        <div className="flex items-center gap-2.5 text-neutral-700">
-                            <Clock className="size-4 text-neutral-400 shrink-0" />
+                        <div className="flex items-center gap-2.5 text-neutral-700 dark:text-neutral-300">
+                            <Clock className="size-4 text-neutral-400 dark:text-neutral-500 shrink-0" />
                             <span>{event.time}</span>
                         </div>
                     </div>
@@ -340,49 +340,49 @@ export const EventDetails: React.FC<EventDetailsProps> = ({
                 {/* Left: 4 Metric Cards in 2x2 Grid */}
                 <div className="lg:col-span-6 grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5">
                     {/* Card 1: Guests Total */}
-                    <div className="bg-white rounded-2xl sm:rounded-3xl p-5 sm:p-6 border border-neutral-200/80 shadow-xs flex flex-col justify-between min-h-[140px] sm:min-h-[155px]">
+                    <div className="bg-white dark:bg-neutral-900/80 rounded-2xl sm:rounded-3xl p-5 sm:p-6 border border-neutral-200/80 dark:border-neutral-800 shadow-xs flex flex-col justify-between min-h-[140px] sm:min-h-[155px]">
                         <div className="size-10 sm:size-11 rounded-xl bg-[#C39B4C] flex items-center justify-center shadow-2xs">
                             <GuestsIcon />
                         </div>
                         <div className="mt-4">
-                            <p className="text-xs sm:text-sm font-medium text-neutral-500 font-work-sans">
+                            <p className="text-xs sm:text-sm font-medium text-neutral-500 dark:text-neutral-400 font-work-sans">
                                 Guests Total
                             </p>
-                            <p className="text-3xl sm:text-4xl font-bold font-space-grotesk text-neutral-900 mt-1 tracking-tight">
+                            <p className="text-3xl sm:text-4xl font-bold font-space-grotesk text-neutral-900 dark:text-white mt-1 tracking-tight">
                                 {event.metrics.guestsTotal}
                             </p>
                         </div>
                     </div>
 
                     {/* Card 2: RSVP Confirmed */}
-                    <div className="bg-white rounded-2xl sm:rounded-3xl p-5 sm:p-6 border border-neutral-200/80 shadow-xs flex flex-col justify-between min-h-[140px] sm:min-h-[155px]">
+                    <div className="bg-white dark:bg-neutral-900/80 rounded-2xl sm:rounded-3xl p-5 sm:p-6 border border-neutral-200/80 dark:border-neutral-800 shadow-xs flex flex-col justify-between min-h-[140px] sm:min-h-[155px]">
                         <div className="size-10 sm:size-11 rounded-xl bg-[#C39B4C] flex items-center justify-center shadow-2xs">
                             <VerifiedBadgeIcon />
                         </div>
                         <div className="mt-4">
-                            <p className="text-xs sm:text-sm font-medium text-neutral-500 font-work-sans">
+                            <p className="text-xs sm:text-sm font-medium text-neutral-500 dark:text-neutral-400 font-work-sans">
                                 RSVP Confirmed
                             </p>
-                            <p className="text-3xl sm:text-4xl font-bold font-space-grotesk text-neutral-900 mt-1 tracking-tight">
+                            <p className="text-3xl sm:text-4xl font-bold font-space-grotesk text-neutral-900 dark:text-white mt-1 tracking-tight">
                                 {event.metrics.rsvpConfirmed}
                             </p>
                         </div>
                     </div>
 
                     {/* Card 3: Tickets Distributed */}
-                    <div className="bg-white rounded-2xl sm:rounded-3xl p-5 sm:p-6 border border-neutral-200/80 shadow-xs flex flex-col justify-between min-h-[140px] sm:min-h-[155px]">
+                    <div className="bg-white dark:bg-neutral-900/80 rounded-2xl sm:rounded-3xl p-5 sm:p-6 border border-neutral-200/80 dark:border-neutral-800 shadow-xs flex flex-col justify-between min-h-[140px] sm:min-h-[155px]">
                         <div className="size-10 sm:size-11 rounded-xl bg-[#C39B4C] flex items-center justify-center shadow-2xs">
                             <TicketIcon />
                         </div>
                         <div className="mt-4">
-                            <p className="text-xs sm:text-sm font-medium text-neutral-500 font-work-sans">
+                            <p className="text-xs sm:text-sm font-medium text-neutral-500 dark:text-neutral-400 font-work-sans">
                                 Tickets Distributed
                             </p>
                             <div className="flex items-baseline gap-1 mt-1">
-                                <span className="text-3xl sm:text-4xl font-bold font-space-grotesk text-neutral-900 tracking-tight">
+                                <span className="text-3xl sm:text-4xl font-bold font-space-grotesk text-neutral-900 dark:text-white tracking-tight">
                                     {event.metrics.ticketsDistributed}
                                 </span>
-                                <span className="text-xs sm:text-sm text-neutral-400 font-work-sans">
+                                <span className="text-xs sm:text-sm text-neutral-400 dark:text-neutral-500 font-work-sans">
                                     / {event.metrics.ticketsTotal}
                                 </span>
                             </div>
@@ -390,7 +390,7 @@ export const EventDetails: React.FC<EventDetailsProps> = ({
                     </div>
 
                     {/* Card 4: Checked In OR Available Tickets */}
-                    <div className="bg-white rounded-2xl sm:rounded-3xl p-5 sm:p-6 border border-neutral-200/80 shadow-xs flex flex-col justify-between min-h-[140px] sm:min-h-[155px]">
+                    <div className="bg-white dark:bg-neutral-900/80 rounded-2xl sm:rounded-3xl p-5 sm:p-6 border border-neutral-200/80 dark:border-neutral-800 shadow-xs flex flex-col justify-between min-h-[140px] sm:min-h-[155px]">
                         <div className="size-10 sm:size-11 rounded-xl bg-[#C39B4C] flex items-center justify-center shadow-2xs">
                             {event.metrics.checkedIn !== undefined ? (
                                 <CheckInIcon />
@@ -399,18 +399,18 @@ export const EventDetails: React.FC<EventDetailsProps> = ({
                             )}
                         </div>
                         <div className="mt-4">
-                            <p className="text-xs sm:text-sm font-medium text-neutral-500 font-work-sans">
+                            <p className="text-xs sm:text-sm font-medium text-neutral-500 dark:text-neutral-400 font-work-sans">
                                 {event.metrics.checkedIn !== undefined
                                     ? "Checked In"
                                     : "Available Tickets"}
                             </p>
                             <div className="flex items-baseline gap-1 mt-1">
-                                <span className="text-3xl sm:text-4xl font-bold font-space-grotesk text-neutral-900 tracking-tight">
+                                <span className="text-3xl sm:text-4xl font-bold font-space-grotesk text-neutral-900 dark:text-white tracking-tight">
                                     {event.metrics.checkedIn !== undefined
                                         ? event.metrics.checkedIn
                                         : event.metrics.availableTickets}
                                 </span>
-                                <span className="text-xs sm:text-sm text-neutral-400 font-work-sans">
+                                <span className="text-xs sm:text-sm text-neutral-400 dark:text-neutral-500 font-work-sans">
                                     / {event.metrics.ticketsTotal}
                                 </span>
                             </div>
@@ -419,8 +419,8 @@ export const EventDetails: React.FC<EventDetailsProps> = ({
                 </div>
 
                 {/* Right: Donut Chart Card */}
-                <div className="lg:col-span-6 bg-white rounded-2xl sm:rounded-3xl p-6 sm:p-8 border border-neutral-200/80 shadow-xs flex flex-col justify-between">
-                    <h3 className="text-base sm:text-lg font-bold font-space-grotesk text-neutral-900 tracking-tight">
+                <div className="lg:col-span-6 bg-white dark:bg-neutral-900/80 rounded-2xl sm:rounded-3xl p-6 sm:p-8 border border-neutral-200/80 dark:border-neutral-800 shadow-xs flex flex-col justify-between">
+                    <h3 className="text-base sm:text-lg font-bold font-space-grotesk text-neutral-900 dark:text-white tracking-tight">
                         {event.chart.title}
                     </h3>
 
@@ -431,20 +431,20 @@ export const EventDetails: React.FC<EventDetailsProps> = ({
                     />
 
                     {/* Chart Legend */}
-                    <div className="space-y-2.5 pt-2 border-t border-neutral-100">
+                    <div className="space-y-2.5 pt-2 border-t border-neutral-100 dark:border-neutral-800">
                         {event.chart.segments.map((seg, idx) => (
                             <div
                                 key={idx}
                                 className="flex items-center justify-between text-xs sm:text-sm font-work-sans"
                             >
-                                <div className="flex items-center gap-2 text-neutral-700">
+                                <div className="flex items-center gap-2 text-neutral-700 dark:text-neutral-300">
                                     <span
                                         className="size-2.5 rounded-full shrink-0"
                                         style={{ backgroundColor: seg.color }}
                                     />
                                     <span>{seg.label}</span>
                                 </div>
-                                <span className="font-bold font-space-grotesk text-neutral-900">
+                                <span className="font-bold font-space-grotesk text-neutral-900 dark:text-white">
                                     {seg.count}
                                 </span>
                             </div>

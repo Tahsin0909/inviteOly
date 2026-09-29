@@ -105,7 +105,7 @@ export const PackageIncludesList: React.FC<PackageIncludesListProps> = ({
     : "Premium Package Includes";
 
   return (
-    <div className="bg-white rounded-3xl border border-neutral-200/80 shadow-xs overflow-hidden">
+    <div className="bg-white dark:bg-neutral-900/80 rounded-3xl border border-neutral-200/80 dark:border-neutral-800 shadow-xs overflow-hidden">
       {/* Header Banner */}
       <div className="bg-[#C39B4C] text-white px-5 py-4 flex items-center gap-2.5">
         <Gem className="size-5 text-white shrink-0" />
@@ -118,9 +118,9 @@ export const PackageIncludesList: React.FC<PackageIncludesListProps> = ({
       <div className="p-5 sm:p-6 space-y-4">
         {PREMIUM_FEATURES.map((feat, idx) => (
           <div key={idx} className="flex items-start gap-2.5 text-left">
-            <CheckCircle2 className="size-4 sm:size-4.5 text-neutral-800 shrink-0 mt-0.5" />
-            <p className="text-xs sm:text-[13px] leading-relaxed text-neutral-700">
-              <strong className="font-semibold text-neutral-900">
+            <CheckCircle2 className="size-4 sm:size-4.5 text-neutral-800 dark:text-neutral-300 shrink-0 mt-0.5" />
+            <p className="text-xs sm:text-[13px] leading-relaxed text-neutral-700 dark:text-neutral-300">
+              <strong className="font-semibold text-neutral-900 dark:text-white">
                 {feat.title}
               </strong>{" "}
               - {feat.description}

@@ -75,14 +75,14 @@ export const StepEventSettings: React.FC = () => {
     >
       {/* Section 1: Venue and Location */}
       <div className="space-y-4">
-        <h2 className="text-xl font-bold font-space-grotesk text-neutral-900">
+        <h2 className="text-xl font-bold font-space-grotesk text-neutral-900 dark:text-white">
           Venue and Location
         </h2>
 
         {/* Venue & Room */}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
           <div>
-            <label className="block text-xs sm:text-[13px] font-medium text-neutral-700 mb-1.5">
+            <label className="block text-xs sm:text-[13px] font-medium text-neutral-700 dark:text-neutral-300 mb-1.5">
               Venue <span className="text-red-500">*</span>
             </label>
             <input
@@ -90,10 +90,10 @@ export const StepEventSettings: React.FC = () => {
               placeholder="Dhaka"
               {...register("venue")}
               className={cn(
-                "w-full px-4 py-2.5 rounded-xl border bg-white text-sm text-neutral-900 placeholder:text-neutral-400 focus:outline-none focus:ring-2 transition-all",
+                "w-full px-4 py-2.5 rounded-xl border bg-white dark:bg-neutral-950 text-sm text-neutral-900 dark:text-white placeholder:text-neutral-400 dark:placeholder:text-neutral-500 focus:outline-none focus:ring-2 transition-all",
                 errors.venue
-                  ? "border-red-400 focus:ring-red-200"
-                  : "border-neutral-200 focus:ring-[#C39B4C]/25 focus:border-[#C39B4C]"
+                  ? "border-red-400 focus:ring-red-200 dark:focus:ring-red-950/50"
+                  : "border-neutral-200 dark:border-neutral-800 focus:ring-[#C39B4C]/25 focus:border-[#C39B4C]"
               )}
             />
             {errors.venue && (
@@ -104,7 +104,7 @@ export const StepEventSettings: React.FC = () => {
           </div>
 
           <div>
-            <label className="block text-xs sm:text-[13px] font-medium text-neutral-700 mb-1.5">
+            <label className="block text-xs sm:text-[13px] font-medium text-neutral-700 dark:text-neutral-300 mb-1.5">
               Room
             </label>
             <input
@@ -112,10 +112,10 @@ export const StepEventSettings: React.FC = () => {
               placeholder="Hall DU"
               {...register("room")}
               className={cn(
-                "w-full px-4 py-2.5 rounded-xl border bg-white text-sm text-neutral-900 placeholder:text-neutral-400 focus:outline-none focus:ring-2 transition-all",
+                "w-full px-4 py-2.5 rounded-xl border bg-white dark:bg-neutral-950 text-sm text-neutral-900 dark:text-white placeholder:text-neutral-400 dark:placeholder:text-neutral-500 focus:outline-none focus:ring-2 transition-all",
                 errors.room
-                  ? "border-red-400 focus:ring-red-200"
-                  : "border-neutral-200 focus:ring-[#C39B4C]/25 focus:border-[#C39B4C]"
+                  ? "border-red-400 focus:ring-red-200 dark:focus:ring-red-950/50"
+                  : "border-neutral-200 dark:border-neutral-800 focus:ring-[#C39B4C]/25 focus:border-[#C39B4C]"
               )}
             />
             {errors.room && (
@@ -128,7 +128,7 @@ export const StepEventSettings: React.FC = () => {
 
         {/* Full Address */}
         <div>
-          <label className="block text-xs sm:text-[13px] font-medium text-neutral-700 mb-1.5">
+          <label className="block text-xs sm:text-[13px] font-medium text-neutral-700 dark:text-neutral-300 mb-1.5">
             Full Address <span className="text-red-500">*</span>
           </label>
           <input
@@ -136,10 +136,10 @@ export const StepEventSettings: React.FC = () => {
             placeholder="e.g. 123 Main Street, Suite 100"
             {...register("address")}
             className={cn(
-              "w-full px-4 py-2.5 rounded-xl border bg-white text-sm text-neutral-900 placeholder:text-neutral-400 focus:outline-none focus:ring-2 transition-all",
+              "w-full px-4 py-2.5 rounded-xl border bg-white dark:bg-neutral-950 text-sm text-neutral-900 dark:text-white placeholder:text-neutral-400 dark:placeholder:text-neutral-500 focus:outline-none focus:ring-2 transition-all",
               errors.address
-                ? "border-red-400 focus:ring-red-200"
-                : "border-neutral-200 focus:ring-[#C39B4C]/25 focus:border-[#C39B4C]"
+                ? "border-red-400 focus:ring-red-200 dark:focus:ring-red-950/50"
+                : "border-neutral-200 dark:border-neutral-800 focus:ring-[#C39B4C]/25 focus:border-[#C39B4C]"
             )}
           />
           {errors.address && (
@@ -150,9 +150,9 @@ export const StepEventSettings: React.FC = () => {
         </div>
 
         {/* City, State & Postal Code */}
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
           <div>
-            <label className="block text-xs sm:text-[13px] font-medium text-neutral-700 mb-1.5">
+            <label className="block text-xs sm:text-[13px] font-medium text-neutral-700 dark:text-neutral-300 mb-1.5">
               City <span className="text-red-500">*</span>
             </label>
             <input
@@ -160,10 +160,10 @@ export const StepEventSettings: React.FC = () => {
               placeholder="Dhaka"
               {...register("city")}
               className={cn(
-                "w-full px-4 py-2.5 rounded-xl border bg-white text-sm text-neutral-900 placeholder:text-neutral-400 focus:outline-none focus:ring-2 transition-all",
+                "w-full px-4 py-2.5 rounded-xl border bg-white dark:bg-neutral-950 text-sm text-neutral-900 dark:text-white placeholder:text-neutral-400 dark:placeholder:text-neutral-500 focus:outline-none focus:ring-2 transition-all",
                 errors.city
-                  ? "border-red-400 focus:ring-red-200"
-                  : "border-neutral-200 focus:ring-[#C39B4C]/25 focus:border-[#C39B4C]"
+                  ? "border-red-400 focus:ring-red-200 dark:focus:ring-red-950/50"
+                  : "border-neutral-200 dark:border-neutral-800 focus:ring-[#C39B4C]/25 focus:border-[#C39B4C]"
               )}
             />
             {errors.city && (
@@ -174,7 +174,7 @@ export const StepEventSettings: React.FC = () => {
           </div>
 
           <div>
-            <label className="block text-xs sm:text-[13px] font-medium text-neutral-700 mb-1.5">
+            <label className="block text-xs sm:text-[13px] font-medium text-neutral-700 dark:text-neutral-300 mb-1.5">
               State <span className="text-red-500">*</span>
             </label>
             <input
@@ -182,10 +182,10 @@ export const StepEventSettings: React.FC = () => {
               placeholder="Dhaka Division"
               {...register("state")}
               className={cn(
-                "w-full px-4 py-2.5 rounded-xl border bg-white text-sm text-neutral-900 placeholder:text-neutral-400 focus:outline-none focus:ring-2 transition-all",
+                "w-full px-4 py-2.5 rounded-xl border bg-white dark:bg-neutral-950 text-sm text-neutral-900 dark:text-white placeholder:text-neutral-400 dark:placeholder:text-neutral-500 focus:outline-none focus:ring-2 transition-all",
                 errors.state
-                  ? "border-red-400 focus:ring-red-200"
-                  : "border-neutral-200 focus:ring-[#C39B4C]/25 focus:border-[#C39B4C]"
+                  ? "border-red-400 focus:ring-red-200 dark:focus:ring-red-950/50"
+                  : "border-neutral-200 dark:border-neutral-800 focus:ring-[#C39B4C]/25 focus:border-[#C39B4C]"
               )}
             />
             {errors.state && (
@@ -194,34 +194,12 @@ export const StepEventSettings: React.FC = () => {
               </p>
             )}
           </div>
-
-          {/* <div>
-            <label className="block text-xs sm:text-[13px] font-medium text-neutral-700 mb-1.5">
-              Postal Code
-            </label>
-            <input
-              type="text"
-              placeholder="1219"
-              {...register("postalCode")}
-              className={cn(
-                "w-full px-4 py-2.5 rounded-xl border bg-white text-sm text-neutral-900 placeholder:text-neutral-400 focus:outline-none focus:ring-2 transition-all",
-                errors.postalCode
-                  ? "border-red-400 focus:ring-red-200"
-                  : "border-neutral-200 focus:ring-[#C39B4C]/25 focus:border-[#C39B4C]"
-              )}
-            />
-            {errors.postalCode && (
-              <p className="text-xs text-red-500 mt-1">
-                {errors.postalCode.message}
-              </p>
-            )}
-          </div> */}
         </div>
       </div>
 
       {/* Section 2: Ticket Note */}
       <div className="space-y-4 pt-2">
-        <h2 className="text-xl font-bold font-space-grotesk text-neutral-900">
+        <h2 className="text-xl font-bold font-space-grotesk text-neutral-900 dark:text-white">
           NOTE FROM HOST
         </h2>
 
@@ -230,17 +208,17 @@ export const StepEventSettings: React.FC = () => {
             rows={5}
             {...register("ticketNote")}
             placeholder="Write a personalized note for guests to display on their tickets, such as a welcome message or special instructions"
-            className="w-full p-4 rounded-xl border border-neutral-200 bg-white text-sm text-neutral-900 placeholder:text-neutral-400 focus:outline-none focus:ring-2 focus:ring-[#C39B4C]/25 focus:border-[#C39B4C] transition-all leading-relaxed resize-y"
+            className="w-full p-4 rounded-xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-950 text-sm text-neutral-900 dark:text-white placeholder:text-neutral-400 dark:placeholder:text-neutral-500 focus:outline-none focus:ring-2 focus:ring-[#C39B4C]/25 focus:border-[#C39B4C] transition-all leading-relaxed resize-y"
           />
         </div>
       </div>
 
       {/* Bottom Action Controls matching media_1789290340150.png */}
-      <div className="flex items-center justify-between pt-6 border-t border-neutral-100">
+      <div className="flex items-center justify-between pt-6 border-t border-neutral-100 dark:border-neutral-800">
         <button
           type="button"
           onClick={handleCancel}
-          className="px-6 py-2.5 rounded-lg bg-neutral-100 hover:bg-neutral-200 text-neutral-700 text-xs sm:text-sm font-medium transition-all cursor-pointer"
+          className="px-6 py-2.5 rounded-lg bg-neutral-100 dark:bg-neutral-800 hover:bg-neutral-200 dark:hover:bg-neutral-700 text-neutral-700 dark:text-neutral-200 text-xs sm:text-sm font-medium transition-all cursor-pointer"
         >
           Back
         </button>

@@ -200,38 +200,38 @@ export const PartnerReward: React.FC = () => {
     switch (status) {
       case "Approved":
         return (
-          <span className="inline-block px-3 py-1 rounded-full text-xs font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200/60">
+          <span className="inline-block px-3 py-1 rounded-full text-xs font-semibold bg-emerald-50 dark:bg-emerald-950/40 text-emerald-700 dark:text-emerald-400 border border-emerald-200/60 dark:border-emerald-800/60">
             Approved
           </span>
         );
       case "Pending":
         return (
-          <span className="inline-block px-3 py-1 rounded-full text-xs font-semibold bg-orange-50 text-orange-600 border border-orange-200/60">
+          <span className="inline-block px-3 py-1 rounded-full text-xs font-semibold bg-orange-50 dark:bg-orange-950/40 text-orange-600 dark:text-orange-400 border border-orange-200/60 dark:border-orange-800/60">
             Pending
           </span>
         );
       case "On Hold":
         return (
-          <span className="inline-block px-3 py-1 rounded-full text-xs font-semibold bg-red-50 text-red-600 border border-red-200/60">
+          <span className="inline-block px-3 py-1 rounded-full text-xs font-semibold bg-red-50 dark:bg-red-950/40 text-red-600 dark:text-red-400 border border-red-200/60 dark:border-red-800/60">
             On Hold
           </span>
         );
       case "Paid":
         return (
-          <span className="inline-block px-3 py-1 rounded-full text-xs font-semibold bg-teal-50 text-teal-700 border border-teal-200/60">
+          <span className="inline-block px-3 py-1 rounded-full text-xs font-semibold bg-teal-50 dark:bg-teal-950/40 text-teal-700 dark:text-teal-400 border border-teal-200/60 dark:border-teal-800/60">
             Paid
           </span>
         );
       case "Canceled":
       case "Rejected":
         return (
-          <span className="inline-block px-3 py-1 rounded-full text-xs font-semibold bg-neutral-100 text-neutral-600 border border-neutral-200">
+          <span className="inline-block px-3 py-1 rounded-full text-xs font-semibold bg-neutral-100 dark:bg-neutral-800 text-neutral-600 dark:text-neutral-400 border border-neutral-200 dark:border-neutral-700">
             Canceled
           </span>
         );
       default:
         return (
-          <span className="inline-block px-3 py-1 rounded-full text-xs font-semibold bg-neutral-100 text-neutral-700">
+          <span className="inline-block px-3 py-1 rounded-full text-xs font-semibold bg-neutral-100 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300">
             {status}
           </span>
         );
@@ -245,10 +245,10 @@ export const PartnerReward: React.FC = () => {
       {/* ========================================================================= */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <h1 className="text-2xl sm:text-3xl font-bold font-space-grotesk text-neutral-900 tracking-tight">
+          <h1 className="text-2xl sm:text-3xl font-bold font-space-grotesk text-neutral-900 dark:text-white tracking-tight">
             Partner Rewards
           </h1>
-          <p className="text-xs sm:text-sm text-neutral-500 font-work-sans mt-1">
+          <p className="text-xs sm:text-sm text-neutral-500 dark:text-neutral-400 font-work-sans mt-1">
             Track rewards earned from your referred events and view upcoming payouts.
           </p>
         </div>
@@ -272,7 +272,7 @@ export const PartnerReward: React.FC = () => {
       {/* ========================================================================= */}
       {/* 3. Notice Message */}
       {/* ========================================================================= */}
-      <p className="text-xs sm:text-sm text-neutral-600 font-medium">
+      <p className="text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 font-medium">
         Partners earn a 10% reward on every eligible paid booking.
       </p>
 
@@ -293,7 +293,7 @@ export const PartnerReward: React.FC = () => {
       <div className="grid grid-cols-1 sm:grid-cols-12 gap-3 items-center">
         {/* Search Bar */}
         <div className="sm:col-span-6 relative">
-          <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 size-4 text-neutral-400 pointer-events-none" />
+          <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 size-4 text-neutral-400 dark:text-neutral-500 pointer-events-none" />
           <input
             type="text"
             value={searchTerm}
@@ -302,13 +302,13 @@ export const PartnerReward: React.FC = () => {
               dispatch(setCurrentPage(1));
             }}
             placeholder="Search event or host"
-            className="w-full h-10 pl-9.5 pr-8 rounded-xl border border-neutral-200 bg-white text-xs sm:text-sm text-neutral-800 placeholder:text-neutral-400 focus:outline-none focus:border-[#C39B4C] focus:ring-1 focus:ring-[#C39B4C]/20 shadow-2xs font-work-sans transition-all"
+            className="w-full h-10 pl-9.5 pr-8 rounded-xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-950 text-xs sm:text-sm text-neutral-800 dark:text-neutral-200 placeholder:text-neutral-400 dark:placeholder:text-neutral-600 focus:outline-none focus:border-[#C39B4C] focus:ring-1 focus:ring-[#C39B4C]/20 shadow-2xs font-work-sans transition-all"
           />
           {searchTerm && (
             <button
               type="button"
               onClick={() => setSearchTerm("")}
-              className="absolute right-3 top-1/2 -translate-y-1/2 text-neutral-400 hover:text-neutral-600 cursor-pointer"
+              className="absolute right-3 top-1/2 -translate-y-1/2 text-neutral-400 hover:text-neutral-600 dark:hover:text-neutral-200 cursor-pointer"
             >
               <X className="size-3.5" />
             </button>
@@ -323,7 +323,7 @@ export const PartnerReward: React.FC = () => {
               setStatusFilter(e.target.value);
               dispatch(setCurrentPage(1));
             }}
-            className="w-full h-10 px-3.5 pr-8 rounded-xl border border-neutral-200 bg-white text-xs sm:text-sm text-neutral-700 focus:outline-none focus:border-[#C39B4C] shadow-2xs appearance-none cursor-pointer"
+            className="w-full h-10 px-3.5 pr-8 rounded-xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-950 text-xs sm:text-sm text-neutral-700 dark:text-neutral-200 focus:outline-none focus:border-[#C39B4C] shadow-2xs appearance-none cursor-pointer"
           >
             <option value="All Statuses">Status</option>
             <option value="Approved">Approved</option>
@@ -339,14 +339,14 @@ export const PartnerReward: React.FC = () => {
 
         {/* Date Range Filter */}
         <div className="sm:col-span-3 relative">
-          <Calendar className="absolute left-3.5 top-1/2 -translate-y-1/2 size-4 text-neutral-400 pointer-events-none" />
+          <Calendar className="absolute left-3.5 top-1/2 -translate-y-1/2 size-4 text-neutral-400 dark:text-neutral-500 pointer-events-none" />
           <select
             value={dateRangeFilter}
             onChange={(e) => {
               setDateRangeFilter(e.target.value);
               dispatch(setCurrentPage(1));
             }}
-            className="w-full h-10 pl-9.5 pr-8 rounded-xl border border-neutral-200 bg-white text-xs sm:text-sm text-neutral-700 focus:outline-none focus:border-[#C39B4C] shadow-2xs appearance-none cursor-pointer"
+            className="w-full h-10 pl-9.5 pr-8 rounded-xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-950 text-xs sm:text-sm text-neutral-700 dark:text-neutral-200 focus:outline-none focus:border-[#C39B4C] shadow-2xs appearance-none cursor-pointer"
           >
             <option value="All Time">Date Range</option>
             <option value="Today">Today</option>
@@ -363,7 +363,7 @@ export const PartnerReward: React.FC = () => {
       {/* ========================================================================= */}
       {/* 6. Table Card (Pending vs Payout History) */}
       {/* ========================================================================= */}
-      <div className="bg-white rounded-2xl border border-neutral-200/80 shadow-2xs overflow-hidden">
+      <div className="bg-white dark:bg-neutral-900/80 rounded-2xl border border-neutral-200/80 dark:border-neutral-800 shadow-2xs overflow-hidden">
         {activeTab === "pending" ? (
           <PartnerPendingRewardTable
             items={paginatedPendingRewards}
@@ -379,17 +379,17 @@ export const PartnerReward: React.FC = () => {
         {/* ========================================================================= */}
         {/* 7. Pagination & Results Count Footer */}
         {/* ========================================================================= */}
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-3 py-4 px-6 border-t border-neutral-100 bg-white text-xs text-neutral-500">
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-3 py-4 px-6 border-t border-neutral-100 dark:border-neutral-800 bg-white dark:bg-neutral-900 text-xs text-neutral-500 dark:text-neutral-400">
           <p>
             Showing{" "}
-            <strong className="text-neutral-900">
+            <strong className="text-neutral-900 dark:text-white">
               {totalItems === 0 ? 0 : (currentPage - 1) * pageSize + 1}
             </strong>{" "}
             to{" "}
-            <strong className="text-neutral-900">
+            <strong className="text-neutral-900 dark:text-white">
               {Math.min(currentPage * pageSize, totalItems)}
             </strong>{" "}
-            of <strong className="text-neutral-900">{totalItems}</strong> results
+            of <strong className="text-neutral-900 dark:text-white">{totalItems}</strong> results
           </p>
 
           <div className="flex items-center gap-1.5">
@@ -397,7 +397,7 @@ export const PartnerReward: React.FC = () => {
               type="button"
               disabled={currentPage <= 1}
               onClick={() => dispatch(setCurrentPage(Math.max(currentPage - 1, 1)))}
-              className="size-8 rounded-lg border border-neutral-200/80 flex items-center justify-center text-neutral-500 hover:bg-neutral-50 transition-colors disabled:opacity-40 cursor-pointer"
+              className="size-8 rounded-lg border border-neutral-200/80 dark:border-neutral-800 flex items-center justify-center text-neutral-500 dark:text-neutral-400 hover:bg-neutral-50 dark:hover:bg-neutral-800 transition-colors disabled:opacity-40 cursor-pointer"
             >
               <ChevronLeft className="size-4" />
             </button>
@@ -414,7 +414,7 @@ export const PartnerReward: React.FC = () => {
                     "size-8 rounded-lg font-bold text-xs transition-colors flex items-center justify-center cursor-pointer",
                     isCurrent
                       ? "bg-[#C39B4C] text-white shadow-2xs"
-                      : "border border-neutral-200 text-neutral-600 hover:bg-neutral-50"
+                      : "border border-neutral-200 dark:border-neutral-800 text-neutral-600 dark:text-neutral-400 hover:bg-neutral-50 dark:hover:bg-neutral-800"
                   )}
                 >
                   {pageNum}
@@ -428,7 +428,7 @@ export const PartnerReward: React.FC = () => {
               onClick={() =>
                 dispatch(setCurrentPage(Math.min(currentPage + 1, totalPages)))
               }
-              className="size-8 rounded-lg border border-neutral-200/80 flex items-center justify-center text-neutral-500 hover:bg-neutral-50 transition-colors disabled:opacity-40 cursor-pointer"
+              className="size-8 rounded-lg border border-neutral-200/80 dark:border-neutral-800 flex items-center justify-center text-neutral-500 dark:text-neutral-400 hover:bg-neutral-50 dark:hover:bg-neutral-800 transition-colors disabled:opacity-40 cursor-pointer"
             >
               <ChevronRight className="size-4" />
             </button>
@@ -460,7 +460,7 @@ export const PartnerReward: React.FC = () => {
             e.preventDefault();
             document.body.style.pointerEvents = "";
           }}
-          className="max-w-md bg-white border border-neutral-200 p-6 font-work-sans text-neutral-900"
+          className="max-w-md bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 p-6 font-work-sans text-neutral-900 dark:text-white"
         >
           {selectedEventReward && (
             <>
@@ -472,26 +472,26 @@ export const PartnerReward: React.FC = () => {
                   </span>
                   {renderStatusBadge(selectedEventReward.status)}
                 </div>
-                <DialogTitle className="text-lg font-bold font-space-grotesk text-neutral-900 mt-2">
+                <DialogTitle className="text-lg font-bold font-space-grotesk text-neutral-900 dark:text-white mt-2">
                   {selectedEventReward.eventName}
                 </DialogTitle>
-                <DialogDescription className="text-xs text-neutral-500">
+                <DialogDescription className="text-xs text-neutral-500 dark:text-neutral-400">
                   Referral reward details for booking by {selectedEventReward.hostName}.
                 </DialogDescription>
               </DialogHeader>
 
               <div className="space-y-4 pt-3 text-xs">
                 {/* Reward Highlight Box */}
-                <div className="p-4 rounded-xl bg-[#FCF7ED] border border-[#F3E7D3] flex items-center justify-between">
+                <div className="p-4 rounded-xl bg-[#FCF7ED] dark:bg-amber-950/20 border border-[#F3E7D3] dark:border-amber-900/40 flex items-center justify-between">
                   <div>
-                    <p className="text-[11px] text-neutral-500 font-medium">Reward Earned (10%)</p>
-                    <p className="text-2xl font-bold font-space-grotesk text-neutral-900 mt-0.5">
+                    <p className="text-[11px] text-neutral-500 dark:text-neutral-400 font-medium">Reward Earned (10%)</p>
+                    <p className="text-2xl font-bold font-space-grotesk text-neutral-900 dark:text-white mt-0.5">
                       {selectedEventReward.rewardEarned || selectedEventReward.reward}
                     </p>
                   </div>
                   <div className="text-right">
-                    <p className="text-[11px] text-neutral-500 font-medium">Payout Date</p>
-                    <p className="font-semibold text-neutral-900 mt-0.5 font-space-grotesk">
+                    <p className="text-[11px] text-neutral-500 dark:text-neutral-400 font-medium">Payout Date</p>
+                    <p className="font-semibold text-neutral-900 dark:text-white mt-0.5 font-space-grotesk">
                       {selectedEventReward.payoutDate || "October 1, 2026"}
                     </p>
                   </div>
@@ -499,51 +499,51 @@ export const PartnerReward: React.FC = () => {
 
                 {/* Details Grid */}
                 <div className="grid grid-cols-2 gap-2.5">
-                  <div className="p-3 rounded-xl bg-neutral-50 border border-neutral-100">
-                    <p className="text-[11px] text-neutral-400 font-medium flex items-center gap-1">
+                  <div className="p-3 rounded-xl bg-neutral-50 dark:bg-neutral-950/60 border border-neutral-100 dark:border-neutral-800">
+                    <p className="text-[11px] text-neutral-400 dark:text-neutral-500 font-medium flex items-center gap-1">
                       <User className="size-3" />
                       Host Name
                     </p>
-                    <p className="font-semibold text-neutral-900 mt-1">
+                    <p className="font-semibold text-neutral-900 dark:text-white mt-1">
                       {selectedEventReward.hostName}
                     </p>
                   </div>
 
-                  <div className="p-3 rounded-xl bg-neutral-50 border border-neutral-100">
-                    <p className="text-[11px] text-neutral-400 font-medium flex items-center gap-1">
+                  <div className="p-3 rounded-xl bg-neutral-50 dark:bg-neutral-950/60 border border-neutral-100 dark:border-neutral-800">
+                    <p className="text-[11px] text-neutral-400 dark:text-neutral-500 font-medium flex items-center gap-1">
                       <Calendar className="size-3" />
                       Payment Date
                     </p>
-                    <p className="font-semibold text-neutral-900 mt-1">
+                    <p className="font-semibold text-neutral-900 dark:text-white mt-1">
                       {selectedEventReward.hostPaymentDate || selectedEventReward.date}
                     </p>
                   </div>
 
-                  <div className="p-3 rounded-xl bg-neutral-50 border border-neutral-100">
-                    <p className="text-[11px] text-neutral-400 font-medium flex items-center gap-1">
+                  <div className="p-3 rounded-xl bg-neutral-50 dark:bg-neutral-950/60 border border-neutral-100 dark:border-neutral-800">
+                    <p className="text-[11px] text-neutral-400 dark:text-neutral-500 font-medium flex items-center gap-1">
                       <Tag className="size-3" />
                       Package
                     </p>
-                    <p className="font-semibold text-neutral-900 mt-1">
+                    <p className="font-semibold text-neutral-900 dark:text-white mt-1">
                       {selectedEventReward.packageName || "Signature Tier"}
                     </p>
                   </div>
 
-                  <div className="p-3 rounded-xl bg-neutral-50 border border-neutral-100">
-                    <p className="text-[11px] text-neutral-400 font-medium flex items-center gap-1">
+                  <div className="p-3 rounded-xl bg-neutral-50 dark:bg-neutral-950/60 border border-neutral-100 dark:border-neutral-800">
+                    <p className="text-[11px] text-neutral-400 dark:text-neutral-500 font-medium flex items-center gap-1">
                       <CreditCard className="size-3" />
                       Eligible Booking
                     </p>
-                    <p className="font-semibold text-neutral-900 mt-1">
+                    <p className="font-semibold text-neutral-900 dark:text-white mt-1">
                       {selectedEventReward.bookingAmount || selectedEventReward.ticketRevenue || "$499.00"}
                     </p>
                   </div>
                 </div>
 
                 {/* Status Explanation */}
-                <div className="p-3.5 rounded-xl bg-neutral-50 border border-neutral-200/70 space-y-1">
-                  <p className="text-[11px] font-semibold text-neutral-700">Status Details</p>
-                  <p className="text-neutral-600 leading-relaxed">
+                <div className="p-3.5 rounded-xl bg-neutral-50 dark:bg-neutral-950/60 border border-neutral-200/70 dark:border-neutral-800 space-y-1">
+                  <p className="text-[11px] font-semibold text-neutral-700 dark:text-neutral-300">Status Details</p>
+                  <p className="text-neutral-600 dark:text-neutral-400 leading-relaxed">
                     {selectedEventReward.status === "Approved" &&
                       "Approved — included in the upcoming payout on October 1, 2026."}
                     {selectedEventReward.status === "Pending" &&
@@ -559,9 +559,9 @@ export const PartnerReward: React.FC = () => {
 
                 {/* Internal / Audit Note */}
                 {selectedEventReward.note && (
-                  <div className="p-3 rounded-xl border border-neutral-100 bg-neutral-50/50 flex items-start gap-2">
-                    <Info className="size-3.5 text-neutral-400 mt-0.5 shrink-0" />
-                    <p className="text-neutral-600 text-[11px]">{selectedEventReward.note}</p>
+                  <div className="p-3 rounded-xl border border-neutral-100 dark:border-neutral-800 bg-neutral-50/50 dark:bg-neutral-950/40 flex items-start gap-2">
+                    <Info className="size-3.5 text-neutral-400 dark:text-neutral-500 mt-0.5 shrink-0" />
+                    <p className="text-neutral-600 dark:text-neutral-400 text-[11px]">{selectedEventReward.note}</p>
                   </div>
                 )}
               </div>
@@ -570,7 +570,7 @@ export const PartnerReward: React.FC = () => {
                 <button
                   type="button"
                   onClick={() => setDetailsModalOpen(false)}
-                  className="w-full py-2.5 rounded-xl bg-neutral-900 hover:bg-neutral-800 text-white text-xs font-semibold cursor-pointer transition-colors"
+                  className="w-full py-2.5 rounded-xl bg-neutral-900 hover:bg-neutral-800 dark:bg-neutral-800 dark:hover:bg-neutral-700 text-white text-xs font-semibold cursor-pointer transition-colors"
                 >
                   Close
                 </button>
@@ -582,54 +582,54 @@ export const PartnerReward: React.FC = () => {
             <>
               <DialogHeader>
                 <div className="flex items-center justify-between">
-                  <span className="text-[11px] font-semibold uppercase tracking-widest text-emerald-600 flex items-center gap-1.5">
+                  <span className="text-[11px] font-semibold uppercase tracking-widest text-emerald-600 dark:text-emerald-400 flex items-center gap-1.5">
                     <FileText className="size-3.5" />
                     Disbursement Record
                   </span>
-                  <span className="inline-block px-3 py-1 rounded-full text-xs font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200/60">
+                  <span className="inline-block px-3 py-1 rounded-full text-xs font-semibold bg-emerald-50 dark:bg-emerald-950/40 text-emerald-700 dark:text-emerald-400 border border-emerald-200/60 dark:border-emerald-800/60">
                     {selectedPayoutItem.status}
                   </span>
                 </div>
-                <DialogTitle className="text-lg font-bold font-space-grotesk text-neutral-900 mt-2">
+                <DialogTitle className="text-lg font-bold font-space-grotesk text-neutral-900 dark:text-white mt-2">
                   Payout {selectedPayoutItem.payoutId}
                 </DialogTitle>
-                <DialogDescription className="text-xs text-neutral-500">
+                <DialogDescription className="text-xs text-neutral-500 dark:text-neutral-400">
                   Disbursement completed on {selectedPayoutItem.date}.
                 </DialogDescription>
               </DialogHeader>
 
               <div className="space-y-4 pt-3 text-xs">
-                <div className="p-4 rounded-xl bg-[#FCF7ED] border border-[#F3E7D3] flex items-center justify-between">
+                <div className="p-4 rounded-xl bg-[#FCF7ED] dark:bg-amber-950/20 border border-[#F3E7D3] dark:border-amber-900/40 flex items-center justify-between">
                   <div>
-                    <p className="text-[11px] text-neutral-500 font-medium">Disbursed Amount</p>
-                    <p className="text-2xl font-bold font-space-grotesk text-neutral-900 mt-0.5">
+                    <p className="text-[11px] text-neutral-500 dark:text-neutral-400 font-medium">Disbursed Amount</p>
+                    <p className="text-2xl font-bold font-space-grotesk text-neutral-900 dark:text-white mt-0.5">
                       {selectedPayoutItem.reward}
                     </p>
                   </div>
                   <div className="text-right">
-                    <p className="text-[11px] text-neutral-500 font-medium">Payout Method</p>
-                    <p className="font-semibold text-neutral-900 mt-0.5">
+                    <p className="text-[11px] text-neutral-500 dark:text-neutral-400 font-medium">Payout Method</p>
+                    <p className="font-semibold text-neutral-900 dark:text-white mt-0.5">
                       {selectedPayoutItem.method}
                     </p>
                   </div>
                 </div>
 
-                <div className="p-3.5 rounded-xl bg-neutral-50 border border-neutral-200/70 space-y-2">
+                <div className="p-3.5 rounded-xl bg-neutral-50 dark:bg-neutral-950/60 border border-neutral-200/70 dark:border-neutral-800 space-y-2">
                   <div className="flex items-center justify-between">
-                    <span className="text-neutral-500">Reference ID:</span>
-                    <span className="font-mono font-semibold text-neutral-900">
+                    <span className="text-neutral-500 dark:text-neutral-400">Reference ID:</span>
+                    <span className="font-mono font-semibold text-neutral-900 dark:text-white">
                       {selectedPayoutItem.referenceId}
                     </span>
                   </div>
                   <div className="flex items-center justify-between">
-                    <span className="text-neutral-500">Disbursement Date:</span>
-                    <span className="font-semibold text-neutral-900">
+                    <span className="text-neutral-500 dark:text-neutral-400">Disbursement Date:</span>
+                    <span className="font-semibold text-neutral-900 dark:text-white">
                       {selectedPayoutItem.date}
                     </span>
                   </div>
                   <div className="flex items-center justify-between">
-                    <span className="text-neutral-500">Destination Account:</span>
-                    <span className="font-semibold text-neutral-900">
+                    <span className="text-neutral-500 dark:text-neutral-400">Destination Account:</span>
+                    <span className="font-semibold text-neutral-900 dark:text-white">
                       Chase Bank (•••• 4892)
                     </span>
                   </div>
@@ -640,7 +640,7 @@ export const PartnerReward: React.FC = () => {
                 <button
                   type="button"
                   onClick={() => setDetailsModalOpen(false)}
-                  className="w-full py-2.5 rounded-xl bg-neutral-900 hover:bg-neutral-800 text-white text-xs font-semibold cursor-pointer transition-colors"
+                  className="w-full py-2.5 rounded-xl bg-neutral-900 hover:bg-neutral-800 dark:bg-neutral-800 dark:hover:bg-neutral-700 text-white text-xs font-semibold cursor-pointer transition-colors"
                 >
                   Close
                 </button>

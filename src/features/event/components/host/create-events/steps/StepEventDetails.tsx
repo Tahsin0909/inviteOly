@@ -169,13 +169,13 @@ export const StepEventDetails: React.FC = () => {
     >
       {/* Section 1: New Event / Host Information */}
       <div className="space-y-4">
-        <h2 className="text-xl font-bold font-space-grotesk text-neutral-900">
+        <h2 className="text-xl font-bold font-space-grotesk text-neutral-900 dark:text-white">
           Host’s Information
         </h2>
 
         {/* Host or Client Name */}
         <div>
-          <label className="block text-xs sm:text-[13px] font-medium text-neutral-700 mb-1.5">
+          <label className="block text-xs sm:text-[13px] font-medium text-neutral-700 dark:text-neutral-300 mb-1.5">
             Name <span className="text-red-500">*</span>
           </label>
           <input
@@ -183,10 +183,10 @@ export const StepEventDetails: React.FC = () => {
             placeholder="John Doe"
             {...register("hostName")}
             className={cn(
-              "w-full px-4 py-2.5 rounded-xl border bg-white text-sm text-neutral-900 placeholder:text-neutral-400 focus:outline-none focus:ring-2 transition-all",
+              "w-full px-4 py-2.5 rounded-xl border bg-white dark:bg-neutral-950 text-sm text-neutral-900 dark:text-white placeholder:text-neutral-400 dark:placeholder:text-neutral-500 focus:outline-none focus:ring-2 transition-all",
               errors.hostName
-                ? "border-red-400 focus:ring-red-200"
-                : "border-neutral-200 focus:ring-[#C39B4C]/25 focus:border-[#C39B4C]"
+                ? "border-red-400 focus:ring-red-200 dark:focus:ring-red-950/50"
+                : "border-neutral-200 dark:border-neutral-800 focus:ring-[#C39B4C]/25 focus:border-[#C39B4C]"
             )}
           />
           {errors.hostName && (
@@ -199,7 +199,7 @@ export const StepEventDetails: React.FC = () => {
         {/* Email Address & Phone Number */}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
           <div>
-            <label className="block text-xs sm:text-[13px] font-medium text-neutral-700 mb-1.5">
+            <label className="block text-xs sm:text-[13px] font-medium text-neutral-700 dark:text-neutral-300 mb-1.5">
               Email Address <span className="text-red-500">*</span>
             </label>
             <input
@@ -207,10 +207,10 @@ export const StepEventDetails: React.FC = () => {
               placeholder="john.doe@example.com"
               {...register("email")}
               className={cn(
-                "w-full px-4 py-2.5 rounded-xl border bg-white text-sm text-neutral-900 placeholder:text-neutral-400 focus:outline-none focus:ring-2 transition-all",
+                "w-full px-4 py-2.5 rounded-xl border bg-white dark:bg-neutral-950 text-sm text-neutral-900 dark:text-white placeholder:text-neutral-400 dark:placeholder:text-neutral-500 focus:outline-none focus:ring-2 transition-all",
                 errors.email
-                  ? "border-red-400 focus:ring-red-200"
-                  : "border-neutral-200 focus:ring-[#C39B4C]/25 focus:border-[#C39B4C]"
+                  ? "border-red-400 focus:ring-red-200 dark:focus:ring-red-950/50"
+                  : "border-neutral-200 dark:border-neutral-800 focus:ring-[#C39B4C]/25 focus:border-[#C39B4C]"
               )}
             />
             {errors.email && (
@@ -221,7 +221,7 @@ export const StepEventDetails: React.FC = () => {
           </div>
 
           <div>
-            <label className="block text-xs sm:text-[13px] font-medium text-neutral-700 mb-1.5">
+            <label className="block text-xs sm:text-[13px] font-medium text-neutral-700 dark:text-neutral-300 mb-1.5">
               Phone Number <span className="text-red-500">*</span>
             </label>
             <input
@@ -229,10 +229,10 @@ export const StepEventDetails: React.FC = () => {
               placeholder="(415) 555-0123."
               {...register("phone")}
               className={cn(
-                "w-full px-4 py-2.5 rounded-xl border bg-white text-sm text-neutral-900 placeholder:text-neutral-400 focus:outline-none focus:ring-2 transition-all",
+                "w-full px-4 py-2.5 rounded-xl border bg-white dark:bg-neutral-950 text-sm text-neutral-900 dark:text-white placeholder:text-neutral-400 dark:placeholder:text-neutral-500 focus:outline-none focus:ring-2 transition-all",
                 errors.phone
-                  ? "border-red-400 focus:ring-red-200"
-                  : "border-neutral-200 focus:ring-[#C39B4C]/25 focus:border-[#C39B4C]"
+                  ? "border-red-400 focus:ring-red-200 dark:focus:ring-red-950/50"
+                  : "border-neutral-200 dark:border-neutral-800 focus:ring-[#C39B4C]/25 focus:border-[#C39B4C]"
               )}
             />
             {errors.phone && (
@@ -246,13 +246,13 @@ export const StepEventDetails: React.FC = () => {
 
       {/* Section 2: Basic Event Information */}
       <div className="space-y-4 pt-2">
-        <h2 className="text-xl font-bold font-space-grotesk text-neutral-900">
+        <h2 className="text-xl font-bold font-space-grotesk text-neutral-900 dark:text-white">
           Basic Event Information
         </h2>
 
         {/* Event Name */}
         <div>
-          <label className="block text-xs sm:text-[13px] font-medium text-neutral-700 mb-1.5">
+          <label className="block text-xs sm:text-[13px] font-medium text-neutral-700 dark:text-neutral-300 mb-1.5">
             Event Name <span className="text-red-500">*</span>
           </label>
           <input
@@ -260,10 +260,10 @@ export const StepEventDetails: React.FC = () => {
             placeholder="John Doe"
             {...register("eventName")}
             className={cn(
-              "w-full px-4 py-2.5 rounded-xl border bg-white text-sm text-neutral-900 placeholder:text-neutral-400 focus:outline-none focus:ring-2 transition-all",
+              "w-full px-4 py-2.5 rounded-xl border bg-white dark:bg-neutral-950 text-sm text-neutral-900 dark:text-white placeholder:text-neutral-400 dark:placeholder:text-neutral-500 focus:outline-none focus:ring-2 transition-all",
               errors.eventName
-                ? "border-red-400 focus:ring-red-200"
-                : "border-neutral-200 focus:ring-[#C39B4C]/25 focus:border-[#C39B4C]"
+                ? "border-red-400 focus:ring-red-200 dark:focus:ring-red-950/50"
+                : "border-neutral-200 dark:border-neutral-800 focus:ring-[#C39B4C]/25 focus:border-[#C39B4C]"
             )}
           />
           {errors.eventName && (
@@ -275,27 +275,27 @@ export const StepEventDetails: React.FC = () => {
 
         {/* Event Type */}
         <div>
-          <label className="block text-xs sm:text-[13px] font-medium text-neutral-700 mb-1.5">
+          <label className="block text-xs sm:text-[13px] font-medium text-neutral-700 dark:text-neutral-300 mb-1.5">
             Event Type <span className="text-red-500">*</span>
           </label>
           <div className="relative">
             <select
               {...register("eventType")}
               className={cn(
-                "w-full px-4 py-2.5 rounded-xl border bg-white text-sm text-neutral-900 appearance-none focus:outline-none focus:ring-2 transition-all cursor-pointer",
+                "w-full px-4 py-2.5 rounded-xl border bg-white dark:bg-neutral-950 text-sm text-neutral-900 dark:text-white appearance-none focus:outline-none focus:ring-2 transition-all cursor-pointer",
                 errors.eventType
-                  ? "border-red-400 focus:ring-red-200"
-                  : "border-neutral-200 focus:ring-[#C39B4C]/25 focus:border-[#C39B4C]"
+                  ? "border-red-400 focus:ring-red-200 dark:focus:ring-red-950/50"
+                  : "border-neutral-200 dark:border-neutral-800 focus:ring-[#C39B4C]/25 focus:border-[#C39B4C]"
               )}
             >
-              <option value="">Select</option>
+              <option value="" className="dark:bg-neutral-900">Select</option>
               {EVENT_TYPES.map((type) => (
-                <option key={type} value={type}>
+                <option key={type} value={type} className="dark:bg-neutral-900">
                   {type}
                 </option>
               ))}
             </select>
-            <ChevronDown className="absolute right-3.5 top-1/2 -translate-y-1/2 size-4 text-neutral-400 pointer-events-none" />
+            <ChevronDown className="absolute right-3.5 top-1/2 -translate-y-1/2 size-4 text-neutral-400 dark:text-neutral-500 pointer-events-none" />
           </div>
           {errors.eventType && (
             <p className="text-xs text-red-500 mt-1">
@@ -306,7 +306,7 @@ export const StepEventDetails: React.FC = () => {
 
         {/* Event Description */}
         <div>
-          <label className="block text-xs sm:text-[13px] font-medium text-neutral-700 mb-1.5">
+          <label className="block text-xs sm:text-[13px] font-medium text-neutral-700 dark:text-neutral-300 mb-1.5">
             Event Description
           </label>
           <textarea
@@ -314,10 +314,10 @@ export const StepEventDetails: React.FC = () => {
             placeholder="Tell your guests about the event, what to expect, special activities, or dress themes..."
             {...register("eventDescription")}
             className={cn(
-              "w-full px-4 py-2.5 rounded-xl border bg-white text-sm text-neutral-900 placeholder:text-neutral-400 leading-relaxed resize-none focus:outline-none focus:ring-2 transition-all",
+              "w-full px-4 py-2.5 rounded-xl border bg-white dark:bg-neutral-950 text-sm text-neutral-900 dark:text-white placeholder:text-neutral-400 dark:placeholder:text-neutral-500 leading-relaxed resize-none focus:outline-none focus:ring-2 transition-all",
               errors.eventDescription
-                ? "border-red-400 focus:ring-red-200"
-                : "border-neutral-200 focus:ring-[#C39B4C]/25 focus:border-[#C39B4C]"
+                ? "border-red-400 focus:ring-red-200 dark:focus:ring-red-950/50"
+                : "border-neutral-200 dark:border-neutral-800 focus:ring-[#C39B4C]/25 focus:border-[#C39B4C]"
             )}
           />
           {errors.eventDescription && (
@@ -330,7 +330,7 @@ export const StepEventDetails: React.FC = () => {
         {/* Event Date & End Date */}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
           <div>
-            <label className="block text-xs sm:text-[13px] font-medium text-neutral-700 mb-1.5">
+            <label className="block text-xs sm:text-[13px] font-medium text-neutral-700 dark:text-neutral-300 mb-1.5">
               Event Date <span className="text-red-500">*</span>
             </label>
             <div className="relative">
@@ -339,13 +339,13 @@ export const StepEventDetails: React.FC = () => {
                 placeholder="mm/dd/yyyy"
                 {...register("eventDate")}
                 className={cn(
-                  "w-full px-4 py-2.5 rounded-xl border bg-white text-sm text-neutral-900 placeholder:text-neutral-400 focus:outline-none focus:ring-2 transition-all",
+                  "w-full px-4 py-2.5 rounded-xl border bg-white dark:bg-neutral-950 text-sm text-neutral-900 dark:text-white placeholder:text-neutral-400 dark:placeholder:text-neutral-500 [color-scheme:light] dark:[color-scheme:dark] focus:outline-none focus:ring-2 transition-all",
                   errors.eventDate
-                    ? "border-red-400 focus:ring-red-200"
-                    : "border-neutral-200 focus:ring-[#C39B4C]/25 focus:border-[#C39B4C]"
+                    ? "border-red-400 focus:ring-red-200 dark:focus:ring-red-950/50"
+                    : "border-neutral-200 dark:border-neutral-800 focus:ring-[#C39B4C]/25 focus:border-[#C39B4C]"
                 )}
               />
-              <Calendar className="absolute right-3.5 top-1/2 -translate-y-1/2 size-4 text-neutral-400 pointer-events-none" />
+              <Calendar className="absolute right-3.5 top-1/2 -translate-y-1/2 size-4 text-neutral-400 dark:text-neutral-500 pointer-events-none" />
             </div>
             {errors.eventDate && (
               <p className="text-xs text-red-500 mt-1">
@@ -355,7 +355,7 @@ export const StepEventDetails: React.FC = () => {
           </div>
 
           <div>
-            <label className="block text-xs sm:text-[13px] font-medium text-neutral-700 mb-1.5">
+            <label className="block text-xs sm:text-[13px] font-medium text-neutral-700 dark:text-neutral-300 mb-1.5">
               End Date <span className="text-red-500">*</span>
             </label>
             <div className="relative">
@@ -365,13 +365,13 @@ export const StepEventDetails: React.FC = () => {
                 min={eventDate || undefined}
                 {...register("endDate")}
                 className={cn(
-                  "w-full px-4 py-2.5 rounded-xl border bg-white text-sm text-neutral-900 placeholder:text-neutral-400 focus:outline-none focus:ring-2 transition-all",
+                  "w-full px-4 py-2.5 rounded-xl border bg-white dark:bg-neutral-950 text-sm text-neutral-900 dark:text-white placeholder:text-neutral-400 dark:placeholder:text-neutral-500 [color-scheme:light] dark:[color-scheme:dark] focus:outline-none focus:ring-2 transition-all",
                   errors.endDate
-                    ? "border-red-400 focus:ring-red-200"
-                    : "border-neutral-200 focus:ring-[#C39B4C]/25 focus:border-[#C39B4C]"
+                    ? "border-red-400 focus:ring-red-200 dark:focus:ring-red-950/50"
+                    : "border-neutral-200 dark:border-neutral-800 focus:ring-[#C39B4C]/25 focus:border-[#C39B4C]"
                 )}
               />
-              <Calendar className="absolute right-3.5 top-1/2 -translate-y-1/2 size-4 text-neutral-400 pointer-events-none" />
+              <Calendar className="absolute right-3.5 top-1/2 -translate-y-1/2 size-4 text-neutral-400 dark:text-neutral-500 pointer-events-none" />
             </div>
             {errors.endDate && (
               <p className="text-xs text-red-500 mt-1">
@@ -384,7 +384,7 @@ export const StepEventDetails: React.FC = () => {
         {/* Start Time & End Time */}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
           <div>
-            <label className="block text-xs sm:text-[13px] font-medium text-neutral-700 mb-1.5">
+            <label className="block text-xs sm:text-[13px] font-medium text-neutral-700 dark:text-neutral-300 mb-1.5">
               Start Time <span className="text-red-500">*</span>
             </label>
             <input
@@ -392,10 +392,10 @@ export const StepEventDetails: React.FC = () => {
               placeholder="--:-- --"
               {...register("startTime")}
               className={cn(
-                "w-full px-4 py-2.5 rounded-xl border bg-white text-sm text-neutral-900 placeholder:text-neutral-400 focus:outline-none focus:ring-2 transition-all",
+                "w-full px-4 py-2.5 rounded-xl border bg-white dark:bg-neutral-950 text-sm text-neutral-900 dark:text-white placeholder:text-neutral-400 dark:placeholder:text-neutral-500 [color-scheme:light] dark:[color-scheme:dark] focus:outline-none focus:ring-2 transition-all",
                 errors.startTime
-                  ? "border-red-400 focus:ring-red-200"
-                  : "border-neutral-200 focus:ring-[#C39B4C]/25 focus:border-[#C39B4C]"
+                  ? "border-red-400 focus:ring-red-200 dark:focus:ring-red-950/50"
+                  : "border-neutral-200 dark:border-neutral-800 focus:ring-[#C39B4C]/25 focus:border-[#C39B4C]"
               )}
             />
             {errors.startTime && (
@@ -406,7 +406,7 @@ export const StepEventDetails: React.FC = () => {
           </div>
 
           <div>
-            <label className="block text-xs sm:text-[13px] font-medium text-neutral-700 mb-1.5">
+            <label className="block text-xs sm:text-[13px] font-medium text-neutral-700 dark:text-neutral-300 mb-1.5">
               End Time <span className="text-red-500">*</span>
             </label>
             <input
@@ -419,10 +419,10 @@ export const StepEventDetails: React.FC = () => {
               }
               {...register("endTime")}
               className={cn(
-                "w-full px-4 py-2.5 rounded-xl border bg-white text-sm text-neutral-900 placeholder:text-neutral-400 focus:outline-none focus:ring-2 transition-all",
+                "w-full px-4 py-2.5 rounded-xl border bg-white dark:bg-neutral-950 text-sm text-neutral-900 dark:text-white placeholder:text-neutral-400 dark:placeholder:text-neutral-500 [color-scheme:light] dark:[color-scheme:dark] focus:outline-none focus:ring-2 transition-all",
                 errors.endTime
-                  ? "border-red-400 focus:ring-red-200"
-                  : "border-neutral-200 focus:ring-[#C39B4C]/25 focus:border-[#C39B4C]"
+                  ? "border-red-400 focus:ring-red-200 dark:focus:ring-red-950/50"
+                  : "border-neutral-200 dark:border-neutral-800 focus:ring-[#C39B4C]/25 focus:border-[#C39B4C]"
               )}
             />
             {errors.endTime && (
@@ -436,7 +436,7 @@ export const StepEventDetails: React.FC = () => {
         {/* Age Restriction & ID Requirement */}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
           <div>
-            <label className="block text-xs sm:text-[13px] font-medium text-neutral-700 mb-1.5">
+            <label className="block text-xs sm:text-[13px] font-medium text-neutral-700 dark:text-neutral-300 mb-1.5">
               Age Restriction
             </label>
             <div className="relative">
@@ -460,16 +460,16 @@ export const StepEventDetails: React.FC = () => {
                     setValue("ageRestriction", val, { shouldValidate: true });
                   }
                 }}
-                className="w-full px-4 py-2.5 rounded-xl border border-neutral-200 bg-white text-sm text-neutral-900 appearance-none focus:outline-none focus:ring-2 focus:ring-[#C39B4C]/25 focus:border-[#C39B4C] transition-all cursor-pointer"
+                className="w-full px-4 py-2.5 rounded-xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-950 text-sm text-neutral-900 dark:text-white appearance-none focus:outline-none focus:ring-2 focus:ring-[#C39B4C]/25 focus:border-[#C39B4C] transition-all cursor-pointer"
               >
-                <option value="">Select Age Restriction</option>
+                <option value="" className="dark:bg-neutral-900">Select Age Restriction</option>
                 {AGE_RESTRICTIONS.map((age) => (
-                  <option key={age} value={age}>
+                  <option key={age} value={age} className="dark:bg-neutral-900">
                     {age}
                   </option>
                 ))}
               </select>
-              <ChevronDown className="absolute right-3.5 top-1/2 -translate-y-1/2 size-4 text-neutral-400 pointer-events-none" />
+              <ChevronDown className="absolute right-3.5 top-1/2 -translate-y-1/2 size-4 text-neutral-400 dark:text-neutral-500 pointer-events-none" />
             </div>
 
             {isCustomAge && (
@@ -487,29 +487,29 @@ export const StepEventDetails: React.FC = () => {
                       { shouldValidate: true }
                     );
                   }}
-                  className="w-full px-4 py-2 rounded-xl border border-neutral-200 bg-white text-sm text-neutral-900 placeholder:text-neutral-400 focus:outline-none focus:ring-2 focus:ring-[#C39B4C]/25 focus:border-[#C39B4C] transition-all"
+                  className="w-full px-4 py-2 rounded-xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-950 text-sm text-neutral-900 dark:text-white placeholder:text-neutral-400 dark:placeholder:text-neutral-500 focus:outline-none focus:ring-2 focus:ring-[#C39B4C]/25 focus:border-[#C39B4C] transition-all"
                 />
               </div>
             )}
           </div>
 
           <div>
-            <label className="block text-xs sm:text-[13px] font-medium text-neutral-700 mb-1.5">
+            <label className="block text-xs sm:text-[13px] font-medium text-neutral-700 dark:text-neutral-300 mb-1.5">
               ID Requirement
             </label>
             <div className="relative">
               <select
                 {...register("idRequirement")}
-                className="w-full px-4 py-2.5 rounded-xl border border-neutral-200 bg-white text-sm text-neutral-900 appearance-none focus:outline-none focus:ring-2 focus:ring-[#C39B4C]/25 focus:border-[#C39B4C] transition-all cursor-pointer"
+                className="w-full px-4 py-2.5 rounded-xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-950 text-sm text-neutral-900 dark:text-white appearance-none focus:outline-none focus:ring-2 focus:ring-[#C39B4C]/25 focus:border-[#C39B4C] transition-all cursor-pointer"
               >
-                <option value="">Select</option>
+                <option value="" className="dark:bg-neutral-900">Select</option>
                 {ID_REQUIREMENTS.map((idReq) => (
-                  <option key={idReq} value={idReq}>
+                  <option key={idReq} value={idReq} className="dark:bg-neutral-900">
                     {idReq}
                   </option>
                 ))}
               </select>
-              <ChevronDown className="absolute right-3.5 top-1/2 -translate-y-1/2 size-4 text-neutral-400 pointer-events-none" />
+              <ChevronDown className="absolute right-3.5 top-1/2 -translate-y-1/2 size-4 text-neutral-400 dark:text-neutral-500 pointer-events-none" />
             </div>
           </div>
         </div>
@@ -517,30 +517,30 @@ export const StepEventDetails: React.FC = () => {
         {/* Dress Code & Ticket Requirement */}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
           <div>
-            <label className="block text-xs sm:text-[13px] font-medium text-neutral-700 mb-1.5">
+            <label className="block text-xs sm:text-[13px] font-medium text-neutral-700 dark:text-neutral-300 mb-1.5">
               Dress Code
             </label>
             <div className="relative">
               <select
                 {...register("dressCode")}
-                className="w-full px-4 py-2.5 rounded-xl border border-neutral-200 bg-white text-sm text-neutral-900 appearance-none focus:outline-none focus:ring-2 focus:ring-[#C39B4C]/25 focus:border-[#C39B4C] transition-all cursor-pointer"
+                className="w-full px-4 py-2.5 rounded-xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-950 text-sm text-neutral-900 dark:text-white appearance-none focus:outline-none focus:ring-2 focus:ring-[#C39B4C]/25 focus:border-[#C39B4C] transition-all cursor-pointer"
               >
-                <option value="">Select</option>
+                <option value="" className="dark:bg-neutral-900">Select</option>
                 {DRESS_CODES.map((code) => (
-                  <option key={code} value={code}>
+                  <option key={code} value={code} className="dark:bg-neutral-900">
                     {code}
                   </option>
                 ))}
               </select>
-              <ChevronDown className="absolute right-3.5 top-1/2 -translate-y-1/2 size-4 text-neutral-400 pointer-events-none" />
+              <ChevronDown className="absolute right-3.5 top-1/2 -translate-y-1/2 size-4 text-neutral-400 dark:text-neutral-500 pointer-events-none" />
             </div>
           </div>
 
           {!isAdultOnly && (
             <div>
-              <label className="block text-xs sm:text-[13px] font-medium text-neutral-700 mb-1.5">
+              <label className="block text-xs sm:text-[13px] font-medium text-neutral-700 dark:text-neutral-300 mb-1.5">
                 Ticket Age Exception{" "}
-                <span className="text-neutral-400 font-normal">
+                <span className="text-neutral-400 dark:text-neutral-500 font-normal">
                   (Children Under{" "}
                   {ticketRequirementAge && ticketRequirementAge.toString().trim() !== ""
                     ? ticketRequirementAge.toString().trim()
@@ -553,7 +553,7 @@ export const StepEventDetails: React.FC = () => {
                 min="0"
                 placeholder="5"
                 {...register("ticketRequirementAge")}
-                className="w-full px-4 py-2.5 rounded-xl border border-neutral-200 bg-white text-sm text-neutral-900 placeholder:text-neutral-400 focus:outline-none focus:ring-2 focus:ring-[#C39B4C]/25 focus:border-[#C39B4C] transition-all"
+                className="w-full px-4 py-2.5 rounded-xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-950 text-sm text-neutral-900 dark:text-white placeholder:text-neutral-400 dark:placeholder:text-neutral-500 focus:outline-none focus:ring-2 focus:ring-[#C39B4C]/25 focus:border-[#C39B4C] transition-all"
               />
             </div>
           )}
@@ -561,11 +561,11 @@ export const StepEventDetails: React.FC = () => {
       </div>
 
       {/* Bottom Action Controls matching media_1789290331573.png */}
-      <div className="flex items-center justify-between pt-6 border-t border-neutral-100">
+      <div className="flex items-center justify-between pt-6 border-t border-neutral-100 dark:border-neutral-800">
         <button
           type="button"
           onClick={handleCancel}
-          className="px-6 py-2.5 rounded-lg bg-neutral-100 hover:bg-neutral-200 text-neutral-700 text-xs sm:text-sm font-medium transition-all cursor-pointer"
+          className="px-6 py-2.5 rounded-lg bg-neutral-100 dark:bg-neutral-800 hover:bg-neutral-200 dark:hover:bg-neutral-700 text-neutral-700 dark:text-neutral-200 text-xs sm:text-sm font-medium transition-all cursor-pointer"
         >
           Back
         </button>

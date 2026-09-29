@@ -64,21 +64,21 @@ export const PartnerSecurity: React.FC<PartnerSecurityProps> = ({
   return (
     <div
       className={cn(
-        "bg-white rounded-xl sm:rounded-2xl border border-neutral-100 shadow-[0_1px_3px_rgba(0,0,0,0.02)] p-5 sm:p-7",
+        "bg-white dark:bg-neutral-900/80 rounded-xl sm:rounded-2xl border border-neutral-100 dark:border-neutral-800 shadow-[0_1px_3px_rgba(0,0,0,0.02)] p-5 sm:p-7 transition-colors",
         className
       )}
     >
-      <h3 className="text-sm sm:text-base font-semibold font-space-grotesk text-neutral-900 pb-3 border-b border-neutral-100 mb-4 tracking-tight">
+      <h3 className="text-sm sm:text-base font-semibold font-space-grotesk text-neutral-900 dark:text-white pb-3 border-b border-neutral-100 dark:border-neutral-800 mb-4 tracking-tight">
         Security
       </h3>
 
       <form onSubmit={handleSubmit} className="space-y-4">
         {/* Current Password - Full Width */}
         <div>
-          <label className="block text-xs font-medium text-neutral-600 mb-1.5 font-work-sans">
+          <label className="block text-xs font-medium text-neutral-600 dark:text-neutral-400 mb-1.5 font-work-sans">
             Current password
           </label>
-          <div className="flex items-center bg-white border border-neutral-200 focus-within:border-[#C39B4C] focus-within:ring-1 focus-within:ring-[#C39B4C] rounded-lg px-3.5 py-2.5 transition-colors">
+          <div className="flex items-center bg-white dark:bg-neutral-950 border border-neutral-200 dark:border-neutral-800 focus-within:border-[#C39B4C] dark:focus-within:border-[#C39B4C] focus-within:ring-1 focus-within:ring-[#C39B4C] rounded-lg px-3.5 py-2.5 transition-colors">
             <input
               type={showCurrentPass ? "text" : "password"}
               value={passwordState.currentPassword}
@@ -88,13 +88,13 @@ export const PartnerSecurity: React.FC<PartnerSecurityProps> = ({
                   currentPassword: e.target.value,
                 }))
               }
-              className="bg-transparent w-full text-xs sm:text-sm text-neutral-800 placeholder:text-neutral-400 focus:outline-none font-work-sans"
+              className="bg-transparent w-full text-xs sm:text-sm text-neutral-800 dark:text-neutral-100 placeholder:text-neutral-400 dark:placeholder:text-neutral-500 focus:outline-none font-work-sans"
               placeholder="*********"
             />
             <button
               type="button"
               onClick={() => setShowCurrentPass(!showCurrentPass)}
-              className="text-neutral-400 hover:text-neutral-600 ml-2 focus:outline-none cursor-pointer"
+              className="text-neutral-400 hover:text-neutral-600 dark:text-neutral-500 dark:hover:text-neutral-300 ml-2 focus:outline-none cursor-pointer"
             >
               {showCurrentPass ? (
                 <EyeOff className="size-4" />
@@ -109,10 +109,10 @@ export const PartnerSecurity: React.FC<PartnerSecurityProps> = ({
         <div className="grid grid-cols-1 md:grid-cols-2 gap-x-5 gap-y-4">
           {/* New Password */}
           <div>
-            <label className="block text-xs font-medium text-neutral-600 mb-1.5 font-work-sans">
+            <label className="block text-xs font-medium text-neutral-600 dark:text-neutral-400 mb-1.5 font-work-sans">
               New password
             </label>
-            <div className="flex items-center bg-white border border-neutral-200 focus-within:border-[#C39B4C] focus-within:ring-1 focus-within:ring-[#C39B4C] rounded-lg px-3.5 py-2.5 transition-colors">
+            <div className="flex items-center bg-white dark:bg-neutral-950 border border-neutral-200 dark:border-neutral-800 focus-within:border-[#C39B4C] dark:focus-within:border-[#C39B4C] focus-within:ring-1 focus-within:ring-[#C39B4C] rounded-lg px-3.5 py-2.5 transition-colors">
               <input
                 type={showNewPass ? "text" : "password"}
                 value={passwordState.newPassword}
@@ -122,13 +122,13 @@ export const PartnerSecurity: React.FC<PartnerSecurityProps> = ({
                     newPassword: e.target.value,
                   }))
                 }
-                className="bg-transparent w-full text-xs sm:text-sm text-neutral-800 placeholder:text-neutral-400 focus:outline-none font-work-sans"
+                className="bg-transparent w-full text-xs sm:text-sm text-neutral-800 dark:text-neutral-100 placeholder:text-neutral-400 dark:placeholder:text-neutral-500 focus:outline-none font-work-sans"
                 placeholder="Enter new password"
               />
               <button
                 type="button"
                 onClick={() => setShowNewPass(!showNewPass)}
-                className="text-neutral-400 hover:text-neutral-600 ml-2 focus:outline-none cursor-pointer"
+                className="text-neutral-400 hover:text-neutral-600 dark:text-neutral-500 dark:hover:text-neutral-300 ml-2 focus:outline-none cursor-pointer"
               >
                 {showNewPass ? (
                   <EyeOff className="size-4" />
@@ -141,10 +141,10 @@ export const PartnerSecurity: React.FC<PartnerSecurityProps> = ({
 
           {/* Confirm Password */}
           <div>
-            <label className="block text-xs font-medium text-neutral-600 mb-1.5 font-work-sans">
+            <label className="block text-xs font-medium text-neutral-600 dark:text-neutral-400 mb-1.5 font-work-sans">
               Confirm password
             </label>
-            <div className="flex items-center bg-white border border-neutral-200 focus-within:border-[#C39B4C] focus-within:ring-1 focus-within:ring-[#C39B4C] rounded-lg px-3.5 py-2.5 transition-colors">
+            <div className="flex items-center bg-white dark:bg-neutral-950 border border-neutral-200 dark:border-neutral-800 focus-within:border-[#C39B4C] dark:focus-within:border-[#C39B4C] focus-within:ring-1 focus-within:ring-[#C39B4C] rounded-lg px-3.5 py-2.5 transition-colors">
               <input
                 type={showConfirmPass ? "text" : "password"}
                 value={passwordState.confirmPassword}
@@ -154,13 +154,13 @@ export const PartnerSecurity: React.FC<PartnerSecurityProps> = ({
                     confirmPassword: e.target.value,
                   }))
                 }
-                className="bg-transparent w-full text-xs sm:text-sm text-neutral-800 placeholder:text-neutral-400 focus:outline-none font-work-sans"
+                className="bg-transparent w-full text-xs sm:text-sm text-neutral-800 dark:text-neutral-100 placeholder:text-neutral-400 dark:placeholder:text-neutral-500 focus:outline-none font-work-sans"
                 placeholder="Confirm new password"
               />
               <button
                 type="button"
                 onClick={() => setShowConfirmPass(!showConfirmPass)}
-                className="text-neutral-400 hover:text-neutral-600 ml-2 focus:outline-none cursor-pointer"
+                className="text-neutral-400 hover:text-neutral-600 dark:text-neutral-500 dark:hover:text-neutral-300 ml-2 focus:outline-none cursor-pointer"
               >
                 {showConfirmPass ? (
                   <EyeOff className="size-4" />

@@ -39,7 +39,7 @@ export const WalletBadgesRow: React.FC = () => {
       </div>
 
       {/* 3. Ticket Status: Active */}
-      <div className="bg-[#EAF7EE] text-[#16A34A] border border-[#16A34A]/25 px-3 py-2 rounded-xl flex items-center justify-center gap-1.5 font-semibold text-[11px]">
+      <div className="bg-[#EAF7EE] dark:bg-emerald-950/40 text-[#16A34A] dark:text-emerald-400 border border-[#16A34A]/25 dark:border-emerald-800/40 px-3 py-2 rounded-xl flex items-center justify-center gap-1.5 font-semibold text-[11px]">
         <CheckCircle2 className="size-4 shrink-0" />
         <span className="leading-tight">
           <span className="text-[8px] block opacity-80 uppercase">
@@ -50,13 +50,13 @@ export const WalletBadgesRow: React.FC = () => {
       </div>
 
       {/* 4. Event Status Countdown */}
-      <div className="bg-[#EEF2F6] text-neutral-700 px-3 py-2 rounded-xl flex items-center justify-center gap-1.5 text-[10px] font-semibold">
-        <Calendar className="size-4 text-neutral-500 shrink-0" />
+      <div className="bg-[#EEF2F6] dark:bg-neutral-800/80 text-neutral-700 dark:text-neutral-200 border border-transparent dark:border-neutral-700/60 px-3 py-2 rounded-xl flex items-center justify-center gap-1.5 text-[10px] font-semibold">
+        <Calendar className="size-4 text-neutral-500 dark:text-neutral-400 shrink-0" />
         <span className="leading-tight">
-          <span className="text-[8px] text-neutral-400 block uppercase">
+          <span className="text-[8px] text-neutral-400 dark:text-neutral-400 block uppercase">
             EVENT STATUS IN
           </span>
-          03 : 12 : 45 <span className="text-[8px] text-neutral-400">DAYS</span>
+          03 : 12 : 45 <span className="text-[8px] text-neutral-400 dark:text-neutral-400">DAYS</span>
         </span>
       </div>
     </div>

@@ -39,7 +39,7 @@ export const PartnerAvatarHeader: React.FC<PartnerAvatarHeaderProps> = ({
   return (
     <div
       className={cn(
-        "bg-white rounded-xl sm:rounded-2xl border border-neutral-100 shadow-[0_1px_3px_rgba(0,0,0,0.02)] p-5 sm:p-7",
+        "bg-white dark:bg-neutral-900/80 rounded-xl sm:rounded-2xl border border-neutral-100 dark:border-neutral-800 shadow-[0_1px_3px_rgba(0,0,0,0.02)] p-5 sm:p-7 transition-colors",
         className
       )}
     >
@@ -61,13 +61,13 @@ export const PartnerAvatarHeader: React.FC<PartnerAvatarHeaderProps> = ({
             width={96}
             height={96}
             unoptimized
-            className="size-full rounded-full object-cover border border-neutral-200 bg-neutral-100 shadow-2xs"
+            className="size-full rounded-full object-cover border border-neutral-200 dark:border-neutral-700 bg-neutral-100 dark:bg-neutral-800 shadow-2xs"
           />
           <button
             type="button"
             onClick={() => fileInputRef.current?.click()}
             title="Change profile photo"
-            className="absolute -bottom-1 -right-1 sm:bottom-0 sm:right-0 bg-white rounded-full p-1.5 shadow-sm border border-neutral-200 hover:bg-neutral-50 transition-colors cursor-pointer text-neutral-700 hover:text-neutral-900"
+            className="absolute -bottom-1 -right-1 sm:bottom-0 sm:right-0 bg-white dark:bg-neutral-800 rounded-full p-1.5 shadow-sm border border-neutral-200 dark:border-neutral-700 hover:bg-neutral-50 dark:hover:bg-neutral-700 transition-colors cursor-pointer text-neutral-700 dark:text-neutral-200 hover:text-neutral-900 dark:hover:text-white"
           >
             <Camera className="size-3.5 sm:size-4" />
           </button>
@@ -76,10 +76,10 @@ export const PartnerAvatarHeader: React.FC<PartnerAvatarHeaderProps> = ({
         {/* User Info and Photo Action Buttons */}
         <div className="flex-1 text-center sm:text-left space-y-3">
           <div>
-            <h2 className="text-lg sm:text-xl font-bold font-space-grotesk text-neutral-900 tracking-tight">
+            <h2 className="text-lg sm:text-xl font-bold font-space-grotesk text-neutral-900 dark:text-white tracking-tight">
               {name}
             </h2>
-            <p className="text-xs sm:text-sm text-neutral-500 font-work-sans mt-0.5">
+            <p className="text-xs sm:text-sm text-neutral-500 dark:text-neutral-400 font-work-sans mt-0.5">
               {email}
             </p>
           </div>
@@ -88,14 +88,14 @@ export const PartnerAvatarHeader: React.FC<PartnerAvatarHeaderProps> = ({
             <button
               type="button"
               onClick={() => fileInputRef.current?.click()}
-              className="inline-flex items-center justify-center px-4 py-1.5 rounded-lg border border-neutral-200 bg-white hover:bg-neutral-50 text-[#C39B4C] text-xs sm:text-sm font-medium transition-colors shadow-2xs cursor-pointer"
+              className="inline-flex items-center justify-center px-4 py-1.5 rounded-lg border border-neutral-200 dark:border-neutral-700 bg-white dark:bg-neutral-800 hover:bg-neutral-50 dark:hover:bg-neutral-750 text-[#C39B4C] dark:text-[#D4AF37] text-xs sm:text-sm font-medium transition-colors shadow-2xs cursor-pointer"
             >
               Upload New
             </button>
             <button
               type="button"
               onClick={onRemovePhoto}
-              className="inline-flex items-center justify-center px-4 py-1.5 rounded-lg bg-[#FFEBEB] hover:bg-[#FEDDDD] text-[#FF4D4F] text-xs sm:text-sm font-medium transition-colors cursor-pointer"
+              className="inline-flex items-center justify-center px-4 py-1.5 rounded-lg bg-[#FFEBEB] dark:bg-red-950/40 hover:bg-[#FEDDDD] dark:hover:bg-red-900/40 text-[#FF4D4F] dark:text-red-400 border border-transparent dark:border-red-900/30 text-xs sm:text-sm font-medium transition-colors cursor-pointer"
             >
               Remove Photo
             </button>

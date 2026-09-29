@@ -27,10 +27,10 @@ export const PartnerMarketing: React.FC<PartnerMarketingProps> = ({ className })
       {/* 1. Header */}
       {/* ========================================================================= */}
       <div>
-        <h1 className="text-2xl sm:text-3xl font-bold font-space-grotesk text-neutral-900 tracking-tight">
+        <h1 className="text-2xl sm:text-3xl font-bold font-space-grotesk text-neutral-900 dark:text-white tracking-tight">
           Marketing
         </h1>
-        <p className="text-xs sm:text-sm text-neutral-500 font-work-sans mt-1">
+        <p className="text-xs sm:text-sm text-neutral-500 dark:text-neutral-400 font-work-sans mt-1">
           Manage campaigns, promotions, and marketing activities
         </p>
       </div>
@@ -42,33 +42,33 @@ export const PartnerMarketing: React.FC<PartnerMarketingProps> = ({ className })
         {partnerMarketingAssets.map((asset) => (
           <div
             key={asset.id}
-            className="bg-white rounded-xl sm:rounded-2xl border border-neutral-100 shadow-[0_1px_3px_rgba(0,0,0,0.02)] p-5 sm:p-6 flex flex-col justify-between hover:shadow-sm transition-all"
+            className="bg-white dark:bg-neutral-900/80 rounded-xl sm:rounded-2xl border border-neutral-200/80 dark:border-neutral-800 shadow-[0_1px_3px_rgba(0,0,0,0.02)] p-5 sm:p-6 flex flex-col justify-between hover:shadow-sm transition-all"
           >
             <div>
               {/* Card Header with Title and Download Icon */}
               <div className="flex items-center justify-between gap-3 mb-2">
-                <h3 className="font-bold font-space-grotesk text-neutral-900 text-sm sm:text-base">
+                <h3 className="font-bold font-space-grotesk text-neutral-900 dark:text-white text-sm sm:text-base">
                   {asset.title}
                 </h3>
                 <button
                   type="button"
                   onClick={() => handleDownload(asset.title, asset.fileName)}
                   title={`Download ${asset.fileName}`}
-                  className="p-1.5 rounded-lg text-neutral-400 hover:text-neutral-900 hover:bg-neutral-100 transition-colors cursor-pointer"
+                  className="p-1.5 rounded-lg text-neutral-400 hover:text-neutral-900 dark:hover:text-white hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors cursor-pointer"
                 >
                   <Download className="size-4" />
                 </button>
               </div>
 
               {/* Description */}
-              <p className="text-xs sm:text-sm text-neutral-600 leading-relaxed font-work-sans mb-4">
+              <p className="text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed font-work-sans mb-4">
                 {asset.description}
               </p>
             </div>
 
             {/* Asset Preview Image */}
             {asset.imageUrl && (
-              <div className="relative w-full h-40 rounded-xl overflow-hidden border border-neutral-200/80 bg-neutral-100 shadow-2xs">
+              <div className="relative w-full h-40 rounded-xl overflow-hidden border border-neutral-200/80 dark:border-neutral-800 bg-neutral-100 dark:bg-neutral-800 shadow-2xs">
                 <Image
                   src={asset.imageUrl}
                   alt={asset.title}

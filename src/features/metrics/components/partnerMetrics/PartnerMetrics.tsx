@@ -126,7 +126,7 @@ export const PartnerMetrics: React.FC<PartnerMetricsProps> = ({
     return (
         <section className={cn("w-full", className)}>
             {/* Outer Banner Container with Banquet Hall Background */}
-            <div className="relative w-full rounded-3xl overflow-hidden shadow-xs border border-neutral-200/50 bg-[#160E05] min-h-[220px] sm:min-h-[250px] md:min-h-[270px] p-6 sm:p-8 md:p-9 pb-20 sm:pb-24">
+            <div className="relative w-full rounded-3xl overflow-hidden shadow-xs border border-neutral-200/50 dark:border-neutral-800 bg-[#160E05] min-h-[220px] sm:min-h-[250px] md:min-h-[270px] p-6 sm:p-8 md:p-9 pb-20 sm:pb-24">
                 {/* Background Image */}
                 <Image
                     src="/dashboardMetricsBg.png"
@@ -158,7 +158,7 @@ export const PartnerMetrics: React.FC<PartnerMetricsProps> = ({
                     {data.cards.map((card: IPartnerMetricCard) => (
                         <div
                             key={card.id}
-                            className="bg-white/95 backdrop-blur-md rounded-2xl sm:rounded-3xl p-4 sm:p-5 border border-neutral-200/70 shadow-sm hover:shadow-md transition-all duration-200 flex flex-col justify-between min-h-[140px] sm:min-h-[155px]"
+                            className="bg-white/95 dark:bg-neutral-900/90 backdrop-blur-md rounded-2xl sm:rounded-3xl p-4 sm:p-5 border border-neutral-200/70 dark:border-neutral-800 shadow-sm hover:shadow-md transition-all duration-200 flex flex-col justify-between min-h-[140px] sm:min-h-[155px]"
                         >
                             {/* Badge Icon */}
                             <div
@@ -174,10 +174,10 @@ export const PartnerMetrics: React.FC<PartnerMetricsProps> = ({
 
                             {/* Card Title & Value */}
                             <div className="mt-3.5 sm:mt-4">
-                                <p className="text-xs sm:text-sm font-medium text-neutral-500 font-work-sans truncate">
+                                <p className="text-xs sm:text-sm font-medium text-neutral-500 dark:text-neutral-400 font-work-sans truncate">
                                     {card.title}
                                 </p>
-                                <p className="text-2xl sm:text-3xl lg:text-4xl font-bold font-space-grotesk text-neutral-900 mt-1 tracking-tight">
+                                <p className="text-2xl sm:text-3xl lg:text-4xl font-bold font-space-grotesk text-neutral-900 dark:text-white mt-1 tracking-tight">
                                     {card.value}
                                 </p>
                             </div>

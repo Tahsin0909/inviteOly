@@ -26,14 +26,14 @@ export const GuestListHeader: React.FC = () => {
     <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 py-2 font-work-sans">
       {/* Left: Icon + Title + Subtitle */}
       <div className="flex items-start sm:items-center gap-3.5">
-        <div className="size-11 sm:size-12 rounded-full bg-[#FBF4E8] flex items-center justify-center shrink-0 shadow-2xs border border-[#B89047]/15">
+        <div className="size-11 sm:size-12 rounded-full bg-[#FBF4E8] dark:bg-[#B89047]/10 flex items-center justify-center shrink-0 shadow-2xs border border-[#B89047]/15 dark:border-[#B89047]/20">
           <Users className="size-5 sm:size-6 text-[#B89047]" />
         </div>
         <div>
-          <h2 className="text-xl sm:text-2xl font-bold font-space-grotesk text-neutral-900 tracking-tight">
+          <h2 className="text-xl sm:text-2xl font-bold font-space-grotesk text-neutral-900 dark:text-white tracking-tight">
             Guest List
           </h2>
-          <div className="text-xs sm:text-sm text-neutral-500 font-work-sans leading-relaxed mt-0.5">
+          <div className="text-xs sm:text-sm text-neutral-500 dark:text-neutral-400 font-work-sans leading-relaxed mt-0.5">
             <p>Upload Your Guest Lists By Ticket Type.</p>
             <p>Each CSV File Should Contain Only Guests For One Ticket Type.</p>
           </div>
@@ -45,7 +45,7 @@ export const GuestListHeader: React.FC = () => {
         <button
           type="button"
           onClick={handleDownloadTemplate}
-          className="text-xs sm:text-sm text-blue-600 hover:text-blue-700 underline underline-offset-2 font-medium transition-colors cursor-pointer text-left md:text-right inline-block"
+          className="text-xs sm:text-sm text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 underline underline-offset-2 font-medium transition-colors cursor-pointer text-left md:text-right inline-block"
         >
           Download the InviteOly Guest List CSV Template
         </button>

@@ -32,13 +32,13 @@ export const SelectTicketTypeCard: React.FC<SelectTicketTypeCardProps> = ({
   }, []);
 
   return (
-    <div className="w-full rounded-2xl border border-neutral-200/90 bg-white p-5 sm:p-6 shadow-2xs relative font-work-sans">
+    <div className="w-full rounded-2xl border border-neutral-200/90 dark:border-neutral-800 bg-white dark:bg-neutral-900/80 p-5 sm:p-6 shadow-2xs relative font-work-sans">
       {/* Header with Step 1 Badge */}
       <div className="flex items-center gap-2.5 mb-2">
         <div className="size-6 sm:size-7 rounded-md bg-[#B89047] text-white flex items-center justify-center font-bold text-xs sm:text-sm shadow-2xs shrink-0">
           1
         </div>
-        <h3 className="text-sm sm:text-base font-semibold font-space-grotesk text-neutral-900">
+        <h3 className="text-sm sm:text-base font-semibold font-space-grotesk text-neutral-900 dark:text-white">
           Select Ticket Type
         </h3>
       </div>
@@ -47,10 +47,10 @@ export const SelectTicketTypeCard: React.FC<SelectTicketTypeCardProps> = ({
         {/* Left Side: Question, description and looping arrow illustration */}
         <div className="md:col-span-6 space-y-4">
           <div>
-            <p className="text-xs sm:text-sm font-semibold text-neutral-800">
+            <p className="text-xs sm:text-sm font-semibold text-neutral-800 dark:text-neutral-200">
               Which ticket type is this guest list for?
             </p>
-            <p className="text-[11px] sm:text-xs text-neutral-400 mt-0.5">
+            <p className="text-[11px] sm:text-xs text-neutral-400 dark:text-neutral-500 mt-0.5">
               Select the ticket type for the csv file you&apos;re about to upload
             </p>
           </div>
@@ -108,26 +108,26 @@ export const SelectTicketTypeCard: React.FC<SelectTicketTypeCardProps> = ({
             <button
               type="button"
               onClick={() => setIsOpen((prev) => !prev)}
-              className="w-full flex items-center justify-between px-4 py-2.5 text-xs sm:text-sm bg-white border border-neutral-200 rounded-lg hover:border-neutral-300 focus:outline-none focus:ring-2 focus:ring-[#B89047]/20 transition-all cursor-pointer shadow-2xs"
+              className="w-full flex items-center justify-between px-4 py-2.5 text-xs sm:text-sm bg-white dark:bg-neutral-950 border border-neutral-200 dark:border-neutral-800 rounded-lg hover:border-neutral-300 dark:hover:border-neutral-700 focus:outline-none focus:ring-2 focus:ring-[#B89047]/20 transition-all cursor-pointer shadow-2xs"
             >
               <span
                 className={
                   selectedTicketType
-                    ? "font-medium text-neutral-800"
-                    : "text-neutral-400"
+                    ? "font-medium text-neutral-800 dark:text-neutral-200"
+                    : "text-neutral-400 dark:text-neutral-500"
                 }
               >
                 {selectedTicketType || "Select Ticket Type"}
               </span>
               <ChevronDown
-                className={`size-4 text-neutral-400 transition-transform duration-200 ${isOpen ? "rotate-180 text-neutral-700" : ""
+                className={`size-4 text-neutral-400 dark:text-neutral-500 transition-transform duration-200 ${isOpen ? "rotate-180 text-neutral-700 dark:text-neutral-200" : ""
                   }`}
               />
             </button>
 
             {/* Dropdown Menu matching mockup */}
             {isOpen && (
-              <div className="absolute right-0 top-full mt-1.5 w-full bg-white border border-neutral-200 rounded-xl shadow-lg z-20 py-1.5 animate-in fade-in slide-in-from-top-2 duration-150">
+              <div className="absolute right-0 top-full mt-1.5 w-full bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 rounded-xl shadow-lg dark:shadow-neutral-950/50 z-20 py-1.5 animate-in fade-in slide-in-from-top-2 duration-150">
                 {TICKET_TYPES.map((type) => {
                   const isSelected = selectedTicketType === type;
                   return (
@@ -139,8 +139,8 @@ export const SelectTicketTypeCard: React.FC<SelectTicketTypeCardProps> = ({
                         setIsOpen(false);
                       }}
                       className={`w-full text-left px-4 py-2 text-xs sm:text-sm flex items-center justify-between transition-colors cursor-pointer ${isSelected
-                        ? "bg-[#FFF8E7] text-[#B89047] font-semibold"
-                        : "text-neutral-700 hover:bg-neutral-50 hover:text-neutral-900"
+                        ? "bg-[#FFF8E7] dark:bg-[#B89047]/15 text-[#B89047] font-semibold"
+                        : "text-neutral-700 dark:text-neutral-300 hover:bg-neutral-50 dark:hover:bg-neutral-800 hover:text-neutral-900 dark:hover:text-white"
                         }`}
                     >
                       <span>{type}</span>

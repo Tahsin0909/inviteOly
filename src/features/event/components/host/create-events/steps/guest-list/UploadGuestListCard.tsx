@@ -103,18 +103,18 @@ export const UploadGuestListCard: React.FC<UploadGuestListCardProps> = ({
   };
 
   return (
-    <div className="w-full rounded-2xl border border-neutral-200/90 bg-white p-5 sm:p-6 shadow-2xs font-work-sans">
+    <div className="w-full rounded-2xl border border-neutral-200/90 dark:border-neutral-800 bg-white dark:bg-neutral-900/80 p-5 sm:p-6 shadow-2xs font-work-sans">
       {/* Header with Step 2 Badge */}
       <div className="flex items-center gap-2.5 mb-1">
         <div className="size-6 sm:size-7 rounded-md bg-[#B89047] text-white flex items-center justify-center font-bold text-xs sm:text-sm shadow-2xs shrink-0">
           2
         </div>
-        <h3 className="text-sm sm:text-base font-semibold font-space-grotesk text-neutral-900">
+        <h3 className="text-sm sm:text-base font-semibold font-space-grotesk text-neutral-900 dark:text-white">
           Upload Guest List
         </h3>
       </div>
 
-      <p className="text-xs text-neutral-400 mb-4 pl-8 sm:pl-9.5">
+      <p className="text-xs text-neutral-400 dark:text-neutral-500 mb-4 pl-8 sm:pl-9.5">
         Upload a CSV file containing only guests for the selected ticket type
       </p>
 
@@ -134,29 +134,29 @@ export const UploadGuestListCard: React.FC<UploadGuestListCardProps> = ({
         onDrop={handleDrop}
         onClick={() => fileInputRef.current?.click()}
         className={`w-full rounded-xl border border-dashed py-9 sm:py-11 px-6 flex flex-col items-center justify-center text-center transition-all cursor-pointer select-none ${isDragging
-          ? "border-[#B89047] bg-[#FFF8E7]/50 scale-[0.99]"
-          : "border-neutral-200/90 bg-[#FBFBFA] hover:bg-neutral-50/80 hover:border-neutral-300"
+          ? "border-[#B89047] bg-[#FFF8E7]/50 dark:bg-[#B89047]/10 scale-[0.99]"
+          : "border-neutral-200/90 dark:border-neutral-800 bg-[#FBFBFA] dark:bg-neutral-950/60 hover:bg-neutral-50/80 dark:hover:bg-neutral-900/50 hover:border-neutral-300 dark:hover:border-neutral-700"
           }`}
       >
         {/* Upload Icon Badge */}
-        <div className="size-10 sm:size-11 rounded-full bg-[#FBF4E8] flex items-center justify-center text-[#B89047] shadow-2xs border border-[#B89047]/15 mb-3">
+        <div className="size-10 sm:size-11 rounded-full bg-[#FBF4E8] dark:bg-[#B89047]/10 flex items-center justify-center text-[#B89047] shadow-2xs border border-[#B89047]/15 dark:border-[#B89047]/20 mb-3">
           <Upload className="size-5 stroke-[2.2]" />
         </div>
 
-        <p className="text-xs sm:text-sm font-semibold text-neutral-800">
+        <p className="text-xs sm:text-sm font-semibold text-neutral-800 dark:text-neutral-200">
           Drag &amp; drop Guest List file here
         </p>
-        <p className="text-[11px] sm:text-xs text-neutral-400 mt-0.5">
+        <p className="text-[11px] sm:text-xs text-neutral-400 dark:text-neutral-500 mt-0.5">
           or click to browse
         </p>
-        <p className="text-[11px] sm:text-xs text-neutral-400 mt-1">
+        <p className="text-[11px] sm:text-xs text-neutral-400 dark:text-neutral-500 mt-1">
           Accepted formats: .csv, (Max 5MB)
         </p>
       </div>
 
       {/* Error message */}
       {uploadError && (
-        <div className="mt-3.5 flex items-center gap-2 p-3 bg-red-50 border border-red-200 rounded-lg text-red-700 text-xs animate-in fade-in">
+        <div className="mt-3.5 flex items-center gap-2 p-3 bg-red-50 dark:bg-red-950/30 border border-red-200 dark:border-red-900/50 rounded-lg text-red-700 dark:text-red-400 text-xs animate-in fade-in">
           <AlertCircle className="size-4 shrink-0 text-red-500" />
           <span>{uploadError}</span>
         </div>
@@ -164,15 +164,15 @@ export const UploadGuestListCard: React.FC<UploadGuestListCardProps> = ({
 
       {/* Upload Success Feedback */}
       {lastUploaded && !uploadError && (
-        <div className="mt-3.5 flex items-center justify-between p-3 bg-emerald-50/70 border border-emerald-200 rounded-lg text-emerald-900 text-xs animate-in fade-in">
+        <div className="mt-3.5 flex items-center justify-between p-3 bg-emerald-50/70 dark:bg-emerald-950/30 border border-emerald-200 dark:border-emerald-900/50 rounded-lg text-emerald-900 dark:text-emerald-300 text-xs animate-in fade-in">
           <div className="flex items-center gap-2">
-            <CheckCircle2 className="size-4 shrink-0 text-emerald-600" />
+            <CheckCircle2 className="size-4 shrink-0 text-emerald-600 dark:text-emerald-400" />
             <span>
               Uploaded <strong className="font-semibold">{lastUploaded.fileName}</strong> (
               {lastUploaded.count} {lastUploaded.ticketType} guests added)
             </span>
           </div>
-          <span className="text-[11px] font-medium text-emerald-700 bg-emerald-100/60 px-2 py-0.5 rounded">
+          <span className="text-[11px] font-medium text-emerald-700 dark:text-emerald-400 bg-emerald-100/60 dark:bg-emerald-900/40 px-2 py-0.5 rounded">
             Success
           </span>
         </div>
