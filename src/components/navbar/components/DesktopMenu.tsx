@@ -22,11 +22,11 @@ export const DesktopMenu = () => {
               <span>{item.label}</span>
               <ChevronDown className="w-3.5 h-3.5 object-contain opacity-70" />
             </DropdownMenuTrigger>
-            <DropdownMenuContent className="bg-neutral-900 border-neutral-800 text-white">
+            <DropdownMenuContent className="bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 text-neutral-900 dark:text-white shadow-xl">
               {item.children.map((child) => (
                 <DropdownMenuItem
                   key={child.label}
-                  className="font-medium hover:bg-neutral-800 focus:bg-neutral-800 cursor-pointer"
+                  className="font-medium text-neutral-700 dark:text-neutral-200 hover:text-neutral-900 dark:hover:text-white hover:bg-neutral-100 dark:hover:bg-neutral-800 focus:bg-neutral-100 dark:focus:bg-neutral-800 cursor-pointer"
                   asChild
                 >
                   <Link href={`${child.href}`}>{child.label}</Link>

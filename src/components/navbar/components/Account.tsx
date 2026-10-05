@@ -43,8 +43,8 @@ export const Account = () => {
   const roleName = isReferredHost
     ? "Referred Host"
     : isPartner
-    ? partnerLabel
-    : currentUser?.role || "USER";
+      ? partnerLabel
+      : currentUser?.role || "USER";
 
   const initials = `${firstName[0] || "U"}${lastName !== "Account" ? lastName[0] || "" : ""
     }`.toUpperCase();
@@ -96,105 +96,105 @@ export const Account = () => {
         </DropdownMenuTrigger>
 
         <DropdownMenuContent
-          className="w-72 sm:w-80 bg-neutral-900/95 border border-neutral-800 text-white p-2.5 rounded-2xl shadow-xl z-50 backdrop-blur-md font-work-sans max-h-[85vh] overflow-y-auto"
+          className="w-72 sm:w-80 bg-white dark:bg-neutral-900/95 border border-neutral-200 dark:border-neutral-800 text-neutral-900 dark:text-white p-2.5 rounded-2xl shadow-xl dark:shadow-2xl z-50 backdrop-blur-md font-work-sans max-h-[85vh] overflow-y-auto"
           align="end"
         >
           {/* User Info Header */}
-          <div className="px-3 py-2.5 mb-1.5 rounded-xl bg-neutral-800/60 border border-neutral-700/50">
-            <p className="text-[11px] text-neutral-400 font-normal">Signed in as</p>
-            <p className="text-sm font-semibold text-white truncate mt-0.5">
-              {currentUser?.firstName} {currentUser?.lastName}
-            </p>
-            {currentUser?.businessName && (
-              <p className="text-xs text-[#E5C170] truncate mt-0.5 font-medium">
-                {currentUser.businessName}
-              </p>
+              <div className="px-3 py-2.5 mb-1.5 rounded-xl bg-neutral-50 dark:bg-neutral-800/60 border border-neutral-200/80 dark:border-neutral-700/50">
+                <p className="text-[11px] text-neutral-500 dark:text-neutral-400 font-normal">Signed in as</p>
+                <p className="text-sm font-semibold text-neutral-900 dark:text-white truncate mt-0.5">
+                  {currentUser?.firstName} {currentUser?.lastName}
+                </p>
+                {currentUser?.businessName && (
+                    <p className="text-xs text-[#C39B4C] dark:text-[#E5C170] truncate mt-0.5 font-medium">
+                      {currentUser.businessName}
+                    </p>
             )}
-            <p className="text-xs text-neutral-400 truncate mt-0.5">
-              {currentUser?.email || ""}
-            </p>
-            <div className="mt-2 flex items-center gap-1.5 flex-wrap">
-              {isReferredHost ? (
-                <span className="text-[10px] font-semibold tracking-wider text-emerald-400 bg-emerald-500/15 border border-emerald-500/30 px-2 py-0.5 rounded-full flex items-center gap-1">
-                  <Sparkles className="size-2.5" />
-                  Referred Host
-                </span>
-              ) : isPartner ? (
-                <span className="text-[10px] font-semibold uppercase tracking-wider text-sky-300 bg-sky-500/15 border border-sky-500/30 px-2 py-0.5 rounded-full">
-                  {roleName}
-                </span>
-              ) : (
-                <span className="text-[10px] font-semibold uppercase tracking-wider text-primary bg-primary/15 border border-primary/30 px-2 py-0.5 rounded-full">
-                  {roleName}
-                </span>
+                      <p className="text-xs text-neutral-500 dark:text-neutral-400 truncate mt-0.5">
+                        {currentUser?.email || ""}
+                      </p>
+                      <div className="mt-2 flex items-center gap-1.5 flex-wrap">
+                        {isReferredHost ? (
+                            <span className="text-[10px] font-semibold tracking-wider text-emerald-700 dark:text-emerald-300 bg-emerald-500/10 dark:bg-emerald-500/15 border border-emerald-500/25 dark:border-emerald-500/30 px-2 py-0.5 rounded-full flex items-center gap-1">
+                              <Sparkles className="size-2.5" />
+                              Referred Host
+                            </span>
+                            ) : isPartner ? (
+                              <span className="text-[10px] font-semibold uppercase tracking-wider text-sky-700 dark:text-sky-300 bg-sky-500/10 dark:bg-sky-500/15 border border-sky-500/25 dark:border-sky-500/30 px-2 py-0.5 rounded-full">
+                                {roleName}
+                              </span>
+                              ) : (
+                                <span className="text-[10px] font-semibold uppercase tracking-wider text-[#8C6B28] dark:text-primary bg-[#C39B4C]/10 dark:bg-primary/15 border border-[#C39B4C]/25 dark:border-primary/30 px-2 py-0.5 rounded-full">
+                                  {roleName}
+                                </span>
               )}
-              {currentUser?.hasActiveSubscription && (
-                <span className="text-[10px] font-medium text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 px-2 py-0.5 rounded-full">
-                  Active
-                </span>
+                                {currentUser?.hasActiveSubscription && (
+                                    <span className="text-[10px] font-medium text-emerald-700 dark:text-emerald-400 bg-emerald-500/10 border border-emerald-500/25 dark:border-emerald-500/20 px-2 py-0.5 rounded-full">
+                                      Active
+                                    </span>
               )}
-            </div>
+                                  </div>
           </div>
 
-          <DropdownMenuSeparator className="bg-neutral-800 my-1" />
+                              <DropdownMenuSeparator className="bg-neutral-200 dark:bg-neutral-800 my-1" />
 
-          {/* Role Dashboard Link */}
-          <DropdownMenuItem asChild>
-            <Link
-              href={dashboardUrl}
-              onClick={() => setIsOpen(false)}
-              className="flex items-center gap-2.5 px-3 py-2 cursor-pointer rounded-lg text-sm text-neutral-200 hover:text-white hover:bg-neutral-800 transition-colors"
-            >
-              <LayoutDashboard className="size-4 text-primary" />
-              <span>Dashboard</span>
-            </Link>
-          </DropdownMenuItem>
+                              {/* Role Dashboard Link */}
+                              <DropdownMenuItem asChild>
+                                <Link
+                                  href={dashboardUrl}
+                                  onClick={() => setIsOpen(false)}
+                                  className="flex items-center gap-2.5 px-3 py-2 cursor-pointer rounded-lg text-sm text-neutral-700 dark:text-neutral-200 hover:text-neutral-900 dark:hover:text-white hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors"
+                                >
+                                  <LayoutDashboard className="size-4 text-[#C39B4C] dark:text-primary" />
+                                  <span>Dashboard</span>
+                                </Link>
+                              </DropdownMenuItem>
 
-          {/* Profile Link */}
-          <DropdownMenuItem asChild>
-            <Link
-              href="/profile"
-              onClick={() => setIsOpen(false)}
-              className="flex items-center gap-2.5 px-3 py-2 cursor-pointer rounded-lg text-sm text-neutral-200 hover:text-white hover:bg-neutral-800 transition-colors"
-            >
-              <User className="size-4 text-neutral-400" />
-              <span>Profile</span>
-            </Link>
-          </DropdownMenuItem>
+                              {/* Profile Link */}
+                              <DropdownMenuItem asChild>
+                                <Link
+                                  href="/profile"
+                                  onClick={() => setIsOpen(false)}
+                                  className="flex items-center gap-2.5 px-3 py-2 cursor-pointer rounded-lg text-sm text-neutral-700 dark:text-neutral-200 hover:text-neutral-900 dark:hover:text-white hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors"
+                                >
+                                  <User className="size-4 text-neutral-500 dark:text-neutral-400" />
+                                  <span>Profile</span>
+                                </Link>
+                              </DropdownMenuItem>
 
-          {/* Billing / Pricing */}
-          <DropdownMenuItem asChild>
-            <Link
-              href="/login"
-              onClick={() => setIsOpen(false)}
-              className="flex items-center gap-2.5 px-3 py-2 cursor-pointer rounded-lg text-sm text-neutral-200 hover:text-white hover:bg-neutral-800 transition-colors"
-            >
-              <LogIn className="size-4 text-neutral-400" />
-              <span>Login</span>
-            </Link>
-          </DropdownMenuItem>
+                              {/* Billing / Pricing */}
+                              <DropdownMenuItem asChild>
+                                <Link
+                                  href="/login"
+                                  onClick={() => setIsOpen(false)}
+                                  className="flex items-center gap-2.5 px-3 py-2 cursor-pointer rounded-lg text-sm text-neutral-700 dark:text-neutral-200 hover:text-neutral-900 dark:hover:text-white hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors"
+                                >
+                                  <LogIn className="size-4 text-neutral-500 dark:text-neutral-400" />
+                                  <span>Login</span>
+                                </Link>
+                              </DropdownMenuItem>
 
-          <DropdownMenuSeparator className="bg-neutral-800 my-2" />
+                              <DropdownMenuSeparator className="bg-neutral-200 dark:bg-neutral-800 my-2" />
 
-          {/* Demonstration User Switcher Component */}
-          <div className="bg-neutral-950/60 rounded-xl border border-neutral-800/80 p-1 mb-1">
-            <DemoUserSwitcher onSelectUser={() => setIsOpen(false)} />
-          </div>
+                              {/* Demonstration User Switcher Component */}
+                                <div className="bg-neutral-50 dark:bg-neutral-950/60 rounded-xl border border-neutral-200/80 dark:border-neutral-800/80 p-1 mb-1">
+                                  <DemoUserSwitcher onSelectUser={() => setIsOpen(false)} />
+                                </div>
 
-          <DropdownMenuSeparator className="bg-neutral-800 my-1" />
+                                <DropdownMenuSeparator className="bg-neutral-200 dark:bg-neutral-800 my-1" />
 
-          {/* Log Out */}
-          <DropdownMenuItem
-            onClick={onLogout}
-            className="flex items-center gap-2.5 px-3 py-2 cursor-pointer rounded-lg text-sm text-red-400 hover:text-red-300 hover:bg-red-500/10 transition-colors"
-          >
-            <LogOut className="size-4 text-red-400" />
-            <span>Log out</span>
-          </DropdownMenuItem>
-        </DropdownMenuContent>
-      </DropdownMenu>
-    </div>
-  );
+                                {/* Log Out */}
+                                <DropdownMenuItem
+                                  onClick={onLogout}
+                                  className="flex items-center gap-2.5 px-3 py-2 cursor-pointer rounded-lg text-sm text-red-600 dark:text-red-400 hover:text-red-700 dark:hover:text-red-300 hover:bg-red-50 dark:hover:bg-red-500/10 transition-colors"
+                                >
+                                  <LogOut className="size-4 text-red-600 dark:text-red-400" />
+                                  <span>Log out</span>
+                                </DropdownMenuItem>
+                              </DropdownMenuContent>
+                            </DropdownMenu>
+                          </div>
+                        );
 };
 
-export default Account;
+                        export default Account;

@@ -110,10 +110,10 @@ export const DemoUserSwitcher: React.FC<DemoUserSwitcherProps> = ({ onSelectUser
     <div className="py-1 px-1 font-work-sans">
       {/* Header */}
       <div className="flex items-center justify-between px-2 py-1 mb-1 text-xs">
-        <span className="font-semibold text-neutral-600 dark:text-neutral-300 text-[11px] tracking-wide uppercase">
+        <span className="font-semibold text-neutral-500 dark:text-neutral-400 text-[11px] tracking-wide uppercase">
           Demo Switcher
         </span>
-        <span className="text-[10px] font-medium text-neutral-600 dark:text-neutral-400 bg-neutral-100 dark:bg-neutral-800 px-1.5 py-0.5 rounded border border-neutral-200 dark:border-neutral-700/60">
+        <span className="text-[10px] font-medium text-neutral-600 dark:text-neutral-400 bg-neutral-200/60 dark:bg-neutral-800/80 px-1.5 py-0.5 rounded border border-neutral-300/60 dark:border-neutral-700/60">
           Click to switch
         </span>
       </div>
@@ -130,16 +130,16 @@ export const DemoUserSwitcher: React.FC<DemoUserSwitcherProps> = ({ onSelectUser
               type="button"
               onClick={() => handleSwitchUser(user)}
               className={`w-full text-left p-2 rounded-xl transition-all cursor-pointer flex items-center justify-between group ${isSelected
-                  ? "bg-[#C39B4C]/10 dark:bg-neutral-800 border border-[#C39B4C]/50 shadow-xs"
-                  : "hover:bg-neutral-100 dark:hover:bg-neutral-800/60 border border-transparent"
+                  ? "bg-[#C39B4C]/10 dark:bg-[#C39B4C]/15 border border-[#C39B4C]/40 dark:border-[#C39B4C]/50 shadow-xs"
+                  : "hover:bg-neutral-200/60 dark:hover:bg-neutral-800/70 border border-transparent"
                 }`}
             >
               <div className="flex items-center gap-2.5 min-w-0">
                 {/* User Avatar Circle */}
                 <div
                   className={`size-7 rounded-full flex items-center justify-center text-xs font-bold shrink-0 ${isSelected
-                      ? "bg-[#C39B4C]/20 dark:bg-[#C39B4C]/25 text-[#8C6B28] dark:text-[#E5C170] border border-[#C39B4C]/50"
-                      : "bg-neutral-200/80 dark:bg-neutral-700/80 text-neutral-700 dark:text-neutral-300 group-hover:bg-neutral-300/80 dark:group-hover:bg-neutral-700"
+                      ? "bg-[#C39B4C]/20 dark:bg-[#C39B4C]/25 text-[#8C6B28] dark:text-[#E5C170] border border-[#C39B4C]/40 dark:border-[#C39B4C]/50"
+                      : "bg-neutral-200 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-200 border border-neutral-300/70 dark:border-neutral-700/80 group-hover:bg-neutral-300/80 dark:group-hover:bg-neutral-700"
                     }`}
                 >
                   {user.firstName[0]}
@@ -149,7 +149,7 @@ export const DemoUserSwitcher: React.FC<DemoUserSwitcherProps> = ({ onSelectUser
                 {/* User Info */}
                 <div className="min-w-0">
                   <div className="flex items-center gap-1.5 flex-wrap">
-                    <p className="text-xs font-semibold text-neutral-900 dark:text-white truncate group-hover:text-primary transition-colors">
+                    <p className="text-xs font-semibold text-neutral-900 dark:text-white truncate group-hover:text-[#C39B4C] dark:group-hover:text-[#E5C170] transition-colors">
                       {user.firstName} {user.lastName}
                     </p>
                     {getRoleBadge(user)}
@@ -171,7 +171,7 @@ export const DemoUserSwitcher: React.FC<DemoUserSwitcherProps> = ({ onSelectUser
               {/* Status / Selection Indicator */}
               <div className="shrink-0 ml-2">
                 {isSelected ? (
-                  <div className="size-5 rounded-full bg-emerald-500/20 text-emerald-600 dark:text-emerald-400 flex items-center justify-center border border-emerald-500/40">
+                  <div className="size-5 rounded-full bg-emerald-500/15 dark:bg-emerald-500/20 text-emerald-600 dark:text-emerald-400 flex items-center justify-center border border-emerald-500/30 dark:border-emerald-500/40">
                     <Check className="size-3 stroke-[3]" />
                   </div>
                 ) : (

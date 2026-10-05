@@ -105,10 +105,10 @@ export const MobileMenu = () => {
 
       <SheetContent
         side="left"
-        className="w-[320px] sm:w-[380px] bg-neutral-900 border-r border-neutral-800 text-white flex flex-col p-0 font-work-sans"
+        className="w-[320px] sm:w-[380px] bg-white dark:bg-neutral-900 border-r border-neutral-200 dark:border-neutral-800 text-neutral-900 dark:text-white flex flex-col p-0 font-work-sans"
       >
         {/* Header with Logo */}
-        <SheetHeader className="p-4 sm:p-5 border-b border-neutral-800/80">
+        <SheetHeader className="p-4 sm:p-5 border-b border-neutral-200/80 dark:border-neutral-800/80">
           <SheetTitle>
             <Link href="/" onClick={handleLinkClick} className="inline-flex outline-none">
               <Logo />
@@ -122,7 +122,7 @@ export const MobileMenu = () => {
           {!isLoading && isAuthenticated && token ? (
             <div className="space-y-3">
               {/* User Profile Card */}
-              <div className="p-3 rounded-xl bg-neutral-800/70 border border-neutral-700/60 shadow-xs">
+              <div className="p-3 rounded-xl bg-neutral-50 dark:bg-neutral-800/70 border border-neutral-200/80 dark:border-neutral-700/60 shadow-xs">
                 <div className="flex items-center gap-3">
                   <Avatar className="text-secondary w-10 h-10 border border-[#B89047]/30">
                     <AvatarFallback className="bg-primary/20 text-primary font-bold text-sm">
@@ -130,20 +130,20 @@ export const MobileMenu = () => {
                     </AvatarFallback>
                   </Avatar>
                   <div className="min-w-0 flex-1">
-                    <p className="text-sm font-semibold text-white truncate">
+                    <p className="text-sm font-semibold text-neutral-900 dark:text-white truncate">
                       {currentUser?.firstName} {currentUser?.lastName}
                     </p>
-                    <p className="text-[11px] text-neutral-400 truncate">
+                    <p className="text-[11px] text-neutral-500 dark:text-neutral-400 truncate">
                       {currentUser?.email}
                     </p>
                     <div className="mt-1 flex items-center gap-1.5 flex-wrap">
                       {isReferredHost ? (
-                        <span className="text-[10px] font-semibold tracking-wider text-emerald-400 bg-emerald-500/15 border border-emerald-500/30 px-2 py-0.5 rounded-full flex items-center gap-1">
+                        <span className="text-[10px] font-semibold tracking-wider text-emerald-700 dark:text-emerald-400 bg-emerald-500/10 dark:bg-emerald-500/15 border border-emerald-500/25 dark:border-emerald-500/30 px-2 py-0.5 rounded-full flex items-center gap-1">
                           <Sparkles className="size-2.5" />
                           Referred
                         </span>
                       ) : (
-                        <span className="text-[10px] font-semibold uppercase tracking-wider text-primary bg-primary/15 border border-primary/30 px-2 py-0.5 rounded-full">
+                        <span className="text-[10px] font-semibold uppercase tracking-wider text-[#8C6B28] dark:text-primary bg-[#C39B4C]/10 dark:bg-primary/15 border border-[#C39B4C]/25 dark:border-primary/30 px-2 py-0.5 rounded-full">
                           {roleName}
                         </span>
                       )}
@@ -167,11 +167,11 @@ export const MobileMenu = () => {
                 </div>
 
                 {/* Quick Account Links */}
-                <div className="mt-3 pt-2.5 border-t border-neutral-700/50 grid grid-cols-3 gap-1 text-center">
+                <div className="mt-3 pt-2.5 border-t border-neutral-200/80 dark:border-neutral-700/50 grid grid-cols-3 gap-1 text-center">
                   <Link
                     href={dashboardUrl}
                     onClick={handleLinkClick}
-                    className="flex flex-col items-center gap-1 p-1.5 rounded-lg text-[11px] text-neutral-300 hover:text-white hover:bg-neutral-700/50 transition-colors"
+                    className="flex flex-col items-center gap-1 p-1.5 rounded-lg text-[11px] text-neutral-700 dark:text-neutral-300 hover:text-neutral-900 dark:hover:text-white hover:bg-neutral-200/50 dark:hover:bg-neutral-700/50 transition-colors"
                   >
                     <LayoutDashboard className="size-3.5 text-primary" />
                     <span>Dashboard</span>
@@ -179,17 +179,17 @@ export const MobileMenu = () => {
                   <Link
                     href="/profile"
                     onClick={handleLinkClick}
-                    className="flex flex-col items-center gap-1 p-1.5 rounded-lg text-[11px] text-neutral-300 hover:text-white hover:bg-neutral-700/50 transition-colors"
+                    className="flex flex-col items-center gap-1 p-1.5 rounded-lg text-[11px] text-neutral-700 dark:text-neutral-300 hover:text-neutral-900 dark:hover:text-white hover:bg-neutral-200/50 dark:hover:bg-neutral-700/50 transition-colors"
                   >
-                    <User className="size-3.5 text-neutral-400" />
+                    <User className="size-3.5 text-neutral-500 dark:text-neutral-400" />
                     <span>Profile</span>
                   </Link>
                   <Link
                     href="/#pricing"
                     onClick={handleLinkClick}
-                    className="flex flex-col items-center gap-1 p-1.5 rounded-lg text-[11px] text-neutral-300 hover:text-white hover:bg-neutral-700/50 transition-colors"
+                    className="flex flex-col items-center gap-1 p-1.5 rounded-lg text-[11px] text-neutral-700 dark:text-neutral-300 hover:text-neutral-900 dark:hover:text-white hover:bg-neutral-200/50 dark:hover:bg-neutral-700/50 transition-colors"
                   >
-                    <CreditCard className="size-3.5 text-neutral-400" />
+                    <CreditCard className="size-3.5 text-neutral-500 dark:text-neutral-400" />
                     <span>Pricing</span>
                   </Link>
                 </div>
@@ -200,17 +200,17 @@ export const MobileMenu = () => {
                 <CollapsibleTrigger asChild>
                   <button
                     type="button"
-                    className="flex items-center justify-between w-full px-3 py-2 text-xs font-semibold text-neutral-300 uppercase tracking-wider hover:text-white bg-neutral-800/60 hover:bg-neutral-800 rounded-lg transition-colors cursor-pointer border border-neutral-700/50"
+                    className="flex items-center justify-between w-full px-3 py-2 text-xs font-semibold text-neutral-700 dark:text-neutral-300 uppercase tracking-wider hover:text-neutral-900 dark:hover:text-white bg-neutral-100 dark:bg-neutral-800/60 hover:bg-neutral-200/60 dark:hover:bg-neutral-800 rounded-lg transition-colors cursor-pointer border border-neutral-200 dark:border-neutral-700/50"
                   >
                     <div className="flex items-center gap-2">
-                      <Sparkles className="size-3.5 text-[#E5C170]" />
+                      <Sparkles className="size-3.5 text-[#C39B4C] dark:text-[#E5C170]" />
                       <span>Account Switcher</span>
                     </div>
                     <ChevronDown className="size-3.5 text-neutral-400" />
                   </button>
                 </CollapsibleTrigger>
                 <CollapsibleContent className="pt-2">
-                  <div className="bg-neutral-950/80 rounded-xl border border-neutral-800/80 p-1">
+                  <div className="bg-neutral-50 dark:bg-neutral-950/80 rounded-xl border border-neutral-200/80 dark:border-neutral-800/80 p-1">
                     <DemoUserSwitcher onSelectUser={() => setOpen(false)} />
                   </div>
                 </CollapsibleContent>
@@ -219,8 +219,8 @@ export const MobileMenu = () => {
           ) : (
             /* Unauthenticated View with Auth Buttons + Demo Switcher */
             <div className="space-y-3">
-              <div className="p-3 rounded-xl bg-neutral-800/50 border border-neutral-700/60 flex flex-col gap-2">
-                <p className="text-xs text-neutral-400">Join InviteOly to manage luxury guest lists & RSVPs</p>
+              <div className="p-3 rounded-xl bg-neutral-50 dark:bg-neutral-800/50 border border-neutral-200/80 dark:border-neutral-700/60 flex flex-col gap-2">
+                <p className="text-xs text-neutral-500 dark:text-neutral-400">Join InviteOly to manage luxury guest lists &amp; RSVPs</p>
                 <NavbarAuthButtons onItemClick={handleLinkClick} className="w-full justify-center" />
               </div>
 
@@ -229,17 +229,17 @@ export const MobileMenu = () => {
                 <CollapsibleTrigger asChild>
                   <button
                     type="button"
-                    className="flex items-center justify-between w-full px-3 py-2 text-xs font-semibold text-neutral-300 uppercase tracking-wider hover:text-white bg-neutral-800/60 hover:bg-neutral-800 rounded-lg transition-colors cursor-pointer border border-neutral-700/50"
+                    className="flex items-center justify-between w-full px-3 py-2 text-xs font-semibold text-neutral-700 dark:text-neutral-300 uppercase tracking-wider hover:text-neutral-900 dark:hover:text-white bg-neutral-100 dark:bg-neutral-800/60 hover:bg-neutral-200/60 dark:hover:bg-neutral-800 rounded-lg transition-colors cursor-pointer border border-neutral-200 dark:border-neutral-700/50"
                   >
                     <div className="flex items-center gap-2">
-                      <Sparkles className="size-3.5 text-[#E5C170]" />
+                      <Sparkles className="size-3.5 text-[#C39B4C] dark:text-[#E5C170]" />
                       <span>Demo Account Switcher</span>
                     </div>
                     <ChevronDown className="size-3.5 text-neutral-400" />
                   </button>
                 </CollapsibleTrigger>
                 <CollapsibleContent className="pt-2">
-                  <div className="bg-neutral-950/80 rounded-xl border border-neutral-800/80 p-1">
+                  <div className="bg-neutral-50 dark:bg-neutral-950/80 rounded-xl border border-neutral-200/80 dark:border-neutral-800/80 p-1">
                     <DemoUserSwitcher onSelectUser={() => setOpen(false)} />
                   </div>
                 </CollapsibleContent>
@@ -248,8 +248,8 @@ export const MobileMenu = () => {
           )}
 
           {/* Navigation Links */}
-          <div className="pt-2 border-t border-neutral-800/80 space-y-1">
-            <p className="px-3 text-[11px] font-semibold text-neutral-400 uppercase tracking-wider mb-1">
+          <div className="pt-2 border-t border-neutral-200/80 dark:border-neutral-800/80 space-y-1">
+            <p className="px-3 text-[11px] font-semibold text-neutral-500 dark:text-neutral-400 uppercase tracking-wider mb-1">
               Navigation
             </p>
             {primaryNavItems.map((item) => (
@@ -262,7 +262,7 @@ export const MobileMenu = () => {
                     <CollapsibleTrigger asChild>
                       <Button
                         variant="ghost"
-                        className="w-full text-sm justify-between h-auto !px-3 py-2 font-medium text-left text-neutral-200 hover:text-white hover:bg-neutral-800 rounded-lg"
+                        className="w-full text-sm justify-between h-auto !px-3 py-2 font-medium text-left text-neutral-700 dark:text-neutral-200 hover:text-neutral-900 dark:hover:text-white hover:bg-neutral-100 dark:hover:bg-neutral-800 rounded-lg"
                       >
                         {item.label}
                         <ChevronDown
@@ -277,7 +277,7 @@ export const MobileMenu = () => {
                           <button
                             key={child.label}
                             onClick={onLogout}
-                            className="block w-full text-left py-2 px-3 text-xs text-neutral-400 hover:text-white hover:bg-neutral-800 rounded-md transition-colors"
+                            className="block w-full text-left py-2 px-3 text-xs text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white hover:bg-neutral-100 dark:hover:bg-neutral-800 rounded-md transition-colors"
                           >
                             {child.label}
                           </button>
@@ -286,7 +286,7 @@ export const MobileMenu = () => {
                             key={child.label}
                             href={child.href || "/"}
                             onClick={handleLinkClick}
-                            className="block py-2 px-3 text-xs text-neutral-400 hover:text-white hover:bg-neutral-800 rounded-md transition-colors"
+                            className="block py-2 px-3 text-xs text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white hover:bg-neutral-100 dark:hover:bg-neutral-800 rounded-md transition-colors"
                           >
                             {child.label}
                           </Link>
@@ -298,7 +298,7 @@ export const MobileMenu = () => {
                   <Link
                     href={item?.href || "/"}
                     onClick={handleLinkClick}
-                    className="block py-2 px-3 text-sm font-medium text-neutral-200 hover:text-white hover:bg-neutral-800 rounded-lg transition-colors"
+                    className="block py-2 px-3 text-sm font-medium text-neutral-700 dark:text-neutral-200 hover:text-neutral-900 dark:hover:text-white hover:bg-neutral-100 dark:hover:bg-neutral-800 rounded-lg transition-colors"
                   >
                     {item?.label}
                   </Link>
@@ -309,13 +309,13 @@ export const MobileMenu = () => {
 
           {/* Log Out Button for Authenticated Users */}
           {isAuthenticated && token && (
-            <div className="pt-2 border-t border-neutral-800/80">
+            <div className="pt-2 border-t border-neutral-200/80 dark:border-neutral-800/80">
               <button
                 type="button"
                 onClick={onLogout}
-                className="w-full flex items-center gap-2.5 px-3 py-2.5 rounded-xl text-xs font-semibold text-red-400 hover:text-red-300 hover:bg-red-500/10 border border-red-500/20 transition-colors cursor-pointer"
+                className="w-full flex items-center gap-2.5 px-3 py-2.5 rounded-xl text-xs font-semibold text-red-600 dark:text-red-400 hover:text-red-700 dark:hover:text-red-300 hover:bg-red-50 dark:hover:bg-red-500/10 border border-red-200 dark:border-red-500/20 transition-colors cursor-pointer"
               >
-                <LogOut className="size-4 text-red-400" />
+                <LogOut className="size-4 text-red-600 dark:text-red-400" />
                 <span>Log out</span>
               </button>
             </div>
