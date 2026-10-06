@@ -42,23 +42,26 @@ export default function LoginForm() {
       </div>
 
       {/* Form */}
-      <form onSubmit={handleSubmit(onSubmit)} className="space-y-4 font-work-sans" noValidate>
+      <form onSubmit={handleSubmit(onSubmit)} className="space-y-4 font-work-sans" noValidate data-testid="login-form">
         {/* Email */}
         <div>
-          <label className="block text-xs font-medium text-foreground mb-1.5">
+          <label htmlFor="email" className="block text-xs font-medium text-foreground mb-1.5">
             Email
           </label>
           <div className="relative">
             <Mail className="absolute left-3.5 top-1/2 -translate-y-1/2 size-4 text-muted-foreground/70" />
             <input
+              id="email"
               type="email"
+              autoComplete="email"
               placeholder="name@example.com"
+              data-testid="email-input"
               {...register("email")}
               className="w-full h-10 sm:h-11 pl-10 pr-3 rounded-xl border border-input bg-card text-foreground text-xs sm:text-sm placeholder:text-muted-foreground/60 transition-colors focus-visible:outline-none focus-visible:border-primary focus-visible:ring-1 focus-visible:ring-primary/40 shadow-2xs"
             />
           </div>
           {errors.email && (
-            <p className="text-[11px] text-destructive mt-1 font-medium">
+            <p role="alert" data-testid="email-error" className="text-[11px] text-destructive mt-1 font-medium">
               {errors.email.message}
             </p>
           )}
@@ -67,11 +70,12 @@ export default function LoginForm() {
         {/* Password */}
         <div>
           <div className="flex items-center justify-between mb-1.5">
-            <label className="block text-xs font-medium text-foreground">
+            <label htmlFor="password" className="block text-xs font-medium text-foreground">
               Password
             </label>
             <Link
               href="/forgot-password"
+              data-testid="forgot-password-link"
               className="text-xs text-primary font-medium hover:underline transition-colors"
             >
               Forgot password?
@@ -81,13 +85,17 @@ export default function LoginForm() {
           <div className="relative">
             <Lock className="absolute left-3.5 top-1/2 -translate-y-1/2 size-4 text-muted-foreground/70" />
             <input
+              id="password"
               type={showPassword ? "text" : "password"}
+              autoComplete="current-password"
               placeholder="enter password"
+              data-testid="password-input"
               {...register("password")}
               className="w-full h-10 sm:h-11 pl-10 pr-10 rounded-xl border border-input bg-card text-foreground text-xs sm:text-sm placeholder:text-muted-foreground/60 transition-colors focus-visible:outline-none focus-visible:border-primary focus-visible:ring-1 focus-visible:ring-primary/40 shadow-2xs"
             />
             <button
               type="button"
+              data-testid="toggle-password-visibility"
               onClick={() => setShowPassword(!showPassword)}
               className="absolute right-3.5 top-1/2 -translate-y-1/2 text-muted-foreground/70 hover:text-foreground cursor-pointer transition-colors"
               aria-label={showPassword ? "Hide password" : "Show password"}
@@ -100,7 +108,7 @@ export default function LoginForm() {
             </button>
           </div>
           {errors.password && (
-            <p className="text-[11px] text-destructive mt-1 font-medium">
+            <p role="alert" data-testid="password-error" className="text-[11px] text-destructive mt-1 font-medium">
               {errors.password.message}
             </p>
           )}
@@ -109,6 +117,7 @@ export default function LoginForm() {
         {/* Login Button */}
         <button
           type="submit"
+          data-testid="login-submit-button"
           disabled={isLoading}
           className="w-full h-11 mt-3 rounded-xl bg-primary hover:bg-primary/90 text-white font-medium text-sm transition-all active:scale-[0.99] disabled:opacity-50 disabled:cursor-not-allowed shadow-xs cursor-pointer"
         >
@@ -129,6 +138,8 @@ export default function LoginForm() {
           Don&apos;t have an account?{" "}
           <Link
             href="/register"
+            data-testid="create-account-link"
+
             className="text-primary font-medium hover:underline transition-colors ml-1"
           >
             Create account
