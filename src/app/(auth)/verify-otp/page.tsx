@@ -1,5 +1,5 @@
-import React, { Suspense } from "react";
 import OtpStep from "@/features/auth/components/OtpStep";
+import { Suspense } from "react";
 
 export default function VerifyOtpPage() {
   return (

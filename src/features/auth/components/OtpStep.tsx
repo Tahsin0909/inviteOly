@@ -114,8 +114,8 @@ export default function OtpStep() {
   };
 
   return (
-    <div className="w-full max-w-sm mx-auto py-8 font-work-sans">
-      <form onSubmit={handleSubmit} noValidate>
+    <div className="w-full max-w-sm mx-auto py-8 font-work-sans" data-testid="otp-container" aria-label="OTP verification container">
+      <form onSubmit={handleSubmit} noValidate aria-label="OTP verification form" data-testid="otp-form">
         {/* Title */}
         <h1 className="text-xl sm:text-2xl font-bold font-space-grotesk text-foreground mb-4">
           Verification Code
@@ -129,8 +129,12 @@ export default function OtpStep() {
               ref={(el) => {
                 inputRefs.current[idx] = el;
               }}
+              id={`otp-input-${idx}`}
+              data-testid={`otp-input-${idx}`}
+              aria-label={`Digit ${idx + 1} of 6`}
               type="text"
               inputMode="numeric"
+              autoComplete={idx === 0 ? "one-time-code" : "off"}
               maxLength={1}
               value={digit}
               onChange={(e) => handleChange(idx, e.target.value)}
@@ -143,10 +147,10 @@ export default function OtpStep() {
         </div>
 
         {/* Subtitle description */}
-        <p className="mt-3 text-xs sm:text-sm text-muted-foreground leading-relaxed">
+        <p className="mt-3 text-xs sm:text-sm text-muted-foreground leading-relaxed" data-testid="otp-instructions">
           Enter the 6-digit code sent to your{" "}
           {activeEmail ? (
-            <span className="text-foreground font-medium">{activeEmail}</span>
+            <span className="text-foreground font-medium" data-testid="otp-email">{activeEmail}</span>
           ) : (
             "email"
           )}
@@ -156,6 +160,7 @@ export default function OtpStep() {
         {/* Verify Button */}
         <button
           type="submit"
+          data-testid="otp-submit-button"
           disabled={!isComplete || isLoading}
           className="w-full h-11 mt-6 rounded-xl bg-primary hover:bg-primary/90 text-white font-medium text-sm transition-all active:scale-[0.99] disabled:opacity-50 disabled:cursor-not-allowed shadow-xs cursor-pointer"
         >
@@ -168,6 +173,7 @@ export default function OtpStep() {
             Didn&apos;t receive the code?{" "}
             <button
               type="button"
+              data-testid="otp-resend-button"
               onClick={handleResend}
               disabled={resendTimer > 0 || isLoading}
               className="text-primary font-medium hover:underline disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer transition-colors ml-1"

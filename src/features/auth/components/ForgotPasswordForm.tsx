@@ -1,12 +1,11 @@
 "use client";
 
-import React from "react";
-import Link from "next/link";
-import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Mail } from "lucide-react";
+import Link from "next/link";
+import { useForm } from "react-hook-form";
+import { ForgotPasswordFormValues, forgotPasswordSchema } from "../auth.schema";
 import { useAuth } from "../hooks/useAuth";
-import { forgotPasswordSchema, ForgotPasswordFormValues } from "../auth.schema";
 
 export default function ForgotPasswordForm() {
   const { handleForgotPassword, isLoading } = useAuth();
@@ -27,7 +26,7 @@ export default function ForgotPasswordForm() {
   };
 
   return (
-    <div className="w-full max-w-md mx-auto py-8">
+    <div className="w-full max-w-md mx-auto py-8" data-testid="forgot-password-container" aria-label="Forgot password container">
       {/* Header */}
       <div className="text-center mb-7">
         <h1 className="text-2xl sm:text-[28px] font-bold font-space-grotesk text-foreground tracking-tight">
@@ -39,23 +38,32 @@ export default function ForgotPasswordForm() {
       </div>
 
       {/* Form */}
-      <form onSubmit={handleSubmit(onSubmit)} className="space-y-4 font-work-sans" noValidate>
+      <form
+        onSubmit={handleSubmit(onSubmit)}
+        className="space-y-4 font-work-sans"
+        noValidate
+        aria-label="Forgot password form"
+        data-testid="forgot-password-form"
+      >
         {/* Email */}
         <div>
-          <label className="block text-xs font-medium text-foreground mb-1.5">
+          <label htmlFor="forgot-email" className="block text-xs font-medium text-foreground mb-1.5">
             Email Address
           </label>
           <div className="relative">
             <Mail className="absolute left-3.5 top-1/2 -translate-y-1/2 size-4 text-muted-foreground/70" />
             <input
+              id="forgot-email"
               type="email"
               placeholder="name@example.com"
+              autoComplete="email"
+              data-testid="forgot-email-input"
               {...register("email")}
               className="w-full h-10 sm:h-11 pl-10 pr-3 rounded-xl border border-input bg-card text-foreground text-xs sm:text-sm placeholder:text-muted-foreground/60 transition-colors focus-visible:outline-none focus-visible:border-primary focus-visible:ring-1 focus-visible:ring-primary/40 shadow-2xs"
             />
           </div>
           {errors.email && (
-            <p className="text-[11px] text-destructive mt-1 font-medium">
+            <p role="alert" data-testid="forgot-email-error" className="text-[11px] text-destructive mt-1 font-medium">
               {errors.email.message}
             </p>
           )}
@@ -64,6 +72,7 @@ export default function ForgotPasswordForm() {
         {/* Submit Button */}
         <button
           type="submit"
+          data-testid="forgot-password-submit-button"
           disabled={isLoading}
           className="w-full h-11 mt-3 rounded-xl bg-primary hover:bg-primary/90 text-white font-medium text-sm transition-all active:scale-[0.99] disabled:opacity-50 disabled:cursor-not-allowed shadow-xs cursor-pointer"
         >
@@ -77,6 +86,7 @@ export default function ForgotPasswordForm() {
           Remember your password?{" "}
           <Link
             href="/login"
+            data-testid="back-to-login-link"
             className="text-primary font-medium hover:underline transition-colors ml-1"
           >
             Login
