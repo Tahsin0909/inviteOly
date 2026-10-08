@@ -46,7 +46,6 @@ import {
   setToken,
   setUser,
 } from "../store/auth.slice";
-import { currentToken, currentUser } from "@/features/user/data/user.data";
 
 export const useAuth = (): UseAuthReturn => {
   const dispatch = useDispatch();
@@ -76,8 +75,8 @@ export const useAuth = (): UseAuthReturn => {
     }
   );
 
-  const activeUser = user || profileData?.data || currentUser;
-  const activeToken = token || currentToken;
+  const activeUser = user || profileData?.data || null;
+  const activeToken = token || null;
   const profile = profileData?.data || activeUser || null;
 
   const isLoading =
@@ -92,7 +91,7 @@ export const useAuth = (): UseAuthReturn => {
     logoutLoading ||
     profileLoading;
 
-  // ---- SEND OTP ----
+  // ---- SEND OTP (LEGACY) ----
   const handleSendOtp = useCallback(
     async ({ email, type }: SendOtpCredentials) => {
       const toastId = toast.loading("Sending verification code...");
@@ -121,14 +120,26 @@ export const useAuth = (): UseAuthReturn => {
 
     const toastId = toast.loading("Resending verification code...");
     try {
-      await resendOtp({ email: targetEmail }).unwrap();
-      toast.success("A new verification code has been sent!", { id: toastId });
+      const resendType =
+        pendingFlow === "forgot-password" || pendingFlow === "forgot"
+          ? "forgot"
+          : "register";
+
+      const response = await resendOtp({
+        email: targetEmail,
+        type: resendType,
+      }).unwrap();
+
+      toast.success(
+        response?.message || "A new 6-digit verification code has been sent!",
+        { id: toastId }
+      );
     } catch (error) {
       const message = extractErrorMessage(error, "Failed to resend OTP");
       toast.error(message, { id: toastId });
       throw new Error(message);
     }
-  }, [resendOtp, pendingEmail, email]);
+  }, [resendOtp, pendingEmail, email, pendingFlow]);
 
   // ---- REGISTER ----
   const handleRegister = useCallback(
@@ -136,10 +147,10 @@ export const useAuth = (): UseAuthReturn => {
       const toastId = toast.loading("Creating your account...");
       try {
         const response = await register(credentials).unwrap();
-        const targetEmail =
-          credentials.role === "PARTNER"
-            ? credentials.businessEmail
-            : credentials.email;
+        const targetEmail: string =
+          (credentials.role === "PARTNER"
+            ? credentials.email || credentials.businessEmail
+            : credentials.email) || "";
 
         dispatch(
           setPendingAuth({
@@ -150,7 +161,8 @@ export const useAuth = (): UseAuthReturn => {
         dispatch(setEmail(targetEmail));
 
         toast.success(
-          response?.message || "Account created! Please verify your email.",
+          response?.message ||
+            "Registration successful. Please check your email for the 6-digit verification code.",
           { id: toastId }
         );
         router.push(
@@ -171,27 +183,27 @@ export const useAuth = (): UseAuthReturn => {
       const toastId = toast.loading("Logging in...");
       try {
         const response = await login(credentials).unwrap();
-        const tokenStr: string = response?.data?.token;
+        const tokenStr: string | undefined =
+          response?.data?.token || response?.data?.accessToken;
 
         if (!tokenStr) {
           throw new Error("No authentication token received from server");
         }
 
         const decodedUser = decodeToken(tokenStr);
-        if (!decodedUser) {
-          throw new Error("Failed to decode user from token");
-        }
+        const userObj = (response?.data?.user || decodedUser) as IUser;
 
         dispatch(setToken(tokenStr));
-        dispatch(setUser(decodedUser as IUser));
+        if (userObj) {
+          dispatch(setUser(userObj));
+        }
         dispatch(clearPendingAuth());
 
         saveToken(tokenStr);
-        toast.success("Logged in successfully!", { id: toastId });
-        const userObj = decodedUser as unknown as IUser;
+        toast.success(response?.message || "Logged in successfully!", { id: toastId });
         const redirectPath = getRoleRedirectPath(
-          userObj.role,
-          userObj.hasActiveSubscription
+          userObj?.role,
+          userObj?.hasActiveSubscription
         );
         router.push(redirectPath);
       } catch (error) {
@@ -208,14 +220,18 @@ export const useAuth = (): UseAuthReturn => {
     async (credentials: ForgotPasswordCredentials) => {
       const toastId = toast.loading("Sending recovery code...");
       try {
-        await forgotPassword(credentials).unwrap();
+        const response = await forgotPassword(credentials).unwrap();
         dispatch(
           setPendingAuth({
             email: credentials.email,
             flow: "forgot-password",
           })
         );
-        toast.success("Verification code sent to your email!", { id: toastId });
+        toast.success(
+          response?.message ||
+            "A 6-digit password reset code has been sent to your email address.",
+          { id: toastId }
+        );
         router.push(
           `/verify-otp?email=${encodeURIComponent(
             credentials.email
@@ -238,24 +254,28 @@ export const useAuth = (): UseAuthReturn => {
     async ({ email: targetEmail, otp, type }: VerifyOtpCredentials) => {
       const toastId = toast.loading("Verifying code...");
       try {
+        const currentFlow =
+          type ||
+          (pendingFlow as "register" | "forgot-password" | "forgot" | "login") ||
+          "register";
+
         const response = await verifyOtp({
           email: targetEmail,
-          otp,
-          type:
-            type ||
-            (pendingFlow as "register" | "forgot-password" | "login") ||
-            "register",
+          otp: String(otp),
+          type: currentFlow,
         }).unwrap();
 
-        const currentFlow = type || pendingFlow || "register";
-
-        if (currentFlow === "forgot-password") {
-          if (response?.data?.resetToken) {
-            dispatch(setResetToken(response.data.resetToken));
+        if (currentFlow === "forgot-password" || currentFlow === "forgot") {
+          const resetTokenStr =
+            response?.data?.resetToken || response?.data?.token;
+          if (resetTokenStr) {
+            dispatch(setResetToken(resetTokenStr));
           }
-          toast.success("Code verified! Set your new password.", {
-            id: toastId,
-          });
+          toast.success(
+            response?.message ||
+              "Verification code is valid. You may now enter your new password.",
+            { id: toastId }
+          );
           router.push(
             `/reset-password?email=${encodeURIComponent(
               targetEmail
@@ -264,20 +284,30 @@ export const useAuth = (): UseAuthReturn => {
         } else {
           // Registration or standard login verification
           let redirectPath = "/login";
-          const tokenStr = response?.data?.token;
+          const tokenStr =
+            response?.data?.token || response?.data?.accessToken;
+          const returnedUser = response?.data?.user;
+
           if (tokenStr) {
-            const decodedUser = decodeToken(tokenStr);
             dispatch(setToken(tokenStr));
-            const userObj = decodedUser as unknown as IUser;
-            dispatch(setUser(userObj));
-            redirectPath = getRoleRedirectPath(
-              userObj.role,
-              userObj.hasActiveSubscription
-            );
             saveToken(tokenStr);
+
+            const decodedUser = decodeToken(tokenStr);
+            const userObj =
+              returnedUser || (decodedUser as unknown as IUser);
+            if (userObj) {
+              dispatch(setUser(userObj as IUser));
+              redirectPath = getRoleRedirectPath(
+                userObj.role,
+                userObj.hasActiveSubscription
+              );
+            }
           }
           dispatch(clearPendingAuth());
-          toast.success("Account verified successfully!", { id: toastId });
+          toast.success(
+            response?.message || "Email address verified successfully!",
+            { id: toastId }
+          );
           router.push(redirectPath);
         }
       } catch (error) {
@@ -292,13 +322,22 @@ export const useAuth = (): UseAuthReturn => {
   // ---- RESET PASSWORD ----
   const handleResetPassword = useCallback(
     async (credentials: ResetPasswordCredentials) => {
+      if (!credentials.email) {
+        toast.error("Email address not found. Please restart the password reset process.");
+        return;
+      }
       const toastId = toast.loading("Setting new password...");
       try {
-        await resetPassword(credentials).unwrap();
+        const response = await resetPassword({
+          email: credentials.email,
+          newPassword: credentials.newPassword || credentials.password,
+        }).unwrap();
         dispatch(clearPendingAuth());
-        toast.success("Password set successfully! Please log in.", {
-          id: toastId,
-        });
+        toast.success(
+          response?.message ||
+            "Password has been successfully updated. You can now log in with your new password.",
+          { id: toastId }
+        );
         router.push("/login");
       } catch (error) {
         const message = extractErrorMessage(error, "Failed to set password");

@@ -7,7 +7,6 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { Eye, EyeOff, Lock, Mail } from "lucide-react";
 import { useAuth } from "../hooks/useAuth";
 import { loginSchema, LoginFormValues } from "../auth.schema";
-import { DemoUserSwitcher } from "@/components/navbar/components/DemoUserSwitcher";
 
 export default function LoginForm() {
   const [showPassword, setShowPassword] = useState(false);
@@ -124,13 +123,6 @@ export default function LoginForm() {
           {isLoading ? "Logging in..." : "Login"}
         </button>
       </form>
-
-      {/* Quick Demo Login Switcher */}
-      <div className="mt-6 pt-5 border-t border-border/80">
-        <div className="bg-card/70 border border-border rounded-2xl p-2 shadow-2xs">
-          <DemoUserSwitcher />
-        </div>
-      </div>
 
       {/* Footer Navigation */}
       <div className="mt-6 text-center font-work-sans">

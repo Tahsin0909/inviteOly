@@ -6,15 +6,22 @@ import ForgotPasswordForm from "@/features/auth/components/ForgotPasswordForm";
 // Mocks
 // -----------------------------------------------------------------------------
 
+// Mock next/navigation router
+const mockPush = vi.fn();
+vi.mock("next/navigation", () => ({
+  useRouter: () => ({ push: mockPush }),
+  useSearchParams: () => ({ get: vi.fn() }),
+}));
+
 // Mock the authentication hook to monitor handleForgotPassword calls and loading state
 const mockHandleForgotPassword = vi.fn();
 let mockIsLoading = false;
 
 vi.mock("@/features/auth/hooks/useAuth", () => ({
-    useAuth: () => ({
-        handleForgotPassword: mockHandleForgotPassword,
-        isLoading: mockIsLoading,
-    }),
+  useAuth: () => ({
+    handleForgotPassword: mockHandleForgotPassword,
+    isLoading: mockIsLoading,
+  }),
 }));
 
 // -----------------------------------------------------------------------------

@@ -1,12 +1,19 @@
-import LoginForm from '@/features/auth/components/LoginForm';
-import React from 'react';
+import LoginForm from "@/features/auth/components/LoginForm";
+import { Suspense } from "react";
 
-const page = () => {
-    return (
-        <div className="w-full">
-            <LoginForm />
+export default function LoginPage() {
+  return (
+    <Suspense
+      fallback={
+        <div className="min-h-100 flex items-center justify-center text-xs text-muted-foreground">
+          Loading...
         </div>
-    );
-};
+      }
+    >
+      <div className="w-full">
+        <LoginForm />
+      </div>
+    </Suspense>
+  );
+}
 
-export default page;

@@ -36,7 +36,6 @@ import { getRoleRedirectPath } from "@/utils/roleRedirect";
 import { useNavbarMenu } from "../hooks/use-navbar-menu";
 import { Logo } from "./Logo";
 import { NavbarAuthButtons } from "./SignUpButton";
-import { DemoUserSwitcher } from "./DemoUserSwitcher";
 
 export const MobileMenu = () => {
   const { user, profile, isLoading, isAuthenticated, token, handleLogout } =
@@ -194,56 +193,14 @@ export const MobileMenu = () => {
                   </Link>
                 </div>
               </div>
-
-              {/* Collapsible Account Switcher */}
-              <Collapsible defaultOpen={true} className="w-full">
-                <CollapsibleTrigger asChild>
-                  <button
-                    type="button"
-                    className="flex items-center justify-between w-full px-3 py-2 text-xs font-semibold text-neutral-700 dark:text-neutral-300 uppercase tracking-wider hover:text-neutral-900 dark:hover:text-white bg-neutral-100 dark:bg-neutral-800/60 hover:bg-neutral-200/60 dark:hover:bg-neutral-800 rounded-lg transition-colors cursor-pointer border border-neutral-200 dark:border-neutral-700/50"
-                  >
-                    <div className="flex items-center gap-2">
-                      <Sparkles className="size-3.5 text-[#C39B4C] dark:text-[#E5C170]" />
-                      <span>Account Switcher</span>
-                    </div>
-                    <ChevronDown className="size-3.5 text-neutral-400" />
-                  </button>
-                </CollapsibleTrigger>
-                <CollapsibleContent className="pt-2">
-                  <div className="bg-neutral-50 dark:bg-neutral-950/80 rounded-xl border border-neutral-200/80 dark:border-neutral-800/80 p-1">
-                    <DemoUserSwitcher onSelectUser={() => setOpen(false)} />
-                  </div>
-                </CollapsibleContent>
-              </Collapsible>
             </div>
           ) : (
-            /* Unauthenticated View with Auth Buttons + Demo Switcher */
+            /* Unauthenticated View with Auth Buttons */
             <div className="space-y-3">
               <div className="p-3 rounded-xl bg-neutral-50 dark:bg-neutral-800/50 border border-neutral-200/80 dark:border-neutral-700/60 flex flex-col gap-2">
                 <p className="text-xs text-neutral-500 dark:text-neutral-400">Join InviteOly to manage luxury guest lists &amp; RSVPs</p>
                 <NavbarAuthButtons onItemClick={handleLinkClick} className="w-full justify-center" />
               </div>
-
-              {/* Demo Switcher for Unauthenticated Users */}
-              <Collapsible defaultOpen={true} className="w-full">
-                <CollapsibleTrigger asChild>
-                  <button
-                    type="button"
-                    className="flex items-center justify-between w-full px-3 py-2 text-xs font-semibold text-neutral-700 dark:text-neutral-300 uppercase tracking-wider hover:text-neutral-900 dark:hover:text-white bg-neutral-100 dark:bg-neutral-800/60 hover:bg-neutral-200/60 dark:hover:bg-neutral-800 rounded-lg transition-colors cursor-pointer border border-neutral-200 dark:border-neutral-700/50"
-                  >
-                    <div className="flex items-center gap-2">
-                      <Sparkles className="size-3.5 text-[#C39B4C] dark:text-[#E5C170]" />
-                      <span>Demo Account Switcher</span>
-                    </div>
-                    <ChevronDown className="size-3.5 text-neutral-400" />
-                  </button>
-                </CollapsibleTrigger>
-                <CollapsibleContent className="pt-2">
-                  <div className="bg-neutral-50 dark:bg-neutral-950/80 rounded-xl border border-neutral-200/80 dark:border-neutral-800/80 p-1">
-                    <DemoUserSwitcher onSelectUser={() => setOpen(false)} />
-                  </div>
-                </CollapsibleContent>
-              </Collapsible>
             </div>
           )}
 

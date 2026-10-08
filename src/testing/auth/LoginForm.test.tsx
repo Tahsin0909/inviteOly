@@ -17,11 +17,6 @@ vi.mock("@/features/auth/hooks/useAuth", () => ({
   }),
 }));
 
-// Mock DemoUserSwitcher so tests don't require the entire Redux Provider wrapper
-vi.mock("@/components/navbar/components/DemoUserSwitcher", () => ({
-  DemoUserSwitcher: () => <div data-testid="mock-demo-user-switcher">Demo User Switcher</div>,
-}));
-
 // -----------------------------------------------------------------------------
 // Test Suite: LoginForm
 // -----------------------------------------------------------------------------
@@ -87,16 +82,14 @@ describe("LoginForm", () => {
       );
     });
 
-    // Verifies that the submit button and mock switcher are in the document
-    it("renders the login submit button and demo switcher section", () => {
+    // Verifies that the submit button is in the document
+    it("renders the login submit button", () => {
       render(<LoginForm />);
 
       const submitButton = screen.getByTestId("login-submit-button");
       expect(submitButton).toBeInTheDocument();
       expect(submitButton).toHaveAttribute("type", "submit");
       expect(submitButton).toHaveTextContent("Login");
-
-      expect(screen.getByTestId("mock-demo-user-switcher")).toBeInTheDocument();
     });
   });
 

@@ -6,6 +6,7 @@ import Link from "next/link";
 import { useForm } from "react-hook-form";
 import { ForgotPasswordFormValues, forgotPasswordSchema } from "../auth.schema";
 import { useAuth } from "../hooks/useAuth";
+import { useRouter } from "next/navigation";
 
 export default function ForgotPasswordForm() {
   const { handleForgotPassword, isLoading } = useAuth();
@@ -20,7 +21,6 @@ export default function ForgotPasswordForm() {
       email: "",
     },
   });
-
   const onSubmit = async (values: ForgotPasswordFormValues) => {
     await handleForgotPassword(values);
   };

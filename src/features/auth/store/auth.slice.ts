@@ -26,7 +26,7 @@ const authSlice = createSlice({
       state,
       action: PayloadAction<{
         email: string;
-        flow?: "register" | "forgot-password" | "login" | null;
+        flow?: "register" | "forgot-password" | "forgot" | "login" | null;
       }>
     ) => {
       state.pendingEmail = action.payload.email;

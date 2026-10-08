@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useRef, useEffect } from "react";
-import { useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useAuth } from "../hooks/useAuth";
 
 export default function OtpStep() {
@@ -27,7 +27,7 @@ export default function OtpStep() {
   const [digits, setDigits] = useState<string[]>(["", "", "", "", "", ""]);
   const [resendTimer, setResendTimer] = useState<number>(60);
   const inputRefs = useRef<(HTMLInputElement | null)[]>([]);
-
+  const router = useRouter()
   // Countdown for resend
   useEffect(() => {
     if (resendTimer <= 0) return;

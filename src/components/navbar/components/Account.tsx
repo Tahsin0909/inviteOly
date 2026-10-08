@@ -20,7 +20,6 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
-import { DemoUserSwitcher } from "./DemoUserSwitcher";
 
 export const Account = () => {
   const { user, profile, handleLogout } = useAuth();
@@ -174,14 +173,7 @@ export const Account = () => {
                                 </Link>
                               </DropdownMenuItem>
 
-                              <DropdownMenuSeparator className="bg-neutral-200 dark:bg-neutral-800 my-2" />
-
-                              {/* Demonstration User Switcher Component */}
-                                <div className="bg-neutral-50 dark:bg-neutral-950/60 rounded-xl border border-neutral-200/80 dark:border-neutral-800/80 p-1 mb-1">
-                                  <DemoUserSwitcher onSelectUser={() => setIsOpen(false)} />
-                                </div>
-
-                                <DropdownMenuSeparator className="bg-neutral-200 dark:bg-neutral-800 my-1" />
+                              <DropdownMenuSeparator className="bg-neutral-200 dark:bg-neutral-800 my-1" />
 
                                 {/* Log Out */}
                                 <DropdownMenuItem

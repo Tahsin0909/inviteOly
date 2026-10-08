@@ -69,16 +69,38 @@ export const clearToken = (): void => {
   document.cookie = `${TOKEN_COOKIE_NAME}=; path=/; expires=Thu, 01 Jan 1970 00:00:00 UTC;`;
 };
 
-/**
- * Extract error message from API response
- */
 export const extractErrorMessage = (
   error: unknown,
   fallbackMessage: string = "An error occurred"
 ): string => {
-  return (
-    (error as { data?: { message?: string } })?.data?.message || fallbackMessage
-  );
+  if (!error) return fallbackMessage;
+
+  const errObj = error as {
+    data?: {
+      message?: string;
+      errorDetails?: Array<{ message?: string; path?: string }>;
+    };
+    message?: string;
+  };
+
+  if (
+    errObj.data?.errorDetails &&
+    Array.isArray(errObj.data.errorDetails) &&
+    errObj.data.errorDetails.length > 0
+  ) {
+    const detailMsg = errObj.data.errorDetails[0]?.message;
+    if (detailMsg) return detailMsg;
+  }
+
+  if (errObj.data?.message) {
+    return errObj.data.message;
+  }
+
+  if (errObj.message) {
+    return errObj.message;
+  }
+
+  return fallbackMessage;
 };
 
 /**

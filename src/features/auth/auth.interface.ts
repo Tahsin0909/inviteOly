@@ -14,12 +14,19 @@ export type TPartnerType =
   | "Planner / coordinator"
   | "Planner / Coordinator"
   | "Other"
+  | "venue"
+  | "catering"
+  | "photography"
+  | "dj/entertainment"
+  | "decor & floral"
+  | "planner/coordinator"
+  | "other"
   | string;
 
 export interface AuthState {
   email: string;
   pendingEmail?: string;
-  pendingFlow?: "register" | "forgot-password" | "login" | null;
+  pendingFlow?: "register" | "forgot-password" | "forgot" | "login" | null;
   resetToken?: string | null;
   currentStep: number;
   totalSteps: number;
@@ -29,18 +36,24 @@ export interface AuthState {
 
 export interface VerifyOtpData {
   token: string;
+  accessToken?: string;
   user?: IUser | null;
 }
 
 export interface SendOtpCredentials {
   email: string;
-  type?: "register" | "forgot-password" | "login";
+  type?: "register" | "forgot-password" | "forgot" | "login";
 }
 
 export interface VerifyOtpCredentials {
   email: string;
   otp: number | string;
-  type?: "register" | "forgot-password" | "login";
+  type?: "register" | "forgot-password" | "forgot" | "reset" | "login" | null;
+}
+
+export interface ResendOtpCredentials {
+  email: string;
+  type?: "register" | "forgot" | "reset" | "REGISTER" | "FORGOT" | "RESET" | string;
 }
 
 export interface RegisterHostCredentials {
@@ -48,19 +61,40 @@ export interface RegisterHostCredentials {
   lastName: string;
   email: string;
   password: string;
-  role: "HOST";
+  role?: "HOST";
+}
+
+export interface RegisterHostPayload {
+  firstName: string;
+  lastName: string;
+  email: string;
+  password: string;
 }
 
 export interface RegisterPartnerCredentials {
   firstName: string;
   lastName: string;
-  role: "PARTNER";
+  role?: "PARTNER";
   partnerType: string;
   businessName: string;
-  businessEmail: string;
+  email?: string;
+  businessEmail?: string;
   phone: string;
   website?: string;
+  address?: string;
   businessAddress?: string;
+  password: string;
+}
+
+export interface RegisterPartnerPayload {
+  firstName: string;
+  lastName: string;
+  partnerType: string;
+  businessName: string;
+  email: string;
+  phone: string;
+  website?: string;
+  address?: string;
   password: string;
 }
 
@@ -79,9 +113,14 @@ export interface ForgotPasswordCredentials {
 
 export interface ResetPasswordCredentials {
   email: string;
-  otp: number | string;
-  password: string;
+  newPassword?: string;
+  password?: string;
   confirmPassword?: string;
+  otp?: number | string;
+}
+
+export interface RefreshTokenCredentials {
+  token: string;
 }
 
 export interface UpdateProfileCredentials {
@@ -89,13 +128,41 @@ export interface UpdateProfileCredentials {
 }
 
 export interface AuthResponse {
-  data: {
-    token: string;
-    user?: IUser;
-    resetToken?: string;
-  };
-  message: string;
+  statusCode?: number;
   success?: boolean;
+  message: string;
+  data: {
+    accessToken?: string;
+    token?: string;
+    resetToken?: string;
+    user?: IUser;
+    id?: string;
+    firstName?: string;
+    lastName?: string;
+    name?: string;
+    email?: string;
+    role?: IRole | string;
+    partnerType?: string | null;
+    businessName?: string | null;
+    businessEmail?: string | null;
+    phone?: string | null;
+    website?: string | null;
+    address?: string | null;
+    businessAddress?: string | null;
+    isVerified?: boolean;
+    isEmailVerified?: boolean;
+    isActive?: boolean;
+    [key: string]: unknown;
+  } | null;
+}
+
+export interface RefreshTokenResponse {
+  statusCode?: number;
+  success?: boolean;
+  message: string;
+  data: {
+    accessToken: string;
+  };
 }
 
 export interface UseAuthReturn {
@@ -103,7 +170,7 @@ export interface UseAuthReturn {
   token: string | null;
   email: string | null;
   pendingEmail?: string;
-  pendingFlow?: "register" | "forgot-password" | "login" | null;
+  pendingFlow?: "register" | "forgot-password" | "forgot" | "login" | null;
   isLoading: boolean;
   isAuthenticated: boolean;
   profile: Partial<IUser> | null;

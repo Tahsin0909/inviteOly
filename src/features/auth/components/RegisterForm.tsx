@@ -1,19 +1,19 @@
 "use client";
 
-import React, { useState } from "react";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { ChevronDown, Eye, EyeOff, Lock, Mail, User } from "lucide-react";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { Eye, EyeOff, Lock, Mail, User, ChevronDown } from "lucide-react";
-import { useAuth } from "../hooks/useAuth";
-import {
-  hostRegisterSchema,
-  partnerRegisterSchema,
-  HostRegisterFormValues,
-  PartnerRegisterFormValues,
-} from "../auth.schema";
 import { TAuthRole, TPartnerType } from "../auth.interface";
+import {
+  HostRegisterFormValues,
+  hostRegisterSchema,
+  PartnerRegisterFormValues,
+  partnerRegisterSchema,
+} from "../auth.schema";
+import { useAuth } from "../hooks/useAuth";
 
 const PARTNER_OPTIONS: TPartnerType[] = [
   "Venue",
