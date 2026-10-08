@@ -11,10 +11,12 @@ export interface IUser {
   id: string;
   firstName: string;
   lastName: string;
+  name?: string;
   email: string;
   role: IRole;
   profileImage?: string | null;
-  phone?: string;
+  phone?: string | null;
+  address?: string | null;
 
   // Partner registration fields
   partnerType?: string | null;
@@ -34,8 +36,13 @@ export interface IUser {
   // Account & system flags
   isEmailVerified?: boolean;
   isActive?: boolean;
+  isVerified?: boolean;
+  status?: string;
   hasActiveSubscription?: boolean;
-  stripeCustomerId?: string;
+  stripeCustomerId?: string | null;
+  subscriptionStatus?: string | null;
+  subscriptionPlan?: string | null;
+  subscriptionExpiresAt?: string | null;
   token?: string;
   createdAt?: string;
   updatedAt?: string;
@@ -58,7 +65,22 @@ export interface IUser {
   referredByHostName?: string | null;
   referredByEmail?: string | null;
   referralCode?: string | null;
+  isPreferred?: boolean;
+  customRole?: string | null;
 }
+
+export interface IUpdateUserProfilePayload {
+  firstName: string;
+  lastName: string;
+  partnerType?: string | null;
+  businessName?: string | null;
+  email?: string;
+  phone?: string | null;
+  website?: string | null;
+  address?: string | null;
+  businessAddress?: string | null;
+}
+
 
 export type TCreateUser = {
   firstName: string;

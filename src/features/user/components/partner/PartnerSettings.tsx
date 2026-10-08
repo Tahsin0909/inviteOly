@@ -4,9 +4,13 @@ import React, { useState, useEffect } from "react";
 import { toast } from "sonner";
 import { cn } from "@/lib/utils";
 import { useAuth } from "@/features/auth/hooks/useAuth";
-import { IUser } from "../../user.interface";
+import { useUser } from "../../hooks/useUser";
+import { IUser, IUpdateUserProfilePayload } from "../../user.interface";
 import { PartnerAvatarHeader } from "./PartnerAvatarHeader";
-import { PartnerContactInfo, PartnerContactInfoFormData } from "./PartnerContactInfo";
+import {
+  PartnerContactInfo,
+  PartnerContactInfoFormData,
+} from "./PartnerContactInfo";
 import { PartnerBankInfo, PartnerBankInfoFormData } from "./PartnerBankInfo";
 import { PartnerSecurity } from "./PartnerSecurity";
 import { PartnerDangerZone } from "./PartnerDangerZone";
@@ -16,51 +20,62 @@ interface PartnerSettingsProps {
   className?: string;
 }
 
+const DEFAULT_AVATAR =
+  "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=300&auto=format&fit=crop&q=80";
+
 export const PartnerSettings: React.FC<PartnerSettingsProps> = ({
   initialUser,
   className,
 }) => {
-  const { getUserRole, user } = useAuth();
-  const activeUser = initialUser || user;
+  const { getUserRole, user: authUser } = useAuth();
+  const {
+    user: apiUser,
+    isUpdatingProfile,
+    isUploadingImage,
+    isRemovingImage,
+    isDeletingAccount,
+    handleUpdateProfile,
+    handleUploadProfileImage,
+    handleRemoveProfileImage,
+    handleDeleteAccount: performDeleteAccount,
+  } = useUser();
+
+  const activeUser = apiUser || initialUser || authUser;
 
   const currentRole = (
     activeUser?.role ||
-    user?.role ||
+    authUser?.role ||
     getUserRole() ||
     "PARTNER"
   ).toUpperCase();
 
-
-
   const isPartner = currentRole === "PARTNER";
 
-  // 1. Profile State initialized with exact values from design specification
+  // 1. Profile Display State (Header card)
   const [profile, setProfile] = useState({
     name: activeUser?.firstName
       ? `${activeUser.firstName} ${activeUser.lastName || ""}`.trim()
-      : "Alex Johnson",
+      : activeUser?.name || "Alex Johnson",
     email: activeUser?.email || "alex.johnson@email.com",
-    avatar:
-      activeUser?.profileImage ||
-      "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=300&auto=format&fit=crop&q=80",
+    avatar: activeUser?.profileImage || DEFAULT_AVATAR,
   });
 
-  // 2. Contact Information State
+  // 2. Contact Information Form State
   const [contactInfo, setContactInfo] = useState<PartnerContactInfoFormData>({
-    firstName: activeUser?.firstName || "Shaima",
-    lastName: activeUser?.lastName || "Hussain",
+    firstName: activeUser?.firstName || "",
+    lastName: activeUser?.lastName || "",
     role: activeUser?.role || "Partner",
     partnerType: activeUser?.partnerType || "Venue",
-    businessName: activeUser?.businessName || "Elite Events Co.",
-    businessEmail: activeUser?.businessEmail || "john.doe@example.com",
-    phone: activeUser?.phone || "+(000)000-XXXX",
-    website: activeUser?.website || "www.invitoly.com",
-    businessAddress: activeUser?.businessAddress || "",
+    businessName: activeUser?.businessName || "",
+    businessEmail: activeUser?.businessEmail || activeUser?.email || "",
+    email: activeUser?.email || "",
+    phone: activeUser?.phone || "",
+    website: activeUser?.website || "",
+    address: activeUser?.address || activeUser?.businessAddress || "",
+    businessAddress: activeUser?.businessAddress || activeUser?.address || "",
   });
 
-  const [isSavingProfile, setIsSavingProfile] = useState(false);
-
-  // 3. Bank & Payout Information State
+  // 3. Bank & Payout Information State (Preserved as requested)
   const [bankInfo, setBankInfo] = useState<PartnerBankInfoFormData>({
     accountHolderName:
       initialUser?.accountHolderName ||
@@ -77,61 +92,80 @@ export const PartnerSettings: React.FC<PartnerSettingsProps> = ({
 
   const [isSavingBank, setIsSavingBank] = useState(false);
 
-  // Synchronize state when auth user loads
+  // Synchronize state when active user profile loads from API or Auth
   useEffect(() => {
-    if (user) {
-      if (user.firstName || user.lastName) {
-        setProfile((prev) => ({
-          ...prev,
-          name:
-            `${user.firstName || ""} ${user.lastName || ""}`.trim() || prev.name,
-          email: user.email || prev.email,
-          avatar: user.profileImage || prev.avatar,
-        }));
-      }
-      setContactInfo((prev) => ({
-        ...prev,
-        firstName: user.firstName || prev.firstName,
-        lastName: user.lastName || prev.lastName,
-        role: user.role || prev.role,
-        partnerType: user.partnerType || prev.partnerType,
-        businessName: user.businessName || prev.businessName,
-        businessEmail: user.businessEmail || prev.businessEmail,
-        phone: user.phone || prev.phone,
-        website: user.website || prev.website,
-        businessAddress: user.businessAddress || prev.businessAddress,
-      }));
-      if (user.accountHolderName || user.bankName || user.accountNumber) {
+    if (activeUser) {
+      const computedName =
+        activeUser.name ||
+        `${activeUser.firstName || ""} ${activeUser.lastName || ""}`.trim();
+
+      setProfile({
+        name: computedName || "Alex Johnson",
+        email: activeUser.email || "alex.johnson@email.com",
+        avatar: activeUser.profileImage || DEFAULT_AVATAR,
+      });
+
+      setContactInfo({
+        firstName: activeUser.firstName || "",
+        lastName: activeUser.lastName || "",
+        role: activeUser.role || "Partner",
+        partnerType: activeUser.partnerType || "Venue",
+        businessName: activeUser.businessName || "",
+        businessEmail: activeUser.businessEmail || activeUser.email || "",
+        email: activeUser.email || "",
+        phone: activeUser.phone || "",
+        website: activeUser.website || "",
+        address: activeUser.address || activeUser.businessAddress || "",
+        businessAddress:
+          activeUser.businessAddress || activeUser.address || "",
+      });
+
+      if (
+        activeUser.accountHolderName ||
+        activeUser.bankName ||
+        activeUser.accountNumber
+      ) {
         setBankInfo((prev) => ({
           ...prev,
-          accountHolderName: user.accountHolderName || prev.accountHolderName,
-          bankName: user.bankName || prev.bankName,
-          routingNumber: user.routingNumber || prev.routingNumber,
-          accountNumber: user.accountNumber || prev.accountNumber,
+          accountHolderName:
+            activeUser.accountHolderName || prev.accountHolderName,
+          bankName: activeUser.bankName || prev.bankName,
+          routingNumber: activeUser.routingNumber || prev.routingNumber,
+          accountNumber: activeUser.accountNumber || prev.accountNumber,
           accountType:
-            (user.accountType as "checking" | "savings" | "business") ||
-            prev.accountType,
-          swiftCode: user.swiftCode || prev.swiftCode,
+            (activeUser.accountType as
+              | "checking"
+              | "savings"
+              | "business") || prev.accountType,
+          swiftCode: activeUser.swiftCode || prev.swiftCode,
         }));
       }
     }
-  }, [user]);
+  }, [activeUser]);
 
-  // Handle avatar upload preview
-  const handleUploadPhoto = (file: File) => {
-    const previewUrl = URL.createObjectURL(file);
-    setProfile((prev) => ({ ...prev, avatar: previewUrl }));
-    toast.success("Profile photo uploaded successfully");
+  // Handle avatar upload: POST /user/upload-profile-image (FormData, key: image)
+  const handleUploadPhoto = async (file: File) => {
+    try {
+      const updatedUser = await handleUploadProfileImage(file);
+      if (updatedUser?.profileImage) {
+        setProfile((prev) => ({ ...prev, avatar: updatedUser.profileImage! }));
+      }
+    } catch {
+      // Error handled with toast in useUser
+    }
   };
 
-  // Remove photo
-  const handleRemovePhoto = () => {
-    setProfile((prev) => ({
-      ...prev,
-      avatar:
-        "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=300&auto=format&fit=crop&q=80",
-    }));
-    toast.info("Profile photo removed");
+  // Handle remove avatar: DELETE /user/remove-profile-image
+  const handleRemovePhoto = async () => {
+    try {
+      await handleRemoveProfileImage();
+      setProfile((prev) => ({
+        ...prev,
+        avatar: DEFAULT_AVATAR,
+      }));
+    } catch {
+      // Error handled with toast in useUser
+    }
   };
 
   // Handle contact info input change
@@ -139,23 +173,57 @@ export const PartnerSettings: React.FC<PartnerSettingsProps> = ({
     field: keyof PartnerContactInfoFormData,
     value: string
   ) => {
-    setContactInfo((prev) => ({ ...prev, [field]: value }));
+    setContactInfo((prev) => {
+      const updated = { ...prev, [field]: value };
+      if (field === "address") {
+        updated.businessAddress = value;
+      } else if (field === "businessAddress") {
+        updated.address = value;
+      }
+      return updated;
+    });
   };
 
-  // Save personal & contact information
-  const handleSaveProfile = (e: React.FormEvent) => {
+  // Save profile information: PATCH /user/me
+  const handleSaveProfile = async (e: React.FormEvent) => {
     e.preventDefault();
-    setIsSavingProfile(true);
 
-    setTimeout(() => {
-      setIsSavingProfile(false);
-      // Synchronize the display name in the top card
-      const updatedDisplayName = `${contactInfo.firstName} ${contactInfo.lastName}`.trim();
-      if (updatedDisplayName) {
-        setProfile((prev) => ({ ...prev, name: updatedDisplayName }));
+    if (!contactInfo.firstName.trim()) {
+      toast.error("First name is required");
+      return;
+    }
+    if (!contactInfo.lastName.trim()) {
+      toast.error("Last name is required");
+      return;
+    }
+
+    try {
+      const payload: IUpdateUserProfilePayload = {
+        firstName: contactInfo.firstName.trim(),
+        lastName: contactInfo.lastName.trim(),
+        partnerType: contactInfo.partnerType || null,
+        businessName: contactInfo.businessName || null,
+        email: contactInfo.email || activeUser?.email,
+        phone: contactInfo.phone || null,
+        website: contactInfo.website || null,
+        address:
+          contactInfo.address || contactInfo.businessAddress || null,
+        businessAddress:
+          contactInfo.businessAddress || contactInfo.address || null,
+      };
+
+      const updated = await handleUpdateProfile(payload);
+      if (updated) {
+        const updatedDisplayName =
+          updated.name ||
+          `${updated.firstName || ""} ${updated.lastName || ""}`.trim();
+        if (updatedDisplayName) {
+          setProfile((prev) => ({ ...prev, name: updatedDisplayName }));
+        }
       }
-      toast.success("Personal & contact information saved successfully");
-    }, 400);
+    } catch {
+      // Error handled with toast in useUser
+    }
   };
 
   // Handle bank info input change
@@ -166,7 +234,7 @@ export const PartnerSettings: React.FC<PartnerSettingsProps> = ({
     setBankInfo((prev) => ({ ...prev, [field]: value }));
   };
 
-  // Save bank & payout information
+  // Save bank & payout information (preserved as is)
   const handleSaveBankInfo = (e: React.FormEvent) => {
     e.preventDefault();
 
@@ -199,13 +267,18 @@ export const PartnerSettings: React.FC<PartnerSettingsProps> = ({
     // Handled in PartnerSecurity with validation and toast
   };
 
-  // Delete account callback
-  const handleDeleteAccount = () => {
-    toast.error("Account deletion request submitted");
+  // Delete account: DELETE /user/me
+  const handleDeleteAccount = async () => {
+    try {
+      await performDeleteAccount();
+    } catch {
+      // Error handled with toast in useUser
+    }
   };
 
   return (
     <div
+      data-testid="partner-settings"
       className={cn(
         "w-full max-w-5xl mx-auto space-y-5 sm:space-y-6 font-work-sans pb-12",
         className
@@ -218,6 +291,8 @@ export const PartnerSettings: React.FC<PartnerSettingsProps> = ({
         avatar={profile.avatar}
         onUploadPhoto={handleUploadPhoto}
         onRemovePhoto={handleRemovePhoto}
+        isUploading={isUploadingImage}
+        isRemoving={isRemovingImage}
       />
 
       {/* CARD 2: Personal & Contact Information */}
@@ -225,7 +300,7 @@ export const PartnerSettings: React.FC<PartnerSettingsProps> = ({
         data={contactInfo}
         onChange={handleContactInfoChange}
         onSubmit={handleSaveProfile}
-        isSaving={isSavingProfile}
+        isSaving={isUpdatingProfile}
       />
 
       {/* CARD 3: Bank & Payout Information (Only visible for Partners) */}
@@ -242,10 +317,12 @@ export const PartnerSettings: React.FC<PartnerSettingsProps> = ({
       <PartnerSecurity onUpdatePassword={handleUpdatePassword} />
 
       {/* CARD 5: Danger Zone */}
-      <PartnerDangerZone onDeleteAccount={handleDeleteAccount} />
+      <PartnerDangerZone
+        onDeleteAccount={handleDeleteAccount}
+        isDeleting={isDeletingAccount}
+      />
     </div>
   );
 };
 
 export default PartnerSettings;
-

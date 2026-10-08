@@ -9,6 +9,7 @@ import {
   IAdminPartnerDetails,
   IInvitePartnerPayload,
   TPartnerStatus,
+  IUpdateUserProfilePayload,
 } from "./user.interface";
 
 export const userApi = baseApi.injectEndpoints({
@@ -134,6 +135,56 @@ export const userApi = baseApi.injectEndpoints({
       }),
       invalidatesTags: ["users"],
     }),
+
+    // Get current user profile - GET /user/me
+    getMe: builder.query<ApiResponse<IUser>, void>({
+      query: () => "/user/me",
+      providesTags: ["profile", "users"],
+    }),
+
+    // Update profile - PATCH /user/me
+    updateProfile: builder.mutation<
+      ApiResponse<IUser>,
+      IUpdateUserProfilePayload
+    >({
+      query: (body) => ({
+        url: "/user/me",
+        method: "PATCH",
+        body,
+      }),
+      invalidatesTags: ["profile", "users", "auth"],
+    }),
+
+    // Profile photo upload - POST /user/upload-profile-image (FormData, key: image)
+    uploadProfileImage: builder.mutation<ApiResponse<IUser>, FormData>({
+      query: (body) => ({
+        url: "/user/upload-profile-image",
+        method: "POST",
+        body,
+      }),
+      invalidatesTags: ["profile", "users", "auth"],
+    }),
+
+    // Remove profile photo - DELETE /user/remove-profile-image
+    removeProfileImage: builder.mutation<ApiResponse<IUser>, void>({
+      query: () => ({
+        url: "/user/remove-profile-image",
+        method: "DELETE",
+      }),
+      invalidatesTags: ["profile", "users", "auth"],
+    }),
+
+    // Delete current user account - DELETE /user/me
+    deleteMyAccount: builder.mutation<
+      ApiResponse<{ success?: boolean; message?: string }>,
+      void
+    >({
+      query: () => ({
+        url: "/user/me",
+        method: "DELETE",
+      }),
+      invalidatesTags: ["profile", "users", "auth"],
+    }),
   }),
 });
 
@@ -151,5 +202,11 @@ export const {
   useInvitePartnerMutation,
   useUpdatePartnerPreferredMutation,
   useUpdatePartnerStatusMutation,
+  useGetMeQuery,
+  useUpdateProfileMutation,
+  useUploadProfileImageMutation,
+  useRemoveProfileImageMutation,
+  useDeleteMyAccountMutation,
 } = userApi;
+
 

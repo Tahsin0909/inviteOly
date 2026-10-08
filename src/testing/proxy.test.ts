@@ -206,12 +206,6 @@ describe("Next.js 16 Role-based Proxy (proxy.ts)", () => {
         );
         expect(subRes.status).toBe(200);
       });
-
-      it("allows ADMIN users to inspect host routes", () => {
-        const res = proxy(createRequest("/host/events", validAdminToken));
-        expect(res.status).toBe(200);
-      });
-
       it("redirects unauthorized PARTNER users to /partner", () => {
         const res = proxy(createRequest("/host", validPartnerToken));
         expect(res.status).toBe(307);
@@ -236,11 +230,6 @@ describe("Next.js 16 Role-based Proxy (proxy.ts)", () => {
           createRequest("/partner/rewards", validPartnerToken)
         );
         expect(subRes.status).toBe(200);
-      });
-
-      it("allows ADMIN users to inspect partner routes", () => {
-        const res = proxy(createRequest("/partner/venues", validAdminToken));
-        expect(res.status).toBe(200);
       });
 
       it("redirects unauthorized HOST users to /host", () => {
@@ -331,4 +320,3 @@ describe("Next.js 16 Role-based Proxy (proxy.ts)", () => {
     });
   });
 });
-

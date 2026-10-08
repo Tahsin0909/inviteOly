@@ -31,5 +31,19 @@ export const userUpdateSchema = userSchema.pick({
   jobTitle: true,
 });
 
+export const updateProfileSchema = z.object({
+  firstName: z.string().min(1, "First name is required"),
+  lastName: z.string().min(1, "Last name is required"),
+  partnerType: z.string().optional().nullable(),
+  businessName: z.string().optional().nullable(),
+  email: z.string().email("Please enter a valid email address").optional(),
+  phone: z.string().optional().nullable(),
+  website: z.string().optional().nullable(),
+  address: z.string().optional().nullable(),
+  businessAddress: z.string().optional().nullable(),
+});
+
 export type UserSchemaType = z.infer<typeof userSchema>;
 export type UserUpdateSchemaType = z.infer<typeof userUpdateSchema>;
+export type UpdateProfileSchemaType = z.infer<typeof updateProfileSchema>;
+

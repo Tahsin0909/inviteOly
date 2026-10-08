@@ -10,43 +10,43 @@ export const partnerUserApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
     // 1. Get Partner Profile
     getPartnerProfile: builder.query<ApiResponse<IUser>, void>({
-      query: () => "/user/partner/profile",
+      query: () => "/user/me",
       providesTags: ["profile", "users"],
     }),
 
     // 2. Update Partner Profile
     updatePartnerProfile: builder.mutation<
       ApiResponse<IUser>,
-      IUpdatePartnerProfileDto
+      IUpdatePartnerProfileDto | Record<string, unknown>
     >({
       query: (body) => ({
-        url: "/user/partner/profile",
-        method: "PUT",
+        url: "/user/me",
+        method: "PATCH",
         body,
       }),
-      invalidatesTags: ["profile", "users"],
+      invalidatesTags: ["profile", "users", "auth"],
     }),
 
     // 3. Upload Partner Avatar / Profile Photo
     uploadPartnerAvatar: builder.mutation<
-      ApiResponse<{ profileImage: string }>,
+      ApiResponse<IUser>,
       FormData
     >({
       query: (body) => ({
-        url: "/user/partner/avatar",
+        url: "/user/upload-profile-image",
         method: "POST",
         body,
       }),
-      invalidatesTags: ["profile", "users"],
+      invalidatesTags: ["profile", "users", "auth"],
     }),
 
     // 4. Remove Partner Photo
-    removePartnerAvatar: builder.mutation<ApiResponse<void>, void>({
+    removePartnerAvatar: builder.mutation<ApiResponse<IUser | void>, void>({
       query: () => ({
-        url: "/user/partner/avatar",
+        url: "/user/remove-profile-image",
         method: "DELETE",
       }),
-      invalidatesTags: ["profile", "users"],
+      invalidatesTags: ["profile", "users", "auth"],
     }),
 
     // 5. Change Password
@@ -64,7 +64,7 @@ export const partnerUserApi = baseApi.injectEndpoints({
     // 6. Delete Partner Account
     deletePartnerAccount: builder.mutation<ApiResponse<void>, void>({
       query: () => ({
-        url: "/user/partner/account",
+        url: "/user/me",
         method: "DELETE",
       }),
       invalidatesTags: ["profile", "users", "auth"],

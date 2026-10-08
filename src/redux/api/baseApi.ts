@@ -7,10 +7,14 @@ export const baseApi = createApi({
     baseUrl: process.env.NEXT_PUBLIC_API_URL,
     credentials: "include",
     prepareHeaders: (headers, { getState }) => {
-      const token = (getState() as RootState).auth?.token;
+      let token: string | undefined = (getState() as RootState).auth?.token;
+
+      if (!token && typeof window !== "undefined") {
+        token = localStorage.getItem("token") || undefined;
+      }
 
       if (token) {
-        headers.set("Authorization", `${token}`);
+        headers.set("Authorization", `Bearer ${token}`);
       }
 
       return headers;

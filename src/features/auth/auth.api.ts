@@ -181,14 +181,14 @@ export const userApi = baseApi.injectEndpoints({
       }),
     }),
 
-    // Update Profile - PUT /users/profile
+    // Update Profile - PATCH /user/me
     updateProfile: builder.mutation<ApiResponse<IUser>, Partial<IUser>>({
       query: (body) => ({
-        url: `/users/profile`,
-        method: "PUT",
+        url: `/user/me`,
+        method: "PATCH",
         body,
       }),
-      invalidatesTags: ["auth"],
+      invalidatesTags: ["auth", "profile", "users"],
     }),
 
     // Logout - POST /auth/logout
@@ -200,10 +200,10 @@ export const userApi = baseApi.injectEndpoints({
       invalidatesTags: ["auth"],
     }),
 
-    // Get User Profile - GET /users/profile
+    // Get User Profile - GET /user/me
     getProfile: builder.query<ApiResponse<IUser>, string | void>({
-      query: () => `/users/profile`,
-      providesTags: ["auth"],
+      query: () => `/user/me`,
+      providesTags: ["auth", "profile", "users"],
     }),
   }),
 });
