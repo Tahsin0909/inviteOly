@@ -1,0 +1,2 @@
+1. On the settings page has a problem with cashing e.g at first login as a partner then logout and then again login as a host now able to see the partner profile info and need to reload to see the host profile info - 
+2. Suppose i am n the host dashboard and when logout i am still in thje host dashboard and also whne on the landing page after logout as a host when i click on thje login go to the host dashboard while i have clicked the logout
